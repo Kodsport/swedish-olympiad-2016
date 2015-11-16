@@ -1,0 +1,226 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="game_div" style="display: inline-block;">
+  <canvas id="c"></canvas>
+  <div id="move_div">
+    <p id="move_label" style="text-align: center; font-family: Verdana, Geneva, sans-serif;"></p>
+  </div>
+</div>
+
+<div id="button_div">
+  <button onclick="reset_map()">Reset</button>
+</div>
+
+<textarea id="text_input" rows="20" cols="20">
+
+</textarea>
+<button onclick="handle_text_input()">
+Test map
+</button>
+
+
+<script>
+
+var FREE = ".";
+var WALL = "#";
+var START = "S";
+var GOAL = "G";
+var CELL_SIZE = 100;
+var BORDER_SIZE = 5;
+var WALL_COLOR = "#222222";
+var BORDER_COLOR = "#000000";
+var FREE_COLOR = "#bbbbbb";
+var TEXT_COLOR = "#000000";
+var BLOCK_COLOR = "#6b3b00";
+var FONT = "40px Arial";
+
+var canvas = document.getElementById("c");
+var context = canvas.getContext("2d");
+var map = undefined;
+
+var moveLabel = document.getElementById("move_label");
+var moves = 0;
+
+var STANDING = 0;
+var HORIZONTAL = 1;
+var VERTICAL = 2;
+var UP = 0;
+var RIGHT = 1;
+var DOWN = 2;
+var LEFT = 3;
+
+var d = [[],[],[]];
+d[STANDING][UP] = [-2, 0, VERTICAL];
+d[STANDING][RIGHT] = [0, 1, HORIZONTAL];
+d[STANDING][DOWN] = [1, 0, VERTICAL];
+d[STANDING][LEFT] = [0, -2, HORIZONTAL];
+d[HORIZONTAL][UP] = [-1, 0, HORIZONTAL];
+d[HORIZONTAL][RIGHT] = [0, 2, STANDING];
+d[HORIZONTAL][DOWN] = [1, 0, HORIZONTAL];
+d[HORIZONTAL][LEFT] = [0, -1, STANDING];
+
+d[VERTICAL][UP] = [-1, 0, STANDING];
+d[VERTICAL][RIGHT] = [0, 1, VERTICAL];
+d[VERTICAL][DOWN] = [2, 0, STANDING];
+d[VERTICAL][LEFT] = [0, -1, VERTICAL];
+
+var br = undefined;
+var bc = undefined;
+var bs = undefined;
+
+function load_map(m) {
+  map = m;
+  var w = map[0].length;
+  var h = map.length;
+  canvas.width = (BORDER_SIZE + CELL_SIZE) * w + BORDER_SIZE;
+  canvas.height = (BORDER_SIZE + CELL_SIZE) * h + BORDER_SIZE;
+  reset_map();
+}
+
+function reset_map() {
+  set_start_position();
+  moves = 0;
+  set_move_label();
+  render_map();
+}
+
+function set_move_label() {
+  moveLabel.innerHTML = moves;
+}
+
+function set_start_position() {
+  bs = STANDING;
+  for (var r = 0; r < map.length; r++) {
+    for (var c = 0; c < map[r].length; c++) {
+      if (map[r][c] === START) {
+        br = r;
+        bc = c;
+      }
+    }
+  }
+}
+
+function is_free(r, c, s) {
+  function is_free_cell(r, c) {
+    return r >= 0 && r < map.length && c >= 0 && c < map[0].length && map[r][c] != WALL;
+  }
+  if (s === STANDING) {
+    return is_free_cell(r, c);
+  } else if (s === HORIZONTAL) {
+    return is_free_cell(r, c) && is_free_cell(r, c+1);
+  } else {
+    return is_free_cell(r, c) && is_free_cell(r+1, c);
+  }
+}
+
+function move_block(dir) {
+  var nr = br + d[bs][dir][0];
+  var nc = bc + d[bs][dir][1];
+  var ns = d[bs][dir][2];
+  if (is_free(nr, nc, ns)) {
+    br = nr;
+    bc = nc;
+    bs = ns;
+    render_map();
+    moves++;
+    set_move_label();
+  }
+}
+
+function render_map() {
+  context.fillStyle = BORDER_COLOR;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (var r = 0; r < map.length; r++) {
+    for (var c = 0; c < map[r].length; c++) {
+      // Draw cell
+      context.fillStyle = FREE_COLOR;
+      if (map[r][c] === WALL) {
+        context.fillStyle = WALL_COLOR;
+      } else if (r === br && c === bc || (bs === HORIZONTAL && r === br && c === bc + 1) || (bs === VERTICAL && r === br+1 && c === bc)) {
+        context.fillStyle = BLOCK_COLOR;
+      }
+      var x = c*CELL_SIZE + (c+1)*BORDER_SIZE;
+      var y = r*CELL_SIZE + (r+1)*BORDER_SIZE;
+      context.fillRect(x, y, CELL_SIZE, CELL_SIZE);
+      
+      // Draw text
+      if (map[r][c] === START || map[r][c] === GOAL) {
+        var text = map[r][c];
+        context.fillStyle = TEXT_COLOR;
+        context.font = FONT;
+        context.textAlign = "center";
+        context.fillText(text, x + CELL_SIZE/2, y + CELL_SIZE/2 + 10);
+      }
+    }
+  }
+}
+
+function handle_text_input() {
+  var textArea = document.getElementById("text_input");
+  var inputMap = textArea.value.split("\n").filter(function(row) {
+    return row.length > 0;
+  });
+  for (var i = 1; i < inputMap.length; i++) {
+    if (inputMap[i].length !== inputMap[0].length) {
+      console.log("Invalid map format");
+      return;
+    }
+  }
+  load_map(inputMap);
+}
+
+document.onkeydown = function(event) {
+     var code = event.keyCode;
+     switch(code) {
+          case 37:
+              move_block(LEFT);
+              break;
+          case 38:
+              move_block(UP);
+              break;
+          case 39:
+              move_block(RIGHT);
+              break;
+          case 40:
+              move_block(DOWN);
+              break;
+     }
+};
+
+function add_map_button(name, data) {
+  var buttonDiv = document.getElementById("button_div");
+  var button = document.createElement("button");
+  button.onclick = function() {
+    load_map(data);
+  }
+  button.innerHTML = "Load " + name;
+  buttonDiv.appendChild(button);
+}
+
+
+var sample1 = ["S..","...","..G"];
+var sample2 = ["S..","...","#.G"];
+var sample3 = ["S#...",".....","...#G"];
+var secret1 = ["S#...",".....","...#.","###..","..#..",".G..#","....."];
+var secret2 = ["S.....","......","......",".....#","......","....#G"];
+var secret3 = ["......S","..##..#","..G#..."];
+
+add_map_button("Sample 1", sample1);
+add_map_button("Sample 2", sample2);
+add_map_button("Sample 3", sample3);
+add_map_button("Secret 1", secret1);
+add_map_button("Secret 2", secret2);
+add_map_button("Secret 3", secret3);
+load_map(sample3);
+document.getElementById("text_input").value = sample3.join("\n");
+
+</script>
+
+</body>
+
+</html>
