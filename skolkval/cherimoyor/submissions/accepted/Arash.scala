@@ -1,6 +1,8 @@
 // Arash Rouhani
 // 12-nov-2015
 // HCMC
+//
+// usage: echo '30 0 0 0 0 0 0' | scala Arash.scala
 
 object Cherimoyor {
   def main(args: Array[String]) {
@@ -19,14 +21,15 @@ object Cherimoyor {
      assume(points_for_using(25) == 55)
 
      val cherimoyor: Array[Int] = readLine.split(" ").map(_.toInt)
-     val mem = Array.fill(11, 300)(-10000)  // [day, num_used], where "num_used" == num_eaten+num_thrown
+     val num_days = cherimoyor.size + 2
+     val mem = Array.fill(num_days + 2, 300)(-10000)  // [day, num_used], where "num_used" == num_eaten+num_thrown
 
      def min_used(day: Int) :Int = {
        cherimoyor.slice(0, Math.max(0, day-2)).sum
      }
 
      def max_used(day: Int) :Int = {
-       cherimoyor.slice(0, Math.min(7,day)).sum
+       cherimoyor.slice(0, Math.min(num_days - 2,day)).sum
      }
 
      mem(0)(0) = 0
