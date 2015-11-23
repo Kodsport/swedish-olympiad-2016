@@ -10,7 +10,7 @@ for line in sys.stdin:
 assert len(data) == 2
 
 N = int(data[0])
-assert 1 <= N <= 10
+assert 1 <= N <= 15
 
 days = map(int, data[1].split())
 

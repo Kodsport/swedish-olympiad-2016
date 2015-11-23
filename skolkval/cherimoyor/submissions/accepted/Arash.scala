@@ -23,7 +23,7 @@ object Cherimoyor {
      val ignore: Int = readLine.toInt
      val cherimoyor: Array[Int] = readLine.split(" ").map(_.toInt)
      val num_days = cherimoyor.size + 2
-     val mem = Array.fill(num_days + 2, 300)(-10000)  // [day, num_used], where "num_used" == num_eaten+num_thrown
+     val mem = Array.fill(num_days + 3, 300)(-10000)  // [day, num_used], where "num_used" == num_eaten+num_thrown
 
      def min_used(day: Int) :Int = {
        cherimoyor.slice(0, Math.max(0, day-2)).sum
@@ -34,7 +34,7 @@ object Cherimoyor {
      }
 
      mem(0)(0) = 0
-     for(i <- 0 to 9; j <- 0 to 299; use <- 0 to 30) {
+     for(i <- 0 to num_days; j <- 0 to 299; use <- 0 to 30) {
        val candidate_value = mem(i)(j) + points_for_using(use)
        val is_valid = min_used(i+1) <= j+use && j+use <= max_used(i+1);
        if(is_valid) {
