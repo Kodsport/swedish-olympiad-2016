@@ -8,5 +8,4 @@ grading:
     objective: max
     range: 0 100
 
-validation: custom
 type: scoring
