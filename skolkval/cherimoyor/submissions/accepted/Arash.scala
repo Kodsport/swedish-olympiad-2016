@@ -20,6 +20,7 @@ object Cherimoyor {
      assume(points_for_using(10) == 55)
      assume(points_for_using(25) == 55)
 
+     val ignore: Int = readLine.toInt
      val cherimoyor: Array[Int] = readLine.split(" ").map(_.toInt)
      val num_days = cherimoyor.size + 2
      val mem = Array.fill(num_days + 2, 300)(-10000)  // [day, num_used], where "num_used" == num_eaten+num_thrown
