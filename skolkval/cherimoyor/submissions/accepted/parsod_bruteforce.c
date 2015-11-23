@@ -1,16 +1,18 @@
 #include <stdio.h>
 // original by PS
+// slightly edited by Arash
 
 int MIN(int p, int q) {return p<q?p:q; }
 int MAX(int p, int q) {return p>q?p:q; }
 
 int P[]={0,10,19,27,34,40,45,49,52,54,55};
-int n[10];
+int N;
+int n[20];
 
 int MLX(int nr, int rem1, int rem2) {
         int p,q,eat0,eat1,eat2;
         p=0;
-        if(nr==9) return 0;
+        if(nr==N-1) return 0;
         for(q=eat2;q<=MIN(10,rem1+rem2+n[nr]);q++) {
                 eat2=MIN(q,rem2);
                 eat1=MIN(q-eat2,rem1);
@@ -21,9 +23,10 @@ int MLX(int nr, int rem1, int rem2) {
 }
 
 int main() {
+        scanf("%d", &N);
         int i;
-        for(i=0;i<7;i++) scanf("%d", &n[i]);
-        n[7]=n[8]=0;
+        for(i=0;i<N-3;i++) scanf("%d", &n[i]);
+        n[N-3]=n[N-2]=0;
         printf("%d\n", MLX(0,0,0));
         return 0;
 }
