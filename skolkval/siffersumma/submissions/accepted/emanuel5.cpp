@@ -1,3 +1,5 @@
+// Expected score: 5p
+
 #include <bits/stdc++.h>
 using namespace std;
  
