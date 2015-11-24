@@ -1,37 +1,39 @@
-\problemname{Siffersumma}
+\problemname{Förvirrad föreläsare}
 
-Universitetslektor Bjarki undervisar i många olika kurser varje vecka, men är
-inte särskilt organiserad av sig. Desto mer förvirrad blir han när kurserna
-från vecka till vecka har olika antal schemalagda tillfällen.
 
-Om en kurs har $A$ schemalagda tillfällen en vecka, och den nästa vecka har $B$
-tillfällen, kommer Bjarki ändå bara att hålla exakt $A$ föreläsningar. Därför
-kan det både hända att Bjarki håller lektion inför tomma klassrum samt kan det hända
-att han håller färre föreläsningar än det var tänkt. I slutet av veckan
-får han dock ett argt brev av skolchefen med vilka tider han skulle hållit
-föreläsningar och kommer istället att använda dessa tider veckan därpå.
+Bjarki undervisar på en kurs på universitetet, men är
+inte särskilt organiserad av sig. Särskilt förvirrad blir han av att antalet föreläsningar
+varierar från vecka till vecka.
 
-Givet hur många föreläsningar Bjarki håller under $N$ veckor, bestäm antalet
+Om kursen har $A$ schemalagda föreläsningar första veckan och $B$
+föreläsningar nästa vecka, kommer Bjarki ändå bara att hålla exakt $A$ föreläsningar. Därför
+kan det ibland hända att Bjarki håller lektion inför tomt klassrum och ibland att han inte dyker upp när han ska. I slutet av veckan
+får han dock ett argt brev av sin chef med vilka tider han skulle hållit
+föreläsningar och kommer istället att använda dessa tider veckan därpå. 
+
+Skriv ett program som, givet antalet schemalagda föreläsningar under $N$ veckor, skriver ut antalet
 föreläsningar Bjarki kommer hålla inför tomma klassrum samt antalet
 föreläsningar Bjarki inte dyker upp på.
 
-\section*{Exempelkörning}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.8\textwidth]{forelasare.png}
+\caption{Schemat i det första exemplet. F markerar schemalagda föreläsningar. En blå cirkel markerar att Bjarki håller lektionen inför tomt klassrum och en röd triangel markerar att han inte dyker upp. {\bf Förklaring:} Första veckan har Bjarki alltid koll på vilka
+föreläsningar han ska hålla. Veckan därpå tror han att han bara ska
+hålla en föreläsning, och missar därför två stycken. Tredje veckan håller han
+tre föreläsningar, varav en inför tomt klassrum, och sista veckan missar han två
+föreläsningar. Totalt har han hållt 1 tom föreläsning och missat 4 föreläsningar.} }
+\label{overflow}
+\end{figure}
 
-Se det första indataexemplet. Första veckan har Bjarki alltid koll på vilka
-föreläsningar han ska hålla. Veckan därpå kommer han tro att han enbart ska
-hålla en föreläsning, och missar därför 2. Därefter kommer han hålla en
-föreläsning inför ett tomt klassrum, och sista veckan kommer han missa två
-föreläsningar. Totalt har han hållt 1 tom föreläsning och missat 4
-föreläsningar.
 
 \section*{Indata}
 
-Först kommer talet $N$ på en egen rad. Därefter kommer $N$ heltal, antalet
-lektioner Bjarki skulle ha hållit, vecka för vecka.
+Först kommer talet $N$ på en egen rad, där $1\le N \le 9$. Därefter kommer $N$ heltal, antalet
+schemalagda föreläsningar under var och en av veckorna.
 
-Det kan aldrig vara mer än 10 föresläsningar under en vecka och det kan inte
-finnas mer än 9 veckor i indatat (en tentatermin).
+Det kan aldrig vara mer än 10 föreläsningar under en vecka och tiderna fylls alltid på från början av veckan utan luckor (se figuren ovan). 
 
 \section*{Utdata}
-Skriv ut antalet tomma föresläsningar Bjarki har hållt, ett mellanslagtecken,
+Skriv ut antalet tomma föreläsningar Bjarki har hållt, ett mellanslagtecken,
 därefter antalet föreläsningar Bjarki har missat.
