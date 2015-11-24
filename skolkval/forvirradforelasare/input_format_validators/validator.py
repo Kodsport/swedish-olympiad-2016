@@ -10,11 +10,11 @@ for line in sys.stdin:
 assert len(data) == 2
 
 N = int(data[0])
-assert 1 <= N <= 15
+assert 1 <= N <= 9
 
 days = map(int, data[1].split())
 assert len(days) == N
 
-assert all(0 <= day <= 30 for day in days)
+assert all(0 <= day <= 10 for day in days)
 
 sys.exit(42)
