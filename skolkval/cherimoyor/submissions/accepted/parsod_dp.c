@@ -19,7 +19,7 @@ int MLX(int nr, int rem1, int rem2) {
         p=0;
         if(nr==N+2) return 0;
 	if(T[nr][rem1][rem2]!=-1) return T[nr][rem1][rem2];
-        for(q=rem2;q<=MIN(10,rem1+rem2+n[nr]);q++) {
+        for(q=MIN(10,rem2);q<=MIN(10,rem1+rem2+n[nr]);q++) {
                 eat2=MIN(q,rem2);
                 eat1=MIN(q-eat2,rem1);
                 eat0=MIN(q-eat1-eat2,n[nr]);
