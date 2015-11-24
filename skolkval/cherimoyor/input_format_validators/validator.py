@@ -13,6 +13,7 @@ N = int(data[0])
 assert 1 <= N <= 15
 
 days = map(int, data[1].split())
+assert len(days) == N
 
 assert all(0 <= day <= 30 for day in days)
 
