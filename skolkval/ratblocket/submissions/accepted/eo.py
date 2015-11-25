@@ -1,8 +1,8 @@
 from collections import deque
 
 WALL = "#"
-START = "S"
-GOAL = "G"
+START = "A"
+GOAL = "B"
 FREE = "."
 SWITCH = "c"
 
@@ -67,6 +67,6 @@ def bfs(grid):
   a,b = dist[gr][gc][STANDING]
   return a if b == -1 else b if a == -1 else min(a,b)
 
-width, height = map(int, raw_input().split())
+height, width = map(int, raw_input().split())
 grid = [raw_input() for i in range(height)]
 print bfs(grid)

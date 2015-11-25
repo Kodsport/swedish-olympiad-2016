@@ -27,8 +27,8 @@ Test map
 
 var FREE = ".";
 var WALL = "#";
-var START = "S";
-var GOAL = "G";
+var START = "A";
+var GOAL = "B";
 var ZERO = "0";
 var ONE = "1";
 var SWITCH = "c";
@@ -38,8 +38,8 @@ var WALL_COLOR = "#222222";
 var BORDER_COLOR = "#000000";
 var FREE_COLOR = "#bbbbbb";
 var TEXT_COLOR = "#000000";
-var BLOCK_COLOR = "#6b3b00";
-var LOCKED_COLOR = "#550000";
+var BLOCK_COLOR = "#421C00";
+var LOCKED_COLOR = "#BF0000";
 var UNLOCKED_COLOR = "#2B8D07";
 var FONT = "40px Arial";
 
@@ -165,12 +165,13 @@ function render_map() {
     for (var c = 0; c < map[r].length; c++) {
       // Draw cell
       context.fillStyle = FREE_COLOR;
+      var block = r === br && c === bc || (bs === HORIZONTAL && r === br && c === bc + 1) || (bs === VERTICAL && r === br+1 && c === bc)
       if (map[r][c] === WALL) {
         context.fillStyle = WALL_COLOR;
-      } else if (r === br && c === bc || (bs === HORIZONTAL && r === br && c === bc + 1) || (bs === VERTICAL && r === br+1 && c === bc)) {
+      } else if (block) {
         context.fillStyle = BLOCK_COLOR;
       } else if (map[r][c] === ZERO || map[r][c] === ONE) {
-        if (map[r][c] == mod) {
+        if (map[r][c]^mod === 0) {
           context.fillStyle = UNLOCKED_COLOR;
         } else {
           context.fillStyle = LOCKED_COLOR;
@@ -181,8 +182,11 @@ function render_map() {
       context.fillRect(x, y, CELL_SIZE, CELL_SIZE);
       
       // Draw text
-      if (map[r][c] === START || map[r][c] === GOAL || map[r][c] === SWITCH) {
+      if (!block && (map[r][c] === START || map[r][c] === GOAL || map[r][c] === SWITCH || map[r][c] === ZERO || map[r][c] === ONE)) {
         var text = map[r][c];
+        if (map[r][c] === ZERO || map[r][c] === ONE) {
+          text = map[r][c]^mod;
+        }
         context.fillStyle = TEXT_COLOR;
         context.font = FONT;
         context.textAlign = "center";
@@ -235,15 +239,15 @@ function add_map_button(name, data) {
 }
 
 
-var sample1 = ["S..","...","..G"];
-var sample2 = ["S..","...","#.G"];
-var sample3 = ["S#...",".....","...#G"];
-var sample4 = ["S..#...",".G.1...","..c#..."];
-var secret1 = ["S#...",".....","...#.","###..","..#..",".G..#","....."];
-var secret2 = ["S.....","......","......",".....#","......","....#G"];
-var secret3 = ["......S","..##..#","..G#..."];
-var secret4 = ["G.1S##",".##..0",".##...","011.##","c11.#c","###...","###..."];
-var secret5 = ["S00c00c","1##1##1","1##1##1","G11c11c","0##1##0","0##1##0","c00c11c"];
+var sample1 = ["A..","...","..B"];
+var sample2 = ["A..","...","#.B"];
+var sample3 = ["A#...",".....","...#B"];
+var sample4 = ["A..#...",".B.1...","..c#..."];
+var secret1 = ["A#...",".....","...#.","###..","..#..",".B..#","....."];
+var secret2 = ["A.....","......","......",".....#","......","....#B"];
+var secret3 = ["......A","..##..#","..B#..."];
+var secret4 = ["B.1A##",".##..0",".##...","011.##","c11.#c","###...","###..."];
+var secret5 = ["A00c00c","1##1##1","1##1##1","B11c11c","0##1##0","0##1##0","c00c11c"];
 
 add_map_button("Sample 1", sample1);
 add_map_button("Sample 2", sample2);
