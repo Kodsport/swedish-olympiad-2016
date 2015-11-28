@@ -28,4 +28,22 @@ public class State {
         return dir;
     }
 
+    /**
+     * Get the angle in radians for the robot.
+     */
+    public double getAngle() {
+        switch (dir) {
+            case RIGHT:
+                return -Math.PI / 2;
+            case UP:
+                return 0;
+            case DOWN:
+                return Math.PI;
+            case LEFT:
+                return -Math.PI / 2;
+            default:
+                throw new IllegalStateException("Unknown direciton");
+        }
+
+    }
 }
