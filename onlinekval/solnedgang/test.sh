@@ -4,7 +4,7 @@ for acc in submissions/accepted/*.cpp; do
 	g++ -O2 -std=c++11 $acc -o /tmp/solnedgang_ac
 	set +e
 	echo "Testing $acc"
-	for a in tests/*.in; do
+	for a in data/sample/*.in; do
 		echo $a
 		python3 input_format_validators/validator.py < $a
 		set -e
