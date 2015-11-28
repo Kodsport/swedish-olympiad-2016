@@ -1,27 +1,27 @@
 package parser;
 
-import java.io.IOException;
-
 public class State {
     public enum Direction {
         RIGHT, DOWN, LEFT, UP
     }
 
-    private int x, y;
+    private int row, col;
     private Direction dir;
+    private int line;
 
-    public State(int x, int y, Direction dir) throws IOException {
-        this.x = x;
-        this.y = y;
+    public State(int x, int y, Direction dir) {
+        this.row = x;
+        this.col = y;
         this.dir = dir;
+        line = 0;
     }
 
-    public int getX() {
-        return x;
+    public int getRow() {
+        return row;
     }
 
-    public int getY() {
-        return y;
+    public int getCol() {
+        return col;
     }
 
     public Direction getDir() {
@@ -44,6 +44,16 @@ public class State {
             default:
                 throw new IllegalStateException("Unknown direciton");
         }
+    }
 
+    public void updateDir(Direction dir, int line) {
+        this.dir = dir;
+        this.line = line;
+    }
+
+    public void updatePos(int row, int col, int line) {
+        this.row = row;
+        this.col = col;
+        this.line = line;
     }
 }
