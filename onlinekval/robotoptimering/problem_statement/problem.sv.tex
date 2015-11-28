@@ -1,0 +1,52 @@
+\problemname{Robotoptimering}
+
+En robot befinner sig i ett $N \times M$ rutnät, där vissa rutor är \textbf{blockerade} så att roboten inte kan gå på rutan. Nu vill hon förflytta sig till en annan ruta, och har bett sin ägare att programmera om henne för det. Denna ägare råkar vara du.
+
+Att överföra robotens programmering från din dator till roboten tar väldigt mycket energi, så du vill göra programmet så litet som möjligt - dvs, använda så få tecken som du kan.
+Som bekant ser programmeringsspråket för att programmera en robot ut på följande vis:
+
+\begin{description}
+  \item[\texttt{forward}] Flytta fram roboten ett steg i sin nuvarande riktning.
+  \item[\texttt{right}] Rotera $90\deg$ medsols.
+  \item[\texttt{left}] Rotera $90\deg$ motsols.
+  \item[\texttt{for X \{ A1 A2 ... An \}}] Upprepa kommandona \texttt{A1}, \texttt{A2}, ..., \texttt{An} $X$ gånger.
+  \item[\texttt{call X}] Hoppa till instruktionen som har label \texttt{X}, och lägg till nuvarande position i anropsstacken.
+  \item[\texttt{ret}] Hoppa till den senast inlagda positionen i anropsstacken, och ta bort den.
+  \item[\texttt{gotoblocked X}] Hoppa till instruktionen som har label \texttt{X}, om rutan framför roboten inte är fri.
+\end{description}
+
+En \emph{label} har syntaxet \texttt{labelnamn:}. Exekveringen startar vid labeln \texttt{main}.
+
+\begin{verbatim}
+
+walkandreturn:
+  for 100 {
+    forward
+  }
+  gotoblocked done
+  right
+  right
+  for 100 {
+    forward
+  }
+done:
+  ret
+
+main:
+  for 100 {
+    call walkandright
+    right
+  }
+\end{verbatim}
+
+När roboten försöker gå mot en ruta som inte är fri, så händer ingenting. När roboten når sin målruta så vinner roboten, oavsett om den kört färdigt eller inte.
+
+\section*{Indata}
+Indatat består av 20 olika rutnät, som du kan ladda ner här(TODO: länk!!!). Varje rutnät har följande format:
+
+Den första raden innehåller två heltal $1 \le R \le 1000$ och $1 \le C \le 1000$, antal rader och kolumner i rutnätet.
+
+\section*{Utdata}
+om X <= Y <= 2*X: 1 + 4(2X - Y) / X  poäng
+om 2X < Y <= 4X: 1 poäng
+
