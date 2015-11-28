@@ -19,6 +19,8 @@ public class GuiMain extends JFrame {
     private GridPanel gridPanel;
     private JList<String> codeList = new JList<>();
     private JPanel codePanel = new JPanel(new CardLayout());
+    private JButton zoomInButton = new JButton("Zoom in");
+    private JButton zoomOutButton = new JButton("Zoom out");
 
     public GuiMain(Grid grid, State state) {
         super("Robot optimization");
@@ -28,8 +30,8 @@ public class GuiMain extends JFrame {
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 1;
         c.weighty = 1;
-        c.insets = new Insets(4,4,4,4);
-        c.gridheight = 2;
+        c.insets = new Insets(5,5,5,5);
+        c.gridheight = 3;
         codePanel.add(new JScrollPane(textArea));
         codePanel.add(new JScrollPane(codeList));
         add(codePanel,c);
@@ -38,13 +40,18 @@ public class GuiMain extends JFrame {
         c.weighty = 0.9;
         c.gridy = 0;
         c.gridx = 1;
-        add(gridPanel,c);
+        add(new JScrollPane(gridPanel),c);
         c.gridheight = 1;
         c.gridwidth = 1;
         c.gridx = 1;
         c.gridy = 1;
         c.weighty = 0.1;
         c.fill = GridBagConstraints.HORIZONTAL;
+        add(zoomInButton,c);
+        c.gridx = 2;
+        add(zoomOutButton,c);
+        c.gridx = 1;
+        c.gridy = 2;
         add(parseButton,c);
         c.gridx = 2;
         add(runButton,c);
@@ -61,6 +68,20 @@ public class GuiMain extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 codeList.setSelectedIndex(Math.min(codeList.getModel().getSize()-1,codeList.getSelectedIndex() + 1));
+            }
+        });
+        zoomInButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gridPanel.zoomIn();
+                invalidate();
+            }
+        });
+        zoomOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gridPanel.zoomOut();
+                invalidate();
             }
         });
         codeList.setEnabled(false);

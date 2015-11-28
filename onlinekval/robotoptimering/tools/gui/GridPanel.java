@@ -13,16 +13,30 @@ import parser.State;
 public class GridPanel extends JPanel {
     private Grid grid;
     private State state;
+    private int w = 32;
 
     public GridPanel(Grid grid, State state) {
         this.grid = grid;
         this.state = state;
     }
 
+    public void zoomIn() {
+        if(w < 512) w *= 2;
+        setPreferredSize(new Dimension(grid.getC()*w, grid.getR()*w));
+        revalidate();
+        repaint();
+    }
+
+    public void zoomOut() {
+        if(w > 2) w /= 2;
+        setPreferredSize(new Dimension(grid.getC()*w, grid.getR()*w));
+        revalidate();
+        repaint();
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        int w = Math.min(getWidth() / grid.getC(),getHeight()/grid.getR());
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, w*grid.getC(), w*grid.getR());
         g.setColor(Color.BLACK);
