@@ -7,6 +7,7 @@
 using namespace std;
 
 typedef pair<int,int> pii;
+typedef pair<long long,long long> pll;
 typedef pair<long long, int> pli;
 
 struct UnionFind {
@@ -40,58 +41,86 @@ int main () {
 	cin >> n >> k;
 
 	UnionFind uf(n);
-	map<long long,set<pli>> buildings;
+	map<long long,set<long long>> buildings;
+	map<pll, int> buildingIDs;
+
 	for (int i = 0; i < n; i++) {
 		long long x, y;
 		cin >> x >> y;
-		buildings[x].insert(pli(y, i));
+		buildings[x].insert(y);
+		buildingIDs[pll(x,y)] = i;
 	}
 
-	priority_queue<pair<int,pii>> que;
+	priority_queue<pair<long long, pii>> que;
 
+	// Loop through all columns
 	for (auto colpair : buildings) {
-		int x = colpair.first;
+		auto x = colpair.first;
 		auto col = colpair.second;
+
+		// Loop through all buildings in column
 		for (auto it = col.begin(); it != col.end(); it++) {
+			// Next building
 			auto j = it;
 			j++;
+			auto y = *it;
+
 			// Highest y coordinate that will belong to this shadow
-			auto top = j != col.end() ? (*j).first - 1 : 1LL << 62;
-			auto bottom = (*it).first;
-			auto id = (*it).second;
+			auto top = j != col.end() ? (*j) - 1 : 1LL << 62;
+			// Lowest y coordinate that will beong to this shadow
+			auto bottom = y + 1;
 
-			//cout << bottom << " " << top << endl;
+			// Id of the building
+			auto id = buildingIDs[pll(x,y)];
 
-			if (top - bottom == 0) continue;
+			// Ignore buildings with no shadows
+			// (not required by problem statement anymore)
+			if (top - bottom < 0) continue;
 
+			// Check if a column to the left exists
 			if (buildings.find(x-1) != buildings.end()) {
 				auto othercol = buildings[x-1];
-				auto lowest = othercol.upper_bound(pli(bottom, -1));
+
+				// (Smallest Y > bottom)-1 == Greatest Y <= bottom
+				auto lowest = othercol.upper_bound(bottom);
 				if (lowest != othercol.begin()) lowest--;
 
-				auto highest = othercol.lower_bound(pli(top, -1));
+				// (Smallest Y >= top)-1 == Greatest Y < top
+				auto highest = othercol.lower_bound(top);
+
+				// Loop through all buildings (shadows) that we
+				// can move to from this shadow
 				for (; lowest != highest; lowest++) {
-					auto otherid = (*lowest).second;
-					auto otherbottom = (*lowest).first;
+					auto otherY = *lowest;
+					auto otherid = buildingIDs[pll(x-1, otherY)];
+					auto otherbottom = otherY + 1;
 					auto timeToReach = abs(otherbottom - bottom);
-					//cout << "Time to reach " << otherbottom << " from " << bottom << " " << timeToReach << endl;
-					que.push(pair<int, pii>(-timeToReach, pii(id, otherid)));
+
+					// Add an edge to that shadow
+					// - since it is a max heap, not a min heap
+					que.push(pair<long long, pii>(-timeToReach, pii(id, otherid)));
 				}
 			}
 		}
 	}
 
+	// If n == 1 this will happen
 	if (uf.same(0, n-1)) {
 		cout << 0 << endl;
 		return 0;
 	} else {
+		// Process events in chronological order
+		// Stop when we can reach the target
 		while (!que.empty()) {
 			auto pair = que.top();
 			auto buildingpair = pair.second;
 			auto t = -pair.first;
 			que.pop();
 			uf.join(buildingpair.first, buildingpair.second);
+
+			// Can we reach the target
 			if (uf.same(0, n-1)) {
+				// K is too large, already nighttime
 				if (t >= k) {
 					break;
 				}
