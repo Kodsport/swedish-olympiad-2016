@@ -27,6 +27,8 @@ for i in range(0, n):
     assert 0 <= x <= 10 ** 18
     assert 0 <= y <= 10 ** 18
     assert (x, y) not in seen
+    assert (x, y - 1) not in seen
+    assert (x, y + 1) not in seen
     seen.add((x, y))
 
 line = sys.stdin.readline()
