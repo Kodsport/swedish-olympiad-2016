@@ -1,0 +1,39 @@
+main:
+	for 13 {
+		forward
+	}
+	left
+	for 19 {
+		forward
+	}
+	for 3 {
+		forward
+		forward
+		right
+		forward
+		forward
+		forward
+		left
+		forward
+		forward
+		left
+		forward
+		forward
+		forward
+		right
+	}
+	forward
+	forward
+	right
+	for 5 {
+		forward
+	}
+	left
+	for 50 {
+		forward
+	}
+	right
+	for 17 {
+		forward
+	}
+
