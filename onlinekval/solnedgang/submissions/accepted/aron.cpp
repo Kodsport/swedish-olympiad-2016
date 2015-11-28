@@ -24,6 +24,8 @@ struct UnionFind {
 	void join (int a, int b) {
 		a = find(a);
 		b = find(b);
+		if (a == b) return;
+
 		if (data[a] > data[b]) {
 			swap(a,b);
 		}
