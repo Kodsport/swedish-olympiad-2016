@@ -92,6 +92,9 @@ int main () {
 			que.pop();
 			uf.join(buildingpair.first, buildingpair.second);
 			if (uf.same(0, n-1)) {
+				if (t >= k) {
+					break;
+				}
 				cout << t << endl;
 				return 0;
 			}
