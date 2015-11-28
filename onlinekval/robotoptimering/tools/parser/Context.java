@@ -2,6 +2,7 @@ package parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,9 @@ public class Context {
         states.add(initialState);
     }
 
-    public static Context readInitialConfig() throws IOException {
+    public static Context readInitialConfig(InputStream stream) throws IOException {
         int R, C;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(stream));
         String line = br.readLine();
         String[] words = line.split("\\s");
         if (words.length != 2) {
@@ -34,17 +35,17 @@ public class Context {
         State initialState = null;
         for(int i=0; i<R; i++) {
             String row = br.readLine();
-            if (words.length != C) {
-                throw new IOException("There should be " + C + " characters on each line of the map.");
-            }
+
             if (row == null) {
                 throw new IOException("There should be " + (R+1) + " lines of input.");
             }
+            if (row.length() != C) {
+                throw new IOException("There should be " + C + " characters on each line of the map.\nLine " + (i+2) + " has " + row.length() + " characters.");
+            }
 
-            int j = 0;
-            for(char ch : row.toCharArray()) {
+            for(int j=0;j<row.length();j++) {
                 State.Direction dir = null;
-                switch(ch) {
+                switch(row.charAt(j)) {
                     case '.':
                         grid[i][j] = Grid.SquareType.EMPTY;
                         continue;
@@ -76,9 +77,8 @@ public class Context {
                         throw new IOException("There may only be one start position.");
                     }
                 } else {
-                    throw new IOException("Invalid character '"+ ch + "'.");
+                    throw new IOException("Invalid character '"+ row.charAt(j) + "'.");
                 }
-
             }
         }
 

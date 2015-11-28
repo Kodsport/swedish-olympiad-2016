@@ -34,6 +34,18 @@ public class GridPanel extends JPanel {
         repaint();
     }
 
+    public void setGrid(Grid grid) {
+        this.grid = grid;
+        revalidate();
+        repaint();
+    }
+
+    public void setState(State state) {
+        this.state = state;
+        revalidate();
+        repaint();
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -44,13 +56,13 @@ public class GridPanel extends JPanel {
         for (int r = 0; r < grid.getR(); r++) {
             for (int c = 0; c < grid.getC(); c++) {
                 if (grid.getGrid()[r][c] == Grid.SquareType.BLOCKED) {
-                    g.fillRect(r * w, c * w, w, w);
+                    g.fillRect(c * w, r * w, w, w);
                 }
             }
         }
         g.setColor(Color.RED);
         Polygon robot = new Polygon(new int[]{0,w/2,w},new int[]{w,0,w},3);
-        g.translate(state.getX()*w,state.getY()*w);
+        g.translate(state.getCol()*w,state.getRow()*w);
         ((Graphics2D)g).fill(AffineTransform.getRotateInstance(state.getAngle(),w/2,w/2).createTransformedShape(robot));
 
     }
