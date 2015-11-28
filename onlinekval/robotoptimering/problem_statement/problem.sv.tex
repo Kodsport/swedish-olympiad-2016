@@ -11,11 +11,13 @@ Som bekant ser programmeringsspråket för att programmera en robot ut på följ
   \item[\texttt{left}] Rotera $90\deg$ motsols.
   \item[\texttt{for X \{ A1 A2 ... An \}}] Upprepa kommandona \texttt{A1}, \texttt{A2}, ..., \texttt{An} $X$ gånger.
   \item[\texttt{call X}] Hoppa till instruktionen som har label \texttt{X}, och lägg till nuvarande position i anropsstacken.
-  \item[\texttt{ret}] Hoppa till den senast inlagda positionen i anropsstacken, och ta bort den.
+  \item[\texttt{return}] Hoppa till den senast inlagda positionen i anropsstacken, och ta bort den.
   \item[\texttt{gotoblocked X}] Hoppa till instruktionen som har label \texttt{X}, om rutan framför roboten inte är fri.
 \end{description}
 
-En \emph{label} har syntaxet \texttt{labelnamn:}. Exekveringen startar vid labeln \texttt{main}.
+En \emph{label} har syntaxet \texttt{labelnamn:}, och får enbart bestå av bokstäver. En label får inte vara innuti en loop. Exekveringen startar vid labeln \texttt{main}.
+
+\section*{Exempelprogram}
 
 \begin{verbatim}
 
@@ -42,11 +44,32 @@ main:
 När roboten försöker gå mot en ruta som inte är fri, så händer ingenting. När roboten når sin målruta så vinner roboten, oavsett om den kört färdigt eller inte.
 
 \section*{Indata}
-Indatat består av 20 olika rutnät, som du kan ladda ner här(TODO: länk!!!). Varje rutnät har följande format:
+Indatat består av 20 olika rutnät på formen \texttt{robotoptimering01.in} till \texttt{robotoptimering20.in}, som du kan ladda ner här(TODO: länk!!!). Varje rutnät har följande format:
 
 Den första raden innehåller två heltal $1 \le R \le 1000$ och $1 \le C \le 1000$, antal rader och kolumner i rutnätet.
 
-\section*{Utdata}
-om X <= Y <= 2*X: 1 + 4(2X - Y) / X  poäng
-om 2X < Y <= 4X: 1 poäng
+Varje ruta är en av:
+\begin{description}
+  \item[\texttt{.}] fri ruta
+  \item[\texttt{#}] blockerad ruta
+  \item[\texttt{M}] rutan roboten ska ta sig till.
+  \item[\texttt{<>^v}] startruta, där roboten är riktad vänster, höger, upp eller ned beroende på tecken.
+\end{description}
 
+\section*{Verktyg}
+För att hjälpa dig lösa problemet finns ett Java-program som du kan ladda ner här(TODO LÄNK!!!). Du kan använda kommandot \texttt{java -jar robot.jar run testfall} för att köra programmet som finns i filen \texttt{testfall.ans} på rutnätet i mappen \texttt{testfall.in}. Programmet kommer berätta hur lång din lösning var och om du lyckades lösa fallet.
+
+Om du dessutom vill ha en grafisk illustration av exekveringen kan du köra \texttt{java -jar robot.jar visualize testfall}.
+
+\section*{Inskickning}
+För att skicka in ditt program kör du först kommandot \texttt{java -jar robot.jar submission}, i mappen där dina lösningar finns. Detta kommer generera en Java-fil som heter \texttt{Robot.java}. Denna kan du sedan skicka in på Kattis (välj main-klass \texttt{Robot})..
+
+\section*{Utdata}
+Utdata för testfall \texttt{XX} ska sparas i en fil \texttt{robotoptimeringXX.ans}. Det ska bestå av ett program på formen beskriven ovan, som tar roboten från startposition till slutposition.
+
+\section*{Poängsättning}
+Poängsättningen baseras på hur långt ditt program är. Längden är antalet gånger du använder något kommando i språket av de som är listade. Så exempelprogrammet har längd 12. I synnerhet bidrar labels inte till längden.
+
+Antag att din längd på ett testfall är $L$, och att den kortaste längden på ett testfall är $B$. Poängen på testfallet är då
+
+\[ 5 (1 - (\frac{L - B}{L})^2\]
