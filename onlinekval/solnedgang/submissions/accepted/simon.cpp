@@ -69,7 +69,7 @@ int main() {
 		return (bool)seen[N-1];
 	};
 
-	if (!works(K)) {
+	if (!works(K-1)) {
 		cout << "NATT" << endl;
 		return 0;
 	}
