@@ -1,6 +1,6 @@
 package parser;
 
-public class State {
+public class State implements Cloneable {
     public enum Direction {
         RIGHT, DOWN, LEFT, UP
     }
@@ -71,5 +71,14 @@ public class State {
     @Override
     public String toString() {
         return "(" + row + ", " + col + "): " + dir.name();
+    }
+
+    @Override
+    public State clone() {
+        try {
+            return (State)super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }
