@@ -2,7 +2,7 @@ package parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +16,9 @@ public class Lexer {
     private List<Token> tokens;
     int pos = 0;
 
-    public Lexer() throws IOException, InvalidTokenException {
+    public Lexer(Reader r) throws IOException, InvalidTokenException {
         tokens = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(r);
 
         int i = 1;
         String line = br.readLine();

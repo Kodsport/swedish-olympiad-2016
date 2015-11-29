@@ -128,7 +128,7 @@ public class GuiMain extends JFrame {
             if(!file.exists()) throw new IOException("Could not find file " + file.getCanonicalPath());
             Context con = Context.readInitialConfig(new FileInputStream(file));
             gridPanel.setGrid(con.grid);
-            gridPanel.setState(con.states.get(0));
+            gridPanel.setState(con.state);
         }
     }
 
