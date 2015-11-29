@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class Runner {
-    public static List<State> run(Context context, Reader reader) throws IOException, InvalidTokenException, ParseException {
+    public static List<State> run(Context context, Reader reader) throws IOException, Lexer.InvalidTokenException, ParseException {
         Parser parser = new Parser(new Lexer(reader));
         ParseTree root = parser.Program();
         System.out.println("Parsing done");
@@ -39,7 +39,7 @@ public class Runner {
     }
 
 
-    public static void main(String[] args) throws IOException, InvalidTokenException, ParseException {
+    public static void main(String[] args) throws IOException, Lexer.InvalidTokenException, ParseException {
         Context context = Context.readInitialConfig(new FileInputStream(new File(args[0])));
         run(context, new InputStreamReader(System.in));
     }

@@ -1,15 +1,18 @@
 package gui;
 
-import parser.Context;
-import parser.Grid;
-import parser.State;
+import parser.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
+import java.awt.CardLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.text.ParseException;
+import java.util.List;
 
 /**
  * Created by emil on 2015-11-28.
@@ -23,10 +26,14 @@ public class GuiMain extends JFrame {
     private JPanel codePanel = new JPanel(new CardLayout());
     private JButton zoomInButton = new JButton("Zoom in");
     private JButton zoomOutButton = new JButton("Zoom out");
+    private Context context;
+    private List<State> states;
+    private int currentState;
 
-    public GuiMain(Grid grid, State state) {
+    public GuiMain(Context context) {
         super("Robot optimization");
-        gridPanel = new GridPanel(grid, state);
+        this.context = context;
+        gridPanel = new GridPanel(context);
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
@@ -60,14 +67,15 @@ public class GuiMain extends JFrame {
          parseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                swapToList();
+                parse();
             }
         });
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                codeList.setSelectedIndex(Math.min(codeList.getModel().getSize() - 1, codeList.getSelectedIndex() + 1));
+                currentState = Math.min(currentState + 1, states.size() - 1);
+                gridPanel.setState(states.get(currentState));
+                codeList.setSelectedIndex(currentState);
             }
         });
         zoomInButton.addActionListener(new ActionListener() {
@@ -156,6 +164,18 @@ public class GuiMain extends JFrame {
         }
     }
 
+    private void parse() {
+        String code = textArea.getText();
+        try {
+            states = Runner.run(context, new StringReader(code));
+            currentState = 0;
+            swapToList();
+        } catch (IOException|ParseException|Lexer.InvalidTokenException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Parsing error",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
     private void swapToList() {
         String code = textArea.getText();
         DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -183,6 +203,6 @@ public class GuiMain extends JFrame {
     public static void main(String[] args) throws IOException {
         State state = new State(0, 0, State.Direction.LEFT);
         Grid grid = createDummyGrid();
-        GuiMain main = new GuiMain(grid, state);
+        GuiMain main = new GuiMain(new Context(grid,state));
     }
 }

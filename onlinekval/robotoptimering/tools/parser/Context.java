@@ -6,9 +6,9 @@ public class Context {
     public Grid grid;
     public State state;
 
-    private Context(Grid grid, State initialState) {
+    public Context(Grid grid, State initialState) {
         this.grid = grid;
-        state = initialState;
+        this.state = initialState;
     }
 
     public static Context readInitialConfig(InputStream stream) throws IOException {

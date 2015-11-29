@@ -6,11 +6,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-class InvalidTokenException extends Exception {
-    public InvalidTokenException(String token, int line) {
-        super("Invalid token on line " + line + ": " + token);
-    }
-}
+
 
 public class Lexer {
     private List<Token> tokens;
@@ -106,4 +102,9 @@ public class Lexer {
         Lexer l = new Lexer();
         l.print();
     }*/
+    public static class InvalidTokenException extends Exception {
+        public InvalidTokenException(String token, int line) {
+            super("Invalid token on line " + line + ": " + token);
+        }
+    }
 }

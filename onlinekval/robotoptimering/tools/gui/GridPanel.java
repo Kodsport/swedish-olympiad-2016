@@ -1,5 +1,6 @@
 package gui;
 
+import parser.Context;
 import parser.Grid;
 import parser.State;
 
@@ -15,9 +16,9 @@ public class GridPanel extends JPanel {
     private State state;
     private int w = 32;
 
-    public GridPanel(Grid grid, State state) {
-        this.grid = grid;
-        this.state = state;
+    public GridPanel(Context context) {
+        this.grid = context.grid;
+        this.state = context.state;
     }
 
     public void zoomIn() {
