@@ -75,7 +75,7 @@ public class GuiMain extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 currentState = Math.min(currentState + 1, states.size() - 1);
                 gridPanel.setState(states.get(currentState));
-                codeList.setSelectedIndex(states.get(currentState).getLine());
+                codeList.setSelectedIndex(states.get(currentState).getLine()-1);
             }
         });
         zoomInButton.addActionListener(new ActionListener() {

@@ -37,7 +37,7 @@ public class State implements Cloneable {
     public double getAngle() {
         switch (dir) {
             case RIGHT:
-                return -Math.PI / 2;
+                return Math.PI / 2;
             case UP:
                 return 0;
             case DOWN:
