@@ -31,15 +31,15 @@ grader_flags: all $points" > secret/$groupname/testdata.yaml
 
 function testcase_random {
 	ind=$((ind+1))
-	python3 generator_random.py "$@" $ind > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	python3 generator_random.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
 }
 function testcase_manual {
 	ind=$((ind+1))
-	python3 generator_manual.py "$@" $ind > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	python3 generator_manual.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
 }
 function testcase_regular {
 	ind=$((ind+1))
-	python3 generator_regular.py "$@" $ind > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	python3 generator_regular.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
 }
 
 group g1 23
@@ -54,6 +54,13 @@ testcase_random 100 100 0
 
 group g2 21
 for i in {1..10}; do testcase_random 1000 1000 0; done
+
+group g3 21
+for i in {1..10}; do testcase_random 100000 100000 0; done
+
+group g4 21
+testcase_regular 10 10 0
+testcase_regular 200000 400000 0
 
 # generate solutions for all files
 for f in secret/*/*.in; do
