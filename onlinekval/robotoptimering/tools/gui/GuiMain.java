@@ -75,7 +75,7 @@ public class GuiMain extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 currentState = Math.min(currentState + 1, states.size() - 1);
                 gridPanel.setState(states.get(currentState));
-                codeList.setSelectedIndex(currentState);
+                codeList.setSelectedIndex(states.get(currentState).getLine());
             }
         });
         zoomInButton.addActionListener(new ActionListener() {
@@ -134,9 +134,9 @@ public class GuiMain extends JFrame {
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             if(!file.exists()) throw new IOException("Could not find file " + file.getCanonicalPath());
-            Context con = Context.readInitialConfig(new FileInputStream(file));
-            gridPanel.setGrid(con.grid);
-            gridPanel.setState(con.state);
+            this.context = Context.readInitialConfig(new FileInputStream(file));
+            gridPanel.setGrid(context.grid);
+            gridPanel.setState(context.state);
         }
     }
 
