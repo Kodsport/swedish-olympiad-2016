@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Stack;
 
 public class Runner {
+    // Parameters: context (contains the Grid and an initial State), and a Reader, for reading the program
     public static List<State> run(Context context, Reader reader) throws IOException, Lexer.InvalidTokenException, ParseException {
         Parser parser = new Parser(new Lexer(reader));
-        ParseTree root = parser.Program();
-        System.out.println("Parsing done");
+        ParseTree root = parser.Program(); // Construct the parse tree.
         List<Step> stepList = new ArrayList<>();
-        root.evaluate(stepList);
-        System.out.println("Converted to steps");
+        root.evaluate(stepList); // Convert the parse tree to a sequence (List) of Steps.
 
+        // List to contain the history of all states.
         List<State> stateList = new ArrayList<>();
         stateList.add(context.state);
 

@@ -78,13 +78,9 @@ class RotateStep extends Step {
     public void execute(Context context, Stack<StackFrame> stack) {
         State state = context.state;
         if(clockwise) {
-            System.out.println("Clockwise, before:"+state.getDir());
             state.updateDir(dirs[( dirToIndex(state.getDir()) + 1 ) % 4], line);
-            System.out.println("Clockwise, after:"+state.getDir());
         } else {
-            System.out.println("Anti-clockwise, before:"+state.getDir());
             state.updateDir(dirs[( dirToIndex(state.getDir()) + 3 ) % 4], line);
-            System.out.println("Anti-clockwise, after:"+state.getDir());
         }
     }
 }
