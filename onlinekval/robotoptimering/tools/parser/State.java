@@ -8,6 +8,7 @@ public class State {
     private int row, col;
     private Direction dir;
     private int line;
+    private boolean isWinningPosition = false;
 
     public State(int x, int y, Direction dir) {
         this.row = x;
@@ -55,6 +56,14 @@ public class State {
         this.row = row;
         this.col = col;
         this.line = line;
+    }
+
+    public void setAsWinningState() {
+        isWinningPosition = true;
+    }
+
+    public boolean isWinningState() {
+        return isWinningPosition;
     }
 
     @Override

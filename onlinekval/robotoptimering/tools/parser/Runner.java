@@ -31,6 +31,7 @@ public class Runner {
 
             if(context.grid.getGrid()[context.state.getRow()][context.state.getCol()] == Grid.SquareType.GOAL) {
                 System.out.println("Yay, you won!");
+                context.state.setAsWinningState();
                 return stateList;
             }
         }
