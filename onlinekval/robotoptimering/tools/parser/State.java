@@ -29,6 +29,8 @@ public class State {
         return dir;
     }
 
+    public int getLine() { return line; }
+
     /**
      * Get the angle in radians for the robot.
      */
