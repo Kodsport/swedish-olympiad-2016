@@ -24,19 +24,23 @@ class MoveStep extends Step {
     public void execute(Context context, Stack<StackFrame> stack) {
         State state = context.state;
         if (state.getDir() == State.Direction.DOWN) {
-            if(context.grid.getGrid()[state.getRow() + 1][state.getCol()] != Grid.SquareType.BLOCKED) {
+            if(state.getRow()+1 < context.grid.getR() &&
+                    context.grid.getGrid()[state.getRow() + 1][state.getCol()] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow() + 1, state.getCol(), line);
             }
         } else if (state.getDir() == State.Direction.UP) {
-            if(context.grid.getGrid()[state.getRow() - 1][state.getCol()] != Grid.SquareType.BLOCKED) {
+            if(state.getRow()-1 >= 0 &&
+                    context.grid.getGrid()[state.getRow() - 1][state.getCol()] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow() - 1, state.getCol(), line);
             }
         } else if (state.getDir() == State.Direction.RIGHT) {
-            if(context.grid.getGrid()[state.getRow()][state.getCol() + 1] != Grid.SquareType.BLOCKED) {
+            if(state.getCol()+1 < context.grid.getC() &&
+                    context.grid.getGrid()[state.getRow()][state.getCol() + 1] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow(), state.getCol() + 1, line);
             }
         } else if (state.getDir() == State.Direction.LEFT) {
-            if(context.grid.getGrid()[state.getRow()][state.getCol() - 1] != Grid.SquareType.BLOCKED) {
+            if(state.getCol()-1 >= 0 &&
+                    context.grid.getGrid()[state.getRow()][state.getCol() - 1] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow(), state.getCol() - 1, line);
             }
         } else {
