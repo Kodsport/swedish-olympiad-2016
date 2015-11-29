@@ -56,9 +56,9 @@ int main () {
 	priority_queue<pair<long long, pii>> que;
 
 	// Loop through all columns
-	for (auto colpair : buildings) {
+	for (auto& colpair : buildings) {
 		auto x = colpair.first;
-		auto col = colpair.second;
+		auto& col = colpair.second;
 
 		// Loop through all buildings in column
 		for (auto it = col.begin(); it != col.end(); it++) {
@@ -81,7 +81,7 @@ int main () {
 
 			// Check if a column to the left exists
 			if (buildings.find(x-1) != buildings.end()) {
-				auto othercol = buildings[x-1];
+				auto& othercol = buildings[x-1];
 
 				// (Smallest Y > bottom)-1 == Greatest Y <= bottom
 				auto lowest = othercol.upper_bound(bottom);
@@ -111,9 +111,11 @@ int main () {
 		cout << 0 << endl;
 		return 0;
 	} else {
+
 		// Process events in chronological order
 		// Stop when we can reach the target
 		while (!que.empty()) {
+
 			auto pair = que.top();
 			auto buildingpair = pair.second;
 			auto t = -pair.first;
@@ -122,6 +124,7 @@ int main () {
 
 			// Can we reach the target
 			if (uf.same(0, n-1)) {
+
 				// K is too large, already nighttime
 				if (t >= k) {
 					break;
