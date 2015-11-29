@@ -63,8 +63,7 @@ public class Lexer {
                         } else if(t.matches("^[a-z]+$")) {
                             tokens.add(new NameToken(t, i));
                         } else if(t.matches("^[a-z]+:$")) {
-                            tokens.add(new NameToken(t, i));
-                            tokens.add(new Token(TokenType.COLON, i));
+                            tokens.add(new LabelToken(t.substring(0, t.length()-1), i));
                         } else {
                             throw new InvalidTokenException(t, i);
                         }
@@ -98,10 +97,6 @@ public class Lexer {
         }
     }
 
-/*    public static void main(String[] args) throws IOException, InvalidTokenException {
-        Lexer l = new Lexer();
-        l.print();
-    }*/
     public static class InvalidTokenException extends Exception {
         public InvalidTokenException(String token, int line) {
             super("Invalid token on line " + line + ": " + token);

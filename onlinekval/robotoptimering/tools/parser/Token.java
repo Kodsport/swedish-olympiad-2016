@@ -1,11 +1,11 @@
 package parser;
 
 enum TokenType {
-    FWD, RIGHT, LEFT, FOR, CALL, RETURN, GOTOBLOCKED, NUMBER, COLON, NAME, LBRACE, RBRACE, EOF
+    FWD, RIGHT, LEFT, FOR, CALL, RETURN, GOTOBLOCKED, NUMBER, NAME, LABEL, LBRACE, RBRACE, EOF
 }
 
 class Token {
-    final TokenType type;
+    TokenType type;
     final int line;
 
     public Token(TokenType type, int line) {
@@ -30,6 +30,13 @@ class NameToken extends Token {
     @Override
     public String toString() {
         return name;
+    }
+}
+
+class LabelToken extends NameToken {
+    public LabelToken(String name, int line) {
+        super(name, line);
+        type = TokenType.LABEL;
     }
 }
 

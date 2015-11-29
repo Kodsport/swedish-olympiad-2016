@@ -2,9 +2,10 @@ package parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public abstract class ParseTree {
-    public abstract void evaluate(List<Step> steps);
+    public abstract void evaluate(List<Step> steps, Map<String, Integer> labels);
 }
 
 class MoveNode extends ParseTree {
@@ -15,7 +16,7 @@ class MoveNode extends ParseTree {
     }
 
     @Override
-    public void evaluate(List<Step> steps) {
+    public void evaluate(List<Step> steps, Map<String, Integer> labels) {
         steps.add(new MoveStep(line));
     }
 }
@@ -30,7 +31,7 @@ class RotateNode extends ParseTree {
     }
 
     @Override
-    public void evaluate(List<Step> steps) {
+    public void evaluate(List<Step> steps, Map<String, Integer> labels) {
         steps.add(new RotateStep(clockwise, line));
     }
 }
@@ -47,10 +48,10 @@ class ForNode extends ParseTree {
     }
 
     @Override
-    public void evaluate(List<Step> steps) {
+    public void evaluate(List<Step> steps, Map<String, Integer> labels) {
         int startpos = steps.size();
         steps.add(new ForStartStep(n, line));
-        list.evaluate(steps);
+        list.evaluate(steps, labels);
         steps.add(new ForStopStep(startpos, line));
     }
 }
@@ -68,9 +69,22 @@ class ListNode extends ParseTree {
     }
 
     @Override
-    public void evaluate(List<Step> steps) {
+    public void evaluate(List<Step> steps, Map<String, Integer> labels) {
         for(ParseTree cmd : commands) {
-            cmd.evaluate(steps);
+            cmd.evaluate(steps, labels);
         }
+    }
+}
+
+class LabelNode extends ParseTree {
+    String name;
+
+    public LabelNode(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void evaluate(List<Step> steps, Map<String, Integer> labels) {
+        labels.put(name, steps.size());
     }
 }

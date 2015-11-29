@@ -57,6 +57,8 @@ public class Parser {
                 }
                 int n = ((NumberToken)number).number;
                 return new ForNode(ForBlock(), n, next.line);
+            case LABEL:
+                return new LabelNode(((LabelToken)next).name);
             default:
                 throw new ParseException("Unexpected token on line " + next.line + ": " + next.toString(), next.line);
         }
