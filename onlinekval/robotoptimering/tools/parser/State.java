@@ -60,6 +60,10 @@ public class State implements Cloneable {
         this.line = line;
     }
 
+    public void updateLine(int line) {
+        this.line = line;
+    }
+
     public void setAsWinningState() {
         isWinningPosition = true;
     }

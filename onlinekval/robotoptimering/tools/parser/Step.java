@@ -27,21 +27,29 @@ class MoveStep extends Step {
             if(state.getRow()+1 < context.grid.getR() &&
                     context.grid.getGrid()[state.getRow() + 1][state.getCol()] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow() + 1, state.getCol(), line);
+            } else {
+                state.updateLine(line);
             }
         } else if (state.getDir() == State.Direction.UP) {
             if(state.getRow()-1 >= 0 &&
                     context.grid.getGrid()[state.getRow() - 1][state.getCol()] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow() - 1, state.getCol(), line);
+            } else {
+                state.updateLine(line);
             }
         } else if (state.getDir() == State.Direction.RIGHT) {
             if(state.getCol()+1 < context.grid.getC() &&
                     context.grid.getGrid()[state.getRow()][state.getCol() + 1] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow(), state.getCol() + 1, line);
+            } else {
+                state.updateLine(line);
             }
         } else if (state.getDir() == State.Direction.LEFT) {
             if(state.getCol()-1 >= 0 &&
                     context.grid.getGrid()[state.getRow()][state.getCol() - 1] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow(), state.getCol() - 1, line);
+            } else {
+                state.updateLine(line);
             }
         } else {
             throw new RuntimeException("Invalid direction on line " + line + ".");
@@ -96,6 +104,7 @@ class ForStartStep extends Step {
     @Override
     public void execute(Context context, Stack<StackFrame> stack) {
         stack.peek().loopStack.push(n);
+        context.state.updateLine(line);
     }
 }
 
@@ -113,6 +122,7 @@ class ForStopStep extends Step {
             throw new RuntimeException("Unexpected } on line " + line + ".");
         }
         stack.peek().loopStack.push(stack.peek().loopStack.pop() - 1);
+        context.state.updateLine(line);
     }
 
     @Override
