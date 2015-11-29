@@ -26,6 +26,7 @@ class RotateNode extends ParseTree {
 
     public RotateNode(boolean clockwise, int line) {
         this.line = line;
+        this.clockwise = clockwise;
     }
 
     @Override

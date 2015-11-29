@@ -1,23 +1,14 @@
 package parser;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
 
-/**
- * Created by grensjo on 11/28/15.
- */
 public class Context {
     public Grid grid;
-    public List<State> states;
+    public State state;
 
     private Context(Grid grid, State initialState) {
         this.grid = grid;
-        states = new ArrayList<>();
-        states.add(initialState);
+        state = initialState;
     }
 
     public static Context readInitialConfig(InputStream stream) throws IOException {
@@ -35,7 +26,6 @@ public class Context {
         State initialState = null;
         for(int i=0; i<R; i++) {
             String row = br.readLine();
-
             if (row == null) {
                 throw new IOException("There should be " + (R+1) + " lines of input.");
             }

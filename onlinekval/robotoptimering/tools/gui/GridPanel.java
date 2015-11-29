@@ -1,11 +1,10 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.AffineTransform;
-
 import parser.Grid;
 import parser.State;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by emil on 2015-11-28.

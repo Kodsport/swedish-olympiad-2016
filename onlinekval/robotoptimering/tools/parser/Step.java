@@ -8,7 +8,7 @@ abstract class Step {
         this.line = line;
     }
 
-    public abstract void execute(Context context, Stack<StackFrame> stack, State state);
+    public abstract void execute(Context context, Stack<StackFrame> stack);
     public int getNextInstruction(Stack<StackFrame> stack, int current) {
         return current+1;
     }
@@ -21,7 +21,8 @@ class MoveStep extends Step {
     }
 
     @Override
-    public void execute(Context context, Stack<StackFrame> stack, State state) {
+    public void execute(Context context, Stack<StackFrame> stack) {
+        State state = context.state;
         if (state.getDir() == State.Direction.DOWN) {
             if(context.grid.getGrid()[state.getRow() + 1][state.getCol()] != Grid.SquareType.BLOCKED) {
                 state.updatePos(state.getRow() + 1, state.getCol(), line);
@@ -70,11 +71,16 @@ class RotateStep extends Step {
     }
 
     @Override
-    public void execute(Context context, Stack<StackFrame> stack, State state) {
+    public void execute(Context context, Stack<StackFrame> stack) {
+        State state = context.state;
         if(clockwise) {
+            System.out.println("Clockwise, before:"+state.getDir());
             state.updateDir(dirs[( dirToIndex(state.getDir()) + 1 ) % 4], line);
+            System.out.println("Clockwise, after:"+state.getDir());
         } else {
+            System.out.println("Anti-clockwise, before:"+state.getDir());
             state.updateDir(dirs[( dirToIndex(state.getDir()) + 3 ) % 4], line);
+            System.out.println("Anti-clockwise, after:"+state.getDir());
         }
     }
 }
@@ -88,7 +94,7 @@ class ForStartStep extends Step {
     }
 
     @Override
-    public void execute(Context context, Stack<StackFrame> stack, State state) {
+    public void execute(Context context, Stack<StackFrame> stack) {
         stack.peek().loopStack.push(n);
     }
 }
@@ -102,7 +108,10 @@ class ForStopStep extends Step {
     }
 
     @Override
-    public void execute(Context context, Stack<StackFrame> stack, State state) {
+    public void execute(Context context, Stack<StackFrame> stack) {
+        if(stack.empty()) {
+            throw new RuntimeException("Unexpected } on line " + line + ".");
+        }
         stack.peek().loopStack.push(stack.peek().loopStack.pop() - 1);
     }
 
@@ -111,6 +120,7 @@ class ForStopStep extends Step {
         if(stack.peek().loopStack.peek() > 0) {
             return startpos+1;
         } else {
+            stack.peek().loopStack.pop();
             return current+1;
         }
     }
@@ -118,4 +128,8 @@ class ForStopStep extends Step {
 
 class StackFrame {
     Stack<Integer> loopStack;
+
+    public StackFrame() {
+        loopStack = new Stack<>();
+    }
 }

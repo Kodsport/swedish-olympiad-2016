@@ -28,6 +28,8 @@ public class Lexer {
 
             for(String t : words) {
                 switch(t) {
+                    case "":
+                        continue;
                     case "forward":
                         tokens.add(new Token(TokenType.FWD, i));
                         break;

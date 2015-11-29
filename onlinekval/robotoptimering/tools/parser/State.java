@@ -56,4 +56,9 @@ public class State {
         this.col = col;
         this.line = line;
     }
+
+    @Override
+    public String toString() {
+        return "(" + row + ", " + col + "): " + dir.name();
+    }
 }
