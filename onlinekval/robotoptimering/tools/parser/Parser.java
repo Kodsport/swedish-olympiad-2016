@@ -72,6 +72,14 @@ public class Parser {
                     throw new ParseException("Expected label name on line " + token.line + ", got " + token.toString(), token.line);
                 }
                 return new GotoNode(((NameToken)token).name, true, next.line);
+            case CALL:
+                Token token2 = lexer.nextToken();
+                if(token2.type != TokenType.NAME) {
+                    throw new ParseException("Expected label name on line " + token2.line + ", got " + token2.toString(), token2.line);
+                }
+                return new CallNode(((NameToken)token2).name, next.line);
+            case RETURN:
+                return new ReturnNode(next.line);
             default:
                 throw new ParseException("Unexpected token on line " + next.line + ": " + next.toString(), next.line);
         }

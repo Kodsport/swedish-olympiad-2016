@@ -163,6 +163,10 @@ class GotoStep extends Step {
         LabelStep label = (LabelStep)context.steps.get(index);
         int pops = GotoStep.compareForStacks(this.forStack, label.forStack);
 
+        if(pops == -1) {
+            throw new RuntimeException("Line " + line + ": Tried to jump into a for loop.");
+        }
+
         for(int i=0; i<pops; i++) {
             stack.peek().loopStack.pop();
         }
@@ -170,8 +174,53 @@ class GotoStep extends Step {
     }
 }
 
+class CallStep extends Step {
+    String label;
+
+    public CallStep(String label, int line) {
+        super(line);
+        this.label = label;
+    }
+
+    @Override
+    public int execute(Context context, Stack<StackFrame> stack) {
+        context.state.updateLine(line);
+
+        if(!context.labels.containsKey(label)) {
+            throw new RuntimeException("Line " + line + ": Could not find label '" + label + "'.");
+        }
+
+        int index = context.labels.get(label);
+        LabelStep label = (LabelStep)context.steps.get(index);
+
+        if(label.forStack.size() > 0) {
+            throw new RuntimeException("Line " + line + ": Tried to jump into a for loop.");
+        }
+
+        stack.peek().nextStepIndex = context.currentStep + 1;
+        stack.push(new StackFrame());
+
+        return index;
+    }
+}
+
+class ReturnStep extends Step {
+
+    public ReturnStep(int line) {
+        super(line);
+    }
+
+    @Override
+    public int execute(Context context, Stack<StackFrame> stack) {
+        context.state.updateLine(line);
+        stack.pop();
+        return stack.peek().nextStepIndex;
+    }
+}
+
 class StackFrame {
     Stack<Integer> loopStack;
+    int nextStepIndex = -1;
 
     public StackFrame() {
         loopStack = new Stack<>();

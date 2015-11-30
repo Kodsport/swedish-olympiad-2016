@@ -120,3 +120,31 @@ class GotoNode extends ParseTree {
         steps.add(new GotoStep(label, requireBlocked, stackCopy, line));
     }
 }
+
+class CallNode extends ParseTree {
+    String name;
+    int line;
+
+    public CallNode(String name, int line) {
+        this.name = name;
+        this.line = line;
+    }
+
+    @Override
+    public void evaluate(List<Step> steps, Map<String, Integer> labels, List<Integer> forStack) {
+        steps.add(new CallStep(name, line));
+    }
+}
+
+class ReturnNode extends ParseTree {
+    int line;
+
+    public ReturnNode(int line) {
+        this.line = line;
+    }
+
+    @Override
+    public void evaluate(List<Step> steps, Map<String, Integer> labels, List<Integer> forStack) {
+        steps.add(new ReturnStep(line));
+    }
+}
