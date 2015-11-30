@@ -32,16 +32,16 @@ walkandreturn:
     forward
   }
 done:
-  ret
+  return
 
 main:
   for 100 {
-    call walkandright
+    call walkandreturn
     right
   }
 \end{verbatim}
 
-När roboten försöker gå mot en ruta som inte är fri, så händer ingenting. När roboten når sin målruta så vinner roboten, oavsett om den kört färdigt eller inte.
+När roboten försöker gå mot rutnätet kant, eller en ruta som inte är fri, så händer ingenting. När roboten når sin målruta så vinner roboten, oavsett om den kört färdigt eller inte.
 
 \section*{Indata}
 Indatat består av 20 olika rutnät på formen \texttt{robotoptimering01.in} till \texttt{robotoptimering20.in}, som du kan ladda ner här(TODO: länk!!!). Varje rutnät har följande format:
