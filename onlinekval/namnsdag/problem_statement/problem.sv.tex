@@ -9,10 +9,12 @@ om att hjälpa till.
 
 Din kompis planerar att byta ut exakt en bokstav i sitt namn för att ha namnsdag så
 snart igen som möjligt. Givet en lista på namnsdagar för dagarna det kommande
-året, avgör hur snart hen kan ha namnsdag igen.
+året, avgör hur snart hen kan ha namnsdag igen. Det är förbjudet att ta bort eller
+lägga till bokstäver, du får bara byta ut exakt en bokstav mot en annan.
 
-Om det inte går att hitta ett namn att byta till som gör att det är dags för namnsdag tidigare så
-får din kompis nöja sig med sitt namn.
+Om det inte går att hitta ett namn att byta till som gör att det är dags för
+namnsdag tidigare så får din kompis nöja sig med sitt namn och därmed vänta ett
+helt år till.
 
 \section*{Input}
 Indata börjar med en sträng på en rad, namnet på din kompis.
@@ -28,9 +30,21 @@ består endast av tecken \texttt{a-z}, innehåller inga mellanslag och är max 1
 Ditt program ska skriva ut ett enda tal: antalet dagar tills det är dags för
 namnsdag igen, om du hjälper din kompis att fuska med sitt namn. 
 
-\section*{Gränser}
-\begin{enumerate}
-\item I testfall värda 53 poäng är $1 \le N \le 50$.
-\item I ytterligare testfall värda 47 poäng är $1 \le N \le 10\,000$.
-\end{enumerate}
+\section*{Förklaring av exempel}
+I det första indataexemplet så heter din kompis \texttt{anna}. Hon kan skapa namnet
+\texttt{anja} genom att byta ut det andra \texttt{n}et i sitt namn mot ett \texttt{j},
+ och således ha namnsdag två dagar tidigare än väntat. Svaret är alltså 3.
+I det andra indataexemplet så går det inte att byta ut exakt en bokstav mot en annan
+så att din kompis \texttt{jan} har namnsdag tidigare, han får alltså nöja sig med att
+vänta ett helt år, det vill säga 3 dagar.
 
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp
+så måste du klara alla testfall i gruppen.
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+Grupp & Poängvärde & Gränser & Övrigt \\ \hline
+1     & 53         &  $1 \le N \le 50$ & \\ \hline
+2     & 47         &  $1 \le N \le 10\,000$ & \\ \hline
+\end{tabular}
