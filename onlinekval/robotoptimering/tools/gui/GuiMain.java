@@ -167,7 +167,8 @@ public class GuiMain extends JFrame {
     private void parse() {
         String code = textArea.getText();
         try {
-            states = Runner.run(context, new StringReader(code));
+            // TODO: Change stepsToSave to something reasonable.
+            states = Runner.run(context, new StringReader(code), Integer.MAX_VALUE);
             currentState = 0;
             swapToList();
         } catch (IOException|ParseException|Lexer.InvalidTokenException e) {
