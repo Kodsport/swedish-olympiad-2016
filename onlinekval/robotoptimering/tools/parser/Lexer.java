@@ -50,6 +50,9 @@ public class Lexer {
                     case "return":
                         tokens.add(new Token(TokenType.RETURN, i));
                         break;
+                    case "goto":
+                        tokens.add(new Token(TokenType.GOTO, i));
+                        break;
                     case "gotoblocked":
                         tokens.add(new Token(TokenType.GOTOBLOCKED, i));
                         break;

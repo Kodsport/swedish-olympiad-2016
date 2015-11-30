@@ -10,25 +10,27 @@ public class Runner {
         Parser parser = new Parser(new Lexer(reader));
         ParseTree root = parser.Program(); // Construct the parse tree.
         List<Step> stepList = new ArrayList<>();
-        Map<String, Integer> labels = new HashMap<>();
-        root.evaluate(stepList, labels); // Convert the parse tree to a sequence (List) of Steps.
+        context.steps = stepList;
+        context.labels = new HashMap<>();
+        root.evaluate(stepList, context.labels, new ArrayList<Integer>()); // Convert the parse tree to a sequence (List) of Steps.
 
         // List to contain the history of all states.
         List<State> stateList = new ArrayList<>();
         stateList.add(context.state);
 
-        if(!labels.containsKey("main")) {
+        if(!context.labels.containsKey("main")) {
             throw new RuntimeException("Could not find 'main' label.");
         }
 
-        int pos = labels.get("main");
+        int pos = context.labels.get("main");
+        context.currentStep = pos;
         Stack<StackFrame> stack = new Stack<StackFrame>();
         stack.push(new StackFrame());
         while(pos < stepList.size()) {
             Step step = stepList.get(pos);
             System.out.println("executing step " + step.getClass().getSimpleName());
-            step.execute(context, stack);
-            pos = step.getNextInstruction(stack, pos);
+            pos = step.execute(context, stack);
+            context.currentStep = pos;
             System.out.println(context.state);
             stateList.add(context.state.clone());
 

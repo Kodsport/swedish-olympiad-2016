@@ -31,7 +31,8 @@ public class Parser {
             if(peeked.type == TokenType.EOF) {
                 throw new ParseException("Expected } on line " + peeked.line + ", got " + peeked.toString() + ".", peeked.line);
             } else if(peeked.type == TokenType.RBRACE) {
-                lexer.nextToken();
+                Token end = lexer.nextToken();
+                node.setEndline(end.line);
                 break;
             }
 
@@ -58,7 +59,13 @@ public class Parser {
                 int n = ((NumberToken)number).number;
                 return new ForNode(ForBlock(), n, next.line);
             case LABEL:
-                return new LabelNode(((LabelToken)next).name);
+                return new LabelNode(((LabelToken)next).name, next.line);
+            case GOTO:
+                Token name = lexer.nextToken();
+                if(name.type != TokenType.NAME) {
+                    throw new ParseException("Expected label name on line " + name.line + ", got " + name.toString(), name.line);
+                }
+                return new GotoNode(((NameToken)name).name, false, next.line);
             default:
                 throw new ParseException("Unexpected token on line " + next.line + ": " + next.toString(), next.line);
         }

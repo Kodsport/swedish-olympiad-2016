@@ -1,10 +1,18 @@
 package parser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.Map;
 
 public class Context {
     public Grid grid;
     public State state;
+    public Map<String,Integer> labels;
+    public List<Step> steps;
+    public int currentStep;
 
     public Context(Grid grid, State initialState) {
         this.grid = grid;
