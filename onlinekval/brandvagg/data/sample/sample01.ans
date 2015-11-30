@@ -1,0 +1,16 @@
+accept 1
+accept 2
+accept 3
+drop 4
+drop 5
+drop 6
+accept 7
+accept 8
+accept 9
+drop 10
+accept 11
+drop 12
+accept 13
+accept 14
+drop 15
+drop 16

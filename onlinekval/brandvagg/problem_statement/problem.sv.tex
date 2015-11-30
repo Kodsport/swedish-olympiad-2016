@@ -1,0 +1,59 @@
+\problemname{Brandvägg}
+
+På Internet finns många elaka typer som försöker hacka andras datorer i tid och otid. De stjäl kattbilder, bankinloggningar och medlemslistor på programmerares dejtingsidor.
+En av de första åtgärderna man kan sätta in mot attacker över nätet är \emph{brandväggen}. En brandvägg filtrerar nätverkstrafik baserat på olika kriterier, för att försöka
+stänga ute obehöriga. I detta problem ska vi skriva den delen av en brandvägg som avgör om ett visst meddelande som inkommer till en server över ett nätverk ska blockeras (``droppas'') eller inte (``accepteras''). 
+
+En brandvägg består av ett antal \emph{regler} i en lång lista. En regel är på formen ``om [lista av villkor] alla är sanna, utför en handling''. Villkoren är på formen
+
+\begin{description}
+	\item[\texttt{port=XYZ}] - om meddelandet skickats till port \texttt{XYZ}.
+	\item[\texttt{ip=XYZ}] - om meddelandet skickats från IP-addressen \texttt{XYZ}.
+	\item[\texttt{limit=XYZ}] - om minst \texttt{XYZ} av de senaste 100 meddelanden (inkluderat det som just kom) skickats från denna IP.
+\end{description}
+
+och handlingarna är en av
+
+\begin{description}
+	\item[\texttt{accept}] - släpp genom paketet i brandväggen. Skriv ut \texttt{accept paket-ID}.
+	\item[\texttt{log}] - skriv ut \texttt{log paket-ID}.
+	\item[\texttt{drop}] - blockera paketet. Skriv ut \texttt{drop paket-ID}.
+\end{description}
+
+En regel skulle alltså kunna se ut som:
+\begin{description}
+	\item[\texttt{accept}] - acceptera paketet ovillkorligen.
+	\item[\texttt{accept ip=127.0.0.1}] - acceptera paketet om det kommer från IP-addressen \texttt{127.0.0.1}.
+	\item[\texttt{drop port=22 ip=192.168.1.1}] - droppa paketet om det kommer från IP-addressen \texttt{192.168.1.1} och skickas till port \texttt{22}.
+	\item[\texttt{log port=80 limit=50}] - logga paketet om det skickas till port \texttt{80}, och hälften av de senaste 100 meddelanden skickades från denna IP-address.
+\end{description}
+
+När ett paket kommer in i brandväggen tittar man på alla regler i listan upifrån och ned, tills man når en regel som matchar paketet. Den givna brandväggen kommer alltid vara
+så att paketet kommer accepteras eller droppas innan listan tar slut.
+
+\section*{Input}
+Den första raden i indatan innehåller ett heltal $1 \le N \le 100\,000$, antalet regler i brandväggen.
+
+De nästa $N$ raderna innehåller reglerna i listan, en regel per rad.
+
+Nästa rad innehåller ett heltal $P$, antalet paket som kommer in till brandväggen. De är givna i ordningen de kom in.
+Ett paket är på formen \texttt{IP:port}, t.ex. \texttt{127.0.0.1:123}. Paketets \emph{ID} är bara vilken position paketet har i listan. Det första paketet har ID $1$ och det sista har ID $P$.
+
+En port är ett heltal $1 \le p \le 65535
+
+\section*{Output}
+För varje paket ska du köra det genom brandväggen. Varje handling som utförs beskriver vad du ska skriva ut. Notera att eftersom handlingen \texttt{log} inte avbryter
+paketets färd genom litsan med regler kan ett paket ge upphov till mer än en utskrift.
+
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Grupp & Poängvärde & Begränsningar\\ \hline
+	1     & 7          & Det finns bara \texttt{accept}-handlingar.  \\ \hline
+	4     & 15         & Ingen regel har något villkor. \\ \hline
+	2     & 29         & Det finns inga \texttt{limit}-villkor. \\ \hline
+	3     & 35         & $N \le 1\,000$ \\ \hline
+	5     & 14         &  \\ \hline
+\end{tabular}
