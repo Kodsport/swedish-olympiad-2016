@@ -21,38 +21,7 @@ class MoveStep extends Step {
 
     @Override
     public int execute(Context context, Stack<StackFrame> stack) {
-        State state = context.state;
-        if (state.getDir() == State.Direction.DOWN) {
-            if(state.getRow()+1 < context.grid.getR() &&
-                    context.grid.getGrid()[state.getRow() + 1][state.getCol()] != Grid.SquareType.BLOCKED) {
-                state.updatePos(state.getRow() + 1, state.getCol(), line);
-            } else {
-                state.updateLine(line);
-            }
-        } else if (state.getDir() == State.Direction.UP) {
-            if(state.getRow()-1 >= 0 &&
-                    context.grid.getGrid()[state.getRow() - 1][state.getCol()] != Grid.SquareType.BLOCKED) {
-                state.updatePos(state.getRow() - 1, state.getCol(), line);
-            } else {
-                state.updateLine(line);
-            }
-        } else if (state.getDir() == State.Direction.RIGHT) {
-            if(state.getCol()+1 < context.grid.getC() &&
-                    context.grid.getGrid()[state.getRow()][state.getCol() + 1] != Grid.SquareType.BLOCKED) {
-                state.updatePos(state.getRow(), state.getCol() + 1, line);
-            } else {
-                state.updateLine(line);
-            }
-        } else if (state.getDir() == State.Direction.LEFT) {
-            if(state.getCol()-1 >= 0 &&
-                    context.grid.getGrid()[state.getRow()][state.getCol() - 1] != Grid.SquareType.BLOCKED) {
-                state.updatePos(state.getRow(), state.getCol() - 1, line);
-            } else {
-                state.updateLine(line);
-            }
-        } else {
-            throw new RuntimeException("Invalid direction on line " + line + ".");
-        }
+        context.state.updatePos(context.state.nextPosition(context.grid), line);
         return context.currentStep + 1;
     }
 }
@@ -181,8 +150,12 @@ class GotoStep extends Step {
 
     @Override
     public int execute(Context context, Stack<StackFrame> stack) {
-        //TODO: blocked
         context.state.updateLine(line);
+
+        if(requireBlocked && !context.state.getPos().equals(context.state.nextPosition(context.grid))) {
+            return context.currentStep + 1;
+        }
+
         if(!context.labels.containsKey(label)) {
             throw new RuntimeException("Line " + line + ": Could not find label '" + label + "'.");
         }
