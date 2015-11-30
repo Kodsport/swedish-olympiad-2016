@@ -32,14 +32,14 @@ När ett paket kommer in i brandväggen tittar man på alla regler i listan upif
 så att paketet kommer accepteras eller droppas innan listan tar slut.
 
 \section*{Input}
-Den första raden i indatan innehåller ett heltal $1 \le N \le 100\,000$, antalet regler i brandväggen.
+Den första raden i indatan innehåller ett heltal $1 \le N \le 100$, antalet regler i brandväggen.
 
 De nästa $N$ raderna innehåller reglerna i listan, en regel per rad.
 
-Nästa rad innehåller ett heltal $P$, antalet paket som kommer in till brandväggen. De är givna i ordningen de kom in.
+Nästa rad innehåller ett heltal $P \le 10\,000$, antalet paket som kommer in till brandväggen. De är givna i ordningen de kom in.
 Ett paket är på formen \texttt{IP:port}, t.ex. \texttt{127.0.0.1:123}. Paketets \emph{ID} är bara vilken position paketet har i listan. Det första paketet har ID $1$ och det sista har ID $P$.
 
-En port är ett heltal $1 \le p \le 65535
+En port är ett heltal $1 \le p \le 65535$.
 
 \section*{Output}
 För varje paket ska du köra det genom brandväggen. Varje handling som utförs beskriver vad du ska skriva ut. Notera att eftersom handlingen \texttt{log} inte avbryter
@@ -51,9 +51,18 @@ Din lösning kommer att testas på en mängd testfallsgrupper. För att få poä
 \begin{tabular}{| l | l | l |}
 	\hline
 	Grupp & Poängvärde & Begränsningar\\ \hline
+<<<<<<< HEAD
 	1     & 7          & Det finns bara \texttt{accept}-handlingar.  \\ \hline
 	4     & 15         & Ingen regel har något villkor. \\ \hline
 	2     & 29         & Det finns inga \texttt{limit}-villkor. \\ \hline
 	3     & 35         & $N \le 1\,000$ \\ \hline
 	5     & 14         &  \\ \hline
+=======
+	1     & 7          & $P \le 10\,000$. Det finns bara \texttt{accept}-handlingar.  \\ \hline
+	2     & 15         & $P \le 10\,000$. Ingen regel har något villkor. \\ \hline
+	3     & 29         & $P \le 10\,000$. Det finns inga \texttt{limit}-villkor. \\ \hline
+	4     & 25         & $P \le 100$ \\ \hline
+	5     & 14         & $P \le 1\,000$ \\ \hline
+	6     & 10         & $P \le 10\,000$ \\ \hline
+>>>>>>> add brandvagg
 \end{tabular}
