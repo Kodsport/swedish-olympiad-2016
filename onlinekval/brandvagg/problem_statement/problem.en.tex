@@ -1,0 +1,59 @@
+\problemname{Firewall}
+
+On the Internet, there are many bad guys who always try to hack the computers of others. They steal cat pictures, bank logins and membership lists on programming dating sites. One of the first countermeasures against network-based attacks is the \emph{firewall}. A firewall filters some network trafik based on different criteria, to shut out unauthorized access. In this problem, we are going to code the part of the firewall that determines of a certain message sent to a server over a network should be dropped or accepted.
+
+A firewall consists of a number of \emph{rules} in a long list. A rule is on the form ``if [list of conditions] are true, perform an action''. These conditions are one of
+
+\begin{description}
+	\item[\texttt{port=XYZ}] - if the message was sent to port \texttt{XYZ}.
+	\item[\texttt{ip=XYZ}] - if the message was sent from the IP-adress \texttt{XYZ}.
+	\item[\texttt{limit=XYZ}] - if at least \texttt{XYZ} of the last 100 messenges (including the one just recieved) was sent from this IP-adress.
+\end{description}
+
+and the actions are one of
+
+\begin{description}
+	\item[\texttt{accept}] - let the package through the firewall. Print \texttt{accept packet-ID}.
+	\item[\texttt{log}] - print \texttt{log packet-ID}.
+	\item[\texttt{drop}] - block the packet. Print \texttt{drop packet-ID}.
+\end{description}
+
+Some examples of rules with explanations:
+\begin{description}
+	\item[\texttt{accept}] - always accept the packet.
+	\item[\texttt{accept ip=127.0.0.1}] - accept the packet if it comes from the IP-adress \texttt{127.0.0.1}.
+	\item[\texttt{drop port=22 ip=192.168.1.1}] - drop the packet if its from the IP-adress \texttt{192.168.1.1} and sent to port \texttt{22}.
+	\item[\texttt{log port=80 limit=50}] - log the packet if it was sent to port \texttt{80}, and at least half of the last 100 messenges was sent from this IP-address.
+\end{description}
+
+When a packet enters the firewall, it looks at every rule in the list, top to bottom, until it reaches a rule that matches the packet. The given firewall will always be constructed such that a packet will be accepted or dropped before the end of the list.
+
+\section*{Input}
+The first line of input contains an integer $1 \le N \le 100$, the number of rules in the firewall.
+
+The next $N$ lines contains the rules in the list, one rule on each line.
+
+The next row contains an integer $P \le 10\,000$, the number of packets arriving to the firewall. They are given in the order of arrival.
+A packet is on the form \texttt{IP:port}, for example \texttt{127.0.0.1:123}. The packet ID is just the position of the packet in this list. The first packet has id $1$ and the last ID $P$.
+
+A port is an integer $1 \le p \le 65535$.
+
+\section*{Output}
+For each packet, you are to run it through the firewall until it is accepted or dropped. Each action that is taken describes what to print. Note that since the
+action \texttt{log} doesn't stop the packet in the firewall, each packet could result in multiple lines of output.
+
+
+\section*{Scoring}
+Your solution will be tested on a number of test case groups. To get points for a group
+you have to solve all the test cases in that group.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Group & Points & Limits\\ \hline
+	1     & 7          & $P \le 10\,000$. There are only \texttt{accept}-actions.  \\ \hline
+	2     & 15         & $P \le 10\,000$. No rule has a condition. \\ \hline
+	3     & 29         & $P \le 10\,000$. There are no \texttt{limit} conditions. \\ \hline
+	4     & 25         & $P \le 100$ \\ \hline
+	5     & 14         & $P \le 1\,000$ \\ \hline
+	6     & 10         & $P \le 10\,000$ \\ \hline
+\end{tabular}
