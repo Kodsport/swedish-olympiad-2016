@@ -6,7 +6,12 @@ Currently, each house has a shadow that is exactly one unit square long, and is 
 
 The question is how long it will take before there exists a path to the hotel that does not involve getting burned by the sun. The hotel is house number $N$, and you are currently in the shadow of house number 1. Since the hotel entrence is at the north side of the house, that's where you need to go. In the worst case you might have to wait until nightfall, which will occur in $K$ units of time.
 
-\section*{Input}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{skuggor.png}
+\label{overflow}
+\end{figure}
+
 The first line contains two space-separated integers $N$ and $K$ - the number of houses in the city and the number of time units before nightfall.
 
 The next $N$ lines contains 2 integers $x y$ each, the coordinates of the houses. The first line contains the coordinates of the house which you take cover behind, and the last line contains the coordinate of the hotel.
@@ -28,4 +33,4 @@ you have to solve all the test cases in that group.
 	3 & 17 & $N, K \le 1000, |x|, |y| \le 100000$ \\ \hline
 	4 & 23 & $N \le 20000, K, |x|, |y| \le 10^7$ \\ \hline
 	5 & 15 & $N \le 300000, K, |x|, |y| \le 10^{18}$ \\ \hline
-\end{enumerate}
+\end{tabular}

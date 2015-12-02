@@ -2,6 +2,12 @@
 
 Du är på besök i ett varmt land och det råkar vara en stekhet dag, men som tur är befinner du dig i skuggan av ett hus. Du inser att du borde röra dig mot hotellet någon gång, men samtidigt inser du att det är för varmt för att gå ut i solen. Staden som du befinner dig i består av $N$ stycken hus placerade på ett rutnät, varje hus tar upp exakt 1 ruta. Just nu så har alla hus en skugga som är exakt 1 ruta lång och är riktad norrut och då solen har börjat gå ned så ökar längden på denna skugga med 1 ruta per tidsenhet. Du kan gå från skuggan av ett hus till ett annat om skuggorna delar en kant av längd minst 1 (se bild). Du kan inte gå genom hus. Frågan är nu hur lång tid det kommer att ta innan det finns en väg till hotellet som inte involverar brännskador. Hotellet är hus $N$ och du befinner dig i skuggan till hus 1. Då hotellets entré ligger på norra sidan av huset så måste du ta dig till den sidan. I värsta fall så kan du behöva vänta på att det blir natt vilket inträffar efter $K$ tidsenheter.
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{skuggor.png}
+\label{overflow}
+\end{figure}
+
 \section*{Input}
 På första raden står två heltal $N$ och $K$ antalet hus i staden och antalet tidsenheter innan det blir natt. På de följande $N$ raderna står 2 heltal per rad $x y$, koordinaterna för varje hus. Den första raden har koordinaten vars skugga du står i och den sista raden har koordinaten för hotellet.
 
@@ -21,4 +27,4 @@ Din lösning kommer att testas på en mängd testfallsgrupper. För att få poä
 	3 & 17 & $N, K \le 1000, |x|, |y| \le 100000$ \\ \hline
 	4 & 23 & $N \le 20000, K, |x|, |y| \le 10^7$ \\ \hline
 	5 & 15 & $N \le 300000, K, |x|, |y| \le 10^{18}$ \\ \hline
-\end{enumerate}
+\end{tabular}
