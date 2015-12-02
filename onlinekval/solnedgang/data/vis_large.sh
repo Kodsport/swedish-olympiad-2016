@@ -2,6 +2,6 @@
 for i in "$@"
 do
 	./visualize < $i > /tmp/vis.pbm
-	gm convert /tmp/vis.pbm $i.png
+	gm convert -sample 1000% /tmp/vis.pbm $i.png
 	open $i.png
 done

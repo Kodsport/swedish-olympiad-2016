@@ -16,7 +16,7 @@ VALIDATOR=../input_format_validators/validator.py
 rm -rf secret
 mkdir secret
 echo "grading: custom
-grader_flags: sum2" > secret/testdata.yaml
+grader_flags: sum" > secret/testdata.yaml
 
 function group {
 	groupname=$1
@@ -36,7 +36,8 @@ function testcase_random {
 function testcase_manual {
 	printf '*'
 	ind=$((ind+1))
-	python3 generator_manual.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	cp $1.in secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	cp $1.ans secret/$groupname/$PROBLEMNAME.$groupname.$ind.ans
 }
 function testcase_regular {
 	printf '*'
@@ -83,6 +84,11 @@ testcase_stair 50 100 2 0
 testcase_stair 50 100 3 0
 testcase_stair 50 100 4 0
 testcase_stair 30 100 5 0
+
+for i in manual/*.in; do
+	testcase_manual ${i%???}
+done
+
 # n, k <= 100, h, w <= 100
 solve_and_verify 100 100 100
 
