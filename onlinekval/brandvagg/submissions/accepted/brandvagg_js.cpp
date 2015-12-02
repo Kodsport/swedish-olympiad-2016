@@ -76,7 +76,7 @@ public:
 
 class Log : public Action {
 public:
-	bool execute(const Packet& p) const { cout << "log " << p.id << endl; return true; }
+	bool execute(const Packet& p) const { cout << "log " << p.id << '\n'; return true; }
 };
 
 class Abort : public Action {
@@ -123,6 +123,7 @@ public:
 
 int main(){
 	int N, P;
+	cin.tie(0);
 	cin >> N;
 	vector<Rule> firewall;
 	cin.ignore();
