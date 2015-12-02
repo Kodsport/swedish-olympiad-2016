@@ -39,6 +39,14 @@ aa" > secret/g1/$PROBLEMNAME.g1.9.in
 echo "a
 1
 a" > secret/g1/$PROBLEMNAME.g1.10.in
+echo "aa
+2
+aaa
+aa" > secret/g1/$PROBLEMNAME.g1.11.in
+echo "aa
+2
+a
+aa" > secret/g1/$PROBLEMNAME.g1.12.in
 
 echo "Generating group 2..."
 echo "21 1 1" | ./gen > secret/g2/$PROBLEMNAME.g2.1.in
@@ -56,6 +64,14 @@ aa" > secret/g2/$PROBLEMNAME.g2.9.in
 echo "a
 1
 a" > secret/g2/$PROBLEMNAME.g2.10.in
+echo "aa
+2
+aaa
+aa" > secret/g2/$PROBLEMNAME.g2.11.in
+echo "aa
+2
+a
+aa" > secret/g2/$PROBLEMNAME.g2.12.in
 
 
 # generate solutions for all files
