@@ -31,17 +31,22 @@ int main() {
 		rep(j,0,N) {
 			reachable2.assign(1 << N, 0);
 			int c = word[j] - 'A';
-			rep(k,0,N) {
-				if (!(masks[k] & 1 << c)) continue;
-				rep(m,0,(1 << N)) {
+			rep(m,0,(1 << N)) {
+				if (!reachable[m]) continue;
+				rep(k,0,N) {
+					if (!(masks[k] & 1 << c)) continue;
 					if (m & (1 << k)) continue;
-					if (reachable[m]) reachable2[m | 1 << k] = 1;
+					reachable2[m | 1 << k] = 1;
 				}
 			}
 			reachable.swap(reachable2);
 		}
-		if (reachable[(1 << N) - 1])
+		bool works = reachable[(1 << N) - 1];
+		if (works)
 			res++;
+#ifdef PRINT
+		if (works) cerr << 'Y'; else cerr << 'N';
+#endif
 	}
 	cout << res << endl;
 }
