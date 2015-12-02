@@ -9,7 +9,7 @@ En brandvägg består av ett antal \emph{regler} i en lång lista. En regel är 
 \begin{description}
 	\item[\texttt{port=XYZ}] - om meddelandet skickats till port \texttt{XYZ}.
 	\item[\texttt{ip=XYZ}] - om meddelandet skickats från IP-addressen \texttt{XYZ}.
-	\item[\texttt{limit=XYZ}] - om minst \texttt{XYZ} av de senaste 100 meddelanden (inkluderat det som just kom) skickats från denna IP.
+	\item[\texttt{limit=XYZ}] - om minst \texttt{XYZ} av de senaste 1000 meddelandena (inkluderat det som just kom) skickats från denna IP.
 \end{description}
 
 och handlingarna är en av
@@ -25,7 +25,7 @@ En regel skulle alltså kunna se ut som:
 	\item[\texttt{accept}] - acceptera paketet ovillkorligen.
 	\item[\texttt{accept ip=127.0.0.1}] - acceptera paketet om det kommer från IP-addressen \texttt{127.0.0.1}.
 	\item[\texttt{drop port=22 ip=192.168.1.1}] - droppa paketet om det kommer från IP-addressen \texttt{192.168.1.1} och skickas till port \texttt{22}.
-	\item[\texttt{log port=80 limit=50}] - logga paketet om det skickas till port \texttt{80}, och hälften av de senaste 100 meddelanden skickades från denna IP-address.
+	\item[\texttt{log port=80 limit=500}] - logga paketet om det skickas till port \texttt{80}, och hälften av de senaste 1000 meddelandena skickades från denna IP-address.
 \end{description}
 
 När ett paket kommer in i brandväggen tittar man på alla regler i listan upifrån och ned, tills man når en regel som matchar paketet. Den givna brandväggen kommer alltid vara
@@ -43,7 +43,7 @@ En port är ett heltal $1 \le p \le 65535$.
 
 \section*{Output}
 För varje paket ska du köra det genom brandväggen. Varje handling som utförs beskriver vad du ska skriva ut. Notera att eftersom handlingen \texttt{log} inte avbryter
-paketets färd genom litsan med regler kan ett paket ge upphov till mer än en utskrift.
+paketets färd genom listan med regler kan ett paket ge upphov till mer än en utskrift.
 
 \section*{Poängsättning}
 Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.

@@ -6,8 +6,8 @@ A firewall consists of a number of \emph{rules} in a long list. A rule is on the
 
 \begin{description}
 	\item[\texttt{port=XYZ}] - if the message was sent to port \texttt{XYZ}.
-	\item[\texttt{ip=XYZ}] - if the message was sent from the IP-adress \texttt{XYZ}.
-	\item[\texttt{limit=XYZ}] - if at least \texttt{XYZ} of the last 100 messenges (including the one just recieved) was sent from this IP-adress.
+	\item[\texttt{ip=XYZ}] - if the message was sent from the IP-address \texttt{XYZ}.
+	\item[\texttt{limit=XYZ}] - if at least \texttt{XYZ} of the last 1000 messages (including the one just received) was sent from this IP-address.
 \end{description}
 
 and the actions are one of
@@ -21,9 +21,9 @@ and the actions are one of
 Some examples of rules with explanations:
 \begin{description}
 	\item[\texttt{accept}] - always accept the packet.
-	\item[\texttt{accept ip=127.0.0.1}] - accept the packet if it comes from the IP-adress \texttt{127.0.0.1}.
-	\item[\texttt{drop port=22 ip=192.168.1.1}] - drop the packet if its from the IP-adress \texttt{192.168.1.1} and sent to port \texttt{22}.
-	\item[\texttt{log port=80 limit=50}] - log the packet if it was sent to port \texttt{80}, and at least half of the last 100 messenges was sent from this IP-address.
+	\item[\texttt{accept ip=127.0.0.1}] - accept the packet if it comes from the IP-address \texttt{127.0.0.1}.
+	\item[\texttt{drop port=22 ip=192.168.1.1}] - drop the packet if its from the IP-address \texttt{192.168.1.1} and sent to port \texttt{22}.
+	\item[\texttt{log port=80 limit=500}] - log the packet if it was sent to port \texttt{80}, and at least half of the last 1000 messenges was sent from this IP-address.
 \end{description}
 
 When a packet enters the firewall, it looks at every rule in the list, top to bottom, until it reaches a rule that matches the packet. The given firewall will always be constructed such that a packet will be accepted or dropped before the end of the list.

@@ -18,7 +18,7 @@ P = int(sys.stdin.readline())
 for i in xrange(P):
     line = sys.stdin.readline().strip()
     ip, port = line.split(":")
-    if len(last) == 100:
+    if len(last) == 1000:
         popped = last.pop(0)
         cnts[popped] -= 1
     if ip not in cnts:

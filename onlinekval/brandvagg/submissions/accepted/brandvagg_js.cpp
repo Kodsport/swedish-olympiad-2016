@@ -139,7 +139,7 @@ int main(){
 		getline(cin, s);
 		Packet p(i, s);
 		push_packet(p);
-		if (history.size() > 100) pop_packet();
+		if (history.size() > 1000) pop_packet();
 		for(const auto& rule : firewall){
 			if(!rule.execute(p)) break;
 		}
