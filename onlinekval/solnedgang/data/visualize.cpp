@@ -38,7 +38,7 @@ int main () {
 
 	cout << "P1" << endl;
 	cout << (max_x - min_x) << " " << (max_y - min_y) << endl;
-	for (int y = 0; y < max_y - min_y; y++) {
+	for (int y = max_y - min_y - 1; y >= 0; y--) {
 		for (int x = 0; x < max_x - min_x; x++) {
 			cout << dots[x][y] << " ";
 		}
