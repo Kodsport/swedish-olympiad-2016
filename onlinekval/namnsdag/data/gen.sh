@@ -24,14 +24,21 @@ echo "grading: custom
 grader_flags: all 47" > secret/g2/testdata.yaml
 
 echo "Generating group 1..."
-echo "11 50 5" | ./gen > secret/g1/$PROBLEMNAME.g1.1.in
-echo "12 49 5" | ./gen > secret/g1/$PROBLEMNAME.g1.2.in
-echo "13 48 5" | ./gen > secret/g1/$PROBLEMNAME.g1.3.in
-echo "14 47 5" | ./gen > secret/g1/$PROBLEMNAME.g1.4.in
-echo "15 46 5" | ./gen > secret/g1/$PROBLEMNAME.g1.5.in
+echo "11 50 2" | ./gen > secret/g1/$PROBLEMNAME.g1.1.in
+echo "12 49 3" | ./gen > secret/g1/$PROBLEMNAME.g1.2.in
+echo "13 48 3" | ./gen > secret/g1/$PROBLEMNAME.g1.3.in
+echo "14 47 3" | ./gen > secret/g1/$PROBLEMNAME.g1.4.in
+echo "15 46 4" | ./gen > secret/g1/$PROBLEMNAME.g1.5.in
 echo "16 45 5" | ./gen > secret/g1/$PROBLEMNAME.g1.6.in
-echo "17 44 5" | ./gen > secret/g1/$PROBLEMNAME.g1.7.in
-echo "18 1 5" | ./gen > secret/g1/$PROBLEMNAME.g1.8.in
+echo "17 44 10" | ./gen > secret/g1/$PROBLEMNAME.g1.7.in
+echo "18 1 3" | ./gen > secret/g1/$PROBLEMNAME.g1.8.in
+echo "aa
+2
+bb
+aa" > secret/g1/$PROBLEMNAME.g1.9.in
+echo "a
+1
+a" > secret/g1/$PROBLEMNAME.g1.10.in
 
 echo "Generating group 2..."
 echo "21 1 1" | ./gen > secret/g2/$PROBLEMNAME.g2.1.in
@@ -42,6 +49,14 @@ echo "25 10000 10" | ./gen > secret/g2/$PROBLEMNAME.g2.5.in
 echo "26 10000 7" | ./gen > secret/g2/$PROBLEMNAME.g2.6.in
 echo "27 10000 5" | ./gen > secret/g2/$PROBLEMNAME.g2.7.in
 echo "28 10000 3" | ./gen > secret/g2/$PROBLEMNAME.g2.8.in
+echo "aa
+2
+bb
+aa" > secret/g2/$PROBLEMNAME.g2.9.in
+echo "a
+1
+a" > secret/g2/$PROBLEMNAME.g2.10.in
+
 
 # generate solutions for all files
 if [[ ! -z $SOLVER ]]
