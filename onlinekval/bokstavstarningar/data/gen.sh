@@ -6,7 +6,7 @@ VALIDATOR=../input_format_validators/validator.py
 rm -rf secret
 mkdir secret
 echo "grading: custom
-grader_flags: sum2" > secret/testdata.yaml
+grader_flags: sum" > secret/testdata.yaml
 
 function group {
 	groupname=$1
