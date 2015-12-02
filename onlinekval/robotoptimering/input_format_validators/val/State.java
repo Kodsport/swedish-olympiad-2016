@@ -120,7 +120,7 @@ public class State implements Cloneable {
         }
     }
 
-    class Position {
+    static class Position {
         int row, col;
         public Position(int row, int col) {
             this.row = row;
