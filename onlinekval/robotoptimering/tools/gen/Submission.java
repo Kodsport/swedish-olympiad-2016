@@ -8,6 +8,7 @@ public class Submission {
 		"robot_diagonal",
 		"robot_ew_manuell",
 		"robot_path_freedom",
+		"robot_path_freedom2",
 		"robot_rand_60",
 		"robot_rand_80",
 		"robot_maze",
