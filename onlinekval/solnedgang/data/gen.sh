@@ -62,7 +62,22 @@ function solve_and_verify {
 			exit 1
 		fi
 		set -e
-		$SOLVER < $f > ${f%???}.ans
+		$SOLVER < $f > ${f%???}.ans2
+		set +e
+
+		# Make sure that if this was a manual test case
+		# and thus a .ans file already exists
+		# then the solver should generate the same answer
+		if [ -e ${f%???}.ans ]; then
+			diff ${f%???}.ans ${f%???}.ans2
+			if [ $? -ne 0 ]; then
+				echo "Failed on manual test case"
+				exit 1
+			fi
+		else
+			mv ${f%???}.ans2 ${f%???}.ans
+		fi
+		set -e
 	done
 	printf '\n'
 }
