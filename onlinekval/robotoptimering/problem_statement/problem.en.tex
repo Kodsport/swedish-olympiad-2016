@@ -60,13 +60,13 @@ Each square is one of:
 \end{description}
 
 \section*{Tools}
-There are some tools written in Java which you can download here(TODO länk!!!) to solve the problem. You can use the command \texttt{java -jar robot.jar parser.Runner testfall.in < testfall.ans} 
+There are some tools written in Java which you can download here(TODO länk!!!) to solve the problem. You can use the command \texttt{java -cp robot.jar parser.Runner testfall.in < testfall.ans} 
 to run the program in the file \texttt{testfall.ans} on the grid in the file \texttt{testfall.in}. The program will tell you if the robot succeeded.
 
-If you also want a graphical representation of the execution, you can run \texttt{java -jar robot.jar gui.GuiMain}.
+If you also want a graphical representation of the execution, you can run \texttt{java -cp robot.jar gui.GuiMain}.
 
 \section*{Submission}
-To submit your solutions, you first run the command \texttt{java -jar robot.jar gen.Submission}, in the folder where your solutions are located. This will generate a Python-file named \texttt{robot.py}.
+To submit your solutions, you first run the command \texttt{java -cp robot.jar gen.Submission}, in the folder where your solutions are located. This will generate a Python-file named \texttt{robot.py}.
 This can be submitted to Kattis (choose the language \texttt{Python 3}).
 
 \section*{Output}

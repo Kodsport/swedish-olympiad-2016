@@ -1,5 +1,9 @@
 package gen;
 
+import java.nio.file.*;
+import java.nio.charset.*;
+import java.io.*;
+
 public class Submission {
 
 	private static final String[] cases = {
@@ -15,19 +19,23 @@ public class Submission {
 		"robot_spiral"
 	};
 
-	public static void main(String... args){
+	public static void main(String... args) throws Exception {
 		String submission = "";
 
 		submission += "ans = {\n";
 
 		for (String name : cases){
 			String text = new String(Files.readAllBytes(Paths.get(name + ".ans")), StandardCharsets.UTF_8);
-			submission += "'" + name + "': \"\"\"" + text + "\"\"\"\n";
+			submission += "'" + name + "': \"\"\"" + text + "\"\"\",";
 		}
 
 		submission += "}\n";
 		submission += "casename = input()\n";
-		submission += "print ans[casename]\n";
+		submission += "print (ans[casename])\n";
+		
+		FileWriter fw = new FileWriter("robot.py");
+		fw.write(submission);
+		fw.close();
 	}
 
 }

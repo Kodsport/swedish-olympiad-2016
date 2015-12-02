@@ -59,12 +59,12 @@ Varje ruta är en av:
 \end{description}
 
 \section*{Verktyg}
-För att hjälpa dig lösa problemet finns ett Java-program som du kan ladda ner här(TODO LÄNK!!!). Du kan använda kommandot \texttt{java -jar robot.jar parser.Runner testfall.in < testfall.ans} för att köra programmet som finns i filen \texttt{testfall.ans} på rutnätet i filen \texttt{testfall.in}. Programmet kommer berätta om din lösning lyckades.
+För att hjälpa dig lösa problemet finns ett Java-program som du kan ladda ner här(TODO LÄNK!!!). Du kan använda kommandot \texttt{java -cp robot.jar parser.Runner testfall.in < testfall.ans} för att köra programmet som finns i filen \texttt{testfall.ans} på rutnätet i filen \texttt{testfall.in}. Programmet kommer berätta om din lösning lyckades.
 
-Om du dessutom vill ha en grafisk illustration av exekveringen kan du köra \texttt{java -jar robot.jar gui.GuiMain}.
+Om du dessutom vill ha en grafisk illustration av exekveringen kan du köra \texttt{java -cp robot.jar gui.GuiMain}.
 
 \section*{Inskickning}
-För att skicka in ditt program kör du först kommandot \texttt{java -jar robot.jar gen.Submission}, i mappen där dina lösningar finns. Detta kommer generera en Python-fil som heter \texttt{robot.py}. Denna kan du sedan skicka in på Kattis (välj språket \texttt{Python 3}).
+För att skicka in ditt program kör du först kommandot \texttt{java -cp robot.jar gen.Submission}, i mappen där dina lösningar finns. Detta kommer generera en Python-fil som heter \texttt{robot.py}. Denna kan du sedan skicka in på Kattis (välj språket \texttt{Python 3}).
 
 \section*{Utdata}
 Utdata för testfall \texttt{robot\_XYZ.in} ska sparas i en fil \texttt{robot\_XYZ.ans}. Det ska bestå av ett program på formen beskriven ovan, som tar roboten från startposition till slutposition.
