@@ -1,5 +1,5 @@
 #!/bin/bash
-for acc in submissions/*/*.cpp; do
+for acc in submissions/aron_slow_g1_g2_g3.cpp; do
 	set -e
 	g++ -O2 -std=c++11 $acc -o /tmp/solnedgang_ac
 	set +e
@@ -10,7 +10,7 @@ for acc in submissions/*/*.cpp; do
 		code=$!
 		isDone="false"
 		sleep 0.02
-		for i in {0..50}; do
+		for i in {0..80}; do
 			kill -0 $code 2> /dev/null
 			if [ $? -eq 1 ]; then
 				isDone="true"
