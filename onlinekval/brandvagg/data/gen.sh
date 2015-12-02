@@ -25,8 +25,18 @@ function solve {
 	$SOLVER < $1 > ${1%.in}.ans
 }
 
+function testcase_manylogs {
+	ind=$((ind+1))
+	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	echo $in
+	python3 generate_many_logs.py "$@" $ind > $in
+	solve $in
+}
+
 function testcase_manylimits {
 	ind=$((ind+1))
+	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	echo $in
 	python3 generate_many_limits.py "$@" $ind > $in
 	solve $in
 }
@@ -48,33 +58,42 @@ function repeat {
 }
 
 group g1 7
-# P <= 10,000. Det finns bara accept-handlingar.
+# P <= 10,000. There are only "accept" actions.
+testcase_random 100 10000 100 100 1
+testcase_random 100 10000 10 10 1
 
 group g2 15
-# P <= 10,000. Ingen regel har något villkor.
+# P <= 10,000. No rule has a condition.
+testcase_random 100 10000 100 100 2
+testcase_manylogs 100 2000 1 1 1
+testcase_manylogs 100 2000 100 100 2
 
 group g3 29
-# P <= 10,000. Det finns inga limit-villkor.
+# P <= 10,000. There are no "limit" conditions.
+repeat 2 testcase_random 100 10000 10 10 3
+testcase_random 100 10000 2 2 3
+testcase_random 100 10000 40 40 3
+testcase_random 100 10000 500 500 3
 
 group g4 25
 # P <= 100$
-repeat 2 testcase_random 100 100 10 10
-testcase_random 100 100 2 2
-testcase_random 100 100 30 30
+repeat 2 testcase_random 100 100 10 10 4
+testcase_random 100 100 2 2 4
+testcase_random 100 100 30 30 4
 testcase_manylimits 100 100
 
 group g5 14
 # P <= 1,000
-repeat 2 testcase_random 100 1000 10 10
-testcase_random 100 1000 2 2
-testcase_random 100 1000 40 40
-testcase_random 100 1000 500 500
+repeat 2 testcase_random 100 1000 10 10 4
+testcase_random 100 1000 2 2 4
+testcase_random 100 1000 40 40 4
+testcase_random 100 1000 500 500 4
 testcase_manylimits 100 1000
 
 group g6 10
 # P <= 10,000
-repeat 2 testcase_random 100 10000 10 10
-testcase_random 100 10000 2 2
-testcase_random 100 10000 40 40
-testcase_random 100 10000 500 500
+repeat 2 testcase_random 100 10000 10 10 4
+testcase_random 100 10000 2 2 4
+testcase_random 100 10000 40 40 4
+testcase_random 100 10000 500 500 4
 testcase_manylimits 100 10000
