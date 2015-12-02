@@ -79,6 +79,11 @@ public:
 	bool execute(const Packet& p) const { cout << "log " << p.id << endl; return true; }
 };
 
+class Abort : public Action {
+public:
+	bool execute(const Packet& p) const { abort(); }
+};
+
 class Rule {
 public:
 	Action* action;
@@ -92,6 +97,10 @@ public:
 		ss >> tok;
 		setAction(tok);
 		while(ss >> tok) addCondition(tok);
+	}
+
+	Rule() {
+		action = new Abort;
 	}
 
 	void setAction(const string& tok){
@@ -122,6 +131,7 @@ int main(){
 		getline(cin, s);
 		firewall.push_back(Rule(s));
 	}
+	firewall.push_back(Rule());
 	cin >> P;
 	cin.ignore();
 	for(int i = 1; i <= P; ++i){
