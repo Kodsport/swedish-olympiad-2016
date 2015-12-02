@@ -10,10 +10,10 @@ assert re.match(line_regex, line)
 vals=[int(x) for x in line.split()]
 assert len(vals)==1
 n=vals[0]
-assert 1 <= n <= 30
+assert 1 <= n <= 25
 s = sys.stdin.readline()
 assert re.match("^[RGB]*$", s)
-assert 3 <= len(s) <=200
+assert 3 <= len(s) <= 200
 line = sys.stdin.readline()
 assert len(line) == 0
 
