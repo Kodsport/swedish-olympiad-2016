@@ -1,18 +1,18 @@
 import sys
 import random
 
-if len(sys.argv) != 6:
+if len(sys.argv) != 7:
     print('Wrong number of arguments')
     sys.exit(1)
 
-(n_max, xy_max, seed_offset, seed) = [int(s) for s in sys.argv[1:-1]]
+(n_max, k_max, xy_max, seed_offset, seed) = [int(s) for s in sys.argv[1:-1]]
 solver_path = sys.argv[-1]
 
 seed += seed_offset
 
 random.seed(seed)
 
-k = random.randrange(0, xy_max) + 100000
+k = random.randrange(0, k_max)
 n = random.randrange(0, n_max)
 
 
@@ -33,4 +33,4 @@ def column(x, ymin, ymax):
         y += 4
     return res
 
-print(write_output(column(0, 0, (xy_max // 4) * 4), k))
+print(write_output(column(0, 0, min(n // 2, xy_max // 4) * 4), k))

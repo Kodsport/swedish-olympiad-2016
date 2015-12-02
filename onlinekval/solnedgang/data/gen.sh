@@ -5,7 +5,6 @@ set -e
 PROBLEMNAME="solnedgang"
 
 g++ -std=c++11 -O2 ../submissions/accepted/aron.cpp -o /tmp/sol
-# g++ -O2 generator_max.cpp -o generator_max.out
 
 # Set this if you want to generate answers.
 SOLVER=/tmp/sol
@@ -30,44 +29,110 @@ grader_flags: all $points" > secret/$groupname/testdata.yaml
 }
 
 function testcase_random {
+	printf '*'
 	ind=$((ind+1))
 	python3 generator_random.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
 }
 function testcase_manual {
+	printf '*'
 	ind=$((ind+1))
 	python3 generator_manual.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
 }
 function testcase_regular {
+	printf '*'
 	ind=$((ind+1))
 	python3 generator_regular.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
 }
-
-group g1 23
-testcase_random 10 10 -1
-testcase_random 10 10 5
-testcase_random 10 10 2
-testcase_random 10 100 0
-testcase_random 10 100 0
-testcase_random 100 100 0
-testcase_random 100 100 0
-testcase_random 100 100 0
-
-group g2 21
-for i in {1..10}; do testcase_random 1000 1000 0; done
-
-group g3 21
-for i in {1..10}; do testcase_random 100000 100000 0; done
-
-group g4 21
-testcase_regular 10 10 0
-testcase_regular 200000 400000 0
+function testcase_stair {
+	printf '*'
+	ind=$((ind+1))
+	python3 generator_stair.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+}
 
 # generate solutions for all files
-for f in secret/*/*.in; do
-	echo "Solving $f"
-	set +e
-	python3 $VALIDATOR < $f
-	set -e
-	$SOLVER < $f > ${f%???}.ans
+function solve_and_verify {
+	printf '\n'
+	for f in secret/$groupname/*.in; do
+		echo "Solving $f"
+		set +e
+		python3 $VALIDATOR $1 $2 $3 < $f
+		if [ $? -ne 42 ]; then
+			echo "Validator failed"
+			exit 1
+		fi
+		set -e
+		$SOLVER < $f > ${f%???}.ans
+	done
+	printf '\n'
+}
 
-done
+
+group g1 19
+# 19
+testcase_random 10 10 10 -1
+testcase_random 10 10 10 5
+testcase_random 10 10 10 2
+testcase_random 10 100 100 0
+testcase_random 10 100 100 0
+testcase_random 100 100 100 0
+testcase_random 100 100 100 0
+testcase_random 100 100 100 0
+testcase_stair 100 100 0 0
+testcase_stair 99 100 1 0
+testcase_stair 50 100 2 0
+testcase_stair 50 100 3 0
+testcase_stair 50 100 4 0
+testcase_stair 30 100 5 0
+# n, k <= 100, h, w <= 100
+solve_and_verify 100 100 100
+
+
+group g2 26
+# 45
+testcase_stair 1000 1000 0 0
+testcase_stair 500 1000 1 0
+testcase_stair 500 1000 2 0
+testcase_stair 500 1000 3 0
+testcase_stair 500 1000 4 0
+testcase_stair 500 1000 5 0
+for i in {1..5}; do testcase_random 1000 1000 1000 0; done
+# n, k, h, w <= 1000
+solve_and_verify 1000 1000 1000
+
+
+group g3 17
+# 62
+testcase_random 1000 1000 1000 0
+testcase_random 1000 1000 1000 0
+testcase_random 1000 1000 1000 0
+testcase_random 1000 1000 1000 0
+testcase_random 1000 1000 100000 0
+testcase_regular 1000 1000 100000 0
+# k, n <= 1000, h, w <= 100000
+solve_and_verify 1000 1000 100000
+
+
+group g4 23
+# 85
+testcase_random 20000 10000000 10000000 0
+testcase_random 20000 10000000 10000000 0
+testcase_regular 20000 10000000 10000000 0
+testcase_stair 20000 10000000 4 0
+testcase_stair 20000 10000000 5 0
+# n <= 20000, k, h, w <= 10^7
+solve_and_verify 20000 10000000 10000000
+
+
+group g5 15
+# 100
+testcase_regular 300000 10000000 1000000000000000000 0
+for i in {1..5}; do testcase_random 300000 1000000000000000000 1000000000000000000 0; done
+testcase_stair 300000 1000000000000000000 0 0
+testcase_stair 300000 1000000000000000000 1 0
+testcase_stair 300000 1000000000000000000 2 0
+testcase_stair 300000 1000000000000000000 3 0
+testcase_stair 300000 1000000000000000000 4 0
+testcase_stair 300000 1000000000000000000 5 0
+
+# n <= 300000, k, h, w <= 10^18
+solve_and_verify 300000 1000000000000000000 1000000000000000000
