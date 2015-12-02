@@ -44,9 +44,11 @@ main:
 När roboten försöker gå mot rutnätet kant, eller en ruta som inte är fri, så händer ingenting. När roboten når sin målruta så vinner roboten, oavsett om den kört färdigt eller inte.
 
 \section*{Indata}
-Indatat består av 20 olika rutnät på formen \texttt{robotoptimering01.in} till \texttt{robotoptimering20.in}, som du kan ladda ner här(TODO: länk!!!). Varje rutnät har följande format:
+Indatat består av 10 olika rutnät, som du kan ladda ner här(TODO: länk!!!). Varje rutnät har följande format:
 
-Den första raden innehåller två heltal $1 \le R \le 1000$ och $1 \le C \le 1000$, antal rader och kolumner i rutnätet.
+Den första raden innehåller testfilens namn $X$.
+
+Nästa radinnehåller två heltal $1 \le R \le 1000$ och $1 \le C \le 1000$, antal rader och kolumner i rutnätet.
 
 Varje ruta är en av:
 \begin{description}
@@ -57,15 +59,15 @@ Varje ruta är en av:
 \end{description}
 
 \section*{Verktyg}
-För att hjälpa dig lösa problemet finns ett Java-program som du kan ladda ner här(TODO LÄNK!!!). Du kan använda kommandot \texttt{java -jar robot.jar run testfall} för att köra programmet som finns i filen \texttt{testfall.ans} på rutnätet i mappen \texttt{testfall.in}. Programmet kommer berätta hur lång din lösning var och om du lyckades lösa fallet.
+För att hjälpa dig lösa problemet finns ett Java-program som du kan ladda ner här(TODO LÄNK!!!). Du kan använda kommandot \texttt{java -jar robot.jar parser.Runner testfall.in < testfall.ans} för att köra programmet som finns i filen \texttt{testfall.ans} på rutnätet i mappen \texttt{testfall.in}. Programmet kommer berätta om din lösning lyckades.
 
-Om du dessutom vill ha en grafisk illustration av exekveringen kan du köra \texttt{java -jar robot.jar visualize testfall}.
+Om du dessutom vill ha en grafisk illustration av exekveringen kan du köra \texttt{java -jar robot.jar gui.GuiMain}.
 
 \section*{Inskickning}
-För att skicka in ditt program kör du först kommandot \texttt{java -jar robot.jar submission}, i mappen där dina lösningar finns. Detta kommer generera en Java-fil som heter \texttt{Robot.java}. Denna kan du sedan skicka in på Kattis (välj main-klass \texttt{Robot})..
+För att skicka in ditt program kör du först kommandot \texttt{java -jar robot.jar gen.Submission}, i mappen där dina lösningar finns. Detta kommer generera en Python-fil som heter \texttt{robot.py}. Denna kan du sedan skicka in på Kattis (välj språket \texttt{Python 3}).
 
 \section*{Utdata}
-Utdata för testfall \texttt{XX} ska sparas i en fil \texttt{robotoptimeringXX.ans}. Det ska bestå av ett program på formen beskriven ovan, som tar roboten från startposition till slutposition.
+Utdata för testfall \texttt{robot\_XYZ.in} ska sparas i en fil \texttt{robot\_XYZ.ans}. Det ska bestå av ett program på formen beskriven ovan, som tar roboten från startposition till slutposition.
 
 \section*{Poängsättning}
 Poängsättningen baseras på hur långt ditt program är. Längden är antalet gånger du använder något kommando i språket av de som är listade. Så exempelprogrammet har längd 12. I synnerhet bidrar labels inte till längden.
