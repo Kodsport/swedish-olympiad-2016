@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import re
 import sys
 
@@ -16,7 +17,7 @@ assert re.match(int_line_regex, line)
 N = int(line)
 assert 1 <= N <= 10000
 
-for i in xrange(N-1):
+for i in range(N-1):
     line = sys.stdin.readline()
     assert line not in s
     s.add(line)
