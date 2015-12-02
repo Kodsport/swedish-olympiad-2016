@@ -30,7 +30,7 @@ for it in range(nrules):
         if t == 'ip':
             assert is_ip(v)
         elif t == 'port':
-            assert int_range(v, 0, 65535)
+            assert int_range(v, 1, 65535)
         elif t == 'limit':
             assert int_range(v, 1, 1000)
         else:
@@ -45,7 +45,7 @@ for it in range(nreqs):
     line = sys.stdin.readline().rstrip('\n')
     eq = line.split(':')
     assert len(eq) == 2
-    assert int_range(eq[1], 0, 65535)
+    assert int_range(eq[1], 1, 65535)
     assert is_ip(eq[0])
 
 line = sys.stdin.readline()
