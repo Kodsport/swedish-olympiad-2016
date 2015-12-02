@@ -7,7 +7,7 @@ string_line_regex = "^[a-z]+$"
 
 name = sys.stdin.readline()
 assert re.match(string_line_regex, name)
-assert 1 <= len(name) <= 10
+assert 1 <= len(name) <= 11
 
 s = set()
 s.add(name)
@@ -22,7 +22,7 @@ for i in range(N-1):
     assert line not in s
     s.add(line)
     assert re.match(string_line_regex, line)
-    assert 1 <= len(line) <= 21
+    assert 1 <= len(line) <= 11
 
 line = sys.stdin.readline()
 assert line == name
