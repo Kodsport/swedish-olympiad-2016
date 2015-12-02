@@ -1,0 +1,82 @@
+\problemname{Robot optimization}
+
+There's a robot in an $N \times M$ grid, where some unit squares are \textbf{blocked} so that the robot cannot walk on the square. Now she wants to move to another square, and have asked her owner to program her to do this.
+This owner happen to be you.
+
+To transfer the programming to a robot from your computer requires a lot of energy, so you want to make the program as short as possible - this means using as few commands as possible.
+As everyone knows, the robot programming language looks as follows:
+
+\begin{description}
+  \item[\texttt{forward}] Move the robot forward a single step in its current direction.
+  \item[\texttt{right}] Rotate $90\deg$ clockwise.
+  \item[\texttt{left}] Rotate $90\deg$ counterclockwise.
+  \item[\texttt{for X \{ A1 A2 ... An \}}] Repeat the commands \texttt{A1}, \texttt{A2}, ..., \texttt{An} $X$ times.
+  \item[\texttt{call X}] Jump to the instruction with label \texttt{X}, and add it to the current position in the call stack.
+  \item[\texttt{return}] Jump to the last added position in the call stack, and remove it.
+  \item[\texttt{gotoblocked X}] Jump to the instruction with label \texttt{X}, if the square in front of the robot is blocked.
+\end{description}
+
+A \emph{label} has the syntax \texttt{labelnamn:}, and may only consist of small letters. A label cannot be inside a loop. The execution starts at the label called \texttt{main}.
+
+\section*{Example program}
+
+\begin{verbatim}
+
+walkandreturn:
+  for 100 {
+    forward
+  }
+  gotoblocked done
+  right
+  right
+  for 100 {
+    forward
+  }
+done:
+  return
+
+main:
+  for 100 {
+    call walkandreturn
+    right
+  }
+\end{verbatim}
+
+When the robot moves towards the edge of the grid, or a blocked square, it doesn't move. When the robot reaches her target square, she wins, even if she doesn't stop on the square.
+
+\section*{Input}
+Input consists of 10 different grids, which you can download here:(TODO: länk !!!!). Each grid is formatted as follows:
+
+The first line contains the testcase name.
+
+The next line contains two integers $1 \le R \le 1000$ och $1 \le C \le 1000$, the number of rows and columns in the grid.
+
+Each square is one of:
+\begin{description}
+  \item[\texttt{.}] free square
+  \item[\texttt{\#}] blocked square
+  \item[\texttt{M}] goal square
+  \item[\texttt{<>\^v}] start square, indicating the direction of the robot (in the order left, right, up, down).
+\end{description}
+
+\section*{Tools}
+There are some tools written in Java which you can download here(TODO länk!!!) to solve the problem. You can use the command \texttt{java -jar robot.jar parser.Runner testfall.in < testfall.ans} 
+to run the program in the file \texttt{testfall.ans} on the grid in the file \texttt{testfall.in}. The program will tell you if the robot succeeded.
+
+If you also want a graphical representation of the execution, you can run \texttt{java -jar robot.jar gui.GuiMain}.
+
+\section*{Submission}
+To submit your solutions, you first run the command \texttt{java -jar robot.jar gen.Submission}, in the folder where your solutions are located. This will generate a Python-file named \texttt{robot.py}.
+This can be submitted to Kattis (choose the language \texttt{Python 3}).
+
+\section*{Output}
+The output for testcase \texttt{robot\_XYZ.in} must be saved in the file \texttt{robot\_XYZ.ans}. It should consist of a program on the form described above, that moves the robot from its starting position to the end position.
+
+\section*{Scoring}
+The scoring is based on the length of your program. The length is the number of times you use one of the listed commands in the your program. Our example program has length 12. In particular, labels does not contribute to length.
+
+Assume your length on a test case is $L$, and that the shortest length on this case is $B$. Your score is then
+
+\[ 5 (1 - (\frac{L - B}{L})^2\]
+
+\textbf{OBS:} Your score may change on this task during the contest, when people submit better solutions. In the beginning, we have put the best solution as 2000 commands, and will replace these when submissions are made, rejudging all the solutions. The score is not final until we have done this rejudge after the contest.
