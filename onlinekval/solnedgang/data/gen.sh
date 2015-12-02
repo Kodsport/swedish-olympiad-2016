@@ -100,9 +100,8 @@ testcase_stair 50 100 3 0
 testcase_stair 50 100 4 0
 testcase_stair 30 100 5 0
 
-for i in manual/*.in; do
-	testcase_manual ${i%???}
-done
+# Edge cases
+for i in manual/*.in; do testcase_manual ${i%???}; done
 
 # n, k <= 100, h, w <= 100
 solve_and_verify 100 100 100
@@ -117,6 +116,10 @@ testcase_stair 500 1000 3 0
 testcase_stair 500 1000 4 0
 testcase_stair 500 1000 5 0
 for i in {1..5}; do testcase_random 1000 1000 1000 0; done
+
+# Edge cases
+for i in manual/*.in; do testcase_manual ${i%???}; done
+
 # n, k, h, w <= 1000
 solve_and_verify 1000 1000 1000
 
@@ -129,6 +132,14 @@ testcase_random 1000 1000 1000 0
 testcase_random 1000 1000 1000 0
 testcase_random 1000 1000 100000 0
 testcase_regular 1000 1000 100000 0
+
+# Edge cases
+for i in manual/*.in; do testcase_manual ${i%???}; done
+
+testcase_stair 1000 100000 1 0
+testcase_stair 1000 100000 4 0
+testcase_stair 1000 100000 5 0
+
 # k, n <= 1000, h, w <= 100000
 solve_and_verify 1000 1000 100000
 
@@ -140,6 +151,10 @@ testcase_random 20000 10000000 10000000 0
 testcase_regular 20000 10000000 10000000 0
 testcase_stair 20000 10000000 4 0
 testcase_stair 20000 10000000 5 0
+
+# Edge cases
+for i in manual/*.in; do testcase_manual ${i%???}; done
+
 # n <= 20000, k, h, w <= 10^7
 solve_and_verify 20000 10000000 10000000
 
@@ -154,6 +169,9 @@ testcase_stair 300000 1000000000000000000 2 0
 testcase_stair 300000 1000000000000000000 3 0
 testcase_stair 300000 1000000000000000000 4 0
 testcase_stair 300000 1000000000000000000 5 0
+
+# Edge cases
+for i in manual/*.in; do testcase_manual ${i%???}; done
 
 # n <= 300000, k, h, w <= 10^18
 solve_and_verify 300000 1000000000000000000 1000000000000000000

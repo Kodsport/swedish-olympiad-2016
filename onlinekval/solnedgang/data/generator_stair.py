@@ -30,6 +30,10 @@ def stair(x, y, step, n):
         buildings.append((x + i, y + step * i))
     return buildings
 
+poison = False
+if n > 100:
+    poison = True
+    n -= 4
 
 if variant == 0:
     buildings = stair(x_offset, y_offset, 1, n)
@@ -55,5 +59,15 @@ elif variant == 5:
     buildings = buildings + stair(x_offset + 3, y_offset, 1, n0)
 else:
     exit(1)
+
+if poison:
+    seen = set()
+    for b in buildings:
+        seen.add(b)
+
+    additional = [(0, 0), (xy_max, 0), (0, xy_max), (xy_max, xy_max)]
+    for a in additional:
+        if a not in seen and (a[0], a[1] + 1) not in seen and (a[0], a[1] - 1) not in seen:
+            buildings.append(a)
 
 print(write_output(buildings, k))
