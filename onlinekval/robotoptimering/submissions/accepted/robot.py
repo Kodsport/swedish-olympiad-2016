@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 ans = {
 'robot_concentric': """1000
 """,'robot_cross': """2000
@@ -12,4 +13,8 @@ ans = {
 """,'robot_spiral': """2000
 """,}
 casename = input()
+x = 3
+for i in range(18):
+    x = x * x
+    x = int(str(x))
 print (ans[casename])
