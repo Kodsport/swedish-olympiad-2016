@@ -1,18 +1,9 @@
 #!/bin/bash
-set -e
 
-# Set the problem name to generate correct file names
-PROBLEMNAME="solnedgang"
-
-g++ -std=c++11 -O2 ../submissions/accepted/aron.cpp -o /tmp/sol
-# g++ -O2 generator_max.cpp -o generator_max.out
-
-# Set this if you want to generate answers.
-SOLVER=/tmp/sol
+PROBLEMNAME="brandvagg"
 VALIDATOR=../input_format_validators/validator.py
-
-# 1. Create subdirectories and set them to "min"
-#    grading mode.
+g++ -std=c++11 -O2 ../submissions/accepted/brandvagg_js.cpp -o /tmp/sol
+SOLVER=/tmp/sol
 
 rm -rf secret
 mkdir secret
@@ -29,45 +20,61 @@ grader_flags: all $points" > secret/$groupname/testdata.yaml
 	echo "Generating group $groupname..."
 }
 
+function solve {
+	python3 $VALIDATOR <$1
+	$SOLVER < $1 > ${1%.in}.ans
+}
+
+function testcase_manylimits {
+	ind=$((ind+1))
+	python3 generate_many_limits.py "$@" $ind > $in
+	solve $in
+}
+
 function testcase_random {
 	ind=$((ind+1))
-	python3 generator_random.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-}
-function testcase_manual {
-	ind=$((ind+1))
-	python3 generator_manual.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-}
-function testcase_regular {
-	ind=$((ind+1))
-	python3 generator_regular.py "$@" $ind $SOLVER > secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
+	echo $in
+	python3 generate_random.py "$@" $ind > $in
+	solve $in
 }
 
-group g1 23
-testcase_random 10 10 -1
-testcase_random 10 10 5
-testcase_random 10 10 2
-testcase_random 10 100 0
-testcase_random 10 100 0
-testcase_random 100 100 0
-testcase_random 100 100 0
-testcase_random 100 100 0
+function repeat {
+	rep=$1
+	shift
+	for i in $(seq 1 $rep); do
+		eval $@
+	done
+}
 
-group g2 21
-for i in {1..10}; do testcase_random 1000 1000 0; done
+group g1 7
+# P <= 10,000. Det finns bara accept-handlingar.
 
-group g3 21
-for i in {1..10}; do testcase_random 100000 100000 0; done
+group g2 15
+# P <= 10,000. Ingen regel har något villkor.
 
-group g4 21
-testcase_regular 10 10 0
-testcase_regular 200000 400000 0
+group g3 29
+# P <= 10,000. Det finns inga limit-villkor.
 
-# generate solutions for all files
-for f in secret/*/*.in; do
-	echo "Solving $f"
-	set +e
-	python3 $VALIDATOR < $f
-	set -e
-	$SOLVER < $f > ${f%???}.ans
+group g4 25
+# P <= 100$
+repeat 2 testcase_random 100 100 10 10
+testcase_random 100 100 2 2
+testcase_random 100 100 30 30
+testcase_manylimits 100 100
 
-done
+group g5 14
+# P <= 1,000
+repeat 2 testcase_random 100 1000 10 10
+testcase_random 100 1000 2 2
+testcase_random 100 1000 40 40
+testcase_random 100 1000 500 500
+testcase_manylimits 100 1000
+
+group g6 10
+# P <= 10,000
+repeat 2 testcase_random 100 10000 10 10
+testcase_random 100 10000 2 2
+testcase_random 100 10000 40 40
+testcase_random 100 10000 500 500
+testcase_manylimits 100 10000

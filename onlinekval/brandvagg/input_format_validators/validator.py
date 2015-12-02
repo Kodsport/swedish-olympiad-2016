@@ -39,7 +39,7 @@ for it in range(nrules):
 line = sys.stdin.readline()
 assert re.match(int_regex, line)
 nreqs = int(line)
-assert 1 <= nreqs <= 100
+assert 1 <= nreqs <= 10000
 
 for it in range(nreqs):
     line = sys.stdin.readline().rstrip('\n')
