@@ -269,17 +269,20 @@ public class Main {
 		File scorefile = new File(args[2] + "score.txt");
 		BufferedWriter teamwriter = new BufferedWriter(new FileWriter(teamout));
 		BufferedWriter scorewriter = new BufferedWriter(new FileWriter(scorefile));
+		String[] parts = args[0].split("/");
+		String casename = parts[parts.length - 1];
 		try {
 			if(!Runner.runAndGetBooleanResult(context, code)) {
 				throw new Exception("The robot did not reach the goal");
 			}
 			code = new StringReader(theCode);
-			double score = getScore(code, bestLength);
-			teamwriter.write("Case " + args[0] + ": score " + score + "\n");
+			int length = getLength(code);
+			double score = getScore(length, bestLength);
+			teamwriter.write("Case " + casename + ": score " + score + ". Best is " + bestLength + ", yours is " + length + "\n");
 			scorewriter.write(score + "\n");
 		} catch(Exception e){
 			//e.printStackTrace();
-			teamwriter.write("Case " + args[0] + ": " + e.toString() + "\n");
+			teamwriter.write("Case " + casename + ": " + e.toString() + "\n");
 			scorewriter.write("0\n");
 		} finally {
 			teamwriter.close();
@@ -288,11 +291,11 @@ public class Main {
 		System.exit(42);
 	}
 
-	public static double getScore(Reader code, int bestLength) throws Exception {
+	public static int getLength(Reader code) throws Exception {
 		Lexer lexer = new Lexer(code);
 
 		Token token;
-		double length = 0;
+		int length = 0;
 		while( (token = lexer.nextToken()) != null ){
 			switch(token.type) {
 				case FWD:
@@ -306,6 +309,13 @@ public class Main {
 				default:
 			}
 		}
+		return length;
+	}
+
+
+
+	public static double getScore(int len, int bestLength) throws Exception {
+		double length = len;
 		double score = (length - bestLength) / length;
 		if(score < 0) score = 0;
 		return 10 * (1 - Math.pow(score, 2));
