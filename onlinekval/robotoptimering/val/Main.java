@@ -16,8 +16,9 @@ public class Main {
 		Reader code = new StringReader(theCode);
 
 		Context context = Context.readInitialConfig(infile);
-		File teamout = new File(args[2] + "/teammessage.txt");
-		File scorefile = new File(args[2] + "/score.txt");
+		if(!args[2].endsWith("/")) args[2] = args[2]+"/";
+		File teamout = new File(args[2] + "teammessage.txt");
+		File scorefile = new File(args[2] + "score.txt");
 		BufferedWriter teamwriter = new BufferedWriter(new FileWriter(teamout));
 		BufferedWriter scorewriter = new BufferedWriter(new FileWriter(scorefile));
 		try {

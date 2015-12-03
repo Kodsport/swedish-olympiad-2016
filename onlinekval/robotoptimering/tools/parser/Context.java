@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class Context {
     public Grid grid;
@@ -19,11 +20,42 @@ public class Context {
         this.state = initialState;
     }
 
+    private static boolean canReachGoal(State state, Grid.SquareType[][] grid) {
+        int R = grid.length, C = grid[0].length;
+        boolean[][] reachable = new boolean[R][C];
+        ArrayList<State.Position> q = new ArrayList<State.Position>();
+        q.add(state.getPos());
+        int[] dx = {-1,1,0,0};
+        int[] dy = {0,0,-1,1};
+        while (!q.isEmpty()) {
+            State.Position p = q.remove(q.size() - 1);
+            if (reachable[p.row][p.col]) {
+                continue;
+            }
+            reachable[p.row][p.col] = true;
+            for (int d = 0; d < 4; d++) {
+                State.Position p2 = new State.Position(p.row + dx[d], p.col + dy[d]);
+                if (p2.col < 0 || p2.row < 0 || p2.row >= R || p2.col >= C) {
+                    continue;
+                }
+                Grid.SquareType type = grid[p2.row][p2.col];
+                if (type == Grid.SquareType.GOAL) {
+                    return true;
+                }
+                if (type == Grid.SquareType.EMPTY) {
+                    q.add(p2);
+                }
+            }
+        }
+        return false;
+    }
+
     public static Context readInitialConfig(InputStream stream) throws IOException {
         int R, C;
         BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+		br.readLine();
         String line = br.readLine();
-        String[] words = line.split("\\s");
+        String[] words = (line != null ? line : "").split(" ");
         if (words.length != 2) {
             throw new IOException("There should be two numbers on the first line.");
         }
@@ -80,8 +112,16 @@ public class Context {
             }
         }
 
+        if (br.readLine() != null) {
+            throw new IOException("There should be " + (R+1) + " lines of input.");
+        }
+
         if(initialState == null) {
             throw new IOException("Could not find a start position.");
+        }
+
+        if(!canReachGoal(initialState, grid)) {
+            throw new IOException("Could not find a path from start to goal.");
         }
 
         return new Context(new Grid(R, C, grid), initialState);
