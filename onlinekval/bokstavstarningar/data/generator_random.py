@@ -102,11 +102,17 @@ nos = m - yeses
 output = ["Y"] * yeses + ["N"] * nos
 random.shuffle(output)
 output = ''.join(output)
+wl = set()
+wl.add('')
 for i in range(m):
-    if output[i] == 'Y':
-        print(gen_yes())
-    else:
-        print(gen_no())
+    w = ''
+    while w in wl:
+        if output[i] == 'Y':
+            w = gen_yes()
+        else:
+            w = gen_no()
+    wl.add(w)
+    print(w)
 
 # print(output)
 print(yeses, file=sys.stderr)

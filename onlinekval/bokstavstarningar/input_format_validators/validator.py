@@ -17,11 +17,18 @@ assert 1 <= m <= 10 ** 5
 die_regex = '[A-Z]{' + str(k) + '}$'
 word_regex = '[A-Z]{' + str(n) + '}$'
 for i in range(0, n):
-    assert re.match(die_regex, sys.stdin.readline())
+    line = sys.stdin.readline()
+    assert re.match(die_regex, line)
+    assert len(set(line)) == len(line)
+wl = set()
 for i in range(0, m):
-    assert re.match(word_regex, sys.stdin.readline())
+    line = sys.stdin.readline()
+    assert re.match(word_regex, line)
+    wl.add(line.strip())
 
 line = sys.stdin.readline()
 assert len(line) == 0
+
+assert len(wl) == m
 
 sys.exit(42)
