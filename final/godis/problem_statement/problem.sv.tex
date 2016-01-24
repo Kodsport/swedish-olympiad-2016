@@ -1,0 +1,36 @@
+\problemname{Godis}
+
+Det är lördag, och Johan ska handla godis. Han har identifierat ett antal olika godispåsar han kan tänka sig att köpa.
+
+Varje påse innehåller ett antal godisbitar av olika sorter. Det finns 10 olika sorters vanligt godis (dessa är numrerade 1 .. 10), och 10 sorter av en ny typ av anti-godis (numrerade -1 .. -10). Det händer sig nu att godisbitar av sort n och av sort -n inte går särskilt väl ihop - de annihileras när de kommer i kontakt med varandra. I övrigt har dock anti-godiset samma konsistens och smak som vanligt godis. Hur många godisbitar kan Johan ha kvar i slutet (efter att godis/anti-godis tagit ut varandra), om han väljer godispåsar på bästa sätt? Ignorera eventuella pengabekymmer - hans föräldrar bjuder.
+
+\section*{Input}
+
+Den första raden i indatan innehåller ett heltal $1 \le N \le 1000$ - antalet godispåsar.
+
+De följande $N$ raderna beskriver varje godispåse.
+Först på raden finns ett tal $1 \le k \le 10$, som specificerar antalet olika sorters godis i påsen.
+Sedan följer $k$ par av tal $s n$, vilket betyder att det finns $n$ godisar av sort $s$.
+Varje sort nämns högst en gång per godispåse, och sorterna $s$ och $-s$ kan av naturliga skäl inte förekomma tillsammans i samma påse.
+
+Alla $n$ kommer att uppfylla $1 \le n \le 1000$.
+
+\section*{Output}
+
+Skriv ut ett tal: den största mängden godis Johan kan ha i slutändan.
+
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
+
+% förklaring av sample: att köpa påsar 1 och 2 ger två godisar kvar av sort 1, och fem av sort -2
+
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Grupp & Poängvärde & Begränsningar\\ \hline
+  1     & 25         & $N \le 15$ \\ \hline
+  2     & 25         & $N \le 1000$. Varje påse innehåller bara en sorts godis. \\ \hline
+  3     & 50         & $N \le 1000$ \\ \hline
+\end{tabular}

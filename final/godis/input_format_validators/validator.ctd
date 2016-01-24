@@ -1,0 +1,21 @@
+INT(1, 1000, n)
+NEWLINE
+
+REP(n)
+	INT(1, 10, k)
+	SPACE
+	REPI(i, k, SPACE)
+		INT(-10, 10, a[i])
+		SPACE
+		INT(1, 1000)
+		IF(a[i] < 0)
+			SET(a[i] = -a[i])
+		END
+		ASSERT(a[i] != 0)
+	END
+	ASSERT(UNIQUE(a))
+	UNSET(a)
+	NEWLINE
+END
+
+EOF
