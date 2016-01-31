@@ -1,0 +1,29 @@
+\problemname{Gratis Mat}
+
+Hsara älskar gratis mat.
+
+Ikväll är Hsara på restaurang med jobbet, och Hsara sitter och analyserar möjligheterna för att få middagen betald. Precis en person kommer att betala för hela middagen (allas mat), men inte vilken person som helst. Det är endast tillåtet att betala för middagen om någon (eventuellt inte direkt) överordnad i organisationen inte befinner sig vid bordet.
+
+Organisationen består av N personer numrerade från 1 till N. Givet ett organisationsträd där varje person har precis en chef (utom den högsta chefen) och en lista över personer som är närvarande vid bordet, bestäm hur många som skulle kunna betala för middagen.
+
+\section*{Input}
+
+Den första raden i indatan innehåller två heltal, $N$ - antalet personer i organisationen och $M$ - antalet personer vid bordet.
+
+Den andra raden innehåller $N$ heltal. Det $i$:te talet anger vem som är chef till person $i$. 0 innebär att personen inte har en chef och därmed är högsta chef för organisationen. Det finns precis en person som är högsta chef.
+
+Den tredje raden innehåller $M$ heltal som anger vilka som sitter vid bordet.
+
+\section*{Output}
+
+Skriv ut ett heltal - antalet personer vid bordet som skulle kunna betala för middagen.
+
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Grupp & Poängvärde & Begränsningar\\ \hline
+  1     & 49         & $N \le 2\,000$ \\ \hline
+  2     & 51         & $N \le 100\,000$. \\ \hline
+\end{tabular}
