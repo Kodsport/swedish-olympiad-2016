@@ -1,0 +1,42 @@
+\problemname{Labbplanering}
+
+TODO
+
+Du har $N$ elever, och elev $i$ ska redovisa $m_i$ saker som tar $a_{ij}$ minuter respektive.
+En elev kommer till skolan när dess första redovisning börjar, och går därifrån när dess sista redovisning slutar.
+Hur schemalägger du redovisningarna (utan pauser) så att summan av tiderna varje elev måste stanna \emph{maximeras}?
+
+Ordningen i vilken en elevs pass ska redovisas måste vara som i indata.
+
+\section*{Input}
+Den första raden innehåller talet $N \ge 1$.
+
+Därefter följer $N$ rader, som vardera innehåller först talet $m_i \ge 1$, och sedan $m_i$ heltal $a_{ij}$, alla mellan 1 och 60.
+
+Summan av alla $m_i$ kommer att vara högst $5000$.
+
+\section*{Output}
+Du ska skriva ut ett enda tal: den längsta möjliga totala tid du kan få eleverna att stanna om du planerar schemat optimalt.
+
+\section*{Exempelförklaring}
+I det givna exemplet ska tre elevers labbar redovisas: den första elevens tar 5 resp. 15 minuter, den andra 10 resp. 20, och den tredje elevens tar en hel timme.
+
+Om vi lägger redovisningarna i ordningen 5, 10, 60, 20, 15 så kommer den tredje eleven kunna göra sin redovisning på 60 minuter.
+Den andra eleven kommer då att förutom sin egen labb behöva vänta igenom hela den tredjes redovisning, och därmed ta $10+60+20 = 90$ minuter på sig.
+På samma sätt kommer den första eleven behöva vänta $5+10+60+20+15 = 110$ minuter.
+Summan av tiderna blir $60 + 90 + 110 = 260$ minuter.
+
+(Notera att ordningen 15, 10, 60, 20, 5 hade resulterat i en värre tidssumma på $265$, men detta tillåts inte: elev 1 får inte redovisa sin andra labb före sin första.)
+
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Grupp & Poängvärde & Begränsningar\\ \hline
+  1     & 30         & summan av $m_i$ är högst 10 \\ \hline
+  2     & 20         & alla labbpass är lika långa \\ \hline
+  3     & 10         & alla elever har precis 2 labbpass \\ \hline
+  4     & 20         & inga ytterligare restriktioner \\ \hline
+  5     & 20         & summan av $m_i$ kan bli uppemot $100\,000$ \\ \hline
+\end{tabular}
