@@ -1,5 +1,5 @@
 // Generates a long chain with many leaves at the end. All leaves are at the table.
-// params: N
+// params: N seed
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,13 +19,14 @@ void treeDfs(int i, vector<vector<int> >& adj, vector<int>& par) {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc < 2) {
+	if (argc < 3) {
 		cerr << "Error: not enough arguments";
 		return 0;
 	}
-	srand(time(NULL));
 	int N = atoi(argv[1]);
 	int M = N/2;
+	int seed = atoi(argv[2]);
+	srand(seed);
 
 	vector<int> nodes(N);
 	rep(i, 0, N) {

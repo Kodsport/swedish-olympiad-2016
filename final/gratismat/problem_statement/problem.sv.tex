@@ -14,6 +14,8 @@ Den andra raden innehåller $N$ heltal. Det $i$:te talet anger vem som är chef 
 
 Den tredje raden innehåller $M$ heltal som anger vilka som sitter vid bordet.
 
+$1 \le M \le N$
+
 \section*{Output}
 
 Skriv ut ett heltal - antalet personer vid bordet som skulle kunna betala för middagen.
@@ -24,6 +26,11 @@ Din lösning kommer att testas på en mängd testfallsgrupper. För att få poä
 \begin{tabular}{| l | l | l |}
 	\hline
 	Grupp & Poängvärde & Begränsningar\\ \hline
-  1     & 49         & $N \le 2\,000$ \\ \hline
-  2     & 51         & $N \le 100\,000$. \\ \hline
+  1     & 49         & $2 \le N \le 2\,000$ \\ \hline
+  2     & 51         & $2 \le N \le 100\,000$. \\ \hline
 \end{tabular}
+
+\section*{Förklaring}
+I det första exemplet kan personerna 1 och 2 betala. Person 3 kan inte betala eftersom person 1 sitter vid bordet.
+
+I det andra exemplet är person 5 den högsta chefen och sitter vid bordet. Därför kan bara person 5 betala.

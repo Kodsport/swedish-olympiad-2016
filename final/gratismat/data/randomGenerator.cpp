@@ -1,5 +1,5 @@
 // Generates a test case with a random tree of N nodes and M random people at the table.
-// params: N M
+// params: N M seed
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,13 +19,14 @@ void treeDfs(int i, vector<vector<int> >& adj, vector<int>& par) {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc < 3) {
+	if (argc < 4) {
 		cerr << "Error: not enough arguments";
 		return 0;
 	}
-	srand(time(NULL));
 	int N = atoi(argv[1]);
 	int M = atoi(argv[2]);
+	int seed = atoi(argv[3]);
+	srand(seed);
 	vector<int> prufer(N-2), degree(N+1, 1);
 	rep(i, 0, N-2) {
 		prufer[i] = (rand()%N) + 1; 
