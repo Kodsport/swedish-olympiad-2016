@@ -1,0 +1,35 @@
+#!/bin/bash
+PPATH=$(realpath ..)
+. ../../testdata_tools/gen.sh
+
+setup_dirs
+
+use_solution labb_sl.cpp
+
+compile random_generator.py # Arguments: case npresentations seed
+
+samplegroup
+sample sample
+
+group max10 30 # there are at most 10 presentations
+tc max10-1 random_generator '' 10
+tc max10-2 random_generator '' 10
+
+group allequal 20 # all presentations are equally long
+tc allequal random_generator equal 5000
+
+group alltwo 10 # everyone has exactly two presentations
+tc alltwo random_generator two 5000
+
+group medium 20
+include_group alltwo
+include_group allequal
+include_group max10
+tc medium random_generator '' 5000
+
+group large 20 # sum of m_i <= 100,000
+include_group medium
+tc large random_generator '' 100000
+
+cleanup_programs
+generate_grader
