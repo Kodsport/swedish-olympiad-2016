@@ -1,0 +1,29 @@
+\problemname{Frågetävling}
+
+TODO
+
+Du har en frågetävling, med N frågor i M olika kategorier (kan vara lika många kategorier som frågor).
+Varje fråga är värd ett antal poäng, du får dessutom en fix bonus B av att ha löst alla problem i en kategori.
+Du vet att du kommer kunna svaret på alla frågor, men du hinner bara svara på K av frågorna. Vilken poäng kan du maximalt uppnå?
+
+\section*{Input}
+Den första raden innehåller de fyra heltalen $1 \le N \le 5000$, $1 \le M \le N$, $1 \le K \le N$, $1 \le B \le 100\,000$.
+
+De följande $N$ raderna innehåller två tal var: poängen för frågan (ett heltal mellan 1 och 1000) och vilken kategori den ingår i (mellan 1 och $M$).
+
+Det är garanterat att alla kategorier kommer att innehålla minst en fråga.
+
+\section*{Output}
+Du ska skriva ut en enda rad med den maximala poängen du kan uppnå.
+
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Grupp & Poängvärde & Begränsningar\\ \hline
+  1     & 20         & $N \le 100, M = 1$ \\ \hline
+  2     & 20         & $M \le 10$ \\ \hline
+  3     & 20         & alla frågor ger lika mycket poäng \\ \hline
+  4     & 40         & \\ \hline
+\end{tabular}

@@ -1,0 +1,16 @@
+INT(1, 100000, n)
+NEWLINE
+
+SET(sum = 0)
+REP(n)
+	INT(1, 100000, k)
+	SPACE
+	REPI(i, k, SPACE)
+		INT(1, 60)
+	END
+	SET(sum = sum + k)
+	NEWLINE
+END
+ASSERT(sum <= 100000)
+
+EOF
