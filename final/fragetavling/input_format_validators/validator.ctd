@@ -7,11 +7,20 @@ SPACE
 INT(1, 100000)
 NEWLINE
 
+REPI(i, m)
+	SET(nonempty[i] = 0)
+END
+
 REP(n)
 	INT(1, 1000)
 	SPACE
-	INT(1, n)
+	INT(1, n, k)
+	SET(nonempty[k-1] = 1)
 	NEWLINE
+END
+
+REPI(i, m)
+	ASSERT(nonempty[i] == 1)
 END
 
 EOF
