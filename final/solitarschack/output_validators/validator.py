@@ -162,6 +162,7 @@ def score(hits):
             streak = (cnt + 1, x)
         else:
             streak = (1, x)
+        cnt, which = streak
         if cnt == 2:
             base_score += 4
         elif cnt > 2:
