@@ -8,7 +8,7 @@ s = int(sys.argv[3])
 random.seed(s)
 
 def t():
-    return 11 if case == 'same' else random.randint(1, 60)
+    return 11 if case == 'equal' else random.randint(1, 60)
 
 pr = []
 while pres > 0:
