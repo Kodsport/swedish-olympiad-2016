@@ -1,0 +1,24 @@
+\problemname{Quiz}
+In the quiz ProgrammeringsQuiz there are $N$ questions in total, distributed over $M$ different categories (for example, algorithm theory, compiler construction or Sven knowledge).
+
+The questions are worth different amounts of points. Additionally, you will get a bonus $B$ if you answer all questions in a certain category.
+Simone has participated in Programmeringsolympiaden since 8th grade, so she is able to answer all the questions.
+
+Unfortunately, there is a time limit to the quiz. Despite never giving the wrong answer, Simone will only have time to answer $K$ questions. What is the maximum number of points she can achieve?
+\section*{Input}
+The first line consists of four integers $1 \le N \le 1000$, $1 \le M \le N$, $1 \le K \le N$, $1 \le B \le 100\,000$.
+The following $N$ lines consist of two integers each: the points given for answering the question (an integer between $1$ and $1\,000$) and which category it belongs to (between $1$ and $M$).
+Each category will have at least one question.
+\section*{Output}
+Print one line containing the maximal possible number of points.
+\section*{Grading}
+Your solution will be tested on several groups of test cases. To get points for a group you need to pass all the tests of that group.
+
+\begin{tabular}{| l | l | l |}
+  \hline
+  Group & Points & Constraints\\ \hline
+  1     & 16         & $N \le 100, M = 1$ \\ \hline
+  2     & 29         & $M \le 5$ \\ \hline
+  3     & 20         & all question give the same number of points \\ \hline
+  4     & 35         & \\ \hline
+\end{tabular}
