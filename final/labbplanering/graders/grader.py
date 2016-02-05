@@ -1,4 +1,4 @@
-GROUP_SCORES = [30, 20, 10, 20, 20]
+GROUP_SCORES = [30, 17, 13, 18, 22]
 GROUP_CASES = [[3, 4], [0], [1], [0, 1, 3, 4, 5], [0, 1, 2, 3, 4, 5]]
 import sys
 
