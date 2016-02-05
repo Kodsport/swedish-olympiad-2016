@@ -36,22 +36,22 @@ struct Piece {
 	}
 };
 
-bool canMove(Piece& a, Piece& b) {
+bool canMove(Piece& a, Piece& b, int type) {
 	if (b.t == 0) return false;
-	if (a.t < 5) {
-		return ((abs(a.r - b.r) == a.t && abs(a.c - b.c) == 0) ||
-		    (abs(a.r - b.r) == 0 && abs(a.c - b.c) == a.t) ||
-		    (abs(a.r - b.r) == a.t && abs(a.c - b.c) == a.t));
-	} else if (a.t == 5) {
+	if (type < 5) {
+		return ((abs(a.r - b.r) == type && abs(a.c - b.c) == 0) ||
+		    (abs(a.r - b.r) == 0 && abs(a.c - b.c) == type) ||
+		    (abs(a.r - b.r) == type && abs(a.c - b.c) == type));
+	} else if (type == 5) {
 		return (a.r == b.r && (b.c == 0 || b.c == 5)) || 
 		       (a.c == b.c && (b.r == 0 || b.r == 5));
-	} else if (a.t == 6) {
+	} else if (type == 6) {
 		return (abs(a.r - b.r) == abs(a.c - b.c)) && (b.r == 0 || b.r == 5 || b.c == 0 || b.c == 5);
-	} else if (a.t == 7) {
+	} else if (type == 7) {
 		return (a.r == b.r && (b.c == 0 || b.c == 5)) || 
 		       (a.c == b.c && (b.r == 0 || b.r == 5)) ||
 		       ((abs(a.r - b.r) == abs(a.c - b.c)) && (b.r == 0 || b.r == 5 || b.c == 0 || b.c == 5));
-	} else if (a.t == 8) {
+	} else if (type == 8) {
 	        return (abs(a.r - b.r) == 1 && abs(a.c - b.c) == 2) ||
 		       (abs(a.r - b.r) == 2 && abs(a.c - b.c) == 1);	
 	}
@@ -83,16 +83,18 @@ int main() {
 	read(p);
 	srand(time(NULL));
 	int i = rand()%(p.size());
+	int lastType = p[i].t;
 	makeMove(p, i);
 	while(true) {
 		vector<int> options;
 		rep(j, 0, p.size()) {
-			if (p[j].v < 4 && canMove(p[i], p[j])) {
+			if (p[j].v < 4 && canMove(p[i], p[j], lastType)) {
 				options.push_back(j);
 			}
 		}
 		if (options.empty()) break;
 		i = options[rand()%options.size()];
+		lastType = p[i].t;
 		makeMove(p, i);
 	}
 	cout << "0 0" << endl;
