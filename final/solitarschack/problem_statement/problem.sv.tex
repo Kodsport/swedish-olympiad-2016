@@ -78,12 +78,13 @@ Poängsättningen är som följer. För varje ruta när spelet är över får ma
   \item[guld] 2 poäng
   \item[tom] 3 poäng
 \end{description}
+
 Man kan också få bonuspoäng under spelet. Följande bonusar finns:
 \begin{itemize}
-  \item Om du tar bort $N \ge 2$ pjäser av samma typ får du $2N$ poäng.
-  \item Om du tar bort pjäserna $1, 2, 3, 4$ i ordning eller omvänd ordning får du 12 poäng.
-  \item Om du tar bort pjäserna $1, 2, 3, 4$ i en annan ordning får du 8 poäng.
-  \item Om du tar bort pjäserna $torn, lopare, dam, springare$ i någon ordning får du 8 poäng.
+  \item Om du tar bort $N \ge 2$ pjäser i rad av samma typ får du $2N$ poäng.
+  \item Om du tar bort pjäserna $1, 2, 3, 4$ i rad i ordning eller omvänd ordning får du 12 poäng.
+  \item Om du tar bort pjäserna $1, 2, 3, 4$ i rad i en annan ordning får du 8 poäng.
+  \item Om du tar bort pjäserna $torn, lopare, dam, springare$ i rad i någon ordning får du 8 poäng.
   \item Att ta bort siffrorna $1, 2, 3, 4$ i någon ordning kallas för ett \emph{sifferset}.
     Att ta bort pjäsern $torn, lopare, dam, springare$ i någon ordning kallas för ett \emph{pjässet}.
 
@@ -91,6 +92,14 @@ Man kan också få bonuspoäng under spelet. Följande bonusar finns:
     sifferset - pjässet - sifferset - ... eller pjässet - sifferset - pjässet - ..., så får du
     ytterligare $8K$ poäng.
 \end{itemize}
+
+Bonusar av en och samma sort kan inte överlappa, och de delas ut girigt.
+T.ex. skulle sekvensen av borttagna pjäser \texttt{4 1 2 3 4 dam torn springare lopare} ge $8 + 8 = 16$ bonuspoäng:
+8 för sekvensen \texttt{4 1 2 3},
+inga för sekvensen \texttt{1 2 3 4} eftersom den överlappar med den tidigare,
+och 8 för sekvensen \texttt{dam torn springare lopare}.
+Inga ytterligare poäng för alternerande pjässet ges, eftersom vi inte fått poäng för sekvensen \texttt{1 2 3 4}.
+Sekvensen \texttt{1 1 2 3 4} ger $4 + 12 = 16$ poäng: \texttt{1 1} och \texttt{1 2 3 4} är olika typer av bonusar, så det är okej att de överlappar.
 
 Det visade sig dock vara svårare att få bra poäng i Solitärschack än att slå Mårten på vanlig schack... Hjälp Johan att få så
 bra poäng på Solitärschack som möjligt!
