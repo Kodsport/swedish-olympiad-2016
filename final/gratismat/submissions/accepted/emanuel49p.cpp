@@ -21,6 +21,7 @@ bool canPay(int i, vector<int>& p, vector<bool> ok) {
 int main() {
 	int N, M;
 	cin >> N >> M;
+	assert(N <= 2000);
 	vector<int > p(N+1);
 	rep(i, 1, N+1) {
 		cin >> p[i];
@@ -32,7 +33,7 @@ int main() {
 		ok[j] = true;
 	}
 	int ans = 0;
-	rep(i, 1, N) {
+	rep(i, 1, N+1) {
 		if (canPay(i, p, ok)) ans++;
 	}
 	cout << ans << endl;
