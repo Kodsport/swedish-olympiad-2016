@@ -16,7 +16,7 @@ struct Piece {
 
 	void setType(string type) {
 		if (type.size() == 1) {
-			t = atoi(type);
+			t = type[0] - '0';
 		} else if (type == "torn") {
 			t = 5;
 		} else if (type == "lopare") {
@@ -87,7 +87,7 @@ int main() {
 			}
 		}
 		if (options.empty()) break;
-		i = p[options[rand()%options.size()]];
+		i = options[rand()%options.size()];
 		makeMove(p, i);
 	}
 	return 0;
