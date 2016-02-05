@@ -1,0 +1,125 @@
+\problemname{Solitärschack}
+
+Mårten är bra på schack. Lite för bra, enligt vissa. Till exempel Johan. Mårten utmanar ofta Johan på schack,
+vilket leder till att Johan förlorar på schack. Istället för att erkänna sig besegrad gör Johan vad han
+brukar göra när han förlorar på något; han ändrar reglerna.
+
+Denna gång har han uppfunnit ett nytt slags enspelarschack som han kallar för \emph{Solitärschack}. Spelet
+körs på ett $6 \times 6$ bräde med pjäser. Pjäserna finns i tre olika färger - brons, silver, guld - och
+åtta olika typer.
+
+I början är alla pjäser på brädet bronsfärgade. Spelet börjar med att Johan väljer en av pjäserna på brädet.
+Denna pjäs ersätts sedan med en silverpjäs, vars typ är slumpmässig. Sedan, beroende på vilken pjäs Johan
+valde, får han välja en annan pjäs på brädet att ta bort. Beroende på vilken denna var får han ta bort ytterligare
+en annan pjäs, och upprepar denna procedur tills inga fler drag är möjliga.
+
+När en bronspjäs tas bort ersätts den alltid med en slumpmässig silverpjäs. När en silverpjäs tas bort
+ersätts den alltid med en slumpmässig guldpjäs. När en guldpjäs tas bort lämnas rutan istället tom.
+
+Låt $(r, c)$ vara rad och kolumn för den pjäs som blev borttagen, och $(r', c')$ rad och kolumn för den
+pjäs du vill ta bort härnäst. De olika pjäsernas drag är då:
+
+\begin{description}
+	\item[\texttt{1}] nästa pjäs måste vara exakt 1 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+		Mer formellt måste någon av följande gälla:
+		$$|r - r'| = 1, |c - c'| = 0$$
+		$$|r - r'| = 0, |c - c'| = 1$$
+		$$|r - r'| = 1, |c - c'| = 1$$
+
+	\item[\texttt{2}] nästa pjäs måste vara exakt 2 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+		Mer formellt måste någon av följande gälla:
+		$$|r - r'| = 2, |c - c'| = 0$$
+		$$|r - r'| = 0, |c - c'| = 2$$
+		$$|r - r'| = 2, |c - c'| = 2$$
+
+	\item[\texttt{3}] nästa pjäs måste vara exakt 3 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+		Mer formellt måste någon av följande gälla:
+		$$|r - r'| = 3, |c - c'| = 0$$
+		$$|r - r'| = 0, |c - c'| = 3$$
+		$$|r - r'| = 3, |c - c'| = 3$$
+
+	\item[\texttt{4}] nästa pjäs måste vara exakt 4 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+		Mer formellt måste någon av följande gälla:
+		$$|r - r'| = 3, |c - c'| = 0$$
+		$$|r - r'| = 0, |c - c'| = 3$$
+		$$|r - r'| = 3, |c - c'| = 3$$
+
+	\item[\texttt{torn}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad eller kolumn som denna pjäs.
+		Mer formellt måste någon av följande gälla:
+		$$r' \in \{1, 6\}, |c - c'| = 0$$
+		$$|r - r'| = 0, c' \in \{1, 6\}$$
+
+	\item[\texttt{lopare}] nästa pjäs måste vara längs med brädets sidor, på samma diagonal som denna pjäs.
+		Mer formellt måste någon av följande gälla:
+		$$r + c = r' + c'$$
+		$$r - c = r' - c'$$
+
+	\item[\texttt{dam}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad, kolumn eller diagonal som denna pjäs.
+		Mer formellt måste någon av följande gälla:
+		$$r' \in \{1, 6\}, |c - c'| = 0$$
+		$$|r - r'| = 0, c' \in \{1, 6\}$$
+		$$r + c = r' + c'$$
+		$$r - c = r' - c'$$
+
+	\item[\texttt{springare}] nästa pjäs måste vara belägen antingen på raden ovan/under och 2 kolumner vänster/höger, eller
+		på kolumnen vänster/höger och 2 rader ovan/under.
+		Mer formellt måste någon av följande gälla:
+		$$|r - r'| = 2, |c - c'| = 1$$
+		$$|r - r'| = 1, |c - c'| = 2$$
+\end{description}
+
+Poängsättningen är som föjler. För varje ruta när spelet är över får man följande poäng per ruta:
+\begin{description}
+	\item[brons] 0 poäng
+	\item[silver] 1 poäng
+	\item[guld] 2 poäng
+	\item[tom] 3 poäng
+\end{description}
+Man kan också få bonuspoäng under spelet. Följande bonusar finns:
+\begin{itemize}
+	\item Om du tar bort $N \ge 2$ pjäser av samma typ får du $2N$ poäng.
+	\item Om du tar bort pjäserna $1, 2, 3, 4$ i ordning eller omvänd ordning får du 12 poäng.
+	\item Om du tar bort pjäserna $1, 2, 3, 4$ i en annan ordning får du 8 poäng.
+	\item Om du tar bort pjäserna $torn, lopare, dam, springare$ i någon ordning får du 8 poäng.
+	\item Att ta bort siffrorna $1, 2, 3, 4$ i någon ordning kallas för ett \emph{sifferset}.
+		Att ta bort pjäsern $torn, lopare, dam, springare$ i någon ordning kallas för ett \emph{pjässet}.
+
+		Om du tar bort $K \ge$ stycken sifferset och pjässet i \emph{alternerande ordning}, d.v.s antingen
+		sifferset - pjässet - sifferset - ... eller pjässet - sifferset - pjässet - ..., så får du
+		ytterliager $8K$ poäng.
+\end{itemize}
+
+Det visade sig dock vara svårare att få bra poäng i Solitärschack än att slå Mårten på vanlig schack... Hjälp Johan att få så
+bra poäng på Solitärschack som möjligt!
+
+\section*{Input}
+Indatat börjar med 6 rader, med 6 blankstegsseparerade strängar vardera. Dessa anger vilka de ursprungliga
+bronspjäserna är.
+
+\section*{Interaktion}
+Detta är ett interaktivt problem. För att göra ett drag skriver du ut två heltal \texttt{r c}, den rad och kolumn som
+innehåller den pjäs du vill ta bort.
+
+Du ska sedan läsa in en rad - namnet på den pjäsen som ersatte den du tog bort.
+
+Glöm inte att flusha standard out när du printat! I Java gör du detat med \texttt{System.out.flush()},
+i C med \texttt{fflush(stdout)}, i C++ med \texttt{cout << flush}, i C\# med \texttt{Console.Out.Flush()}
+och i Python med \texttt{sys.stdout.flush()}.
+
+\section*{Poängsättning}
+Antag att på ett testfall värt $P$ poäng så får ditt program $X$ poäng, och det bästa programmet $Y$ poäng.
+Då får du $P \times \frac{X}{Y}$ poäng. Innan tävlingsslut kommer alla lösningar rättas med $Y = 200$.
+Efter tävlingsslut rättas detta om med de bästa deltagarlösningarna på varje testfall.
+
+Testfallen är indelade i ett antal grupper.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Grupp & Poängvärde & Begränsningar\\ \hline
+  1     & 4          & Endast pjäserna springare förekommer. \\ \hline
+  2     & 4          & Endast pjäsen 1 förekommer. \\ \hline
+  3     & 6          & Endast pjäserna 1 och 2 förekommer. \\ \hline
+  4     & 9          & Endast pjäserna torn, lopare, dam förekommer. \\ \hline
+  5     & 24          & Endast pjäserna 1, 2, 3, 4 förekommer. \\ \hline
+  6     & 53          & Alla pjäser kan förekomma. \\ \hline
+\end{tabular}
