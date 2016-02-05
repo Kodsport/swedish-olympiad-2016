@@ -25,8 +25,9 @@ struct Piece {
 			t = 7;
 		} else if (type == "springare") {
 			t = 8;
+		} else {
+			t = 0;
 		}
-		t = 0;
 	}
 
 	Piece(int t, int v, int r, int c): t(t), v(v), r(r), c(c) {}
@@ -37,9 +38,9 @@ struct Piece {
 
 bool canMove(Piece& a, Piece& b) {
 	if (a.t < 5) {
-		return ((abs(a.r - b.r) == a.t && abs(a.c - b.c == 0)) ||
-		    (abs(a.r - b.r) == 0 && abs(a.c - b.c == a.t)) ||
-		    (abs(a.r - b.r) == a.t && abs(a.c - b.c == a.t)));
+		return ((abs(a.r - b.r) == a.t && abs(a.c - b.c) == 0) ||
+		    (abs(a.r - b.r) == 0 && abs(a.c - b.c) == a.t) ||
+		    (abs(a.r - b.r) == a.t && abs(a.c - b.c) == a.t));
 	} else if (a.t == 5) {
 		return (a.r == b.r || a.c == b.c);
 	} else if (a.t == 6) {
@@ -53,7 +54,7 @@ bool canMove(Piece& a, Piece& b) {
 	return false;
 }
 
-void read(vector<Piece> p) {
+void read(vector<Piece>& p) {
 	rep(r, 0, 6) {
 		rep(c, 0, 6) {
 			int v = 1;
@@ -64,8 +65,8 @@ void read(vector<Piece> p) {
 	}
 }
 
-void makeMove(vector<Piece> p, int i) {
-	cout << p[i].r << " " << p[i].c << endl;
+void makeMove(vector<Piece>& p, int i) {
+	cout << p[i].r+1 << " " << p[i].c+1 << endl;
 	flush(cout);
 	string type;
 	cin >> type;
