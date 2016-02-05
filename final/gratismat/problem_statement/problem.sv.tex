@@ -2,22 +2,19 @@
 
 Hsara älskar gratis mat.
 
-Ikväll är Hsara på restaurang med jobbet, och Hsara sitter och analyserar möjligheterna för att få middagen betald. Precis en person kommer att betala för hela middagen (allas mat), men inte vilken person som helst. Det är endast tillåtet att betala för middagen om någon (eventuellt inte direkt) överordnad i organisationen inte befinner sig vid bordet.
+Ikväll är Hsara på restaurang med jobbet, och Hsara sitter och analyserar möjligheterna för att få middagen betald. Precis en person kommer att betala för hela middagen (allas mat), men inte vilken person som helst. Det är endast tillåtet att betala för middagen om ingen överordnad (eventuellt indirekt, t.ex. din chefs chef) i organisationen befinner sig vid bordet.
 
-Organisationen består av N personer numrerade från 1 till N. Givet ett organisationsträd där varje person har precis en chef (utom den högsta chefen) och en lista över personer som är närvarande vid bordet, bestäm hur många som skulle kunna betala för middagen.
+Organisationen består av $N$ personer numrerade från $1$ till $N$. Varje person, förutom organisationens VD, har exakt en chef. Givet varje persons chef och en lista över personer som är närvarande vid bordet, avgör hur många som skulle kunna betala för middagen.
 
 \section*{Input}
 
 Den första raden i indatan innehåller två heltal, $N$ - antalet personer i organisationen och $M$ - antalet personer vid bordet.
 
-Den andra raden innehåller $N$ heltal. Det $i$:te talet anger vem som är chef till person $i$. 0 innebär att personen inte har en chef och därmed är högsta chef för organisationen. Det finns precis en person som är högsta chef.
+Den andra raden innehåller $N$ heltal. Det $i$:te talet anger vem som är chef till person $i$. 0 innebär att personen inte har en chef och därmed är VD för organisationen. Det finns precis en person som är VD.
 
-Den tredje raden innehåller $M$ heltal som anger vilka som sitter vid bordet.
-
-$1 \le M \le N$
+Den tredje raden innehåller $1 \le M \le N$ heltal som anger vilka som sitter vid bordet.
 
 \section*{Output}
-
 Skriv ut ett heltal - antalet personer vid bordet som skulle kunna betala för middagen.
 
 \section*{Poängsättning}
