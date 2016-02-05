@@ -91,5 +91,6 @@ int main() {
 		i = options[rand()%options.size()];
 		makeMove(p, i);
 	}
+	cout << "0 0" << endl;
 	return 0;
 }
