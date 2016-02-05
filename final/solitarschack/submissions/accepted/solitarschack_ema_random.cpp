@@ -37,6 +37,7 @@ struct Piece {
 };
 
 bool canMove(Piece& a, Piece& b) {
+	if (b.t == 0) return false;
 	if (a.t < 5) {
 		return ((abs(a.r - b.r) == a.t && abs(a.c - b.c) == 0) ||
 		    (abs(a.r - b.r) == 0 && abs(a.c - b.c) == a.t) ||
