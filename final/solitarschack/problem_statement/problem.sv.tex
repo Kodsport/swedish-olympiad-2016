@@ -20,73 +20,73 @@ Låt $(r, c)$ vara rad och kolumn för den pjäs som blev borttagen, och $(r', c
 pjäs du vill ta bort härnäst. De olika pjäsernas drag är då:
 
 \begin{description}
-	\item[\texttt{1}] nästa pjäs måste vara exakt 1 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
-		Mer formellt måste någon av följande gälla:
-		$$|r - r'| = 1, |c - c'| = 0$$
-		$$|r - r'| = 0, |c - c'| = 1$$
-		$$|r - r'| = 1, |c - c'| = 1$$
+  \item[\texttt{1}] nästa pjäs måste vara exakt 1 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+    Mer formellt måste någon av följande gälla:
+    $$|r - r'| = 1, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 1$$
+    $$|r - r'| = 1, |c - c'| = 1$$
 
-	\item[\texttt{2}] nästa pjäs måste vara exakt 2 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
-		Mer formellt måste någon av följande gälla:
-		$$|r - r'| = 2, |c - c'| = 0$$
-		$$|r - r'| = 0, |c - c'| = 2$$
-		$$|r - r'| = 2, |c - c'| = 2$$
+  \item[\texttt{2}] nästa pjäs måste vara exakt 2 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+    Mer formellt måste någon av följande gälla:
+    $$|r - r'| = 2, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 2$$
+    $$|r - r'| = 2, |c - c'| = 2$$
 
-	\item[\texttt{3}] nästa pjäs måste vara exakt 3 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
-		Mer formellt måste någon av följande gälla:
-		$$|r - r'| = 3, |c - c'| = 0$$
-		$$|r - r'| = 0, |c - c'| = 3$$
-		$$|r - r'| = 3, |c - c'| = 3$$
+  \item[\texttt{3}] nästa pjäs måste vara exakt 3 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+    Mer formellt måste någon av följande gälla:
+    $$|r - r'| = 3, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 3$$
+    $$|r - r'| = 3, |c - c'| = 3$$
 
-	\item[\texttt{4}] nästa pjäs måste vara exakt 4 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
-		Mer formellt måste någon av följande gälla:
-		$$|r - r'| = 3, |c - c'| = 0$$
-		$$|r - r'| = 0, |c - c'| = 3$$
-		$$|r - r'| = 3, |c - c'| = 3$$
+  \item[\texttt{4}] nästa pjäs måste vara exakt 4 steg (horisontellt, vertikalt eller diagonalt) från denna pjäs.
+    Mer formellt måste någon av följande gälla:
+    $$|r - r'| = 3, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 3$$
+    $$|r - r'| = 3, |c - c'| = 3$$
 
-	\item[\texttt{torn}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad eller kolumn som denna pjäs.
-		Mer formellt måste någon av följande gälla:
-		$$r' \in \{1, 6\}, |c - c'| = 0$$
-		$$|r - r'| = 0, c' \in \{1, 6\}$$
+  \item[\texttt{torn}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad eller kolumn som denna pjäs.
+    Mer formellt måste någon av följande gälla:
+    $$r' \in \{1, 6\}, |c - c'| = 0$$
+    $$|r - r'| = 0, c' \in \{1, 6\}$$
 
-	\item[\texttt{lopare}] nästa pjäs måste vara längs med brädets sidor, på samma diagonal som denna pjäs.
-		Mer formellt måste någon av följande gälla:
-		$$r + c = r' + c'$$
-		$$r - c = r' - c'$$
+  \item[\texttt{lopare}] nästa pjäs måste vara längs med brädets sidor, på samma diagonal som denna pjäs.
+    Mer formellt måste någon av följande gälla:
+    $$|r - r'| = |c - c'|, r' \in \{1, 6\}$$
+    $$|r - r'| = |c - c'|, c' \in \{1, 6\}$$
 
-	\item[\texttt{dam}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad, kolumn eller diagonal som denna pjäs.
-		Mer formellt måste någon av följande gälla:
-		$$r' \in \{1, 6\}, |c - c'| = 0$$
-		$$|r - r'| = 0, c' \in \{1, 6\}$$
-		$$r + c = r' + c'$$
-		$$r - c = r' - c'$$
+  \item[\texttt{dam}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad, kolumn eller diagonal som denna pjäs.
+    Mer formellt måste någon av följande gälla:
+    $$r' \in \{1, 6\}, |c - c'| = 0$$
+    $$|r - r'| = 0, c' \in \{1, 6\}$$
+    $$|r - r'| = |c - c'|, r' \in \{1, 6\}$$
+    $$|r - r'| = |c - c'|, c' \in \{1, 6\}$$
 
-	\item[\texttt{springare}] nästa pjäs måste vara belägen antingen på raden ovan/under och 2 kolumner vänster/höger, eller
-		på kolumnen vänster/höger och 2 rader ovan/under.
-		Mer formellt måste någon av följande gälla:
-		$$|r - r'| = 2, |c - c'| = 1$$
-		$$|r - r'| = 1, |c - c'| = 2$$
+  \item[\texttt{springare}] nästa pjäs måste vara belägen antingen på raden ovan/under och 2 kolumner vänster/höger, eller
+    på kolumnen vänster/höger och 2 rader ovan/under.
+    Mer formellt måste någon av följande gälla:
+    $$|r - r'| = 2, |c - c'| = 1$$
+    $$|r - r'| = 1, |c - c'| = 2$$
 \end{description}
 
-Poängsättningen är som föjler. För varje ruta när spelet är över får man följande poäng per ruta:
+Poängsättningen är som följer. För varje ruta när spelet är över får man följande poäng per ruta:
 \begin{description}
-	\item[brons] 0 poäng
-	\item[silver] 1 poäng
-	\item[guld] 2 poäng
-	\item[tom] 3 poäng
+  \item[brons] 0 poäng
+  \item[silver] 1 poäng
+  \item[guld] 2 poäng
+  \item[tom] 3 poäng
 \end{description}
 Man kan också få bonuspoäng under spelet. Följande bonusar finns:
 \begin{itemize}
-	\item Om du tar bort $N \ge 2$ pjäser av samma typ får du $2N$ poäng.
-	\item Om du tar bort pjäserna $1, 2, 3, 4$ i ordning eller omvänd ordning får du 12 poäng.
-	\item Om du tar bort pjäserna $1, 2, 3, 4$ i en annan ordning får du 8 poäng.
-	\item Om du tar bort pjäserna $torn, lopare, dam, springare$ i någon ordning får du 8 poäng.
-	\item Att ta bort siffrorna $1, 2, 3, 4$ i någon ordning kallas för ett \emph{sifferset}.
-		Att ta bort pjäsern $torn, lopare, dam, springare$ i någon ordning kallas för ett \emph{pjässet}.
+  \item Om du tar bort $N \ge 2$ pjäser av samma typ får du $2N$ poäng.
+  \item Om du tar bort pjäserna $1, 2, 3, 4$ i ordning eller omvänd ordning får du 12 poäng.
+  \item Om du tar bort pjäserna $1, 2, 3, 4$ i en annan ordning får du 8 poäng.
+  \item Om du tar bort pjäserna $torn, lopare, dam, springare$ i någon ordning får du 8 poäng.
+  \item Att ta bort siffrorna $1, 2, 3, 4$ i någon ordning kallas för ett \emph{sifferset}.
+    Att ta bort pjäsern $torn, lopare, dam, springare$ i någon ordning kallas för ett \emph{pjässet}.
 
-		Om du tar bort $K \ge$ stycken sifferset och pjässet i \emph{alternerande ordning}, d.v.s antingen
-		sifferset - pjässet - sifferset - ... eller pjässet - sifferset - pjässet - ..., så får du
-		ytterliager $8K$ poäng.
+    Om du tar bort $K \ge 3$ stycken sifferset och pjässet i \emph{alternerande ordning}, d.v.s antingen
+    sifferset - pjässet - sifferset - ... eller pjässet - sifferset - pjässet - ..., så får du
+    ytterligare $8K$ poäng.
 \end{itemize}
 
 Det visade sig dock vara svårare att få bra poäng i Solitärschack än att slå Mårten på vanlig schack... Hjälp Johan att få så
@@ -102,8 +102,8 @@ innehåller den pjäs du vill ta bort.
 
 Du ska sedan läsa in en rad - namnet på den pjäsen som ersatte den du tog bort.
 
-Glöm inte att flusha standard out när du printat! I Java gör du detat med \texttt{System.out.flush()},
-i C med \texttt{fflush(stdout)}, i C++ med \texttt{cout << flush}, i C\# med \texttt{Console.Out.Flush()}
+Glöm inte att flusha standard out när du printat! I Java gör du detta med \texttt{System.out.flush()},
+i C med \texttt{fflush(stdout)}, i C++ med \texttt{flush(cout)}, i C\# med \texttt{Console.Out.Flush()}
 och i Python med \texttt{sys.stdout.flush()}.
 
 \section*{Poängsättning}
@@ -114,12 +114,12 @@ Efter tävlingsslut rättas detta om med de bästa deltagarlösningarna på varj
 Testfallen är indelade i ett antal grupper.
 
 \begin{tabular}{| l | l | l |}
-	\hline
-	Grupp & Poängvärde & Begränsningar\\ \hline
-  1     & 4          & Endast pjäserna springare förekommer. \\ \hline
+  \hline
+  Grupp & Poängvärde & Begränsningar\\ \hline
+  1     & 4          & Endast pjäsen springare förekommer. \\ \hline
   2     & 4          & Endast pjäsen 1 förekommer. \\ \hline
   3     & 6          & Endast pjäserna 1 och 2 förekommer. \\ \hline
   4     & 9          & Endast pjäserna torn, lopare, dam förekommer. \\ \hline
-  5     & 24          & Endast pjäserna 1, 2, 3, 4 förekommer. \\ \hline
-  6     & 53          & Alla pjäser kan förekomma. \\ \hline
+  5     & 24         & Endast pjäserna 1, 2, 3, 4 förekommer. \\ \hline
+  6     & 53         & Alla pjäser kan förekomma. \\ \hline
 \end{tabular}
