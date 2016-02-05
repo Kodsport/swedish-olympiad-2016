@@ -44,7 +44,8 @@ pjäs du vill ta bort härnäst. De olika pjäsernas drag är då:
     $$|r - r'| = 0, |c - c'| = 3$$
     $$|r - r'| = 3, |c - c'| = 3$$
 
-  \item[\texttt{torn}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad eller kolumn som denna pjäs.
+  \item[\texttt{torn}] nästa pjäs måste ligga antingen rakt
+    uppåt, nedåt, till vänster eller till höger om denna pjäs, förflyttad ända bort mot kanten.
     Mer formellt måste någon av följande gälla:
     $$r' \in \{1, 6\}, |c - c'| = 0$$
     $$|r - r'| = 0, c' \in \{1, 6\}$$
@@ -54,7 +55,7 @@ pjäs du vill ta bort härnäst. De olika pjäsernas drag är då:
     $$|r - r'| = |c - c'|, r' \in \{1, 6\}$$
     $$|r - r'| = |c - c'|, c' \in \{1, 6\}$$
 
-  \item[\texttt{dam}] nästa pjäs måste vara längs med brädets sidor, på antingen samma rad, kolumn eller diagonal som denna pjäs.
+  \item[\texttt{dam}] nästa pjäs måste vara placerad som om denna pjäs var antingen \texttt{torn} eller \texttt{lopare}.
     Mer formellt måste någon av följande gälla:
     $$r' \in \{1, 6\}, |c - c'| = 0$$
     $$|r - r'| = 0, c' \in \{1, 6\}$$
@@ -67,6 +68,8 @@ pjäs du vill ta bort härnäst. De olika pjäsernas drag är då:
     $$|r - r'| = 2, |c - c'| = 1$$
     $$|r - r'| = 1, |c - c'| = 2$$
 \end{description}
+
+Det är inte tillåtet att ha $(r', c') = (r, c)$.
 
 Poängsättningen är som följer. För varje ruta när spelet är över får man följande poäng per ruta:
 \begin{description}
@@ -84,7 +87,7 @@ Man kan också få bonuspoäng under spelet. Följande bonusar finns:
   \item Att ta bort siffrorna $1, 2, 3, 4$ i någon ordning kallas för ett \emph{sifferset}.
     Att ta bort pjäsern $torn, lopare, dam, springare$ i någon ordning kallas för ett \emph{pjässet}.
 
-    Om du tar bort $K \ge 3$ stycken sifferset och pjässet i \emph{alternerande ordning}, d.v.s antingen
+    Om du tar bort $K \ge 2$ stycken sifferset och pjässet i \emph{alternerande ordning}, d.v.s antingen
     sifferset - pjässet - sifferset - ... eller pjässet - sifferset - pjässet - ..., så får du
     ytterligare $8K$ poäng.
 \end{itemize}
@@ -100,7 +103,9 @@ bronspjäserna är.
 Detta är ett interaktivt problem. För att göra ett drag skriver du ut två heltal \texttt{r c}, den rad och kolumn som
 innehåller den pjäs du vill ta bort.
 
-Du ska sedan läsa in en rad - namnet på den pjäsen som ersatte den du tog bort.
+Du ska sedan läsa in en rad - namnet på den pjäsen som ersatte den du tog bort. Om du just tog bort en guldpjäs kommer raden att innehålla ordet \texttt{blank}.
+
+När du inte vill göra fler drag ska du skriva ut en rad \texttt{0 0} och avsluta programmet.
 
 Glöm inte att flusha standard out när du printat! I Java gör du detta med \texttt{System.out.flush()},
 i C med \texttt{fflush(stdout)}, i C++ med \texttt{flush(cout)}, i C\# med \texttt{Console.Out.Flush()}
