@@ -10,7 +10,6 @@ using namespace std;
 #define sz(x) (int) (x).size()
  
 int solve(int i, vector<vector<int> >& ch, vector<bool>& ok) {
-	cout << i << endl;
 	if (ok[i]) return 1;
 	int ret = 0;
 	trav(it, ch[i]) {

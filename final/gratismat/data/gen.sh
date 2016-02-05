@@ -1,11 +1,11 @@
 #!/bin/bash
 
 PROBLEMNAME="gratismat"
-g++ -std=c++11 -O2 ../submissions/accepted/emanuel100p.cpp -o ../tmp/sol
+g++ -std=c++11 -O2 ../submissions/accepted/emanuel100p.cpp -o /tmp/sol
 g++ -std=c++11 -O2 randomGenerator.cpp -o randomGenerator.out
 g++ -std=c++11 -O2 longChainGenerator.cpp -o longChainGenerator.out
 g++ -std=c++11 -O2 completeGenerator.cpp -o completeGenerator.out
-SOLVER=../tmp/sol
+SOLVER=/tmp/sol
 
 rm -rf secret
 mkdir secret
