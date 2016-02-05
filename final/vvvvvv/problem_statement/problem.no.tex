@@ -8,9 +8,11 @@ Your task is to find a sequence of button presses which takes you through a maze
 
 
 \section*{Input}
-The first line of the input consists of three integers $W$, $H$, and $N$: the width of the level, the height of the level, and the number of line segments. Thereafter follows $N$ lines, each with four integers $x_1$, $y_1$, $x_2$, $y_2$, where $0 \le x_1, x_2 \le W$ and $0 \le y_1, y_2 \le H$. Each of these lines describe a line segments with end points $(x_1, y_1)$ and $(x_2, y_2)$. Every line segment is either horizontal or vertical, i.e. either $y_1=y_2$ or $x_1=x_2$ holds. The integer coordinate system can be said to divide the rectangular level into a grid, where the button V takes you one square to the left and H takes you one square to the right. If you are not standing on a platform after the movement you will fall (upwards or downwards) until you reach another platform. It is not possible to move to the left or right while falling.
+The first line of the input consists of three integers $W$, $H$, and $N$: the width of the level, the height of the level, and the number of line segments. Thereafter follows $N$ lines, each with four integers $x_1$, $y_1$, $x_2$, $y_2$, where $0 \le x_1, x_2 \le W$ and $0 \le y_1, y_2 \le H$. Each of these lines describe a line segments with end points $(x_1, y_1)$ and $(x_2, y_2)$. Every line segment is either horizontal or vertical, i.e. either $y_1=y_2$ or $x_1=x_2$ holds. The integer coordinate system can be said to divide the rectangular level into a grid, where the button V takes you one square to the left and H takes you one square to the right. If you are not standing on a platform after the movement you will fall (upwards or downwards) until you reach another platform. It is not possible to move to the left or right while falling. If you fall or walk out of the level, you lose the game. This also happens if you try to walk through a wall.
 
 The start position is the lower left square, closest to the point (0, 0), with downwards gravity. The final position is the square in the upper right corner, closest to the point (W, H). There will always be a line segment under the start position and above the final position.
+
+Om du faller eller går ut ur spelplanen förlorar du spelet. Detsamma gäller om du försöker gå genom en vägg.
 
 
 \section*{Output}
