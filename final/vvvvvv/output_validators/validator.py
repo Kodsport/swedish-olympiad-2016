@@ -24,9 +24,14 @@ f = open(sys.argv[2], 'r')
 judge_answer = f.readline().strip()
 try:
   answer = sys.stdin.readline().strip()
+  if answer=="Inte" and judge_answer=="Inte":
+    exit(42)   #Special case, no testing needed
+  elif answer=="Inte" or judge_answer=="Inte":
+    exit(43)
+    
   if not re.match("^[VHG]*$", answer):
     exit(43)
-  if len(answer)>5000:
+  if len(answer)>10000:
     exit(43)
   if W%2==0 and len(answer)!=len(judge_answer):    #Demand shortest solution if W is odd
     exit(43)
