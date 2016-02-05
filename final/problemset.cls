@@ -44,6 +44,7 @@
 \RequirePackage{wrapfig}          % Illustrations
 \RequirePackage{import}           % Proper file inclusion
 \RequirePackage{fancyvrb}         % 
+\RequirePackage[parfill]{parskip}         % 
 \RequirePackage{listingsutf8}         % For samples
 \RequirePackage[left=1in,right=1in,top=0.75in,bottom=0.75in]{geometry}
 %\RequirePackage{fullpage}         % Set up margins for full page
