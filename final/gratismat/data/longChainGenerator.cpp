@@ -7,16 +7,6 @@ using namespace std;
 #define rep(i, a, b) for(int i = a; i < int(b); i++)
 #define trav(it, v) for(auto it = v.begin(); it != v.end(); it++)
 #define all(x) x.begin(), x.end()
-#define sz(x) (int) (x).size()
-
-void treeDfs(int i, vector<vector<int> >& adj, vector<int>& par) {
-	trav(it, adj[i]) {
-		if (*it != par[i]) {
-			par[*it] = i;
-			treeDfs(*it, adj, par);
-		}
-	}
-}
 
 int main(int argc, char* argv[]) {
 	if (argc < 3) {
