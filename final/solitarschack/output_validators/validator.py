@@ -146,6 +146,10 @@ def score(hits):
             alternating = (cnt + 1, 'piece')
         elif is_num and which != 'num':
             alternating = (cnt + 1, 'num')
+        elif is_piece:
+            alternating = (1, 'piece')
+        elif is_num:
+            alternating = (1, 'num')
         else:
             alternating = (0, None)
         
