@@ -119,6 +119,48 @@ Glöm inte att flusha standard out när du printat! I Java gör du detta med \te
 i C med \texttt{fflush(stdout)}, i C++ med \texttt{flush(cout)}, i C\# med \texttt{Console.Out.Flush()}
 och i Python med \texttt{sys.stdout.flush()}.
 
+\section*{Exempel}
+Domarens utskrifter är i fetstil.\\
+\textbf{\texttt{
+1 1 1 1 1 1 \\
+1 1 1 1 1 1 \\
+1 1 2 1 1 torn \\
+1 1 3 4 1 dam \\
+1 1 1 1 1 1 \\
+1 1 1 1 1 1 \\
+}}
+\texttt{
+6 6 \\
+}
+\textbf{\texttt{
+dam \\
+}}
+\texttt{
+5 6 \\
+}
+\textbf{\texttt{
+springare \\
+}}
+\texttt{
+6 6 \\
+}
+\textbf{\texttt{
+torn \\
+}}
+\texttt{
+1 1 \\
+}
+\textbf{\texttt{
+lopare \\
+}}
+\texttt{
+0 0 \\
+}
+
+I det här exemplet tog du först bort ettan vid position $(6, 6)$, sedan den vid $(5, 6)$, sedan damen som dykt upp vid $(6, 6)$, och slutligen ettan vid position $(1, 1)$. Därefter gav du upp i tristess.
+
+Notera att dragen du gör är utifrån vilken sorts pjäs som \emph{just togs bort}, inte vilken som just visades. Efter borttagandet av damen hade du också kunnat ta bort en pjäs på position $(6, 1)$ eller $(1, 6)$, dock ej t.ex. position $(4, 1)$ eftersom man vid dam(/torn/lopare)drag måste flytta sig ända till en kant.
+
 \section*{Poängsättning}
 Antag att på ett testfall värt $P$ poäng så får ditt program $X$ poäng, och det bästa programmet $Y$ poäng.
 Då får du $P \times \frac{X}{Y}$ poäng. Innan tävlingsslut kommer alla lösningar rättas med $Y = 200$.
