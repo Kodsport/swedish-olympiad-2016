@@ -2,6 +2,8 @@
 import sys
 import re
 
+sys.setrecursionlimit(101000)
+
 re1 = '''^(0|[1-9][0-9]*) (0|[1-9][0-9]*)$'''
 line = sys.stdin.readline() 
 assert re.match(re1, line)
