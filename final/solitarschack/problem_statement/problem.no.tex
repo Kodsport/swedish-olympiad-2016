@@ -1,0 +1,171 @@
+\problemname{Solitaire chess}
+Mårten is good at chess. A little too good, according to some. For instance Johan. Mårten often challenges Johan at chess, leading to Johan losing. Instead of admitting defeat Johan does what he always does when he loses at something; he changes the rules.
+
+This time he has invented a new sort of single-player chess which he calles \emph{Solitaire chess}.
+The game is played on a $6 \times 6$ board with pieces. The pieces are in three different colors -- bronze, silver, gold -- and eight different types: 1, 2, 3, 4, torn (en: rook), lopare (bishop), dam (queen) and springare (knight). Initially the board is entirely filled with bronze-colored pieces.
+
+Each move of the game consists of Johan removing one piece from the board. If the piece which has been removed is a bronze piece, it is replaced by a new silver piece of random type. If it is a silver piece, it is replaced by a random bronze piece. If the piece Johan removes is a gold piece, its tile is left empty.
+The basic goal of the game is to perform as many moves as possible.
+
+In the first move, Johan gets to choose freely which piece to remove. For every other move the pieces that can be removed is limited by a number of rules, which depend on the type and position of the last removed piece.
+Johan may continue making moves as long as he wishes and is able.
+
+Let $(r, c)$ be the row and column of the piece that was last removed, and $(r', c')$ row and column of a piece you want to remove next. The rows and columns are 1-indexed. Whether this move is allowed is determined by the rule below that matches the type of the last removed piece:
+
+\begin{description}
+  \item[\texttt{1}] the next piece must be exactly 1 step away (horizontally, vertically or diagonally) from this piece.
+    More formally one of the following must hold:
+    $$|r - r'| = 1, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 1$$
+    $$|r - r'| = 1, |c - c'| = 1$$
+
+  \item[\texttt{2}] the next piece must be exactly 2 step away (horizontally, vertically or diagonally) from this piece.
+    More formally one of the following must hold:
+    $$|r - r'| = 2, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 2$$
+    $$|r - r'| = 2, |c - c'| = 2$$
+
+  \item[\texttt{3}] the next piece must be exactly 3 step away (horizontally, vertically or diagonally) from this piece.
+    More formally one of the following must hold:
+    $$|r - r'| = 3, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 3$$
+    $$|r - r'| = 3, |c - c'| = 3$$
+
+  \item[\texttt{4}] the next piece must be exactly 4 step away (horizontally, vertically or diagonally) from this piece.
+    More formally one of the following must hold:
+    $$|r - r'| = 4, |c - c'| = 0$$
+    $$|r - r'| = 0, |c - c'| = 4$$
+    $$|r - r'| = 4, |c - c'| = 4$$
+
+  \item[\texttt{torn}] the next piece must be either straight up, down, to the left or to the right of this piece, moved away all the way to the edge.
+    More formally one of the following must hold:
+    $$r' \in \{1, 6\}, |c - c'| = 0$$
+    $$|r - r'| = 0, c' \in \{1, 6\}$$
+
+  \item[\texttt{lopare}] the next piece must be along the sides of the board, on the same diagonal as this piece.
+    More formally one of the following must hold:
+    $$|r - r'| = |c - c'|, r' \in \{1, 6\}$$
+    $$|r - r'| = |c - c'|, c' \in \{1, 6\}$$
+
+  \item[\texttt{dam}] the next piece must be places as if this piece was either a \texttt{torn} or a \texttt{lopare}.
+    More formally one of the following must hold:
+    $$r' \in \{1, 6\}, |c - c'| = 0$$
+    $$|r - r'| = 0, c' \in \{1, 6\}$$
+    $$|r - r'| = |c - c'|, r' \in \{1, 6\}$$
+    $$|r - r'| = |c - c'|, c' \in \{1, 6\}$$
+
+  \item[\texttt{springare}] the next piece must be placed either on the row above/below and two columns to the left/right, or
+    on the column to the left/right and two rows above/below.
+    More formally one of the following must hold:
+    $$|r - r'| = 2, |c - c'| = 1$$
+    $$|r - r'| = 1, |c - c'| = 2$$
+\end{description}
+
+It is not allowed to have $(r', c') = (r, c)$ (in either of the cases).
+
+The scoring is as follows. For each tile when the game is over, you get the following score depending on tile:
+\begin{description}
+  \item[bronze] 0 points
+  \item[silver] 1 point
+  \item[gold] 2 points
+  \item[empty] 3 points
+\end{description}
+
+You can also get bonus points during the game. The following bonuses exist:
+\begin{itemize}
+  \item If you remove $N \ge 2$ pieces in a row of the same type you get $2N$ points.
+  \item If you remove the pieces $1, 2, 3, 4$ in a row in order or reverse order you get 12 points.
+  \item If you remove the pieces $1, 2, 3, 4$ in a row in some other order you get 8 points.
+  \item If you remove the pieces $torn, lopare, dam, springare$ in a row in some order you get 8 points.
+  \item Removing the numbers $1, 2, 3, 4$ in some order is called a \emph{number set}.
+    Removing the pieces $torn, lopare, dam, springare$ in some order is called a \emph{piece set}.
+
+    If you remove $K \ge 2$ number sets and piece sets in \emph{alternating order}, i.e. either
+    number set - piece set - number set - ... or piece set - number set - piece set - ..., you get an additional $8K$ points.
+\end{itemize}
+
+Bonuses of the same sort cannot overlap, and are given greedily.
+For instance, the sequence of removed pieces \texttt{4 1 2 3 4 dam torn springare lopare} would give $8 + 8 = 16$ bonus points:
+8 for the sequence \texttt{4 1 2 3},
+none for the sequence \texttt{1 2 3 4} because it overlaps with the earlier one,
+and 8 for the sequence \texttt{dam torn springare lopare}.
+No additional points for alternative piece sets are given, because we
+have not been given points for the sequence \texttt{1 2 3 4}.
+The sequence \texttt{1 1 2 3 4} gives $4 + 12 = 16$ points: \texttt{1 1} and \texttt{1 2 3 4} are different types of bonuses, so it is okay for the to overlap.
+
+It turns out to be harder than expected to get a good score in Solitaire chess than beating Mårten at regular chess... Help Johan get as good score as possible in Solitaire chess!
+
+\section*{Input}
+Input starts with 6 lines, each of which contains 6 white-space separated strings. This denote what the original bronze pieces are.
+
+\section*{Interaction}
+This is an interactive problem. To make a move, you print two integers \texttt{r c}, the row and column that contains the piece you want to remove.
+
+You should then read one line - the name of the piece that replaces the one you removed. If you just removed a gold piece, the line will contain the work \texttt{blank}.
+
+When you don't make to make any more moves, you should print a line \texttt{0 0} and terminate the program.
+
+Don't forget to flush standard out when you have printed!
+In Java this can be done using \texttt{System.out.flush()},
+in C with \texttt{fflush(stdout)}, in C++ with \texttt{flush(cout)}, in C\# with \texttt{Console.Out.Flush()}
+and in Python with \texttt{sys.stdout.flush()}.
+
+\section*{Examples}
+The judge's output is in bold.\\
+\textbf{\texttt{
+1 1 1 1 1 1 \\
+1 1 1 1 1 1 \\
+1 1 2 1 1 torn \\
+1 1 3 4 1 dam \\
+1 1 1 1 1 1 \\
+1 1 1 1 1 1 \\
+}}
+\texttt{
+6 6 \\
+}
+\textbf{\texttt{
+dam \\
+}}
+\texttt{
+5 6 \\
+}
+\textbf{\texttt{
+springare \\
+}}
+\texttt{
+6 6 \\
+}
+\textbf{\texttt{
+torn \\
+}}
+\texttt{
+1 1 \\
+}
+\textbf{\texttt{
+lopare \\
+}}
+\texttt{
+0 0 \\
+}
+
+In this example you first removed the 1 at position $(6, 6)$, then the 1 at $(5, 6)$, then the queen (dam) that had appeared at $(6, 6)$, and finally the 1 at position $(1, 1)$. Thereafter you gave up out of boredom.
+
+Note that the moves you make are based on the sort of piece that was \emph{just removed}, not the one that was just shown. After the removal of the queen you could also have removed a piece at position $(6, 1)$ or $(1, 6)$, though not e.g. position $(4, 1)$ because with queen (and rook, bishop) moves you must move all the way until an edge.
+
+\section*{Scoring}
+Say that on a test case worth $P$ points your program gets $X$ points, and the best program $Y$ points.
+Then you get $P \times \frac X Y$ points. During the contest all submissions will be judged with $Y = 200$. After the end of the contest this will be rejudged with the best submissions on each test case.
+
+The test cases are divided into a number of groups.
+
+\begin{tabular}{| l | l | l |}
+  \hline
+	Group & Points & Constraints\\ \hline
+  1     & 4          & Only the piece springare appears. \\ \hline
+  2     & 4          & Only the piece 1 appears. \\ \hline
+  3     & 6          & Only the pieces 1 and 2 appear. \\ \hline
+  4     & 9          & Only the pieces torn, lopare, dam appear. \\ \hline
+  5     & 24         & Only the pieces 1, 2, 3, 4 appear. \\ \hline
+  6     & 53         & All pieces may appear. \\ \hline
+\end{tabular}
+
