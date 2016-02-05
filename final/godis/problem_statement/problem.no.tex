@@ -1,0 +1,30 @@
+\problemname{Candy}
+
+It is Saturday and Ann Britt-Caroline is going to buy candy. She has identified several different bags of candy she is considering buying.
+
+Each bag contains a number of pieces of candy of different types. There are 10 types of normal candy (these are numbered $1...10$), and 10 types of anti-candy (numbered $-1...-10$). It just so happens that candy of type $n$ and type $-n$ do not go well together - they are annihilated if they come in contact with each other. Other than that anti-candy tastes just the same as normal candy.
+
+When Ann Britt-Caroline has bought the bags of candy she mixes them in a big bowl such that all pairs of candy/anti-candy is annihilated (she mixes thoroughly). How many pieces of candy can Ann Britt-Caroline have left (after all pairs of candy/ant-candy is annihilated), if she selects her bags of candy optimally? Note that she can only buy one bag of each type. Ignore any money related issues - her parents will pay.
+\section*{Input}
+
+The first line in the input consist of an integer $1 \le N \le 1000$ - the number of bags of candy.
+
+The following $n$ lines describe each bag of candy.
+Each line starts with an integer $1 \le k \le 10$, specifying the number of different types of candy in the bag.
+Then follow $k$ pairs of integers $s$ $n$, which means that there are $n$ pieces of candy type $s$.
+Each type of candy is mentioned at most once per bag, and types $s$ and $-s$ can not be in the same bag.
+
+For all $n$, $1 \le n \le 1000$.
+\section*{Output}
+
+Print an integer: the largest amount of candy Ann Britt-Caroline can have in the end.
+\section*{Grading}
+Your solution will be tested on several groups of test cases. To get points for a group you need to pass all the tests of that group.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Group & Points & Constraints\\ \hline
+  1     & 25         & $N \le 15$ \\ \hline
+  2     & 25         & $N \le 1000$. each bag will contain only one type of candy. \\ \hline
+  3     & 50         & $N \le 1000$ \\ \hline
+\end{tabular}
