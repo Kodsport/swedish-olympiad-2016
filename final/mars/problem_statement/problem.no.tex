@@ -1,9 +1,9 @@
 \problemname{Mars Message}
 
-I the film \emph{The Martian}, astronaut Mark Watney is stuck on Mars, and communicates with earth by rotating a camera on an old space prod.
+In the film \emph{The Martian}, astronaut Mark Watney is stuck on Mars, and communicates with earth by rotating a camera on an old space prod.
 
-The prod points ar a hexidecimal digit, i.e. \texttt{0-9} or \texttt{a-f}, and Mark creates letters and other characters by konverting a pair
-of hexadecimal digits accordning to ASCII encoding. The determine which digit the pond is pointing at Mark has divided a circle of 360 degrees into 16 parts of 22.5 degrees each.
+The prod points at a hexidecimal digit, i.e. \texttt{0-9} or \texttt{a-f}, and Mark creates letters and other characters by converting a pair
+of hexadecimal digits according to ASCII encoding. To determine which digit the prod is pointing at Mark has divided a circle of 360 degrees into 16 parts of 22.5 degrees each.
 
 \begin{figure}[h!]
   \begin{center}
@@ -15,18 +15,15 @@ For example, the pair of angles $(100*{\circ}, 30^{\circ})$ represents the hexad
 According to ASCII that is the character \texttt{A}.
 
 Mark is getting tired of writing down the digits manually, and he asks you to help him decode the messages he receives. You will be given the sequence of angles the prod points at and you're expected to print the message.
-
 \section*{Input}
 The first line consists of an integer $2 \le N \le 50\,000$, the number of angles. $N$ will be even.
 
 The following $N$ lines contain angles, one angle per line. An angle is given in degrees as a float in the range $[0, 360)$.
-The prod will never point at an angle which is contained in two digit's intervals.
+The prod will never point at an angle which is exactly inbetween two hexadecial digits.
 
-When decoding to ASCII only characters will decimal values \texttt{32-126} occurs.
-
+When decoding to ASCII only characters with decimal values \texttt{32-126} occurs.
 \section*{Output}
 Print one line with the decoded message.
-
 \section*{Grading}
 Your solution will be tested on several groups of test cases. To get points for a group you need to pass all the tests of that group.
 
