@@ -12,13 +12,13 @@ assert len(vals)==3
 W=vals[0]
 H=vals[1]
 N=vals[2]
-assert 1 <= n <= 5000
+assert 1 <= N <= 5000
 below = above = False
-for i in range(n):
-   s = sys.stdin.readline()
+for i in range(N):
+   line = sys.stdin.readline()
    assert re.match(line_regex, line)
    vals=[int(x) for x in line.split()]
-   assert len(vals)==3
+   assert len(vals)==4
    x1,y1,x2,y2 = vals
    assert 0 <= x1 <= W
    assert 0 <= x2 <= W
