@@ -53,12 +53,12 @@ valid_pieces = {
 alphabet = [valid_pieces[x] for x in alphabet]
 
 def random_piece():
-    return random.sample(alphabet)
+    return random.choice(alphabet)
 
 cur = [[ [random_piece() for i in range(3)] for c in range(6) ] for r in range(6)]
 
-for x in range(cur):
-    safe_print(' '.join(x))
+for x in cur:
+    safe_print(' '.join(a[0] for a in x))
 
 hits = []
 
@@ -71,11 +71,13 @@ while True:
         break
     if not (1 <= r <= 6 and 1 <= c <= 6):
         die("Move out of bounds")
+
+
+    r = r - 1
+    c = c - 1
     if not cur[r][c]:
         die("Hitting blank square")
     
-    r = r - 1
-    c = c - 1
     piece = cur[r][c][0]
     hits.append(piece)
     cur[r][c].pop(0)
