@@ -1,6 +1,5 @@
 \problemname{Labbplanering}
-
-Ah, universitetet. En kunskapens högborg, utbildningens Mecca, och byråkratins kärna.
+Ah, universitetet. En kunskapens högborg, utbildningens Mecka, och byråkratins kärna.
 
 Wille och Kashi sitter just nu och ska redovisa en datorlaboration i en kurs. Totalt
 är det $N$ grupper som sitter i datasalen och väntar på att få redovisa. Grupp $i$
@@ -8,12 +7,12 @@ ska redovisa totalt $m_i$ olika moment, där moment $j$ tar $a_{i, j}$ minuter.
 
 För att det ska vara rättvist måste alla grupper vänta jättelänge på sina redovisningar.
 Det finns nämligen bara en lärare som tar redovisningar, och att låta varje grupp
-redovisa samtliga av sina moment i ett enda svep är alldeles skulle ju innebära
+redovisa samtliga av sina moment i ett enda svep skulle ju innebära
 att en grupp aldrig måste stanna kvar längre än nödvändigt! Därför tar läraren
 emot redovisning av ett moment i taget i en ganska godtycklig ordning...
 
 Kashi har fått nog. Hon vill hem och spela Pokémon, och klagar på den ganska
-ineffektiva redovisningsordeningen högljutt. För att demonstrera just hur ineffektivt
+ineffektiva redovisningsordningen högljutt. För att demonstrera just hur ineffektivt
 detta system är tänker hon titta på vad den längsta möjliga totala väntetiden är,
 och visa hur nära lärarens system är till detta.
 
@@ -53,7 +52,7 @@ I det givna exemplet ska tre gruppers labbar redovisas: den första gruppens mom
 
 Om vi lägger redovisningarna i ordningen 5, 10, 60, 20, 15 så kommer den tredje gruppen kunna göra sin redovisning på 60 minuter.
 Den andra gruppen kommer då att förutom sin egen labb behöva vänta igenom hela den tredjes redovisning, och därmed ta $10+60+20 = 90$ minuter på sig.
-På samma sätt kommer den tredje grupper behöva vänta $5+10+60+20+15 = 110$ minuter.
+På samma sätt kommer den första gruppen behöva vänta $5+10+60+20+15 = 110$ minuter.
 Summan av tiderna blir $60 + 90 + 110 = 260$ minuter.
 
-(Notera att ordningen 15, 10, 60, 20, 5 hade resulterat i en värre tidssumma på $265$, men detta tillåts inte: grupp 1 får inte redovisa sin andra labb före sin första.)
+(Notera att ordningen 10, 15, 60, 20, 5 hade resulterat i en värre tidssumma på $265$, men detta tillåts inte: grupp 1 får inte redovisa sin andra labb före sin första.)
