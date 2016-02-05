@@ -6,7 +6,7 @@ Wille och Kashi sitter just nu och ska redovisa en datorlaboration i en kurs. To
 är det $N$ grupper som sitter i datasalen och väntar på att få redovisa. Grupp $i$
 ska redovisa totalt $m_i$ olika moment, där moment $j$ tar $a_{i, j}$ minuter.
 
-För att det ska vara rättvist måste alla elever vänta jättelänge på sina redovisningar.
+För att det ska vara rättvist måste alla grupper vänta jättelänge på sina redovisningar.
 Det finns nämligen bara en lärare som tar redovisningar, och att låta varje grupp
 redovisa samtliga av sina moment i ett enda svep är alldeles skulle ju innebära
 att en grupp aldrig måste stanna kvar längre än nödvändigt! Därför tar läraren
@@ -22,7 +22,7 @@ blir färdig med redovisningen av sitt sista moment vid tid $b$. Då är väntet
 för denna grupp $b - a$. Den totala väntetiden är väntetiden summerad över alla
 grupper som redovisar.
 
-Ordningen i vilken en elevs pass ska redovisas måste vara som i indata.
+Ordningen i vilken en grupps pass ska redovisas måste vara som i indata.
 
 \section*{Input}
 Den första raden innehåller talet $N \ge 1$.
@@ -32,16 +32,6 @@ Därefter följer $N$ rader, som vardera innehåller först talet $m_i \ge 1$, o
 
 \section*{Output}
 Du ska skriva ut ett enda tal: den längsta möjliga totala tid du kan få studenterna att stanna om du planerar schemat optimalt.
-
-\section*{Exempelförklaring}
-I det givna exemplet ska tre gruppers labbar redovisas: den första gruppens moment tar 5 resp. 15 minuter, den andra 10 resp. 20, och den tredje gruppens moment tar en hel timme.
-
-Om vi lägger redovisningarna i ordningen 5, 10, 60, 20, 15 så kommer den tredje gruppen kunna göra sin redovisning på 60 minuter.
-Den andra gruppen kommer då att förutom sin egen labb behöva vänta igenom hela den tredjes redovisning, och därmed ta $10+60+20 = 90$ minuter på sig.
-På samma sätt kommer den tredje eleven behöva vänta $5+10+60+20+15 = 110$ minuter.
-Summan av tiderna blir $60 + 90 + 110 = 260$ minuter.
-
-(Notera att ordningen 15, 10, 60, 20, 5 hade resulterat i en värre tidssumma på $265$, men detta tillåts inte: elev 1 får inte redovisa sin andra labb före sin första.)
 
 \section*{Poängsättning}
 Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
@@ -53,7 +43,17 @@ Summan av alla $m_i$ kommer att vara högst $5\,000$ i grupperna 1 till och med 
 	Grupp & Poängvärde & Begränsningar\\ \hline
   1     & 30         & summan av $m_i$ är högst 10 \\ \hline
   2     & 17         & alla labbpass är lika långa \\ \hline
-  3     & 13         & alla elever har precis 2 labbpass \\ \hline
+  3     & 13         & alla grupper har precis 2 labbpass \\ \hline
   4     & 18         & inga ytterligare restriktioner \\ \hline
   5     & 22         & summan av $m_i$ kan bli uppemot $100\,000$ \\ \hline
 \end{tabular}
+
+\section*{Exempelförklaring}
+I det givna exemplet ska tre gruppers labbar redovisas: den första gruppens moment tar 5 resp. 15 minuter, den andra 10 resp. 20, och den tredje gruppens moment tar en hel timme.
+
+Om vi lägger redovisningarna i ordningen 5, 10, 60, 20, 15 så kommer den tredje gruppen kunna göra sin redovisning på 60 minuter.
+Den andra gruppen kommer då att förutom sin egen labb behöva vänta igenom hela den tredjes redovisning, och därmed ta $10+60+20 = 90$ minuter på sig.
+På samma sätt kommer den tredje grupper behöva vänta $5+10+60+20+15 = 110$ minuter.
+Summan av tiderna blir $60 + 90 + 110 = 260$ minuter.
+
+(Notera att ordningen 15, 10, 60, 20, 5 hade resulterat i en värre tidssumma på $265$, men detta tillåts inte: grupp 1 får inte redovisa sin andra labb före sin första.)
