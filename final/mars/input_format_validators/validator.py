@@ -27,7 +27,7 @@ for i in range(N):
     assert line.strip() not in [str(45*x//2) if x%2 == 0 else str(22 + 45 * (x//2)) + ".5" for x in range(16)]
     vals.append(int(angle / 22.5))
 
-for i in range(N//2):
+for i in range(0, N, 2):
     a = 16 * vals[i] + vals[i + 1]
     assert 32 <= a <= 126
 
