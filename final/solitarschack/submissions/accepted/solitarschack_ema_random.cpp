@@ -88,7 +88,7 @@ int main() {
 	while(true) {
 		vector<int> options;
 		rep(j, 0, p.size()) {
-			if (p[j].v < 4 && canMove(p[i], p[j], lastType)) {
+			if (i != j && p[j].v < 4 && canMove(p[i], p[j], lastType)) {
 				options.push_back(j);
 			}
 		}
