@@ -17,7 +17,7 @@
 \newif\if@samplenumbers\@samplenumberstrue
 \DeclareOption{nosamplenumbers}{\@samplenumbersfalse}
 
-\newif\if@clearevenpages\@clearevenpagestrue
+\newif\if@clearevenpages\@clearevenpagesfalse
 
 \newif\if@autoincludesamples\@autoincludesamplestrue
 \DeclareOption{noautoincludesamples}{\@autoincludesamplesfalse}

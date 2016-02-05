@@ -6,6 +6,13 @@ Ikväll är Hsara på restaurang med jobbet, och Hsara sitter och analyserar mö
 
 Organisationen består av $N$ personer numrerade från $1$ till $N$. Varje person, förutom organisationens VD, har exakt en chef. Givet varje persons chef och en lista över personer som är närvarande vid bordet, avgör hur många som skulle kunna betala för middagen.
 
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.2\textwidth]{tree.eps}
+		\caption{Illustration av hur organisationen i det första exemplet ser ut.}
+	\end{center}
+\end{figure}
+
 \section*{Input}
 
 Den första raden i indatan innehåller två heltal, $N$ - antalet personer i organisationen och $M$ - antalet personer vid bordet.
@@ -29,10 +36,5 @@ Din lösning kommer att testas på en mängd testfallsgrupper. För att få poä
 
 \section*{Förklaring}
 I det första exemplet kan personerna 1 och 2 betala. Person 3 kan inte betala eftersom person 1 sitter vid bordet.
-\begin{figure}
-	\begin{center}
-		\includegraphics{tree.eps}
-	\end{center}
-\end{figure}
 
 I det andra exemplet är person 5 VD och sitter vid bordet. Därför kan bara person 5 betala.
