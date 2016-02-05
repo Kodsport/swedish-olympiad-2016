@@ -1,6 +1,5 @@
 \problemname{Marsmeddelanden}
-
-I filmen \emph{The Martian} blir astronaut Mark Watney fast på Mars, och kommunicerar med jorden genom att rotera
+I filmen \emph{The Martian} blir astronaut Mark Watney fast på Mars. Jorden kommunicerar med Mark genom att rotera
 kameran på en gammal rymdsond.
 
 Sonden pekar på en hexadecimal siffra, d.v.s. \texttt{0-9} eller \texttt{a-f}, och Mark bildar sedan bokstäver
@@ -10,22 +9,20 @@ vardera.
 
 \begin{figure}[h!]
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{angles.png}
+    \includegraphics[width=0.3\textwidth]{angles.eps}
   \end{center}
 \end{figure}
 
-Som ett exempel representerar vinkelparet $(100^{\circ}, 30^{\circ})$ det hexadecimala talet \texttt{0x41}, vilket är talet $65$ decimalt.
+Som ett exempel representerar vinkelparet $(100^{\circ}, 30^{\circ})$ det hexadecimala talet 41, vilket är talet $65$ decimalt.
 Enligt ASCII representerar detta tecknet \texttt{A}.
 
-Nu har Mark tröttnat lite på att skriva ner dessa siffror manuellt, och har bett dig om hjälp om att avkoda meddelandet
+Nu har Mark tröttnat lite på att skriva ner dessa siffror manuellt, och har bett dig om hjälp med att avkoda meddelandet
 som han får. Du kommer få sekvensen av de vinklar som sonden pekar på, och ska skriva ut meddelandet.
 
 \section*{Input}
 Den första raden innehåller ett heltal $2 \le N \le 50\,000$, antalet vinklar du ska läsa in. $N$ garanteras vara ett jämnt tal.
-
 De nästa $N$ raderna innehåller vinklarna, en vinkel per rad. Vinkeln ges som ett flyttal i grader i intervallet $[0, 360)$.
-Det är garanterat att sonden aldrig pekar på någon vinkel som två hexadecimala siffror har gemensamt.
-
+Det är garanterat att sonden aldrig pekar på någon vinkel som ligger precis mellan två hexadecimala siffror.
 Det är också garanterat att under avkodningen till ASCII kommer enbart tecken med decimala värden \texttt{32-126} ges.
 
 \section*{Output}
