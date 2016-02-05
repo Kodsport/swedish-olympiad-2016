@@ -1,0 +1,6 @@
+REGEX("[1234tlds]*")
+SPACE
+INT(1, 100)
+INT
+NEWLINE
+EOF
