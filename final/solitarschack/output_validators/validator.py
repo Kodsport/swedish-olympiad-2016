@@ -50,6 +50,27 @@ valid_pieces = {
         't': 'torn'
 }
 
+def at_edge(r, c):
+    return r in [0, 5] or c in [0, 5]
+
+def k_move(r, c, rp, cp, x):
+    if abs(r - rp) not in [0, x]: return False
+    if abs(c - cp) not in [0, x]: return False
+    return True
+
+valid_moves = {
+    '1': lambda r, c, rp, cp: k_move(r, c, rp, cp, 1),
+    '2': lambda r, c, rp, cp: k_move(r, c, rp, cp, 2),
+    '3': lambda r, c, rp, cp: k_move(r, c, rp, cp, 3),
+    '4': lambda r, c, rp, cp: k_move(r, c, rp, cp, 4),
+    'springare': lambda r, c, rp, cp: list(sorted([abs(r - rp), abs(c - cp)])) == [1, 2],
+    'lopare': lambda r, c, rp, cp: ((r + c == rp + cp) or (r - c == rp - cp)) and at_edge(rp, cp),
+    'torn': lambda r, c, rp, cp: (rp in [0, 5] and c == cp) or (cp in [0, 5] and r == rp),
+    'dam': lambda r, c, rp, cp: valid_moves['lopare'](r, c, rp, cp) or valid_moves['torn'](r, c, rp, cp), 
+    'start': lambda r, c, rp, cp: True
+}
+ 
+
 alphabet = [valid_pieces[x] for x in alphabet]
 
 def random_piece():
@@ -61,6 +82,10 @@ for x in cur:
     safe_print(' '.join(a[0] for a in x))
 
 hits = []
+
+last_piece = 'start'
+lr = -1
+lc = -1
 
 while True:
     try:
@@ -77,26 +102,23 @@ while True:
     c = c - 1
     if not cur[r][c]:
         die("Hitting blank square")
+
+    if not valid_moves[last_piece](lr, lc, r, c):
+        die("Invalid move")
+
+    if lr == r and lc == c:
+        die("Invalid move")
+
     
     piece = cur[r][c][0]
+    last_piece = piece
+    lr = r
+    lc = c
     hits.append(piece)
     cur[r][c].pop(0)
     safe_print(cur[r][c][0] if cur[r][c] else 'blank')
 
-def at_edge(r, c):
-    return r in [0, 5] or c in [0, 5]
-
-valid_moves = {
-    '1': lambda r, c, rp, cp: abs(r - rp) == 1 and abs(c - cp) == 1,
-    '2': lambda r, c, rp, cp: abs(r - rp) == 2 and abs(c - cp) == 2,
-    '3': lambda r, c, rp, cp: abs(r - rp) == 3 and abs(c - cp) == 3,
-    '4': lambda r, c, rp, cp: abs(r - rp) == 4 and abs(c - cp) == 4,
-    'springare': lambda r, c, rp, cp: list(sorted([abs(r - rp), abs(c - cp)])) == [1, 2],
-    'lopare': lambda r, c, rp, cp: ((r + c == rp + cp) or (r - c == rp - cp)) and at_edge(rp, cp),
-    'torn': lambda r, c, rp, cp: (rp in [0, 5] and c == cp) or (cp in [0, 5] and r == rp),
-    'dam': lambda r, c, rp, cp: valid_moves['lopare'](r, c, rp, cp) or valid_moves['torn'](r, c, rp, cp), 
-}
-    
+   
 def score(hits):
     base_score = len(hits)
     i = 0
