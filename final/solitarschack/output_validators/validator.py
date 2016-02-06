@@ -15,9 +15,12 @@ def die(msg):
     f.close()
     exit(43)
 
-def accept(score):
+def accept(score, real_score):
     f = open(argv[3] + os.sep + "score.txt", "wt+", encoding="utf-8")
     f.write(str(score))
+    f.close()
+    f = open(argv[3] + os.sep + "judgemessage.txt", "wt+", encoding="utf-8")
+    f.write(str(real_score))
     f.close()
     exit(42)
 
@@ -173,4 +176,6 @@ def score(hits):
             base_score += 2
     return base_score
 
-accept(case_score * score(hits) / best_score)
+hitscore = score(hits)
+
+accept(case_score * hitscore / best_score, hitscore)
