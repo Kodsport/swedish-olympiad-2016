@@ -1,37 +1,19 @@
 import sys
 import random
 
-
 N = int(sys.argv[1])
-L = int(sys.argv[2])
-S = int(sys.argv[3])
-J = int(sys.argv[4])
-random.seed(int(sys.argv[5]))
+ndistinct = int(sys.argv[2])
+case = sys.argv[3]
+random.seed(int(sys.argv[4]))
 
-print("%d %d %d" % (N, L, S + J))
+maxdig = 0 if case == 'zeroes' else 9
 
-pos = list(random.sample(range(L), N))
-poss = set(pos)
-posss = {}
-for i, v in enumerate(pos): posss[v] = i
+strs = [[random.randint(0, maxdig) for _ in range(6)] for _ in range(ndistinct)]
 
-print(' '.join(str(x) for x in pos))
-queries = [1] * S + [0] * J
-random.shuffle(queries)
+print("%d" % N)
 
-for i in range(S + J):
-    qtype = queries[i]
-    if qtype == 1: print("1")
-    else:
-        A = random.choice(pos)
-        B = random.choice(pos)
-        while B in poss:
-            B = B + 1
-            if B == L:
-                B = 0
-
-        pos[posss[A]] = B
-        poss.remove(A)
-        poss.add(B)
-        posss[B] = posss[A]
-        print("0 %d %d" % (A, B))
+for _ in range(N):
+    s = random.choice(strs)
+    if case != 'known':
+        s = [random.choice([c, -1]) for c in s]
+    print(' '.join(map(str, s)))
