@@ -1,22 +1,18 @@
-#include "vanner.h"
+#include "regskylt.h"
 #include <cstdio>
 #include <cassert>
+#include <tuple>
+
+using namespace std;
 
 int main() {
-  int N, L, Q;
-  scanf("%d%d%d", &N, &L, &Q);
-  int P[N];
-  for (int i = 0; i < N; ++i) scanf("%d", P + i);
-  init(N, L, P);
-  for (int i = 0; i < Q; ++i) {
-    int type;
-    scanf("%d", &type);
-    if (type == 0) {
-      int A, B;
-      scanf("%d%d", &A, &B);
-      jump(A, B);
-    }
-    else if (type == 1) printf("%d\n", score());
-    else assert(false && "Invalid query type");
+  int N;
+  ignore = scanf("%d", &N);
+  int P[6];
+  for (int i = 0; i < N; ++i) {
+	  for (int j = 0; j < 6; ++j) {
+		  ignore = scanf("%d", P + j);
+	  }
+	  printf("%d\n", plate(P));
   }
 }

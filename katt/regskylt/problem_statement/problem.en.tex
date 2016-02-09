@@ -12,16 +12,22 @@ However, there is an additional complication.
 Simon can sometimes only see a partial plate, for example when the car he is observing is moving very fast.
 In this case, he wants to know the total number of times he's seen all the plates that match the partial plate.
 
-A number plate is a string of exactly 6 digits $0-9$.
+A number plate is a string of exactly 6 digits $0-9$. We say that a new observed plate $X$
+matches a previously observed plate $Y$, if for every possible plate that $Y$ could have been, it is also
+possible that $X$ could be that plate. In particular, if Simon observes the new plate \texttt{00x000}, it
+will not match a previously observed plate \texttt{00xx00}, since the latter could have been \texttt{000100}
+while the new plate could not. However, if \texttt{00xx00} was the new plate and \texttt{00x000} was the old
+they would have matched.
 
 \section*{Example}
-Say that the first place Simon sees is \texttt{000000}.
-The next plate is yet again \texttt{000000}, which he has seen once before.
-The third plate he sees is \texttt{001000}, which he has never seen.
+Say that the first plate Simon sees is \texttt{000000}. The answer is $0$, since he's never seen a plate before.
+The next plate is yet again \texttt{000000}, which he has seen once before. Thus the answer is $1$.
+The third plate he sees is \texttt{001000}, which he has never seen, making the answer $0$.
 The fourth plate he sees is only partial: \texttt{00x000}, where \texttt{x} denotes a digit he didn't see.
 This can match both the plates he's previously seen, so in this case the answer is $3$.
 The fifth plate he sees is also partial: \texttt{00xx00}.
 Note that this partial plate matches partial plate Simon just saw - the partial plate should then be included as well (making the answer $4$).
+Finally, Simon sees \texttt{00x000}, which matches $4$ previous plates (see the explanation above).
 
 \section*{Task}
 Given all the plates (either partial or complete) that Simon sees, determine how many of the
