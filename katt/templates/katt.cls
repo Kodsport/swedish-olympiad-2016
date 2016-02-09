@@ -167,7 +167,7 @@
 }
 
 \newcommand{\ps@formattime}[1]{
-  #1\ifnum#1=1 second \else seconds \fi
+  #1 s
 }
 
 \newcommand{\ps@formatmemory}[1]{
