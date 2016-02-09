@@ -1,0 +1,49 @@
+\newcommand\version{v1}
+
+\problemname{Kakor}
+Ann Britt-Caroline har $N$ olika sorters kakor. Av kaksort $i$ har hon $A_i$ olika kakor. Nu undrar Ann hur många olika kakor hon har totalt sett.
+
+\section*{Exempel}
+I detta exempel har vi $N = 3$ olika kaksorter. Antalet kakor av varje sort är $3, 1, 5$.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sample.png}
+  \caption{Vi har tre kakor av första sorten, en av andra sorten, och fem av den tredje}
+\end{figure}
+
+Som ses på bilden ger detta totalt $9$ olika kakor.
+
+\section*{Uppgift}
+Du får givet $N$ och $A$. Skriv ett program som hjälper Ann att beräkna det totala antalet kakor. Du ska implementera funktionen \texttt{cookies(N, A)}:
+\begin{itemize}
+  \item \texttt{cookies(N, A)} - denna funktion kommer anropas exakt en gång av domaren.
+  \begin{itemize}
+    \item \texttt{N}: antalet olika kakor.
+    \item \texttt{A}: en vektor av längd $N$. $A[i] (0 \le i < N) $ innehåller antalet kakor av sort $i$. $A[i]$ är alltid positiv.
+    \item Funktionen ska returnera det totala antalet kakor som Anna har.
+  \end{itemize}
+\end{itemize}
+
+\section*{Delpoäng}
+Uppgiften består av ett antal grupper. Varje grupp ger ett visst antal poäng, och för att klara
+gruppen måste du klara samtliga testfall i gruppen.
+
+\begin{tabular}{|l|l|l|p{5cm}|}
+  \hline
+  \textbf{Grupp} & \textbf{Poäng} & \textbf{Gränser} \\ \hline
+  1 & 27 & $1 \le N \le 1\,000$, $A[i] = 1$. \\ \hline
+  2 & 34 & $1 \le N \le 1\,000$, $A[i] \le 100\,000$. \\ \hline
+  3 & 39 & $1 \le N \le 100\,000$, $A[i] \le 100\,000$. \\ \hline
+\end{tabular}
+
+\section*{Indataformat}
+Exempeldomaren läser indata i följande format:
+
+\begin{itemize}
+  \item rad 1: \texttt{N}
+  \item rad 2: \texttt{A[0], ..., A[N - 1]}
+\end{itemize}
+
+\section*{Utdataformat}
+Exempeldomaren skriver ut returvärdet av \texttt{cookies(A, N)}.
