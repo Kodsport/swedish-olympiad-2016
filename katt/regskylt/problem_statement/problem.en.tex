@@ -1,0 +1,64 @@
+\newcommand\version{v1}
+\problemname{Number Plates}
+Simon is in charge of a top secret spy network.
+Often when you're a spy, you are yourself spied upon.
+Simon's enemies usually spy on him from their cars, but unfortunately he doesn't know what cars they are in.
+
+For every car he sees, he records its number plate on his cell phone.
+If he's been seeing a certain number plate very often recently, there's a good chance the car is being used to spy on Simon.
+Thus, he needs you to implement a program that tells him how many times he's seen a certain number plate.
+
+However, there is an additional complication.
+Simon can sometimes only see a partial plate, for example when the car he is observing is moving very fast.
+In this case, he wants to know the total number of times he's seen all the plates that match the partial plate.
+
+A number plate is a string of exactly 6 digits $0-9$.
+
+\section*{Example}
+Say that the first place Simon sees is \texttt{000000}.
+The next plate is yet again \texttt{000000}, which he has seen once before.
+The third plate he sees is \texttt{001000}, which he has never seen.
+The fourth plate he sees is only partial: \texttt{00x000}, where \texttt{x} denotes a digit he didn't see.
+This can match both the plates he's previously seen, so in this case the answer is $3$.
+The fifth plate he sees is also partial: \texttt{00xx00}.
+Note that this partial plate matches partial plate Simon just saw - the partial plate should then be included as well (making the answer $4$).
+
+\section*{Task}
+Given all the plates (either partial or complete) that Simon sees, determine how many of the
+plates he've seen before could match the plate he just saw.
+
+You should implement this as the function \texttt{plate(P)}.
+\begin{itemize}
+  \item \texttt{plate(P)} - this function will be called for every plate that Simon see.
+  \begin{itemize}
+    \item \texttt{P}: an array with exactly 6 elements, where \texttt{P[i]} denotes the $i$:th digit in the plate Simon saw.
+      If he didn't see the $i$:th digit, it will instead be $-1$.
+    \item The function should return the number of previous plates that this one could match.
+  \end{itemize}
+\end{itemize}
+
+\section*{Subtasks}
+The problem consists of a number of subtasks. Each subtask gives some amount of points, and to pass
+the subtask you must pass all the test cases in the subtask.
+
+Let $P$ be the number of calls to \texttt{plate}.
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
+  1 & 9 & $P \le 100\,000$, $P[i] \not= -1$ \\ \hline
+  2 & 9 & $P \le 100\,000$, $P[i]$ is either $0$ or $-1$ \\ \hline
+  3 & 17 & $P \le 1\,000$ \\ \hline
+  4 & 14 & $P \le 100\,000$ \\ \hline
+\end{tabular}
+
+\section*{Input format}
+The sample judge reads input in the following format:
+
+\begin{itemize}
+  \item line $1$: \texttt{N} - the number of plates.
+  \item lines $2$ to $2 + N - 1$: \texttt{P[0] P[1] .. P[5]}
+\end{itemize}
+
+\section*{Output format}
+For every plate, the judge writes a line with the return value of \texttt{plate(P)}.
