@@ -1,2 +1,2 @@
 #!/bin/bash
-javac Main.java kakor.java
+javac grader.java kakor.java

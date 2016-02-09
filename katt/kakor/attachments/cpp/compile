@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ -Wall -std=gnu++11 kakor.cpp main.cpp -o kakor
+g++ -static -O2 -std=c++11 -o kakor grader.cpp kakor.cpp

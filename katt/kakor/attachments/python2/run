@@ -1,2 +1,2 @@
 #!/bin/bash
-python2 main.py
+python2 grader.py
