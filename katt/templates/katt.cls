@@ -182,8 +182,7 @@
     \newread\ps@timelimitfile
     \openin\ps@timelimitfile=#2/.timelimit
     \read\ps@timelimitfile to\ps@timelimit
-    \textbf{Time limit:\ps@formattime{\ps@timelimit}}
-    $\mid$ 
+    \textbf{Time limit:\ps@formattime{\ps@timelimit}}$\mid$ 
     \newread\ps@memlimitfile
     \openin\ps@memlimitfile=#2/.memlimit
     \read\ps@memlimitfile to\ps@memlimit
@@ -296,7 +295,7 @@
     \fancyfoot[L]{
       \emph{
         \ifx\@licenseblurb\@empty\relax\else
-        \\\@licenseblurb
+        \@licenseblurb
         \fi
       }
     }

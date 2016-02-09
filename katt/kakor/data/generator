@@ -1,0 +1,30 @@
+#!/bin/bash
+PPATH=$(realpath ..)
+. ../../testdata_tools/gen.sh
+
+setup_dirs
+
+use_solution ../kakor_js.cpp
+
+compile random_generator.py # Arguments: n max_a seed
+
+samplegroup
+sample sample
+
+group one 27
+tc one-mid random_generator 500 1
+tc one-max random_generator 1000 1
+
+group normal 34
+include_group one
+tc rand-mid random_generator 500 100000
+tc rand-max random_generator 1000 100000
+
+group overflow 39
+include_group normal
+tc overflow-mid random_generator 50000 100000
+tc overflow-max random_generator 100000 100000
+
+generate_grader
+generate_cms
+cleanup_programs

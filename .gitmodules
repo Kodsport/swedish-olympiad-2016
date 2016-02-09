@@ -1,3 +1,7 @@
 [submodule "final/testdata_tools"]
 	path = final/testdata_tools
 	url = git@github.com:jsannemo/testdata_tools.git
+
+[submodule "katt/testdata_tools"]
+	path = katt/testdata_tools
+	url = git@github.com:jsannemo/testdata_tools.git

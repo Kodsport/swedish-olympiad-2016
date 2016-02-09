@@ -54,14 +54,16 @@ implement the functions \texttt{init(N, L, P)}, \texttt{jump(A, B)}, and \texttt
 The problem consists of a number of subtasks. Each subtask gives some amount of points, and to pass
 the subtask you must pass all the test cases in the subtask.
 
+Let $J$ be the number of calls to \texttt{jump} and $S$ the number of calls to \texttt{score}.
+
 \begin{tabular}{|l|l|l|}
   \hline
   \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
-  1 & 9 & $1 \le N \le 1\,000$, at most $1\,000$ calls to \texttt{jump} and \texttt{score} will be made. \\ \hline
-  2 & 17 & $1 \le N \le 100\,000$, no calls to \texttt{jump} and at most $1$ call to \texttt{score} will be made. \\ \hline
-  3 & 14 & $1 \le N \le 10^9$, no calls to \texttt{jump} and at most $1$ call to \texttt{score} will be made. \\ \hline
-  4 & 38 & $1 \le N \le 100\,000$, at most $100\,000$ calls to \texttt{jump} and \texttt{score} will be made. \\ \hline
-  5 & 22 & $1 \le N \le 10^9$, at most $100\,000$ calls to \texttt{jump} and \texttt{score} will be made. \\ \hline
+  1 & 9 & $1 \le N, L \le 1\,000$,  $S + J \le 2\,000$ \\ \hline
+  2 & 17 & $1 \le N, L \le 100\,000$, $J = 0$, $S = 1$ \\ \hline
+  3 & 14 & $1 \le N \le 100\,000$, $1 \le N \le 10^9$, $J = 0$, $S = 1$ \\ \hline
+  4 & 38 & $1 \le N, L \le 100\,000$, $S + J \le 200\,000$ \\ \hline
+  5 & 22 & $1 \le N \le 100\,000$, $1 \le N \le 10^9$, $S + J \le 200\,000$ \\ \hline
 \end{tabular}
 
 \section*{Input format}
