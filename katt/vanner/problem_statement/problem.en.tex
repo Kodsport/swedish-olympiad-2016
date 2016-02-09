@@ -1,9 +1,9 @@
 \newcommand\version{v1}
 \problemname{Friends}
-$N$ friends are playing a game. Each friend stands at some integer coordinates between $0$ and $L - 1$, at most one friend on each
-coordinate. At each step of the game, one friend jumps to a new (non-occupied) location.
+$N$ friends are playing a game. The game is played on a row of $L$ squares, where squares $i$ and $i+1$ are adjacent to each other. At most one friend stand on each square.
+At each step of the game, one friend jumps to a new (non-occupied) location.
 
-After completion of the jump, the \emph{score} of the game is the number of friends who have a friend either
+In any moment of the game, the \emph{score} of the game is the number of friends who have a friend either
 immediately to the right or immediately to the left. At various times during the game,
 the friends wonder what their current score is.
 
@@ -25,7 +25,7 @@ still have someone next to them, so the score is still $3$.
 \end{figure}
 
 \section*{Task}
-You will get all the jumps in the game, one by one. At some point, the friends will ask what the current score is. Your task is to
+You will get all the jumps in the game, one by one. At some points, the friends will ask what the current score is. Your task is to
 implement the functions \texttt{init(N, L, P)}, \texttt{jump(A, B)}, and \texttt{score()}:
 \begin{itemize}
   \item \texttt{init(N, L, P)} - this function will be called exactly once by the judge, at the start of the game.
@@ -72,7 +72,7 @@ The sample judge reads input in the following format:
 \begin{itemize}
   \item line $1$: \texttt{N L Q}
   \item line $2$: \texttt{P[0] P[1] .. P[N - 1]}
-  \item lines $2$ to $2 + Q - 1$: each line represents either a jump or a score question.
+  \item lines $3$ to $3 + Q - 1$: each line represents either a jump or a score question.
     If the line is \texttt{0 A B}, a jump from $A$ to $B$ is to be made, and if the line is \texttt{1} a scoring question is to be made.
 \end{itemize}
 
