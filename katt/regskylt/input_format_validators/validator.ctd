@@ -1,0 +1,11 @@
+INT(1, 100000, n)
+NEWLINE
+
+REP(n)
+	REP(6, SPACE)
+		INT(-1, 9)
+	END
+	NEWLINE
+END
+
+EOF
