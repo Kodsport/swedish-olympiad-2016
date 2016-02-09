@@ -1,11 +1,12 @@
 #include "vanner.h"
 #include <cstdio>
+#include <cassert>
 
 int main() {
   int N, L, Q;
-  scanf("%d", &N);
+  scanf("%d%d%d", &N, &L, &Q);
   int P[N];
-  for (int i = 0; i < N; ++i) scanf("%d", A + i);
+  for (int i = 0; i < N; ++i) scanf("%d", P + i);
   init(N, L, P);
   for (int i = 0; i < Q; ++i) {
     int type;
@@ -15,8 +16,7 @@ int main() {
       scanf("%d%d", &A, &B);
       jump(A, B);
     }
-    else if (type == 1) printf("%d", score());
+    else if (type == 1) printf("%d\n", score());
     else assert(false && "Invalid query type");
   }
-  printf("%lld\n", cookies(N, A));
 }

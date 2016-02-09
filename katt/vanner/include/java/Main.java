@@ -12,11 +12,11 @@ public class Main {
     String[] pStr = r.readLine().split(" ");
     int[] P = new int[N];
     for (int i = 0; i < N; ++i) {
-      A[i] = Integer.parseInt(pStr[i]);
+      P[i] = Integer.parseInt(pStr[i]);
     }
     vanner.init(N, L, P);
     for (int i = 0; i < Q; ++i) {
-      String[] q = r.readline().split(" ");
+      String[] q = r.readLine().split(" ");
       if (q[0].equals("1")) w.println(vanner.score());
       else {
         int A = Integer.parseInt(q[1]),
