@@ -20,7 +20,8 @@ int guess(const string& g) {
 }
 
 int main() {
-	cin.sync_with_stdio(false);
+	cin.sync_with_stdio(0);
+	cin.tie(0);
 	cin >> N;
 	string g(N, '0');
 	int cor = guess(g);
@@ -28,6 +29,7 @@ int main() {
 		g[i] = '1';
 		int cor2 = guess(g);
 		if (cor2 < cor) g[i] = '0';
+		else cor = cor2;
 	}
 	assert(false);
 }

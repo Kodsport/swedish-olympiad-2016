@@ -27,7 +27,7 @@ function group2 {
 	case=$3
 	mkdir -p secret/$groupname
 	echo "grading: custom
-	grader_flags: all $points" > secret/$groupname/testdata.yaml
+grader_flags: all $points" > secret/$groupname/testdata.yaml
 }
 
 function testcase {
