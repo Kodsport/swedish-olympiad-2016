@@ -1,14 +1,10 @@
 #include <bits/stdc++.h>
+#include "magic.h"
 using namespace std;
 
 typedef pair<int, int> pii;
 typedef vector<int> vi;
 #define rep(i,f,t) for (int i = f; i < t; ++i)
-
-static std::vector<int> output;
-void trick(int rabbits) {
-	output.push_back(rabbits);
-}
 
 int magic_score(int N, int K, int L[], int R[]) {
 	priority_queue<pii, vector<pii>, greater<pii> > ds;
@@ -89,26 +85,4 @@ int magic_score(int N, int K, int L[], int R[]) {
 	assert(totscore == best);
 
 	return best;
-}
-
-int main() {
-	int N, K;
-	ignore = scanf("%d%d", &N, &K);
-	vi L(N), R(N);
-	for (int i = 0; i < N; i++)
-		ignore = scanf("%d", &L[i]);
-	for (int i = 0; i < N; i++)
-		ignore = scanf("%d", &R[i]);
-	output.reserve(N);
-	int sol = magic_score(N, K, L.data(), R.data());
-	if ((int)output.size() != N) {
-		printf("fail, %d tricks", (int)output.size());
-	} else {
-		printf("%d\n", sol);
-		for (int i = 0; i < N; i++) {
-			if (i != 0) putchar(' ');
-			printf("%d", output[i]);
-		}
-		puts("");
-	}
 }
