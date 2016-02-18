@@ -1,0 +1,14 @@
+INT(1, 1000, n)
+SPACE
+INT(1, 1000, k)
+NEWLINE
+REPI(i, n, SPACE)
+	INT(-1000000, 1000000, l[i])
+END
+NEWLINE
+REPI(i, n, SPACE)
+	INT(l[i], 1000000, r[i])
+	ASSERT((l[i] + r[i]) % 2 == 0)
+END
+NEWLINE
+EOF
