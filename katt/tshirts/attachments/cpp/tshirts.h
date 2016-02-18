@@ -1,2 +1,1 @@
-#include <vector>
-int tshirt(int N, std::vector<int> L, std::vector<int> H, std::vector<int> T);
+int tshirt(int N, int L[], int H[], int T[]);

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int tshirt(int N, vector<int> L, vector<int> H, vector<int> T) {
+int tshirt(int N, int L[], int H[], int T[]) {
     vector<pair<int,int> > ev;
     for (int i = 0; i < N; i++) {
         ev.push_back(make_pair(L[i], -H[i]));
