@@ -25,7 +25,7 @@ int alternating_path(int left) {
     return 0;
 }
 
-int tshirt(int N, vector<int> L, vector<int> H, vector<int> T) {
+int tshirt(int N, int L[], int H[], int T[]) {
     adj = new vector<int>[N];
     done = new bool[N];
     owner = new int[N];
@@ -51,18 +51,21 @@ int tshirt(int N, vector<int> L, vector<int> H, vector<int> T) {
     return ans;
 }
 
+int inputL[100000],
+    inputH[100000],
+    inputT[100000];
+
 int main() {
     int N;
     ignore = scanf("%d", &N);
-    vector<int> L(N), H(N), T(N);
     for (int i = 0; i < N; ++i) {
-        ignore = scanf("%d", &L[i]);
+        ignore = scanf("%d", &inputL[i]);
     }
     for (int i = 0; i < N; ++i) {
-        ignore = scanf("%d", &H[i]);
+        ignore = scanf("%d", &inputH[i]);
     }
     for (int i = 0; i < N; ++i) {
-        ignore = scanf("%d", &T[i]);
+        ignore = scanf("%d", &inputT[i]);
     }
-    printf("%d\n", tshirt(N, L, H, T));
+    printf("%d\n", tshirt(N, inputL, inputH, inputT));
 }

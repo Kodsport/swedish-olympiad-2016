@@ -1,6 +1,3 @@
-#include <vector>
-using namespace std;
-
-int tshirt(int N, vector<int> L, vector<int> H, vector<int> T) {
+int tshirt(int N, int L[], int H[], int T[]) {
 	return N;
 }
