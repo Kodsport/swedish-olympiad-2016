@@ -1,53 +1,47 @@
 \newcommand\version{v1}
-\problemname{Vänner}
-$N$ vänner spelar ett spel. Spelet spelas på en rad med $L$ kvadrater, där kvadrat $i$ och $i+1$ är brevid varandra. Högst en vän står på varje kvadrat.
-I varje drag i spelet hoppar en vän från sin kvadrat till en ny (tom) kvadrat.
+\problemname{T-shirts}
+Under PO-finalen får varje av de $N$ deltagarna en t-shirt. Domarna har dock en tendens att vara lite
+stressade med sistaminutenändringar till problemen (men bara ändringar -- domarna väntar aldrig
+till dagen innan tävlingen med att göra ett nytt problem).
 
-Under varje tidpunkt i spelet är vännernas \emph{poäng} antalet vänner som har en vän antingen i rutan direkt till vänster eller rutan direkt till höger om vännen själv. Vid vissa tidpunkter kommer vännerna fråga vad deras nuvarande poäng är.
+Detta betyder att när domarna beställer t-shirts kanske de inte tittar \emph{jättenoga} på vilka
+t-shirtstorlekar deltagarna har. När allt kommer omkring, vem kan faktiskt
+skilja på en \texttt{XS}-t-shirt och en \texttt{XL}-t-shirt. Domarna kan det uppenbarligen inte, men
+det verkar som att de tävlanden kan när de sätter på sig sina nya t-shirts.
+Eftersom domarna aldrig lär sig att planera ordentligt kommer detta säkerligen vara ett problem nästa år också.
+Men just nu är det \emph{ditt} problem.
+
+Varje tävlanden har en föredragen storlek, men de kan faktiskt ha t-shirts i ett visst interval av storlekar.
+Mer specifikt kan den $i$:te tävlanden (noll-indexerat) bära en t-shirt som har minst storlek $L[i]$ och högst
+storlek $H[i]$ (båda gränser inklusive).
+Här har varje storlek blivit tilldelat ett heltal, så att ett större tal innebär en större storlek.
+Din uppgift är att tilldela t-shirts till deltagarna, så att så många deltagare som möjligt får en
+t-shirt som hen kan ha på sig. Domarna har beställt exakt $N$ t-shirts, och storleken på dend $i$:te t-shirten
+är $T[i]$.
 
 \section*{Exempel}
-Antag att vi har $N = 3$ vänner som spelar på en av $L = 7$ kvadrater. Ursprungligen står dessa på platserna $1, 3, 4$. Poängen för denna position är $2$, eftersom vännerna på position $3$ och $4$ står brevid varandra.
+Vi har $N = 3$ deltagare. Den första deltagaren kan ha t-shirts i storlekar mellan $3$ och $7$, 
+den andra i storlekar mellan $3$ och $5$, och den sista tävlanden kan bara ha en t-shirt av storlek $6$.
 
-Det första hoppet är från position $4$ till $2$, vilket ger oss positionerna $1, 2, 3$. I denna position har alla vänner någon brevid sig, så poängen är 3.
-
-Det andra och sista hoppet är från $3$ till $0$, vilket resulterar i positionerna $0, 1, 2$. Alla vänner har fortfarande någon brevid sig, så poängen är fortfarande $3$.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sample.png}
-  \caption{Illustration av exemplet}
-\end{figure}
+De tre t-shirtarna har storlekarna $4, 6, 8$. Eftersom ingen kan bära den sista t-shirten kan högst
+två tävlanden få t-shirts. Vi kan också tilldela så många t-shirts, till exempel genom att ge den
+första t-shirten (storlek $4$) till den första tävlanden, och den andra t-shirten (storlek $6$) till den
+sista tävlanden. Svaret är således 2.
 
 \section*{Uppgift}
-Du kommer få samtliga hopp som görs i spelet, en efter en. Vid vissa tidpunkter kommer vännerna fråga vad deras nuvarande poäng är. Din uppgift är att implementera funktionerna 
-\texttt{init(N, L, P)}, \texttt{jump(A, B)}, and \texttt{score()}:
+Din uppgift är att beräkna det maximala antalet deltagare som kan få en t-shirt som hen kan ha på sig.
+Du ska implementera funktionen \texttt{tshirt(N, L, H, T)}.
 
-\begin{itemize}
-  \item \texttt{init(N, L, P)} - denna funktion anropas exakt en gång av domaren, i början av spelet.
+\begin{itemize} 
+  \item \texttt{tshirt(N, L, H, T)} - denna funktion kommer anropas exakt en gång av domaren.
   \begin{itemize}
-    \item \texttt{N}: antalet vänner som spelar.
-    \item \texttt{L}: antalet kvadrater i spelet.
-    \item \texttt{P}: en vektor med $N$ element. \texttt{P[i]} ($0 \le i < N$) innehåller den ursprungliga
-      positionen av den $i$:te vännen.
-    \item Funktionen ska inte returnera något.
+    \item \texttt{N}: ett heltal - antalet tävlanden (och t-shirts).
+    \item \texttt{L}: en array med $N$ heltal. \texttt{L[i]} ($0 \le i < N$) är den minsta storleken den $i$:te tävlanden kan ha på sig.
+    \item \texttt{H}: en array med $N$ heltal. \texttt{H[i]} ($0 \le i < N$) är den största storleken den $i$:te tävlanden kan ha på sig.
+    \item \texttt{T}: en array med $N$ heltal. \texttt{H[i]} ($0 \le i < N$) är storleken på den $i$:te t-shirten.
+    \item $0 \le L[i] \le H[i] \le \max(T)$, där $\max(T)$ betecknar det största värdet i arrayen $T$.
+    \item Funktionen ska returnera ett heltal - det största antalet tävlanden som kan få en t-shirt tilldelad till sig.
   \end{itemize}
-
-  \item \texttt{jump(A, B)} - denna funktion anropas en gång för varje hopp, i den ordningen hoppen görs.
-  \begin{itemize}
-    \item \texttt{A}: positionen som vännen hoppar från 
-      ($0 \le A < L$).
-      Denna position innehåller alltid en vän när hoppet görs.
-    \item \texttt{B}: positionen som vännen hoppar till
-      ($0 \le B < L$).
-      Denna position innehåller aldrig en vän när hoppet görs.
-    \item Funktionen ska inte returnera något.
-  \end{itemize}
-
-  \item \texttt{score()} - denan funktion anropas när vännerna vill veta deras nuvarande poäng.
-  \begin{itemize}
-    \item Funktionen ska returnera den nuvarande poängen i spelet.
-  \end{itemize}
-
 \end{itemize}
 
 
@@ -61,22 +55,22 @@ Låt $J$ vara antalet anrop till \texttt{jump} och $S$ antalet anrop till \textt
 \begin{tabular}{|l|l|l|}
   \hline
   \textbf{Grupp} & \textbf{Poäng} & \textbf{Gränser} \\ \hline
-  1 & 9 & $1 \le N, L \le 1\,000$,  $S + J \le 2\,000$ \\ \hline
-  2 & 17 & $1 \le N, L \le 100\,000$, $J = 0$, $S = 1$ \\ \hline
-  3 & 14 & $1 \le N \le 100\,000$, $1 \le N \le 10^9$, $J = 0$, $S = 1$ \\ \hline
-  4 & 38 & $1 \le N, L \le 100\,000$, $S + J \le 200\,000$ \\ \hline
-  5 & 22 & $1 \le N \le 100\,000$, $1 \le N \le 10^9$, $S + J \le 200\,000$ \\ \hline
+  1 & 7 & $1 \le N \le 10$, $0 \le T[i] \le 1\,000$ \\ \hline
+  2 & 24 & $1 \le N \le 1\,000$, $0 \le T[i] \le 1\,000$ \\ \hline
+  3 & 13 & $1 \le N \le 100\,000$, $0 \le T[i] \le 1$ \\ \hline
+  4 & 37 & $1 \le N \le 100\,000$, $0 \le T[i] \le 100,000$ \\ \hline
+  5 & 19 & $1 \le N \le 100\,000$, $0 \le T[i] \le 10^9$ \\ \hline
 \end{tabular}
 
 \section*{Indataformat}
 Exempeldomaren läser indata i följande format:
 
 \begin{itemize}
-  \item rad 1: \texttt{N L Q}
-  \item rad 2: \texttt{P[0] P[1] ... P[N - 1]}
-  \item rad $3$ till $3 + Q - 1$: varje rad representerar antingen ett hopp eller en fråga om poängen.
-    Om raden är \texttt{0 A B} ska ett hopp från $A$ till $B$ göras. Om raden är \texttt{1} frågar vännerna om poängen.
+  \item rad 1: \texttt{N}
+  \item rad 2: \texttt{L[0] L[1] ... L[N - 1]}
+  \item rad 3: \texttt{H[0] H[1] ... H[N - 1]}
+  \item rad 4: \texttt{T[0] T[1] ... T[N - 1]}
 \end{itemize}
 
 \section*{Utdataformat}
-För varje fråga om poängen skriver exempeldomaren ut returvärdet av \texttt{score()}
+Exempeldomaren skriver ut en enda rad med returvärdet av \texttt{tshirt(N, L, H, T)}.
