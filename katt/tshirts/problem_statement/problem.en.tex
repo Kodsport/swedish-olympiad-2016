@@ -1,6 +1,6 @@
 \newcommand\version{v1}
 \problemname{T-shirts}
-During the Programming Olympiad finals, each of the $N$ contestant is always given a t-shirt as is customary. However, the judges
+During the Programming Olympiad finals, each of the $N$ contestants is always given a t-shirt as is customary. However, the judges
 are sometimes a bit stressed out with making last minute changes to the problem sets (only changes, mind you -- the judges
 never wait until the day before the contest to make a problem).
 
@@ -9,11 +9,11 @@ sizes the contestants have. After all, who can distinguish
 a size \texttt{XS} t-shirt from an \texttt{XL} t-shirt? The judges certainly couldn't, but it appears that the contestants can when they try putting their new t-shirts on. 
 Since the judges never learn to plan properly, this will surely be a problem next year as well. But right now it is \emph{your} problem.
 
-While each contestant have a preferred size, they can wear t-shirts in an interval of sizes. More specifically,
+While each contestant has a preferred size, they can wear t-shirts in an interval of sizes. More specifically,
 the $i$:th contestant (starting from 0) can wear a t-shirt in any size at least $L[i]$ but at most $H[i]$ (both limits inclusive). 
 Here, each size has been assigned an integer so that a higher integer means a larger size.
 Your task is to assign t-shirts to the contestants, so that as many contestants as possible will get a t-shirt
-that he or she can wear. There judges have ordered exactly $N$ t-shirts, and the size of the $i$:th t-shirt is $T[i]$.
+that he or she can wear. The judges have ordered exactly $N$ t-shirts, and the size of the $i$:th t-shirt is $T[i]$.
 
 \section*{Example}
 There are $N = 3$ contestants. The first contestant can wear t-shirts between sizes $3$ and $7$,
@@ -63,4 +63,4 @@ The sample judge reads input in the following format:
 \end{itemize}
 
 \section*{Output format}
-The judge writes a single line containing a line with the return value of \texttt{tshirt(N, L, H, T)}.
+The judge writes a single line containing the return value of \texttt{tshirt(N, L, H, T)}.
