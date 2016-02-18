@@ -6,11 +6,11 @@ In each round, Mårten uses his magic to perform one of two tricks: either he ma
 some rabbits appear, or he sabotages his opponents' tricks by making some of
 their rabbits disappear. He can also choose to do neither.
 
-For each rabbit Mårten makes appear or disappear, he must use 1 magicks.
+For each rabbit Mårten makes appear or disappear, he must use 1 magick.
 In the beginning of the show, Mårten has $K$ magicks. When he has run out
 of magicks, he can no longer perform a trick.
 
-The scoring of the competition is easy. In each round, let $x$ the
+The scoring of the competition is easy. In each round, let $x$ be the
 number of rabbits Mårten made either appear or disappear, where $x$ is negative if he made
 the rabbits disappear and positive if he made them appear. If he didn't perform a trick,
 $x$ will be zero.
@@ -37,7 +37,7 @@ In total, he used $0 + 2 + 0 + 2 = 4$ magicks, leaving an unused magick after th
 Given all the rounds of the competition, you are to determine the maximum score Mårten can get,
 and construct instructions for him.
 
-You should implement the function \texttt{magic\_score(N, K, L, R)} and \texttt{play(X)}.
+You should implement the function \texttt{magic\_score(N, K, L, R)}.
 \begin{itemize}
   \item \texttt{magic\_score(N, K, L, R)} - this function will be called exactly once by the judge.
   \begin{itemize}
@@ -69,10 +69,12 @@ Additionally, you should call the function \texttt{trick(X)} to tell Mårten wha
 The problem consists of a number of subtasks. Each subtask gives some amount of points, and to pass
 the subtask you must pass all the test cases in the subtask.
 
-For each subtask, if the return value of \texttt{magic\_score(N, K, L, R)} is correct, but your calls to \texttt{play(X)}
+For each subtask, if the return value of \texttt{magic\_score(N, K, L, R)} is correct, but your calls to \texttt{trick(X)}
 is not a valid sequence giving the maximum score, you will get $75\%$ of the score of the subtask. This will show up as
 \texttt{Partially correct} on these test cases. \textbf{Note that you always must make exactly $N$ calls to \texttt{trick(X)},
 even if the sequence is incorrect}.
+
+TODO limits on K
 
 \begin{tabular}{|l|l|l|}
   \hline
