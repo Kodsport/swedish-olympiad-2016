@@ -21,7 +21,7 @@ public class grader {
 		lib.out = new int[N];
 		int res = magic.magic_score(N, K, L, R);
 		if (lib.outcount != N) {
-			System.out.println("fail, " + lib.outcount + " tricks");
+			System.out.println("error: tried to perform " + lib.outcount + " tricks, should perform " + N);
 		} else {
 			System.out.println(res);
 			for (int s : lib.out)

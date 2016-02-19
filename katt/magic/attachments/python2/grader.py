@@ -1,5 +1,5 @@
-import magic
 import grader
+import magic
 import sys
 
 _tricks = []
