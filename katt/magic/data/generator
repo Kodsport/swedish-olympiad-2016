@@ -13,15 +13,15 @@ sample 1
 
 # N <= 100
 group small 20
-tc small-1 random_generator 100 1000 ''
-tc small-2 random_generator 100 1000 ''
-tc small-3 random_generator 100 1000 ''
-tc small-4 random_generator 100 1000 ''
-tc small-5 random_generator 100 1000 ''
-tc small-6 random_generator 100 1000 ''
-tc small-7 random_generator 100 1000 ''
-tc small-nn-1 random_generator 100 1000 nonneg
-tc small-two-1 random_generator 100 1000 two
+tc small-1 random_generator 100 100 ''
+tc small-2 random_generator 100 100 ''
+tc small-3 random_generator 100 100 ''
+tc small-4 random_generator 100 100 ''
+tc small-5 random_generator 100 100 ''
+tc small-6 random_generator 100 100 ''
+tc small-7 random_generator 100 100 ''
+tc small-nn-1 random_generator 100 100 nonneg
+tc small-two-1 random_generator 100 100 two
 
 # N <= 1000, L[i] >= 0
 group nonneg 20

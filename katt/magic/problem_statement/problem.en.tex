@@ -50,7 +50,6 @@ You should implement the function \texttt{magic\_score(N, K, L, R)}.
     \item \texttt{L}: an array with $N$ elements, containing the values \texttt{L[i]} as descriped in the task.
     \item \texttt{R}: an array with $N$ elements, containing the values \texttt{R[i]} as descriped in the task.
     \item $-1\,000\,000 \le L[i] \le R[i] \le 1\,000\,000$
-    \item $K \le 1\,000$
     \item $L[i] + R[i]$ is even
     \item The function should return the maximum score Mårten can obtain.
   \end{itemize}
@@ -62,7 +61,7 @@ Additionally, you should call the function \texttt{trick(X)} to tell Mårten wha
   \item \texttt{trick(X)} - this function should be called by your program once for every round. The $i$:th call should give the instruction
     to Mårten in the $i$:th round if Mårten wants to play optimally.
   \begin{itemize}
-    \item \texttt{X}: this parameter should give the value $S_i$ of each of Mårtens rounds.
+    \item \texttt{X}: this parameter should give the value $S_i$ of each of Mårten's rounds.
       If Mårten should add rabbits,
       this value should be the number of rabbits Mårten should add. If he should remove rabbits, it should be the negative
       value of the number of rabbits he removes. If he should not do any trick in the round, the value should be $0$. 
@@ -82,10 +81,10 @@ even if the sequence is incorrect}.
 \begin{tabular}{|l|l|l|}
   \hline
   \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
-  1 & 20 & $N \le 100$ \\ \hline
-  2 & 20 & $N \le 1\,000$ $L[i] \ge 0$\\ \hline
-  3 & 20 & $N \le 1\,000$, $R[i] = 2 + L[i]$ \\ \hline
-  4 & 40 & $N \le 1\,000$ \\ \hline
+  1 & 20 & $N \le 100$, $K \le 100$ \\ \hline
+  2 & 20 & $N \le 1\,000$, $K \le 1,000$ $L[i] \ge 0$\\ \hline
+  3 & 20 & $N \le 1\,000$, $K \le 1,000$, $R[i] = 2 + L[i]$ \\ \hline
+  4 & 40 & $N \le 1\,000$, $K \le 1,000$ \\ \hline
 \end{tabular}
 
 \section*{Input format}
