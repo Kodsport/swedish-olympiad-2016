@@ -71,10 +71,13 @@ int magic_score(int N, int K, int L[], int R[]) {
 			// move g steps towards right or left
 			int x = (l+r <= 0 ? g : -g);
 			assert(l <= x && x <= r);
+			assert(-K <= x && x <= K);
 			trick(x);
 			totscore += abs((l + r) / 2 - x);
 		} else if (shouldUse[t]) {
-			int x = (l <= r ? l : r);
+			int x = (l > 0 ? l : r);
+			assert(abs(x) == min(abs(l), abs(r)));
+			assert(-K <= x && x <= K);
 			trick(x);
 			totscore += abs((l + r) / 2 - x);
 		} else {

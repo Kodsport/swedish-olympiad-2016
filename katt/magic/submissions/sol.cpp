@@ -60,13 +60,14 @@ int magic_score(int N, int K, int L[], int R[]) {
 		int t = ord[nu-1 - i];
 		if (used[curi]) {
 			curi -= di;
+			assert(curi >= 0);
 			shouldUse[t] = 1;
 		}
 	}
 	assert(curi == 0);
 	int gr = K - besti;
 
-	int totscore = 0;
+	int totscore = 0, totm = 0;
 	rep(t,0,N) {
 		int r = R[t], l = L[t];
 		if (l <= 0 && 0 <= r) {
@@ -75,10 +76,15 @@ int magic_score(int N, int K, int L[], int R[]) {
 			// move g steps towards right or left
 			int x = (l+r <= 0 ? g : -g);
 			assert(l <= x && x <= r);
+			assert(-K <= x && x <= K);
+			totm += abs(x);
 			trick(x);
 			totscore += abs((l + r) / 2 - x);
 		} else if (shouldUse[t]) {
-			int x = (l <= r ? l : r);
+			int x = (l > 0 ? l : r);
+			assert(abs(x) == min(abs(l), abs(r)));
+			assert(-K <= x && x <= K);
+			totm += abs(x);
 			trick(x);
 			totscore += abs((l + r) / 2 - x);
 		} else {
@@ -86,6 +92,7 @@ int magic_score(int N, int K, int L[], int R[]) {
 		}
 	}
 
+	assert(totm <= K);
 	assert(totscore == best);
 
 	return best;
