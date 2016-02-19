@@ -1,82 +1,105 @@
-\newcommand\version{v1}
-\problemname{Vänner}
-$N$ vänner spelar ett spel. Spelet spelas på en rad med $L$ kvadrater, där kvadrat $i$ och $i+1$ är brevid varandra. Högst en vän står på varje kvadrat.
-I varje drag i spelet hoppar en vän från sin kvadrat till en ny (tom) kvadrat.
+\newcommand\version{v2}
+\problemname{Magishow}
+Magikern Mårten håller just nu på att uppträda i en magnifik magitävling-
+Tävlingen består av $N$ rundor.
+I varje runda använder Mårten sin magi för att göra ett av två trick: antingen trollar
+han fram $x$ kaniner, eller så saboterar han ett av sina motståndares trick genom att
+trolla bort $y$ av deras kaniner. Han kan också välja att inte göra något.
 
-Under varje tidpunkt i spelet är vännernas \emph{poäng} antalet vänner som har en vän antingen i rutan direkt till vänster eller rutan direkt till höger om vännen själv. Vid vissa tidpunkter kommer vännerna fråga vad deras nuvarande poäng är.
+För varje kanin som Mårten trollar fram eller trolla bort måste han använda 1 magi.
+I början av showen har han $K$ magi. När han har slut på magi så kan han inte längre
+utföra trick.
+
+Poängsättningen i tävlingen är enkel. I runda $i$, låt
+\[ S_i = \begin*{align}{ll}
+  x & \text{ om Mårten trollade fram $x$ kaniner } \\
+  -y & \text{ om Mårten trollade bort $y$ kaniner } \\
+  0 & \text{ om Mårten inte utförde ett trick } \\
+\end{align}
+\]
+
+I runda $i$, om $S_i$ är i intervallet $[L[i], R[i]]$ där $L[i]$ och $R[i]$ är heltal specifika
+till runda $i$, så får han $|S_i \frac{L[i] + R[i]}{2}|$. Om $S_i$ är utanför intervallet
+får han istället $0$ poäng. Notera att Mårten endast kan utföra sin magi på hela kaniner,
+så $S_i$ kommer alltid att vara ett heltal.
+
+Mårtens totala poäng i tävlingen är summan av hans poäng för varje runda.
+Vad är den maximala poängen Mårten kan uppnå.
 
 \section*{Exempel}
-Antag att vi har $N = 3$ vänner som spelar på en av $L = 7$ kvadrater. Ursprungligen står dessa på platserna $1, 3, 4$. Poängen för denna position är $2$, eftersom vännerna på position $3$ och $4$ står brevid varandra.
+Betrakta en tävling med $N = 4$ rudnor, där Mårten har $K = 5$ magi i början av tävlingen.
+Intervallen för rundorna är $[3, 5]$ för första rundan, $[-2, 2]$ för andra rundan, $[-2, 0]$ för tredje rundan,
+och $[2, 6]$ för sista rundan.
 
-Det första hoppet är från position $4$ till $2$, vilket ger oss positionerna $1, 2, 3$. I denna position har alla vänner någon brevid sig, så poängen är 3.
+Mårtens optimala trick är då att i första rundan inte göra något ($0$ poäng), trolla bort två kaniner i andra rundan ($|-2 - 0 | = 2$ poäng),
+inte göra något i tredje rundan ($|0 - (-1)| = 1$ poäng) och trolla fram 2 kaniner i sista rundan ($|2 - 4| = 2$ poäng).
 
-Det andra och sista hoppet är från $3$ till $0$, vilket resulterar i positionerna $0, 1, 2$. Alla vänner har fortfarande någon brevid sig, så poängen är fortfarande $3$.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sample.png}
-  \caption{Illustration av exemplet}
-\end{figure}
+Totalt blir detta $0 + 2 + 1 + 2 = 5$ poäng, vilket är den bästa möjliga poängen. Notera att det finns flera optimala strategier i detta exempel.
+Totalt använde han $0 + 2 + 0 + 2 = 4$ magi, så Mårten har en magi över efter sista rundan.
 
 \section*{Uppgift}
-Du kommer få samtliga hopp som görs i spelet, en efter en. Vid vissa tidpunkter kommer vännerna fråga vad deras nuvarande poäng är. Din uppgift är att implementera funktionerna 
-\texttt{init(N, L, P)}, \texttt{jump(A, B)}, and \texttt{score()}:
+Givet alla rundorna i tävlingen, bestäm den maximala poängen Mårten kan få, och
+ge honom instruktioner för hur han uppnår den.
 
+Du ska implementera funktionen \texttt{magic\_score(N, K, L, R)}.
 \begin{itemize}
-  \item \texttt{init(N, L, P)} - denna funktion anropas exakt en gång av domaren, i början av spelet.
+  \item \texttt{magic\_score(N, K, L, R)} - denna funktion anrpoas exakt en gång av domaren.
   \begin{itemize}
-    \item \texttt{N}: antalet vänner som spelar.
-    \item \texttt{L}: antalet kvadrater i spelet.
-    \item \texttt{P}: en vektor med $N$ element. \texttt{P[i]} ($0 \le i < N$) innehåller den ursprungliga
-      positionen av den $i$:te vännen.
-    \item Funktionen ska inte returnera något.
-  \end{itemize}
-
-  \item \texttt{jump(A, B)} - denna funktion anropas en gång för varje hopp, i den ordningen hoppen görs.
-  \begin{itemize}
-    \item \texttt{A}: positionen som vännen hoppar från 
-      ($0 \le A < L$).
-      Denna position innehåller alltid en vän när hoppet görs.
-    \item \texttt{B}: positionen som vännen hoppar till
-      ($0 \le B < L$).
-      Denna position innehåller aldrig en vän när hoppet görs.
-    \item Funktionen ska inte returnera något.
-  \end{itemize}
-
-  \item \texttt{score()} - denan funktion anropas när vännerna vill veta deras nuvarande poäng.
-  \begin{itemize}
-    \item Funktionen ska returnera den nuvarande poängen i spelet.
+    \item \texttt{N}: antalet rundor i tävlingen.
+    \item \texttt{K}: mängden magi Mårten har i början av tävlingen.
+    \item \texttt{L}: en vektor med $N$ element, som innehåller värdena \texttt{L[i]} som beskrivs i uppgiften.
+    \item \texttt{R}: en vektor med $N$ element, som innehåller värdena \texttt{R[i]} som beskrivs i uppgiften.
+    \item $-1\,000\,000 \le L[i] \le R[i] \le 1\,000\,000$
+    \item $L[i] + R[i]$ är jämnt
+    \item Funktionen ska returnera den maximala poäng som Mårten kan få.
   \end{itemize}
 
 \end{itemize}
 
-
+Du ska dessutom anropa funktionen \texttt{trick(X)} för att berätta för Mårten vad han ska göra i varje runda.
+\begin{itemize}
+  \item \texttt{trick(X)} - denna funktion ska anropas en gång per runda av ditt program.
+    Det $i$:te anropet ska ge instruktionen till Mårten för den $i$:te rundan, om han ska spela optimalt.
+  \begin{itemize}
+    \item \texttt{X}: denna parameter ska ge värdet $S_i$ på varje av Mårtens rundor.
+      Om Mårten ska trolla fram kaniner,
+      så ska detta värde vara antalet kaniner Mårten ska lägga till. Om han ska trolla bort kaniner ska detta vara minus antalet kaniner Mårten trollade bort. 
+      Om han inte ska utföra något trick ska värdet vara $0$.
+    \item Funktionen har inget returvärde.
+  \end{itemize}
+\end{itemize}
 
 \section*{Delpoäng}
 Uppgiften består av ett antal grupper. Varje grupp ger ett visst antal poäng, och för att klara
 gruppen måste du klara samtliga testfall i gruppen.
 
-Låt $J$ vara antalet anrop till \texttt{jump} och $S$ antalet anrop till \texttt{score}.
+För varje delgrupp, om du svarar rätt returvärde på \texttt{magic\_score(N, K, L, R)} är rätt men dina anrop till \texttt{trick(X)}
+inte är en giltig sekvens som ger maximal poäng, så får du $75\%$ av gruppens poäng.
+Detta kommer synas som \texttt{Partially correct} on de testfall där så är fallet. \textbf{Notera att du alltid måste göra $N$ anrop till \texttt{trick(X)},
+även om sekvensen inte är korrekt}.
 
 \begin{tabular}{|l|l|l|}
   \hline
   \textbf{Grupp} & \textbf{Poäng} & \textbf{Gränser} \\ \hline
-  1 & 9 & $1 \le N, L \le 1\,000$,  $S + J \le 2\,000$ \\ \hline
-  2 & 17 & $1 \le N, L \le 100\,000$, $J = 0$, $S = 1$ \\ \hline
-  3 & 14 & $1 \le N \le 100\,000$, $1 \le N \le 10^9$, $J = 0$, $S = 1$ \\ \hline
-  4 & 38 & $1 \le N, L \le 100\,000$, $S + J \le 200\,000$ \\ \hline
-  5 & 22 & $1 \le N \le 100\,000$, $1 \le N \le 10^9$, $S + J \le 200\,000$ \\ \hline
+  1 & 20 & $N \le 100$ \\ \hline
+  2 & 20 & $N \le 1\,000$ $L[i] \ge 0$\\ \hline
+  3 & 20 & $N \le 1\,000$, $R[i] = 2 + L[i]$ \\ \hline
+  4 & 40 & $N \le 1\,000$ \\ \hline
 \end{tabular}
 
 \section*{Indataformat}
 Exempeldomaren läser indata i följande format:
 
 \begin{itemize}
-  \item rad 1: \texttt{N L Q}
-  \item rad 2: \texttt{P[0] P[1] ... P[N - 1]}
-  \item rad $3$ till $3 + Q - 1$: varje rad representerar antingen ett hopp eller en fråga om poängen.
-    Om raden är \texttt{0 A B} ska ett hopp från $A$ till $B$ göras. Om raden är \texttt{1} frågar vännerna om poängen.
+  \item rad $1$: \texttt{N K}
+  \item rad $2$: \texttt{L[0] L[1] .. L[N - 1]}
+  \item rad $3$: \texttt{R[0] R[1] .. R[N - 1]}
 \end{itemize}
 
 \section*{Utdataformat}
-För varje fråga om poängen skriver exempeldomaren ut returvärdet av \texttt{score()}
+Exempeldomaren skriver utdata på följande format:
+
+\begin{itemize}
+  \item rad $1$: returvärdet av \texttt{magic\_score(N, K, L, R)}
+  \item rad $2$: $N$ heltal, värdena som ges av anropen till \texttt{trick(X)} i ordning.
+\end{itemize}

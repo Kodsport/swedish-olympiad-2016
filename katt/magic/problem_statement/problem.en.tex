@@ -3,34 +3,38 @@
 Mårten the Magician is currently performing in a magnificent magic competition.
 The show consists of $N$ rounds.
 In each round, Mårten uses his magic to perform one of two tricks: either he makes
-some rabbits appear, or he sabotages his opponents' tricks by making some of
-their rabbits disappear. He can also choose to do neither.
+some number $x$ rabbits appear, or he sabotages his opponents' tricks by making some number
+$y$ of their rabbits disappear. He can also choose to do neither.
 
 For each rabbit Mårten makes appear or disappear, he must use 1 magick.
 In the beginning of the show, Mårten has $K$ magicks. When he has run out
 of magicks, he can no longer perform a trick.
 
-The scoring of the competition is easy. In each round, let $x$ be the
-number of rabbits Mårten made either appear or disappear, where $x$ is negative if he made
-the rabbits disappear and positive if he made them appear. If he didn't perform a trick,
-$x$ will be zero.
-In round $i$, if $x$ is in the interval $[L[i], R[i]]$ where $L[i]$ and $R[i]$ are integers specific
-to the round, he gets $|x - \frac{L[i] + R[i]}{2}|$ points. If $x$ is not in this interval,
-Mårten gets no score. Note that Mårten cannot perform his magic on fractional rabbits,
-thus $x$ must always be an integer.
+The scoring of the competition is easy. In the $i$:th round, let 
+\[ S_i = \begin*{align}{ll}
+  x & \text{ if Mårten made $x$ rabbits appear } \\
+  -y & \text{ if Mårten made $y$ rabbits disappear } \\
+  0 & \text{ if Mårten didn't perform a trick} \\
+\end{align}
+\]
+
+In round $i$, if $S_i$ is in the interval $[L[i], R[i]]$ where $L[i]$ and $R[i]$ are integers specific
+to the round, he gets $|S_i - \frac{L[i] + R[i]}{2}|$ points. If $S_i$ is outside this interval,
+Mårten gets $0$ points. Note that Mårten cannot perform his magic on fractional rabbits,
+thus $S_i$ will always be an integer.
 
 Mårten's total score in the competition is the sum of scores among all the rounds.
 What is the maximum score Mårten can get if he performs optimally?
 
 \section*{Example}
 Consider a competition with $N = 4$ rounds, where Mårten has $K = 5$ magicks at the start of the show.
-The round constants are $3, 5$ for the first round, $-2, 2$ for the second round, $-2, 0$ for the third
-round, and $2, 6$ for the last round.
+The round intervals are $[3, 5]$ for the first round, $[-2, 2]$ for the second round, $[-2, 0]$ for the third
+round, and $[2, 6]$ for the last round.
 
-The optimal play from Mårten is then to do nothing in the first round ($0$ points), remove two rabbits in the second ($|-2 - 0| = 2$ points, 
+The optimal play from Mårten is then to do nothing in the first round ($0$ points), remove two rabbits in the second ($|-2 - 0| = 2$ points), 
 do nothing in the third round ($|0 - (-1)| = 1$ point), and create 2 rabbits in the last round ($|2 - 4| = 2$ points).
 
-This totals $0 + 2 + 1 + 2 = 5$ points, which is maximal. Note that there are several optimal strategies in the example.
+This totals $0 + 2 + 1 + 2 = 5$ points, which is the best possible score. Note that there are several optimal strategies in the example.
 In total, he used $0 + 2 + 0 + 2 = 4$ magicks, leaving an unused magick after the last round.
 
 \section*{Task}
@@ -57,13 +61,13 @@ Additionally, you should call the function \texttt{trick(X)} to tell Mårten wha
   \item \texttt{trick(X)} - this function should be called by your program once for every round. The $i$:th call should give the instruction
     to Mårten in the $i$:th round if Mårten wants to play optimally.
   \begin{itemize}
-    \item \texttt{X}: this parameter should give the move $x$ Mårten should make in the round as described in the task. If Mårten should add rabbits,
+    \item \texttt{X}: this parameter should give the value $S_i$ of each of Mårtens rounds.
+      If Mårten should add rabbits,
       this value should be the number of rabbits Mårten should add. If he should remove rabbits, it should be the negative
       value of the number of rabbits he removes. If he should not do any trick in the round, the value should be $0$. 
     \item The function has no return value.
   \end{itemize}
 \end{itemize}
-
 
 \section*{Subtasks}
 The problem consists of a number of subtasks. Each subtask gives some amount of points, and to pass
@@ -73,8 +77,6 @@ For each subtask, if the return value of \texttt{magic\_score(N, K, L, R)} is co
 is not a valid sequence giving the maximum score, you will get $75\%$ of the score of the subtask. This will show up as
 \texttt{Partially correct} on these test cases. \textbf{Note that you always must make exactly $N$ calls to \texttt{trick(X)},
 even if the sequence is incorrect}.
-
-TODO limits on K
 
 \begin{tabular}{|l|l|l|}
   \hline
