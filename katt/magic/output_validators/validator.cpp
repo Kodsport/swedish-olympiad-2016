@@ -7,7 +7,7 @@ using namespace std;
 #define sz(x) (int)(x).size()
 typedef vector<int> vi;
 
-string output_dir;
+string input_file, output_dir, answer_file;
 
 void die(const string& msg) {
 	cout << msg << endl;
@@ -15,8 +15,8 @@ void die(const string& msg) {
     exit(43);
 }
 
-void accept(int score) {
-	ofstream(output_dir + "/score.txt") << score;
+void accept(double score) {
+	ofstream(output_dir + "/score.txt") << setprecision(2) << fixed << score;
     exit(42);
 }
 
@@ -33,12 +33,11 @@ int main(int argc, char** argv) {
 	cin.sync_with_stdio(0);
 	cin.tie(0);
 
-	int max_score = /* I dunno */ 20;
-	assert(max_score % 4 == 0);
-
+	input_file = argv[1];
+	answer_file = argv[2];
 	output_dir = argv[3];
 
-	ifstream fin(argv[1]);
+	ifstream fin(input_file);
 	fin.exceptions(cin.failbit | cin.badbit | cin.eofbit);
 	int N, K;
 	fin >> N >> K;
@@ -49,9 +48,11 @@ int main(int argc, char** argv) {
 	fin.close();
 
 	int answer;
-	fin.open(argv[2]);
+	fin.open(answer_file);
 	fin >> answer;
 
+	try {
+	cin.exceptions(cin.failbit | cin.badbit | cin.eofbit);
 	int output;
 	cin >> output;
 	if (output != answer)
@@ -61,18 +62,18 @@ int main(int argc, char** argv) {
 		cin >> trick[i];
 	assert_done(cin);
 
-	bool fail = false;
+	int fail = 0;
 	{
 	int moves = 0;
 	long long score = 0;
 	rep(i,0,N) {
 		int x = trick[i];
 		if (x < -K || K < x)
-			fail = true; // too many rabbits at once
+			fail = 1; // too many rabbits at once
 		else {
 			moves += abs(x);
 			if (moves > K)
-				fail = true; // too many rabbits in total
+				fail = 2; // too many rabbits in total
 			else {
 				int mid = (L[i] + R[i]) / 2;
 				if (L[i] <= x && x <= R[i])
@@ -80,12 +81,12 @@ int main(int argc, char** argv) {
 			}
 		}
 	}
-	if (score != output)
-		fail = true; // incorrect reconstruction
+	if (score != output && !fail)
+		fail = 3; // incorrect reconstruction
 	}
 
-	int score = max_score;
-	if (fail)
-		score = score * 3 / 4;
-	accept(score);
+	accept(fail ? 0.75 : 1.00);
+	} catch(...) {
+		die("IO failure");
+	}
 }
