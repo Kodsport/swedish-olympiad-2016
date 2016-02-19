@@ -47,6 +47,69 @@ def gen_random(N, mT):
 
     return (L,H,T)
 
+def gen_sim_random(N, mT, rand):
+    pq = []
+    ints = []
+    pts = []
+    pos = 0
+    while len(ints) < N or len(pts) < N:
+        add = int(round(random.expovariate(0.5)))
+        for i in range(add):
+            ints.append((pos,None))
+            pq.append(len(ints)-1)
+
+        rem = int(round(random.expovariate(0.5)))
+        for i in range(rem):
+            if pq:
+                at = random.randint(0,len(pq)-1)
+                pq[at],pq[-1] = pq[-1],pq[at]
+                r = pq.pop()
+                ints[r] = (ints[r][0], pos)
+            pts.append(pos)
+
+        pos += 1
+
+    ints = [ (a,pos-1 if b is None else b) for (a,b) in ints[:N] ]
+    pts = pts[:N]
+
+    assert pos <= mT+1
+    # print(pos)
+    sub = random_subdivision(pos, mT)
+    # print(sub)
+
+    L = [ sub[ints[i][0]][0] for i in range(N) ]
+    H = [ sub[ints[i][1]][1] for i in range(N) ]
+    if rand:
+        T = [ random.randint(0,mT) for i in range(N) ]
+    else:
+        T = [ random_point(*sub[pts[i]]) for i in range(N) ]
+    T[0] = mT
+
+    return (L,H,T)
+
+def gen_biased(N, mT, to):
+
+    L = []
+    H = []
+    T = []
+    for i in range(N):
+        if random.randint(0,1) == 0:
+            L.append(1-to)
+            H.append(1-to)
+        elif random.randint(0,1) == 0:
+            L.append(0)
+            H.append(1)
+        else:
+            L.append(to)
+            H.append(to)
+
+        if random.randint(0,2) <= 1:
+            T.append(to)
+        else:
+            T.append(1-to)
+
+    return (L,H,T)
+
 def gen_none(N, mT):
     assert 2*N <= (mT+1)
 
@@ -150,16 +213,21 @@ def shuffle_data(L,H,mT):
 
 if method == 'random':
     (L,H,T) = gen_random(N, mT)
+elif method == 'sim_random':
+    (L,H,T) = gen_sim_random(N, mT, False)
+elif method == 'sim_random2':
+    (L,H,T) = gen_sim_random(N, mT, True)
 elif method == 'none':
     (L,H,T) = gen_none(N, mT)
 elif method == 'all_unique':
     (L,H,T) = gen_all_unique(N, mT)
 elif method == 'dense':
     (L,H,T) = gen_dense(N, mT)
+elif method == 'biased0':
+    (L,H,T) = gen_biased(N, mT, 0)
+elif method == 'biased1':
+    (L,H,T) = gen_biased(N, mT, 1)
 else:
-    # TODO: implement other generators, like
-    #          - generates tests with more varying answers (i.e. not just
-    #            almost all or none)
     assert False
 
 shuffle_data(L,H,T)
