@@ -11,11 +11,11 @@ In the beginning of the show, Mårten has $K$ magicks. When he has run out
 of magicks, he can no longer perform a trick.
 
 The scoring of the competition is easy. In the $i$:th round, let 
-\[ S_i = \begin*{align}{ll}
+\[ S_i = \begin{cases}
   x & \text{ if Mårten made $x$ rabbits appear } \\
   -y & \text{ if Mårten made $y$ rabbits disappear } \\
-  0 & \text{ if Mårten didn't perform a trick} \\
-\end{align}
+  0 & \text{ if Mårten didn't perform a trick}
+\end{cases}
 \]
 
 In round $i$, if $S_i$ is in the interval $[L[i], R[i]]$ where $L[i]$ and $R[i]$ are integers specific
