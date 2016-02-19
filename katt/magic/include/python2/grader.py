@@ -17,5 +17,5 @@ def _grader_init():
 def trick(ans):
     _tricks.append(ans)
 
-if __name__ == "__main__":
+if __name__ != "__main__":
     grader._grader_init()

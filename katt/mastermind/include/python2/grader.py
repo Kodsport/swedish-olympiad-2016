@@ -19,5 +19,5 @@ def guess(ans):
         sys.exit(0)
     return res
 
-if __name__ == "__main__":
+if __name__ != "__main__":
     grader._grader_init()
