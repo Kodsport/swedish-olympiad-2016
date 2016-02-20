@@ -1,4 +1,4 @@
-#include "vanner.h"
+#include "friends.h"
 #include <cstdio>
 #include <cassert>
 
@@ -16,7 +16,7 @@ int main() {
       scanf("%d%d", &A, &B);
       jump(A, B);
     }
-    else if (type == 1) printf("%d\n", score());
+    else if (type == 1) printf("%lld\n", score());
     else assert(false && "Invalid query type");
   }
 }
