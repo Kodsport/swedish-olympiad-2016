@@ -26,18 +26,22 @@ class UnionFind:
 re1 = '''^(0|[1-9][0-9]*) (0|[1-9][0-9]*)$'''
 line = sys.stdin.readline() 
 assert re.match(re1, line)
-N, K = map(int, line.split())
-assert 2 <= N <= 100000
-assert 1 <= K <= N
+N, P = map(int, line.split())
+assert 1 <= K <= N <= 100000
 
 re2 = '''^(0|[1-9][0-9]*)( (0|[1-9][0-9]*))*$'''
 line1 = map(int, sys.stdin.readline().split(' '))
 line2 = map(int, sys.stdin.readline().split(' '))
-assert len(line1) == N-1
+line3 = map(int, sys.stdin.readline().split(' '))
+assert len(line1) == N
 assert len(line2) == N-1
+assert len(line3) == N-1
+
+for i in line1: assert abs(i) < 1000000000
+
 uf = UnionFind(N)
 for i in range(N-1):
-    uf.join(line1[i], line2[i])
+    uf.join(line2[i], line3[i])
 
 line = sys.stdin.readline()
 assert len(line) == 0
