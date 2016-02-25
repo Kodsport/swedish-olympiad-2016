@@ -7,7 +7,7 @@ typedef long long ll;
 
 vector<vector<int>> calls;
 
-void parts(int S, int R[]) {
+void part(int S, int R[]) {
 	calls.emplace_back(R, R + S);
 }
 
@@ -23,8 +23,7 @@ int main() {
 	for (auto& it : calls) {
 		printf("%lu", it.size());
 		for (size_t i = 0; i < it.size(); i++) {
-			if (i) printf(" ");
-			printf("%d", it[i]);
+			printf(" %d", it[i]);
 		}
 		printf("\n");
 	}

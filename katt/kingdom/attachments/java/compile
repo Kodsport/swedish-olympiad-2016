@@ -1,2 +1,2 @@
 #!/bin/bash
-javac grader.java cities.java
+javac grader.java kingdom.java
