@@ -177,7 +177,7 @@
       var names = Object.keys(scores);
       var normalized = JSON.parse(JSON.stringify(scores));
       for (var i = 0; i < contests.length; i++) {
-        var contestScores = names.map(x => scores[x][i]).filter(x => x != 0).sort((x, y) => x > y);
+        var contestScores = names.map(x => scores[x][i]).filter(x => x != 0).sort((x, y) => x - y);
         var max = contestScores[contestScores.length - 1];
         var mid = Math.floor(contestScores.length / 2);
         var median = contestScores.length % 2 == 0 ? contestScores[mid] : (contestScores[mid] + contestScores[mid + 1]) / 2;
@@ -185,14 +185,14 @@
         contestScores.forEach(x => norm[x] = Math.floor(50 * (x > median ? (1 + (x - median) / (max - median)) : x / median)));
         names.forEach(x => normalized[x][i] = norm[scores[x][i]]);
       }
-      var header = "<tr><th>Namn</th>" + contests.map(x => "<th>" + x + "</th>").join() + "<th>Totalt</th></tr>";
+      var header = "<tr><th>Namn</th>" + contests.map(x => "<th>" + x + "</th>").join("") + "<th>Totalt</th></tr>";
       var mx2 = x => x.reduce((a, b) => a + b) - x.reduce((a, b) => Math.min(a, b)) * (x.length == 3 ? 1 : 0);
       var tot = x => x[0] + mx2(x.slice(1));
-      var finalscores = names.map(x => [x].concat(normalized[x]).concat([tot(normalized[x])])).sort((x, y) => x[x.length - 1] < y[y.length - 1]);
+      var finalscores = names.map(x => [x].concat(normalized[x]).concat([tot(normalized[x])])).sort((x, y) => y[y.length - 1] - x[x.length - 1]);
       var maxTotal = 100 * contests.length;
       var col = (x, mx) => "hsla(" + 100 * x / mx + ", 71%, 42%, 1)";
       var score = (x, mx) => "<td style='text-align: right; background-color: " + col(x, mx) + ";'><strong>" + x + "</strong></td>";
-      var rows = finalscores.map(x => "<tr><td><strong>" + x[0] + "</strong></td>" + x.slice(1, x.length - 1).map(sc => score(sc, 100)).join() + score(x[x.length - 1], maxTotal) + "</tr>").join();
+      var rows = finalscores.map(x => "<tr><td><strong>" + x[0] + "</strong></td>" + x.slice(1, -1).map(sc => score(sc, 100)).join("") + score(x[x.length - 1], maxTotal) + "</tr>").join("");
       $("#results").append(header);
       $("#results").append(rows);
     </script>
