@@ -28,32 +28,18 @@ public class grader {
 			T[i] = Integer.parseInt(partsT[i]);
 		}
 		w.println(kingdom.division(N, P, C, F, T));
-		w.println(lib.parts.size());
-		for (lib.Part p : lib.parts) {
-			w.print(p.R.length);
-			for (int i = 0; i < p.R.length; i++) {
-				w.print(" ");
-				w.print(p.R[i]);
-			}
-			w.println();
+		for (int p : lib.R) {
+			w.print(p);
+			w.print(" ");
 		}
-
 		w.close();
 	}
 
 	public static class lib {
 
-		private static class Part {
-			int[] R;
-
-			public Part(int[] R) {
-				this.R = R;
-			}
-		}
-
-		private static List<Part> parts = new ArrayList<Part>();
-		public static void part(int[] R) {
-			parts.add(new Part(R));
+		private static int[] R;
+		public static void parts(int[] R) {
+			lib.R = R;
 		}
 
 	}

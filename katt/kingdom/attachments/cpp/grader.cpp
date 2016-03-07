@@ -5,26 +5,21 @@ using namespace std;
 
 typedef long long ll;
 
-vector<vector<int>> calls;
+int N, P;
+vector<int> calls;
 
-void part(int S, int R[]) {
-	calls.emplace_back(R, R + S);
+void parts(int R[]) {
+	calls.assign(R, R + N);
 }
 
 int main() {
-	int N, P;
 	ignore = scanf("%d%d", &N, &P);
 	int C[N], F[N - 1], T[N - 1];
 	for (int i = 0; i < N; i++) ignore = scanf("%d", C + i);
 	for (int i = 0; i < N-1; i++) ignore = scanf("%d", F + i);
 	for (int i = 0; i < N-1; i++) ignore = scanf("%d", T + i);
 	printf("%d\n", division(N,P,C,F,T));
-	printf("%lu\n", calls.size());
-	for (auto& it : calls) {
-		printf("%lu", it.size());
-		for (size_t i = 0; i < it.size(); i++) {
-			printf(" %d", it[i]);
-		}
-		printf("\n");
+	for (int i = 0; i < N; ++i) {
+		printf("%d ", calls[i]);
 	}
 }

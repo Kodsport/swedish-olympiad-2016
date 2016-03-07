@@ -4,8 +4,9 @@ import sys
 
 _parts = []
 
-def part(R):
-  _parts.append(R)
+def parts(R):
+  global _parts
+  _parts = R
 
 
 def _grader_init():
@@ -14,15 +15,8 @@ def _grader_init():
   F = [ int(t) for t in sys.stdin.readline().strip().split() ]
   T = [ int(t) for t in sys.stdin.readline().strip().split() ]
 
-  print(kingdom.division(N, K, F, T))
-  print(len(_parts))
-  for part in _parts:
-    sys.stdout.write(str(len(part)))
-    for i, e in enumerate(part):
-      if i != 0:
-        sys.stdout.write(" ")
-      sys.stdout.write(str(e))
-    sys.stdout.write("\n")
+  print(kingdom.division(N, P, C, F, T))
+  print(' '.join([str(x) for x in _parts]))
 
 if __name__ != "__main__":                                                          
   grader._grader_init()
