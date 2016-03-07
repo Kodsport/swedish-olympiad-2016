@@ -17,8 +17,8 @@ public class grader {
 
 		String[]
 			partsC = r.readLine().split(" "),
-						 partsF = r.readLine().split(" "),
-						 partsT = r.readLine().split(" ");
+			partsF = r.readLine().split(" "),
+			partsT = r.readLine().split(" ");
 
 		for (int i = 0; i < N; ++i) {
 			C[i] = Integer.parseInt(partsC[i]);
@@ -27,11 +27,13 @@ public class grader {
 			F[i] = Integer.parseInt(partsF[i]);
 			T[i] = Integer.parseInt(partsT[i]);
 		}
+		lib.R = new int[N];
 		w.println(kingdom.division(N, P, C, F, T));
 		for (int p : lib.R) {
 			w.print(p);
 			w.print(" ");
 		}
+		w.println();
 		w.close();
 	}
 

@@ -10,10 +10,12 @@ def parts(R):
 
 
 def _grader_init():
+  global _parts
   N, P = map(int, sys.stdin.readline().split())
   C = [ int(t) for t in sys.stdin.readline().strip().split() ]
   F = [ int(t) for t in sys.stdin.readline().strip().split() ]
   T = [ int(t) for t in sys.stdin.readline().strip().split() ]
+  _parts = [0] * N
 
   print(kingdom.division(N, P, C, F, T))
   print(' '.join([str(x) for x in _parts]))

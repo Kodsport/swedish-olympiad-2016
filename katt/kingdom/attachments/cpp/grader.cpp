@@ -14,6 +14,7 @@ void parts(int R[]) {
 
 int main() {
 	ignore = scanf("%d%d", &N, &P);
+	calls.resize(N);
 	int C[N], F[N - 1], T[N - 1];
 	for (int i = 0; i < N; i++) ignore = scanf("%d", C + i);
 	for (int i = 0; i < N-1; i++) ignore = scanf("%d", F + i);
@@ -22,4 +23,5 @@ int main() {
 	for (int i = 0; i < N; ++i) {
 		printf("%d ", calls[i]);
 	}
+	puts("");
 }
