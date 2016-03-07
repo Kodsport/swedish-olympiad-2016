@@ -1,4 +1,4 @@
-\newcommand\version{v1}
+\newcommand\version{v2}
 \problemname{Kingdom Division}
 In a far away kingdom, there are $N$ cities numbered between $0$ and $N - 1$.
 The cities are connected by $N - 1$ two-way roads.
@@ -60,15 +60,17 @@ Additionally, you should make calls to the function \texttt{part(S, R)} to const
 The problem consists of a number of subtasks. Each subtask gives some amount of points, and to pass
 the subtask you must pass all the test cases in the subtask.
 
+If your partition is incorrect, but you correctly determine whether a partition exists, your solution
+will get $50\%$ of the score. 
 \begin{tabular}{|l|l|l|}
   \hline
   \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
-  1 & 9 & $N \le 10, P = 2$ \\ \hline
-	2 & 19 & $1 \le P \le N \le 1\,000$, $C[i] > 0$ \\ \hline
-	3 & 34 & $1 \le P \le N \le 1\,000$, only cities $i$ and $i + 1$ have roads (for $0 \le i < N - 1$). \\ \hline
-  4 & 38 & $1 \le P \le N \le 1\,000$ \\ \hline
-	5 & 38 & $1 \le P \le N \le 100\,000$, $C[i] > 0$ \\ \hline
-  6 & 38 & $1 \le P \le N \le 100\,000$ \\ \hline
+  1 & 8 & $N \le 10, P = 2$ \\ \hline
+	2 & 10 & $1 \le P \le N \le 1\,000$, $C[i] > 0$ \\ \hline
+	3 & 16 & $1 \le P \le N \le 1\,000$, only cities $i$ and $i + 1$ have roads (for $0 \le i < N - 1$). \\ \hline
+  4 & 18 & $1 \le P \le N \le 1\,000$ \\ \hline
+	5 & 18 & $1 \le P \le N \le 100\,000$, $C[i] > 0$ \\ \hline
+  6 & 30 & $1 \le P \le N \le 100\,000$ \\ \hline
 \end{tabular}
 
 \section*{Input format}
@@ -82,4 +84,4 @@ The sample judge reads input in the following format:
 \end{itemize}
 
 \section*{Output format}
-The sample judge will first write a single line with the return value of \texttt{paths(N, K, F, T)} and the number of calls to \texttt{part(S, R)}. Then, once for each call to \texttt{part(S, R)}, the judge will write one line with $S$ and then one line with the $S$ values in $R$.
+The sample judge will first write a single line with the return value of \texttt{paths(N, K, F, T)}. The next line will contain $N$ integers containing the input to the \texttt{parts(R)} call.
