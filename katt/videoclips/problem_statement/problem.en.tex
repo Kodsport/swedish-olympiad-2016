@@ -1,0 +1,70 @@
+\newcommand\version{v1}
+\problemname{Video Clips}
+On a popular web site, the $N$ KATT contestant can spend time watching video clips in between solving problems.
+
+On the site, there are $K$ funny videos of cats jumping around on the keyboard, numbered between $0$ and $K - 1$.
+When one of the videos has been viewed, a suggestion for the next funny cat video is shown, which you of course click on and start watching.
+
+For each contestant, you will be given the initial cat video he or she views. Determine what the $M$:th video
+that each contestant watch is.
+
+\section*{Example}
+In total, there are $N = 2$ contestants, and $K = 4$ cat videos.
+The suggestion for each of the videos are $(3, 2, 1, 0)$. The first contestant starts to watch video $3$, and the second starts to watch video $1$.
+We wonder what the $M = 3$:rd clip each contestant views is.
+
+The first contestant will start by watching video 3. From there, she looks at the suggested video 0, and is then led back to video 3.
+
+The second contestant starts out with the second video, which links to the third video. Video $1$ has video $2$ as suggestion, so he ends up back on video 1.
+
+\section*{Task}
+Your task is to compute, for each contestant, what the $M$:th video he or she will watch is.
+You will implement the function \texttt{videos(K, M, S)} and \texttt{clip(I)}.
+
+\begin{itemize}
+  \item \texttt{videos(K, M, S)} - this function will be called exactly once by the judge at the start of the execution.
+  \begin{itemize}
+    \item \texttt{K}: the number of funny cat videos.
+    \item \texttt{M}: the number of videos each contestant will watch.
+    \item \texttt{S}: an array with $K$ elements. \texttt{S[i]} ($0 \le i < N$) contains the suggested video for the $i$:th video.
+		\item $0 \le I[i] < K$
+		\item $0 \le S[i] < K$
+		\item The function has no return value.
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+  \item \texttt{clip(I)} - this function will be called once for every contestant.
+  \begin{itemize}
+    \item \texttt{I}: a number between $0$ and $K - 1$; the video that a contestant starts watching.
+		\item The function should return the $M$:th video the student will watch, if she starts on video $I$.
+  \end{itemize}
+\end{itemize}
+
+\section*{Subtasks}
+The problem consists of a number of subtasks. Each subtask gives some amount of points, and to pass
+the subtask you must pass all the test cases in the subtask.
+
+Let $N$ be the number of calls to \texttt{clip(I)}.
+\begin{tabular}{|l|l|l|}
+  \hline
+  \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
+  1 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, the $i$:th video will only suggest videos $j$ such that $j \le i$. \\ \hline
+  2 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, the $i$:th video will suggest video $i + 1$ (video $K - 1$ suggests video 0). \\ \hline
+  3 & 15 & $N, K \le 1\,000$ $2 \le M \le 1\,000$ \\ \hline
+  4 & 15 & $N, K \le 1\,000$, $2 \le M \le 10^9$ \\ \hline
+  5 & 40 & $N, K \le 100\,000$, $2 \le M \le 10^9$ \\ \hline
+\end{tabular}
+
+\section*{Input format}
+The sample judge reads input in the following format:
+
+\begin{itemize}
+  \item line $1$: \texttt{K M}
+  \item line $2$: \texttt{S[0] ... S[K - 1]}
+  \item line $3$: \texttt{N}: the number of calls made to \texttt{clip(I)}.
+  \item line $4$ \texttt{I1 ... IN}: the parameters of the $N$ calls to \texttt{clip(I)}.
+\end{itemize}
+
+\section*{Output format}
+The sample judge will first write $N$ lines with the return values of \texttt{clip(I)}.

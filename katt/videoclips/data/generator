@@ -1,0 +1,55 @@
+#!/bin/bash
+PPATH=$(realpath ..)
+. ../../testdata_tools/gen.sh
+
+setup_dirs
+
+use_solution ../sol.cpp
+
+compile gen.py # Arguments: n m type seed
+
+samplegroup
+sample 1
+
+# N, K <= 100,000 M <= 10^9
+group nocycle 15
+tc nocycle1 gen 1000 1000000000 nocycle
+tc nocycle2 gen 50000 1000000000 nocycle
+tc nocycle3 gen 100000 1000000000 nocycle
+
+# N, K <= 100,000 M <= 10^9
+group cycle 15
+tc cycle1 gen 1000 1000000000 cycle
+tc cycle2 gen 50000 1000000000 cycle
+tc cycle3 gen 100000 1000000000 cycle
+
+# N, K, M <= 1000
+group small 15
+tc small1 gen 1000 1000 random
+tc small2 gen 1000 1000 random
+tc path1 gen 1000 1000 random
+tc reverse1 gen 1000 1000 random
+tc cycle1
+
+# N, K <= 1000, M <= 10^9
+group mid 15
+include_group small
+tc mid1 gen 1000 1000000000 random
+tc mid2 gen 1000 1000000000 random
+tc path2 gen 1000 1000000000 random
+tc reverse2 gen 1000 1000000000 random
+tc cyclemid gen 1000 1000000000 random
+
+# N, K <= 100,000 M <= 10^9
+group large 40
+include_group mid
+include_group nocycle
+include_group cycle
+tc large1 gen 100000 1000000000 random
+tc large gen 100000 1000000000 random
+tc path3 gen 100000 1000000000 random
+tc reverse3 gen 100000 1000000000 random
+
+generate_grader
+generate_cms
+cleanup_programs
