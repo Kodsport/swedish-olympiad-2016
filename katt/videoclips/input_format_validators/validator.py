@@ -11,13 +11,13 @@ K, M = map(int, line.split())
 assert K <= 100000
 assert 2 <= M <= 1000000000
 
-S = map(int, sys.stdin.readline().split(' '))
+S = list(map(int, sys.stdin.readline().split(' ')))
 assert len(S) == K
 for i in S: assert 0 <= i < K
 
 N = int(sys.stdin.readline())
 assert N <= 100000
-I = map(int, sys.stdin.readline().split(' '))
+I = list(map(int, sys.stdin.readline().split(' ')))
 assert len(I) == N
 for i in I: assert 0 <= i < K
 

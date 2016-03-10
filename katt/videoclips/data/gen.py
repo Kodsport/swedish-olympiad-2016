@@ -15,15 +15,15 @@ random.seed(int(sys.argv[4]))
 # Generates a few pretty wide trees, generally, with eventual cycles of
 # rather small size. Good for testing correctness.
 def gen_random(N):
-    return [random.randint(1, N) for _ in range(N)]
+    return [random.randint(0, N - 1) for _ in range(N)]
 
 # Generate a single long path, as a possible worst case.
 def gen_path(N):
-    return [max(1, x) for x in range(N)]
+    return [max(0, x) for x in range(N)]
 
 # As above but in opposite direction.
 def gen_path_reverse(N):
-    return [min(N, x+2) for x in range(N)]
+    return [min(N - 1, x+2) for x in range(N)]
 
 # As above but in opposite direction.
 def gen_no_cycle(N):
@@ -37,10 +37,10 @@ def gen_cycle(N):
     random.shuffle(perm)
     cycle = perm[:]
     for i in range(cycle_ed):
-        cycle[perm[i]] = perm[(i+1) % cycle_ed] + 1
-    return cycle + [random.randint(1, cycle_ed) for _ in range(in_ed)]
+        cycle[perm[i]] = perm[(i+1) % cycle_ed]
+    return cycle + [random.randint(0, cycle_ed) for _ in range(in_ed)]
 
-lines = [N]
+lines = []
 if method == 'random':
     lines += gen_random(N)
 elif method == 'path':
