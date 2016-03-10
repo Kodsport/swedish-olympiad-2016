@@ -59,8 +59,10 @@ int main(int argc, char** argv) {
 		if (output != answer)
 			die("invalid answer");
 		vi part(N);
-		rep(i,0,N)
-			cin >> part[i];
+		if (answer == 1) {
+			rep(i,0,N)
+				cin >> part[i];
+		}
 		assert_done(cin);
 
 		int fail = 0;

@@ -17,8 +17,10 @@ def _grader_init():
   T = [ int(t) for t in sys.stdin.readline().strip().split() ]
   _parts = [0] * N
 
-  print(kingdom.division(N, P, C, F, T))
-  print(' '.join([str(x) for x in _parts]))
+  ret = kingdom.division(N, P, C, F, T)
+  print(ret)
+  if ret != 0:
+    print(' '.join([str(x) for x in _parts]))
 
 if __name__ != "__main__":                                                          
   grader._grader_init()

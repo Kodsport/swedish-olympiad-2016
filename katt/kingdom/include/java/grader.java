@@ -28,12 +28,15 @@ public class grader {
 			T[i] = Integer.parseInt(partsT[i]);
 		}
 		lib.R = new int[N];
-		w.println(kingdom.division(N, P, C, F, T));
-		for (int p : lib.R) {
-			w.print(p);
-			w.print(" ");
+		int ret = kingdom.division(N, P, C, F, T);
+		w.println(ret);
+		if (ret != 0) {
+			for (int p : lib.R) {
+				w.print(p);
+				w.print(" ");
+			}
+			w.println();
 		}
-		w.println();
 		w.close();
 	}
 

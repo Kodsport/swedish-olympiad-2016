@@ -19,9 +19,12 @@ int main() {
 	for (int i = 0; i < N; i++) ignore = scanf("%d", C + i);
 	for (int i = 0; i < N-1; i++) ignore = scanf("%d", F + i);
 	for (int i = 0; i < N-1; i++) ignore = scanf("%d", T + i);
-	printf("%d\n", division(N,P,C,F,T));
-	for (int i = 0; i < N; ++i) {
-		printf("%d ", calls[i]);
+	int ret = division(N,P,C,F,T);
+	printf("%d\n", ret);
+	if (ret) {
+		for (int i = 0; i < N; ++i) {
+			printf("%d ", calls[i]);
+		}
+		puts("");
 	}
-	puts("");
 }
