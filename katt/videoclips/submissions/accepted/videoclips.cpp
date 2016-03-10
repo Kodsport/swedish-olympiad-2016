@@ -12,12 +12,13 @@ void videos(int K, int M, int S[]) {
   }
 
   for (int j = 0; j < K; ++j) {
+    int m = M - 1;
     nx[j] = j;
-    for (int i = 1; i < 32; ++i) {
-      if (M & 1) {
+    for (int i = 0; i < 32; ++i) {
+      if (m & 1) {
         nx[j] = jmp[i][nx[j]];
       }
-      M /= 2;
+      m /= 2;
     }
   }
 }

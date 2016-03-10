@@ -27,18 +27,18 @@ tc cycle3 gen 100000 1000000000 cycle
 group small 15
 tc small1 gen 1000 1000 random
 tc small2 gen 1000 1000 random
-tc path1 gen 1000 1000 random
-tc reverse1 gen 1000 1000 random
-tc cycle1
+tc path1 gen 1000 1000 path
+tc reverse1 gen 1000 1000 reverse
+tc cycle gen 1000 1000 cycle
 
 # N, K <= 1000, M <= 10^9
 group mid 15
 include_group small
 tc mid1 gen 1000 1000000000 random
 tc mid2 gen 1000 1000000000 random
-tc path2 gen 1000 1000000000 random
-tc reverse2 gen 1000 1000000000 random
-tc cyclemid gen 1000 1000000000 random
+tc path2 gen 1000 1000000000 path
+tc reverse2 gen 1000 1000000000 reverse
+tc cycle1
 
 # N, K <= 100,000 M <= 10^9
 group large 40
@@ -47,8 +47,8 @@ include_group nocycle
 include_group cycle
 tc large1 gen 100000 1000000000 random
 tc large gen 100000 1000000000 random
-tc path3 gen 100000 1000000000 random
-tc reverse3 gen 100000 1000000000 random
+tc path3 gen 100000 1000000000 path
+tc reverse3 gen 100000 1000000000 reverse
 
 generate_grader
 generate_cms
