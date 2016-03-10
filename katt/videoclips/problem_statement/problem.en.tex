@@ -19,7 +19,7 @@ The second contestant starts out with the second video, which links to the third
 
 \section*{Task}
 Your task is to compute, for each contestant, what the $M$:th video he or she will watch is.
-You will implement the function \texttt{videos(K, M, S)} and \texttt{clip(I)}.
+You will implement the functions \texttt{videos(K, M, S)} and \texttt{clip(I)}.
 
 \begin{itemize}
   \item \texttt{videos(K, M, S)} - this function will be called exactly once by the judge at the start of the execution.
@@ -27,7 +27,6 @@ You will implement the function \texttt{videos(K, M, S)} and \texttt{clip(I)}.
     \item \texttt{K}: the number of funny cat videos.
     \item \texttt{M}: the number of videos each contestant will watch.
     \item \texttt{S}: an array with $K$ elements. \texttt{S[i]} ($0 \le i < N$) contains the suggested video for the $i$:th video.
-		\item $0 \le I[i] < K$
 		\item $0 \le S[i] < K$
 		\item The function has no return value.
   \end{itemize}
@@ -37,7 +36,7 @@ You will implement the function \texttt{videos(K, M, S)} and \texttt{clip(I)}.
   \item \texttt{clip(I)} - this function will be called once for every contestant.
   \begin{itemize}
     \item \texttt{I}: a number between $0$ and $K - 1$; the video that a contestant starts watching.
-		\item The function should return the $M$:th video the student will watch, if she starts on video $I$.
+		\item The function should return the $M$:th video the contestant will watch, if she starts on video $I$.
   \end{itemize}
 \end{itemize}
 
@@ -67,4 +66,4 @@ The sample judge reads input in the following format:
 \end{itemize}
 
 \section*{Output format}
-The sample judge will first write $N$ lines with the return values of \texttt{clip(I)}.
+The sample judge will write $N$ lines with the return values of \texttt{clip(I)}.
