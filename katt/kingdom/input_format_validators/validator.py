@@ -27,7 +27,7 @@ re1 = '''^(0|[1-9][0-9]*) (0|[1-9][0-9]*)$'''
 line = sys.stdin.readline() 
 assert re.match(re1, line)
 N, P = map(int, line.split())
-assert 1 <= K <= N <= 100000
+assert 1 <= P <= N <= 100000
 
 re2 = '''^(0|[1-9][0-9]*)( (0|[1-9][0-9]*))*$'''
 line1 = map(int, sys.stdin.readline().split(' '))

@@ -43,6 +43,7 @@ int main(int argc, char** argv) {
 	int N, P;
 	fin >> N >> P;
 	vi C(N), F(N - 1), T(N - 1);
+	rep(i,0,N) fin >> C[i];
 	rep(i,0,N - 1) fin >> F[i];
 	rep(i,0,N - 1) fin >> T[i];
 	assert_done(fin);
