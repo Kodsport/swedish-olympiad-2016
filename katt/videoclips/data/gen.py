@@ -19,7 +19,7 @@ def gen_random(N):
 
 # Generate a single long path, as a possible worst case.
 def gen_path(N):
-    return [max(0, x) for x in range(N)]
+    return [max(0, x - 1) for x in range(N)]
 
 # As above but in opposite direction.
 def gen_path_reverse(N):
