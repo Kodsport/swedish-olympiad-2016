@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
 		assert_done(cin);
 
 		int fail = 0;
-		{
+		if (answer == 1) {
 			for (int i = 0; i < N; ++i) {
 				if (part[i] < 0 || part[i] >= P) {
 					fail = 1; // invalid part

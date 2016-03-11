@@ -3,7 +3,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 #define rep(i, a, b) for(int i = a; i < int(b); i++)
 #define trav(it, v) for(auto it = v.begin(); it != v.end(); it++)
 #define all(x) x.begin(), x.end()
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 	srand(seed);
 	vector<int> prufer(N-2), degree(N+1, 1);
 	rep(i, 0, N-2) {
-		prufer[i] = (rand()%N) + 1; 
+		prufer[i] = (rand()%N) + 1;
 		degree[prufer[i]]++;
 	}
 	vector<vector<int> > adj(N+1, vector<int>());
@@ -56,11 +56,11 @@ int main(int argc, char* argv[]) {
 	}
 	adj[a].push_back(b);
 	adj[b].push_back(a);
-	
+
 	int root = (rand()%N) + 1;
 	vector<int> par(N+1, 0);
 	treeDfs(root, adj, par);
-	
+
 	cout << N << " " << K << endl;
 	bool first = true;
 	rep(i, 1, N+1) {
