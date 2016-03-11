@@ -14,7 +14,7 @@ Vi undrar vilka de $M = 3$:e videoklippen blir för de två tävlanden.
 
 Den första tävlanden börjar med att titta på video 3. Därefter tittar hon på video 0, och sist återigen på video 3.
 
-Den andra börjar på andra videon, som länkar till den tredje. Video 1 har video 2 som förslag, så han hamnar till slut på video 1 återigen.
+Den andra börjar på andra videon, som länkar till den tredje. Video 2 har video 1 som förslag, så han hamnar till slut på video 1 återigen.
 
 \section*{Uppgift}
 Din uppgift är att beräkna, för varje tävlanden, vad den $M$:te videon hen tittar på blir.
@@ -43,7 +43,8 @@ Du ska implementera funktionerna \texttt{videos(K, M, S)} och \texttt{clip(I)}.
 Problemet består av flera grupper av testfall. Varje grupp ger ett visst antal poäng och för att klara det måste du klara alla testfall i gruppen.
 
 Låt $N$ vara antalet anrop till \texttt{clip(I)}.
-\begin{tabular}{|l|l|l|}
+
+\begin{tabular}{|l|l|p{7cm}|}
   \hline
   \textbf{Grupp} & \textbf{Poäng} & \textbf{Gränser} \\ \hline
   1 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, den $i$:te videon kommer enbart föreslå en video $j$ så att $j \le i$. \\ \hline

@@ -15,7 +15,7 @@ We wonder what the $M = 3$:rd clip each contestant views is.
 
 The first contestant will start by watching video 3. From there, she looks at the suggested video 0, and is then led back to video 3.
 
-The second contestant starts out with the second video, which links to the third video. Video $1$ has video $2$ as suggestion, so he ends up back on video 1.
+The second contestant starts out with the second video, which links to the third video. Video $2$ has video $1$ as suggestion, so he ends up back on video 1.
 
 \section*{Task}
 Your task is to compute, for each contestant, what the $M$:th video he or she will watch is.
@@ -45,7 +45,8 @@ The problem consists of a number of subtasks. Each subtask gives some amount of 
 the subtask you must pass all the test cases in the subtask.
 
 Let $N$ be the number of calls to \texttt{clip(I)}.
-\begin{tabular}{|l|l|l|}
+
+\begin{tabular}{|l|l|p{7cm}|}
   \hline
   \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
   1 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, the $i$:th video will only suggest videos $j$ such that $j \le i$. \\ \hline
