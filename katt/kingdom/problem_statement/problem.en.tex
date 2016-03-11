@@ -8,6 +8,8 @@ Unfortunately, the old king of the kingdom died, without appointing a successor.
 
 After a long and terrible war, the lords realized none of them could beat all the other lords in the war. They agreed to a truce, and decided to divide the kingdom into $P$ parts, one part per lord. The parts must be so that if two cities $a$ and $b$ lie in the same part, all cities in the unique path between them must also lie in that part.
 
+TODO non-empty
+
 Since no lord wants to get less than another, the value of each part must be the same. The value of a part is the sum of the values of all cities in that part.
 
 \section*{Example}
@@ -86,4 +88,4 @@ The sample judge reads input in the following format:
 \end{itemize}
 
 \section*{Output format}
-The sample judge will first write a single line with the return value of \texttt{paths(N, K, F, T)}. The next line will contain $N$ integers containing the input to the \texttt{parts(R)} call.
+The sample judge will first write a single line with the return value of \texttt{division(N, P, C, F, T)}. The next line will contain $N$ integers containing the input to the \texttt{parts(R)} call.
