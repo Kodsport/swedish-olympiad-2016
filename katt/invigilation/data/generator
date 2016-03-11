@@ -1,0 +1,48 @@
+#!/bin/bash
+
+PPATH=$(realpath ..)
+. ../../testdata_tools/gen.sh
+
+setup_dirs
+
+use_solution ../sol.cpp
+
+compile copy.py # Arguments: testcase
+
+g++ -O2 isconvex.cpp -o isconvex
+g++ -O2 -std=c++14 genConvex.cpp -o gen-convex
+
+./gen-convex 100000 2 >../manual/023.in # ans = 2
+./gen-convex 20000 2 >../manual/024.in # ans = 1
+./gen-convex 23760 2 >../manual/025.in # ans = 2
+./gen-convex 23760 8 >../manual/026.in # ans = 2
+./gen-convex 1000 2 >../manual/027.in # ans = 1
+
+group small 30
+for X in ../manual/*.in; do
+	X2=$(basename $X .in)
+	n=$(head -1 $X | cut -d' ' -f1)
+	if [[ $n -le 1000 ]]; then
+		tc $X2 copy $X
+	fi
+done
+
+group convex 30
+for X in ../manual/*.in; do
+	X2=$(basename $X .in)
+	if ./isconvex < $X; then
+		tc $X2 copy $X
+	fi
+done
+
+group large 40
+for X in ../manual/*.in; do
+	X2=$(basename $X .in)
+	tc $X2 copy $X
+done
+
+rm gen-convex isconvex
+
+generate_grader
+generate_cms
+cleanup_programs
