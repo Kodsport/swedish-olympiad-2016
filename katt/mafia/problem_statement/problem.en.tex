@@ -47,6 +47,7 @@ You should implement the functions \texttt{cops(N, M, A, B, T)} and \texttt{gues
   \item \texttt{guess(C)} - this function will be called once for every guess.
   \begin{itemize}
     \item \texttt{C}: a number between $0$ and $N$; the guess of the police chief.
+    \item The return value of the function will never exceed $10^{18}$.
 		\item The function should return the number of possible sets of corrupt cops of size $C$, where the remaining cops are honest.
   \end{itemize}
 \end{itemize}

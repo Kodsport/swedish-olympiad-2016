@@ -46,26 +46,8 @@ Du ska implementera funktionerna \texttt{cops(N, M, A, B, T)} och \texttt{guess(
   \item \texttt{guess(C)} - denna funktion anropas en gång för varje gissning.
   \begin{itemize}
     \item \texttt{C}: ett tal mellan $0$ och $N$; polischefens gissning.
+    \item Returvärdet för $C$ kommer aldrig överstiga $10^{18}$.
 		\item Funktionen ska returnera antalet sätt som exakt $C$ poliser kan korrupta på.
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-  \item \texttt{videos(K, M, S)} - this function will be called exactly once by the judge at the start of the execution.
-  \begin{itemize}
-    \item \texttt{K}: antalet roliga kattvideos.
-    \item \texttt{M}: antalet videos varje tävlanden ska kolla på.
-    \item \texttt{S}: en array med $K$ element. \texttt{S[i]} ($0 \le i < N$) innehåller förslaget för video $i$.
-		\item $0 \le S[i] < K$
-    \item Funktion har inget returvärde
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-  \item \texttt{clip(I)} - denna funktion anropas en gång för varje deltagare.
-  \begin{itemize}
-    \item \texttt{I}: ett tal mellan $0$ och $K - 1$; videon som tävlanden börjar titta på.
-		\item Funktionen ska returnera den $M$:te videon som deltagaren kommer titta på, om hon börjar på video $I$.
   \end{itemize}
 \end{itemize}
 
