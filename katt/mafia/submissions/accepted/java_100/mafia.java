@@ -5,15 +5,16 @@ public class mafia {
   static long[] ways;
 
   public static void die(int N) {
-    ways = new int[N + 1];
+    ways = new long[N + 1];
   }
 
+  @SuppressWarnings("unchecked")
   public static void cops(int N, int M, int[] A, int[] B, int[] C) {
     List<Integer>[] adj1 = new List[N];
     List<Integer>[] adj2 = new List[N];
     for (int i = 0; i < N; ++i) {
-      adj1[i] = new ArrayList();
-      adj2[i] = new ArrayList();
+      adj1[i] = new ArrayList<Integer>();
+      adj2[i] = new ArrayList<Integer>();
     }
     for (int i = 0; i < M; ++i) {
       if (C[i] == 1) {
@@ -24,7 +25,7 @@ public class mafia {
         adj2[B[i]].add(A[i]);
       }
     }
-    ways = new int[N + 1];
+    ways = new long[N + 1];
     int[] color = new int[N];
     ways[0] = 1;
     for (int i = 0; i < N; ++i) {
@@ -56,7 +57,7 @@ public class mafia {
         for (int j = 0; j <= 2000; j++) {
           if (j + red <= N) nways[j + red] += ways[j];
           if (j + blue <= N) nways[j + blue] += ways[j];
-          assert(nways[j] <= 1000000000000000000LL);
+          assert(nways[j] <= 1000000000000000000L);
         }
         ways = nways;
       }
