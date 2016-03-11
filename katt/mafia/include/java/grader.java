@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class main {
+public class grader {
 
 
   public static void main(String... args) throws IOException {
