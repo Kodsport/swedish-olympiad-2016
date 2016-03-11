@@ -2,7 +2,7 @@ import java.util.*;
 
 public class mafia {
 
-  static int[] ways;
+  static long[] ways;
 
   public static void die(int N) {
     ways = new int[N + 1];
@@ -52,10 +52,11 @@ public class mafia {
             if (color[nx] == color[diff]) { die(N); return; };
           }
         }
-        int[] nways = new int[N + 1];
+        long[] nways = new long[N + 1];
         for (int j = 0; j <= 2000; j++) {
           if (j + red <= N) nways[j + red] += ways[j];
           if (j + blue <= N) nways[j + blue] += ways[j];
+          assert(nways[j] <= 1000000000000000000LL);
         }
         ways = nways;
       }
