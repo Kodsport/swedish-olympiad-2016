@@ -4,11 +4,9 @@ In a far away kingdom, there are $N$ cities numbered between $0$ and $N - 1$.
 The cities are connected by $N - 1$ two-way roads.
 Each road connects exactly two cities, such that there is a unique path between any pair of cities. Each city $i$ has some value $C[i]$ (possibly negative).
 
-Unfortunately, the old king of the kingdom died, without appointing a successor. Thus a civil war broke out in the kingdom, between the $P$ lords who wish to gain control of the kongdom.
+Unfortunately, the old king of the kingdom died, without appointing a successor. Thus a civil war broke out in the kingdom, between the $P$ lords (also numbered between $0$ and $P - 1$) who wish to gain control of the kongdom.
 
-After a long and terrible war, the lords realized none of them could beat all the other lords in the war. They agreed to a truce, and decided to divide the kingdom into $P$ parts, one part per lord. The parts must be so that if two cities $a$ and $b$ lie in the same part, all cities in the unique path between them must also lie in that part.
-
-TODO non-empty
+After a long and terrible war, the lords realized none of them could beat all the other lords in the war. They agreed to a truce, and decided to divide the kingdom into $P$ parts, one part per lord. The parts must be so that if two cities $a$ and $b$ lie in the same part, all cities in the unique path between them must also lie in that part. Since no lord wants to be left out, each one must be given at least one city.
 
 Since no lord wants to get less than another, the value of each part must be the same. The value of a part is the sum of the values of all cities in that part.
 
@@ -48,14 +46,11 @@ Your task is to compute a subdivision of the kingdom as described in the stateme
   \end{itemize}
 \end{itemize}
 
-TODO document parts()
-
-Additionally, you should make calls to the function \texttt{part(S, R)} to construct your subdivision.
+Additionally, you should make a single call to function \texttt{parts(S)} to construct your subdivision.
 \begin{itemize}
-  \item \texttt{part(S, R)} - this function should be called once for each of the $P$ parts of the subdivision.
+  \item \texttt{parts(S)} - this function should be called a single time.
   \begin{itemize}
-    \item \texttt{S}: the number of cities in the part.
-    \item \texttt{R}: an array with $S$ elements - the numbers of the cities in the part.
+    \item \texttt{S}: an array with $N$ elements. $S[i]$ $(0 \le i < N)$ should contain the number of the lord who will get city $i$.
     \item The function has no return value.
   \end{itemize}
 \end{itemize}
