@@ -24,7 +24,8 @@ int main() {
 	for (int i = 0; i < G; i++) ignore = scanf("%d", C + i);
 	cops(N, M, A, B, T);
 	for (int i = 0; i < G; ++i) {
-		printf("%lld ",  guess(C[i]));
+		printf("%lld",  guess(C[i]));
+		if (i != G-1) putchar(' ');
 	}
 	printf("\n");
 }

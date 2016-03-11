@@ -18,13 +18,13 @@ int main() {
 	for (int i = 0; i < M; i++) ignore = scanf("%d", A + i);
 	for (int i = 0; i < M; i++) ignore = scanf("%d", B + i);
 	for (int i = 0; i < M; i++) ignore = scanf("%d", T + i);
-  int G;
-  ignore = scanf("%d", &G);
-  int C[G];
+	int G;
+	ignore = scanf("%d", &G);
+	int C[G];
 	for (int i = 0; i < G; i++) ignore = scanf("%d", C + i);
 	cops(N, M, A, B, T);
-  for (int i = 0; i < G; ++i) {
-    printf("%lld ",  guess(C[i]));
-  }
-  printf("\n");
+	for (int i = 0; i < G; ++i) {
+		printf("%lld ",  guess(C[i]));
+	}
+	printf("\n");
 }

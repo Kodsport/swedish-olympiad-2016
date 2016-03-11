@@ -54,10 +54,9 @@ public class mafia {
           }
         }
         long[] nways = new long[N + 1];
-        for (int j = 0; j <= 2000; j++) {
+        for (int j = 0; j <= N; j++) {
           if (j + red <= N) nways[j + red] += ways[j];
           if (j + blue <= N) nways[j + blue] += ways[j];
-          assert(nways[j] <= 1000000000000000000L);
         }
         ways = nways;
       }
