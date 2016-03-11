@@ -20,7 +20,7 @@ public class grader {
 			Y[i] = Integer.parseInt(parts[1]);
 			Z[i] = Integer.parseInt(parts[2]);
 		}
-		w.println(invigilation.invigilation(N, H, X, Y, Z));
+		w.println(kattis.kattis(N, H, X, Y, Z));
 		w.close();
 	}
 

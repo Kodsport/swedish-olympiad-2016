@@ -32,7 +32,7 @@ struct ulamek {
 } left_bound[MAX],right_bound[MAX];
 ostream &operator<<(ostream &out,ulamek u) { return out<<u.p<<"/"<<u.q; }
 
-int invigilation(int n, int h, int x[], int y[], int z[]) {
+int kattis(int n, int h, int x[], int y[], int z[]) {
   FOR(i,n) scanf("%d %d %d",&x[i],&y[i],&z[i]);
 //#define DRAW  
 #ifdef DRAW  

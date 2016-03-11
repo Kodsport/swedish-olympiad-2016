@@ -1,4 +1,4 @@
-#include "accepted/simon/invigilation.cpp"
+#include "accepted/simon/kattis.cpp"
 
 int main() {
 	int N, H;
@@ -9,5 +9,5 @@ int main() {
 		ignore = scanf("%d", Y + i);
 		ignore = scanf("%d", Z + i);
 	}
-	printf("%d\n", invigilation(N,H,X,Y,Z));
+	printf("%d\n", kattis(N,H,X,Y,Z));
 }

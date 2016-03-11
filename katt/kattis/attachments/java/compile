@@ -1,2 +1,2 @@
 #!/bin/bash
-javac grader.java invigilation.java
+javac grader.java kattis.java

@@ -29,8 +29,7 @@ struct Event {
 
 };
 
-int invigilation(int N, int H, int X_[], int Y_[], int Z_[]) {
-	if (N > 1000) return 0;
+int kattis(int N, int H, int X_[], int Y_[], int Z_[]) {
 	vector<pii> wall(N);
 	vector<int> special(N);
 

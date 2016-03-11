@@ -1,4 +1,4 @@
-import invigilation
+import kattis
 import sys
 
 n, h = map(int, sys.stdin.readline().split())
@@ -9,4 +9,4 @@ for i in range(n):
     ys.append(y)
     zs.append(z)
 
-print(invigilation.invigilation(n, h, xs, ys, zs))
+print(kattis.kattis(n, h, xs, ys, zs))

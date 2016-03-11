@@ -1,4 +1,4 @@
-#include "invigilation.h"
+#include "kattis.h"
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -12,5 +12,5 @@ int main() {
 		ignore = scanf("%d", Y + i);
 		ignore = scanf("%d", Z + i);
 	}
-	printf("%d\n", invigilation(N,H,X,Y,Z));
+	printf("%d\n", kattis(N,H,X,Y,Z));
 }
