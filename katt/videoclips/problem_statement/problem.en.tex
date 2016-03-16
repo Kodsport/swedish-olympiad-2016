@@ -1,4 +1,4 @@
-\newcommand\version{v1}
+\newcommand\version{v2}
 \problemname{Video Clips}
 On a popular web site, the $N$ KATT contestants can spend time watching video clips in between solving problems.
 
@@ -50,7 +50,7 @@ Let $N$ be the number of calls to \texttt{clip(I)}.
   \hline
   \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
   1 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, the $i$:th video will only suggest videos $j$ such that $j \le i$. \\ \hline
-  2 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, the $i$:th video will suggest video $i + 1$ (video $K - 1$ suggests video 0). \\ \hline
+  2 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, all videos will suggest each other in a cycle (e.g $3$ suggest $2$ suggest $0$ suggest $1$ suggest $3$, för $N = 4$). \\ \hline
   3 & 15 & $N, K \le 1\,000$ $2 \le M \le 1\,000$ \\ \hline
   4 & 15 & $N, K \le 1\,000$, $2 \le M \le 10^9$ \\ \hline
   5 & 40 & $N, K \le 100\,000$, $2 \le M \le 10^9$ \\ \hline

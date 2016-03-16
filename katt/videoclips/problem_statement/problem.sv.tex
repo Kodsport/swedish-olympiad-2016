@@ -1,4 +1,4 @@
-\newcommand\version{v1}
+\newcommand\version{v2}
 \problemname{Videoklipp}
 På en populär hemsida så kan de $N$ deltagarna i KATT titta på videoklipp mellan deras problemlösning.
 
@@ -48,7 +48,7 @@ Låt $N$ vara antalet anrop till \texttt{clip(I)}.
   \hline
   \textbf{Grupp} & \textbf{Poäng} & \textbf{Gränser} \\ \hline
   1 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, den $i$:te videon kommer enbart föreslå en video $j$ så att $j \le i$. \\ \hline
-  2 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, den $i$:te videon kommer föreslå video $i + 1$ (video $K - 1$ föreslår video 0). \\ \hline
+  2 & 15 & $N, K \le 100\,000$, $2 \le M \le 10^9$, alla videoklipp kommer föreslå varandra i en cykel (exempelvis $3$ föreslår $2$ föreslår $0$ föreslår $1$ föreslår $3$, för $N = 4$). \\ \hline
   3 & 15 & $N, K \le 1\,000$ $2 \le M \le 1\,000$ \\ \hline
   4 & 15 & $N, K \le 1\,000$, $2 \le M \le 10^9$ \\ \hline
   5 & 40 & $N, K \le 100\,000$, $2 \le M \le 10^9$ \\ \hline

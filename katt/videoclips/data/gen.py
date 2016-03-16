@@ -30,7 +30,7 @@ def gen_no_cycle(N):
     return [random.randint(0, x) for x in range(N)]
 
 # Generate a single cycle, with a small number of in-edges, as another worst case.
-def gen_cycle(N):
+def gen_cycle_2(N):
     in_ed = N // 10
     cycle_ed = N - in_ed
     perm = list(range(cycle_ed))
@@ -39,6 +39,14 @@ def gen_cycle(N):
     for i in range(cycle_ed):
         cycle[perm[i]] = perm[(i+1) % cycle_ed]
     return cycle + [random.randint(0, cycle_ed) for _ in range(in_ed)]
+
+def gen_cycle(N):
+    perm = list(range(N))
+    random.shuffle(perm)
+    cycle = perm[:]
+    for i in range(N):
+        cycle[perm[i]] = perm[(i+1) % N]
+    return cycle
 
 lines = []
 if method == 'random':
@@ -49,6 +57,8 @@ elif method == 'reverse':
     lines += gen_path_reverse(N)
 elif method == 'cycle':
     lines += gen_cycle(N)
+elif method == 'cycle2':
+    lines += gen_cycle_2(N)
 elif method == 'nocycle':
     lines += gen_no_cycle(N)
 else:
