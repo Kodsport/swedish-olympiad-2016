@@ -1,9 +1,0 @@
-author: Simon Lindholm, University of Wroclaw
-source: Programmeringsolympiadens KATT-tävling 2016
-rights_owner: University of Wroclaw
-license: educational
-grading:
-    on_reject: grade
-    objective: max
-    range: 0 100
-type: scoring
