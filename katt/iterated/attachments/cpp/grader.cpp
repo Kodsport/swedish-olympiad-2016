@@ -1,10 +1,10 @@
-#include "mastermind.h"
+#include "iterated.h"
 #include <bits/stdc++.h>
 using namespace std;
 
 static string target;
 static int N, guesses = 0;
-int guess(const bool ans[]) {
+int guess(const int ans[]) {
 	guesses++;
 	int same = 0;
 	for (int i = 0; i < N; i++) {
@@ -12,7 +12,7 @@ int guess(const bool ans[]) {
 		same += (c == d);
 	}
 	if (same == N) {
-		cout << "Success, took " << guesses << " guesses." << endl;
+		cout << guesses << endl;
 		exit(0);
 	}
 	return same;
@@ -20,8 +20,12 @@ int guess(const bool ans[]) {
 
 int main() {
 	cin.sync_with_stdio(false);
+  cin >> N;
 	cin >> target;
-	N = (int)target.size();
+  if (int(target.size()) != N) {
+    cerr << "Invalid input string." << endl;
+    exit(2);
+  }
 	for (int i = 0; i < N; i++) {
 		if (target[i] != '0' && target[i] != '1')
 			cerr << "Invalid input string." << endl, exit(2);

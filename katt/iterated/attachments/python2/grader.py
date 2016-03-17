@@ -1,4 +1,4 @@
-import mastermind
+import iterated
 import grader
 import sys
 
@@ -8,11 +8,14 @@ target = None
 def _grader_init():
     global N
     global target
+    N = int(sys.stdin.readline())
     inp = sys.stdin.readline().strip()
+    if len(inp) != N:
+        print "Invalid input string."
+        sys.exit(2)
     if any(x != '0' and x != '1' for x in inp):
         print "Invalid input string."
         sys.exit(2)
-    N = len(inp)
     target = [True if x == '1' else False for x in inp]
     mastermind.init(N)
     print "Failure."

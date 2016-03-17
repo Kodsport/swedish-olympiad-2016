@@ -1,4 +1,4 @@
-class mastermind {
+class iterated {
 	public static void init(int N) {
 		boolean[] ar = new boolean[N];
 		grader.lib.guess(ar);
