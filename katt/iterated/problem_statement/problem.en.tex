@@ -1,7 +1,7 @@
 \newcommand\version{v1}
 \problemname{Iterated Quiz}
-Ann Britt-Caroline is playing a game against Daniel. Daniel have asked Ann $N$ yes-or-no questions, which she now must answer.
-However, the questions are seemingly impossible, e.g.
+Ann Britt-Caroline is playing a game against Daniel. Daniel has asked Ann $N$ yes-or-no questions, which she now must answer.
+However, the questions are seemingly impossible to answer, e.g.
 \begin{itemize}
   \item What is the airspeed velocity of an unladen swallow?
   \item Is the statement ``This statement is false'' true?
@@ -18,7 +18,7 @@ Help her play Iterated Quiz against Daniel!
 Let there be $N = 3$ questions. In the first round, Ann answers $(yes, yes, no)$. Daniel says that she got $2$ questions correct. She then answers $(yes, no, yes)$. This time, she still got two questions correct. Finally, she
 answers $(yes, no, no)$, which happened to be the correct answer. Thus she needed 3 rounds to complete the game.
 
-Note that in the first round, the first and third answers were correct. In the second roun, the first and second answers were correct.
+Note that in the first round, the first and third answers were correct. In the second round, the first and second answers were correct.
 
 \section*{Task}
 Your task is to play Iterated Quiz against Daniel. You will get the number of questions in the game, and should implement the function \texttt{init(N)}.
@@ -34,7 +34,7 @@ Additionally, you should call the function \texttt{guess(A)} to give your guesse
 \begin{itemize}
   \item \texttt{guess(A)} - this function should be called by your program to give a guess.
     \begin{itemize}
-      \item \texttt{A}: an array with $N$ elements. $A[i]$ ($0 \le i < N$) should contain 0 or 1 if your answer to the $i$:th question is $0$ or $1$ respectively.
+      \item \texttt{A}: an array with $N$ elements. $A[i]$ ($0 \le i < N$) should contain 0 or 1 if your answer to the $i$:th question is $no$ or $yes$ respectively.
       \item The function returns an integer; the number of questions you got right with your guess. When you have answered all questions correctly, your program should terminate.
     \end{itemize}
 \end{itemize}
@@ -45,13 +45,14 @@ The problem consists of a number of subtasks. Each subtask gives some amount of 
 the subtask you must pass all the test cases in the subtask.
 
 Let $M$ be the number of rounds your program needs to answer all the questions correctly.
+
 \begin{tabular}{|l|l|l|}
   \hline
   \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
   1 & 9 & $1 \le N \le 20$. $M$ must be at most $2^N$.  \\ \hline
   2 & 11 & $1 \le N \le 1\,000$, $M$ must be at most $2N$. \\ \hline
   3 & 15 & $1 \le N \le 1\,000$, $M$ must be at most $N + 2$. \\ \hline
-  4 & 65 & $N = 1\,000$. \\ \hline
+  4 & 65 & $N = 1\,000$, $M$ must be at most $N$. \\ \hline
 \end{tabular}
 
 For subtask 4, the scoring works as follows. Assume that your program needs $M$ rounds in the worst case,

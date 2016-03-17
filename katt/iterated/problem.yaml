@@ -1,0 +1,10 @@
+author: Emanuel Gedin, Simon Lindholm
+source: Programmeringsolympiadens KATT-tävling 2016
+rights_owner: Programmeringsolympiaden
+license: cc by-sa
+grading:
+    on_reject: grade
+    objective: max
+    range: 0 100
+type: scoring
+validation: custom score interactive

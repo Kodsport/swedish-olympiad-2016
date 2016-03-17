@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
     int seed;
     cin >> N >> type >> seed;
 
-    fd = fopen(argv[1], "rw");
+    fd = fopen(argv[1], "rw+");
     ofstream fout(argv[2], ofstream::out|ofstream::in);
 
     srand(seed);
@@ -82,11 +82,8 @@ int main(int argc, char** argv) {
     while (guess != target) {
       guesses++;
       try {
-        cout << "reading new guess" << endl;
         guess = safe_read();
-        cout << "read guess" << endl;
       } catch(...) {
-        cout << "crash" << endl;
         die("no input!");
       }
       if (sz(guess) != N)
