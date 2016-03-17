@@ -34,14 +34,14 @@ tc binary6 random_generator 1000 700 2 0 yes
 # values < 128
 group ascii 24
 include_group binary
-tc asciiflat1 flat_generator 1000 500 2 0 8 64
-tc ascii1 random_generator 800 300 64 32 no
-tc ascii2 random_generator 1000 500 64 32 no
-tc ascii3 random_generator 1000 300 64 32 yes
-tc ascii4 random_generator 1000 500 64 32 yes
-tc ascii5 random_generator 1000 500 2 60 yes
+tc asciiflat1 flat_generator 1000 500 2 0 2 8
+tc ascii1 random_generator 800 300 8 4 no
+tc ascii2 random_generator 1000 500 8 4 no
+tc ascii3 random_generator 1000 300 8 4 yes
+tc ascii4 random_generator 1000 500 8 4 yes
+tc ascii5 random_generator 1000 500 2 7 yes
 tc ascii6 random_generator 1000 500 2 1 yes
-tc ascii7 random_generator 1000 700 64 32 yes
+tc ascii7 random_generator 1000 700 8 4 yes
 
 # values <= 10^9
 group full 55
@@ -53,7 +53,7 @@ tc full2 random_generator 1000 500 5e8 2e8 no
 tc full3 random_generator 1000 300 5e8 2e8 yes
 tc full4 random_generator 1000 500 5e8 2e8 yes
 tc full5 random_generator 1000 500 2 4e8 yes
-tc full7 random_generator 1000 700 5e8 2e8 yes
+tc full6 random_generator 1000 700 5e8 2e8 yes
 
 generate_grader
 generate_cms
