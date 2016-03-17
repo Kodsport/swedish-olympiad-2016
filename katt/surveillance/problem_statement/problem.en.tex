@@ -1,0 +1,86 @@
+\newcommand\version{v1}
+\problemname{Surveillance}
+A crime has been committed in the city of \texttt{<insert name here>}! \emph{All} of the donuts in the bakery next to the police station
+has mysteriously disappeared. Since this is the favourite bakery of the police, every resource available will be used to find the theif.
+
+The police has made a list of suspected donut theifs, but there is no evidence against anyone yet.
+Luckily, there is security footage from the scene of the crime. Unfortunately it takes way too long time
+to watch all of the footage to be done before the expiry date of the donuts has passed.
+
+Therefore, you have been tasked with writing a program to find the cookie theifs in the images.
+Your program will be given an $W \times W$ image of a suspected cookie theif, and a $B \times B$
+image from the security footage. An image consists of a rectangular array of pixels, which we
+represent as integers.
+
+Your program should count the number of occurances of the cookie theif image inside the security footage image.
+We say that a $W \times W$ subrectangle of the security footage contains the cookie theif image if there exists
+some constant $C$ such that every pixel in the subrectangle equals the corresponding pixel in the cookie theif image
+plus $C$. This is because the images may have been taken using different exposure settings, meaning one of the images
+can be lighter than the other.
+
+
+\section*{Example}
+Let the security footage be
+\[
+\begin{bmatrix}
+  1 & 2 & 3 & 4 \\
+  1 & 2 & 3 & 4 \\
+  4 & 3 & 3 & 4 \\
+  4 & 3 & 3 & 4
+\end{bmatrix}
+\]
+and the cookie theif image is
+\[
+\begin{bmatrix}
+  0 & 1 \\
+  0 & 1
+\end{bmatrix}
+\]
+
+Then there are five matches in the security footage: those areas with upper left corners in $(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)$ (denoted by $(row, column)$).
+The constants $C$ are $1, 2, 3, 3, 3$ respectively.
+
+\section*{Task}
+Your task is to compute the maximum number of contestants who can get a t-shirt that he or she can wear.
+You should implement the function \texttt{tshirt(N, L, H, T)}.
+\begin{itemize}
+  \item \texttt{surveillance(B, W, S, T)} - this function will be called exactly once by the judge.
+  \begin{itemize}
+    \item \texttt{B}: an integer - the size of the security footage image.
+    \item \texttt{W}: an integer - the size of the cookie theif image.
+    \item $W \le B$
+    \item \texttt{S}: a two-dimensional array with $B \times B$ integers. \texttt{S[i][j]} ($0 \le i, j < B$) contains the value of the pixel on row $i$ and column $j$ in the security footage image.
+    \item \texttt{T}: a two-dimensional array with $W \times W$ integers. \texttt{T[i][j]} ($0 \le i, j < W$) contains the value of the pixel on row $i$ and column $j$ in the cookie theif.
+    \item $0 \le S[i][j], T[i][j] \le 10^9$
+    \item The function should return an integer, the number of matches in the image.
+  \end{itemize}
+\end{itemize}
+
+\section*{Subtasks}
+The problem consists of a number of subtasks. Each subtask gives some amount of points, and to pass
+the subtask you must pass all the test cases in the subtask.
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  \textbf{Subtask} & \textbf{Points} & \textbf{Limits} \\ \hline
+  1 & 7 & $1 \le 1 \le W = B \le 1\,000$  \\ \hline
+
+  2 & 14 & $1 \le B \le 1\,000$, $0 \le T[i][j], S[i][j] \le 1$ \\ \hline
+
+  3 & 24 & $1 \le B \le 1\,000$, $0 \le T[i][j], S[i][j] \le 128$ \\ \hline
+
+  4 & 55 & $1 \le B \le 1\,000$ \\ \hline
+
+\end{tabular}
+
+\section*{Input format}
+The sample judge reads input in the following format:
+
+\begin{itemize}
+  \item line $1$: \texttt{B W}
+  \item line $i = 2$ to $2 + B - 1$: \texttt{B[i][0] B[i][1] ... B[i][B - 1]}
+  \item line $i = 2 + B$ to $2 + B + W - 1$: \texttt{W[i][0] W[i][1] ... W[i][B - 1]}
+\end{itemize}
+
+\section*{Output format}
+The judge writes a single line containing the return value of \texttt{surveillance(B, W, S, T)}.
