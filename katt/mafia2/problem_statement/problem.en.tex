@@ -49,7 +49,7 @@ For a certain test case $i$, let
   \item $X_i$ be the size of the set you found
 \end{itemize}
 Let the size of the best set found for a certain test case $i$ be $B_i$, and the size of your set is $X_i$. Then, your score will be
-\[ 10 \cdot \frac{X_i - 0.5}{C_i - 0.5} \]
+\[ 10 \cdot \max\{ 0, \frac{X_i - 0.5}{C_i - 0.5} \} \]
 
 \end{tabular}
 
