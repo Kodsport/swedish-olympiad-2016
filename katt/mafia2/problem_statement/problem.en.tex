@@ -1,0 +1,65 @@
+\newcommand\version{v1}
+\problemname{Mafia 2}
+A mafia has infiltrated the city \texttt{<insert name here>}.
+This has made the police force of \texttt{<insert name here>} very confused, with accusations of corruption being made in every direction.
+The city's $N$ cops (which are numbered between $0$ and $N - 1$) has made a number of accusations about other policemen.
+Each accusation is either:
+\begin{enumerate}
+  \item Police number $i$ is an honest cop.
+  \item Police number $i$ is a corrupt cop.
+\end{enumerate}.
+An honest cop always tells the truth, while a corrupt cop always lies.
+In total, there has been $M$ accusations.
+
+From last time, the chief of police knows how to interpret these accusations: if police $x$ accuse police $y$ of being honest,
+this means that either both of them are honest or none of them are. In the same way, if $x$ accuse police $y$ of being corrupt,
+then exactly one of them must be honest and exactly one of them must be corrupt.
+
+However, it seems that she must have recorded some of the accusations incorrectly. It turns out that the accusations of the 
+policemen are inconsistent with the model of honest and corrupt cops -- there is no partition of the cops into honest
+and corrupt cops such that all the accusations are true.
+
+Determine a set of accusations that \emph{is} consistent -- i.e. there exists a partition of cops into honest and corrupt cops
+such that all accusations are true -- with as large size as possible.
+
+\section*{Example}
+Let there be $N = 3$ cops, and $M = 3$ accusations.
+
+Each cop accuses another of being corrupt in a triangle, so that first accuse the second, the second accuse the third, and the third
+accuse the first.
+
+Since accusing another policeman of being corrupt is equivalent to exactly one of them being corrupt, these three accusations
+are inconsistent. If we let the first police be honest, the second must be corrupt, so the third one is honest, but not both
+the first and third police can be honest.
+
+A largest set of accusations that is consistent can be obtained by chosing any two accusations. Say that we keep the accusations
+of the first and second policemen. Then it is possible that the first and third policemen are indeed honest, and the second
+is corrupt.
+
+\section*{Task}
+This task is output-only. You will be able to download the input from the judging system, and should submit only your output files
+to the judge.
+
+\section*{Subtasks}
+The problem will consist of 10 input files. Each file will give between 0 and 10 points.
+
+For a certain test case $i$, let
+\begin{itemize}
+  \item $C_i$ be the size of the largest set found by a contestant
+  \item $X_i$ be the size of the set you found
+\end{itemize}
+Let the size of the best set found for a certain test case $i$ be $B_i$, and the size of your set is $X_i$. Then, your score will be
+\[ 10 \cdot \frac{X_i - 0.5}{C_i - 0.5} \]
+
+\end{tabular}
+
+\section*{Input format}
+\begin{itemize}
+  \item line $1$: \texttt{N M}: the number of policemen and the number of accusations, respectively.
+  \item line $2$: \texttt{A[0] ... A[M - 1]}: for each $i$, $A[i]$ contains the number of the police who made the $i$:th accusation.
+  \item line $3$: \texttt{B[0] ... B[M - 1]}: for each $i$, $B[i]$ contains the number of the police was the target of the $i$:th accusation.
+  \item line $4$: \texttt{T[0] ... T[M - 1]}: for each $i$, $T[i]$ contains 1 if the $i$:th accusation was of a policeman's honesty, and 0 if it was of a policeman's corruptness.
+\end{itemize}
+
+\section*{Output format}
+Your output should consist of $M$ integers. The $i$:th integer should be 0 (if the $i$:th accusation is not part of your selected set) or 1 (if the $i$:th accusation is part of your selected set).
