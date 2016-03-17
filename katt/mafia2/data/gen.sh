@@ -7,6 +7,7 @@ INDEX=0
 # Args: N, M, E
 function tc {
 	python gen.py $1 $2 $3 $INDEX > secret/$INDEX.in
+	python gen2.py $1 $2 $3 $INDEX > secret/input_$INDEX.in
 	let INDEX++
 }
 
