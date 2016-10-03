@@ -138,41 +138,80 @@
     <table id="results"></table>
 
     <script>
-      var contests = ["Finalen", "KATT 1", "KATT 2"];
+      var contests = ["Finalen", "KATT 1", "KATT 2", "KATT 3"];
       var scores = {
-        "Karl Lundstig": [657, 306, 360],
-        "David Wärn": [653, 400, 400],
-        "Joakim Blikstad": [644, 400, 400],
-        "Fredrik Hernqvist": [608, 400, 400],
-        "Herman Karlsson": [557, 362, 360],
-        "Lucas Unnerfelt": [528, 0, 0],
-        "Lisa Vällfors": [505, 362, 145],
-        "Carl Agrell": [500, 0, 130],
-        "Arvid Lunnemark": [461, 40, 160],
-        "Kristoffer Åhgren": [450, 281, 105],
-        "Nicole Hedblom": [450, 328, 0],
-        "Mattias Grenfeldt": [445, 159, 215],
-        "Jonatan Nilsson": [415, 100, 75],
-        "Hugo Eberhard": [386, 115, 105],
-        "Erik Präntare": [361, 101, 0],
-        "Björn Thorén": [345, 0, 100],
-        "Johan Vikström": [339, 128, 76],
-        "Marko Proloscic": [337, 0, 0],
-        "Björn Magnusson": [320, 181, 175],
-        "Victor Sellstedt": [283, 0, 0],
-        "Martin Jakobsson": [247, 101, 69],
-        "Jacob Eriksson": [236, 106, 30],
-        "Hannes Bredberg": [229, 85, 0],
-        "Fredrik Ekholm": [216, 168, 229],
-        "Ivar Matstoms": [216, 0, 0],
-        "Johannes Agestam": [207, 61, 0],
-        "Adam Hasselwander": [200, 0, 0],
-        "Erik Rimskog": [200, 0, 0],
-        "Erik Sundqvist": [200, 0, 0],
-        "Gustav Lindqvist": [149, 0, 0],
-        "Carl Enlund": [116, 40, 0],
-        "Simon Halvdansson": [100, 0, 0],
-        "Johan Boström": [0, 400, 0],
+        "David Wärn - IOI": [653, 400, 400, 387],
+        "Joakim Blikstad - IOI": [644, 400, 400, 331],
+        "Herman Karlsson - BOI": [557, 362, 360, 303],
+        "Karl Lundstig - IOI": [657, 306, 360, 265],
+        "Fredrik Hernqvist - IOI": [608, 400, 400, 100],
+        "Fredrik Ekholm": [216, 168, 229, 265],
+        "Kristoffer Åhgren": [450, 281, 105, 235],
+        "Björn Magnusson": [320, 181, 175, 227],
+        "Arvid Lunnemark": [461, 40, 160, 343],
+        "Lisa Vällfors": [505, 362, 145, 0],
+        "Hugo Eberhard": [386, 115, 105, 276],
+        "Nicole Hedblom - BOI": [450, 328, 0, 139],
+        "Martin Jakobsson": [247, 101, 69, 272],
+        "Mattias Grenfeldt": [445, 159, 215, 35],
+        "Johan Vikström": [339, 128, 76, 79],
+        "Jonatan Nilsson": [415, 100, 75, 100],
+        "Jacob Eriksson": [236, 106, 30, 135],
+        "Johan Boström": [0, 40, 0, 178],
+        "Johannes Agestam": [207, 61, 0, 142],
+        "Carl Agrell": [500, 0, 130, 35],
+        "Hannes Bredberg": [229, 85, 0, 35],
+        "Erik Präntare": [361, 101, 0, 0],
+        "Björn Thorén": [345, 0, 100, 0],
+        "Carl Enlund": [116, 40, 0, 0],
+
+        "Lucas Unnerfelt": [528, 0, 200, 0],
+        "Marko Proloscic": [337, 0, 0, 0],
+        "Victor Sellstedt": [283, 0, 0, 0],
+        "Ivar Matstoms": [216, 0, 0, 0],
+        "Adam Hasselwander": [200, 0, 0, 0],
+        "Erik Rimskog": [200, 0, 0, 0],
+        "Erik Sundqvist": [200, 0, 0, 0],
+        "Gustav Lindqvist": [149, 0, 0, 0],
+        "Simon Halvdansson": [100, 0, 0, 0],
+      };
+
+
+      var year = {
+        "David Wärn - IOI": 2,
+        "Joakim Blikstad - IOI": 3,
+        "Herman Karlsson - BOI": 2,
+        "Karl Lundstig - IOI": 3,
+        "Fredrik Hernqvist - IOI": 3,
+        "Fredrik Ekholm": 8,
+        "Kristoffer Åhgren": 3,
+        "Björn Magnusson": 1,
+        "Arvid Lunnemark": 1,
+        "Lisa Vällfors": 3,
+        "Hugo Eberhard": 9,
+        "Nicole Hedblom - BOI": 2,
+        "Martin Jakobsson": 3,
+        "Mattias Grenfeldt": 1,
+        "Johan Vikström": 3,
+        "Jonatan Nilsson": 2,
+        "Jacob Eriksson": 2,
+        "Johan Boström": 3,
+        "Johannes Agestam": 3,
+        "Carl Agrell": 2,
+        "Hannes Bredberg": 3,
+        "Erik Präntare": 2,
+        "Björn Thorén": 3,
+        "Carl Enlund": 2,
+
+        "Lucas Unnerfelt": 2,
+        "Marko Proloscic": 2,
+        "Victor Sellstedt": 3,
+        "Ivar Matstoms": 1,
+        "Adam Hasselwander": 3,
+        "Erik Rimskog": 3,
+        "Erik Sundqvist": 3,
+        "Gustav Lindqvist": 3,
+        "Simon Halvdansson": 3,
       };
       var names = Object.keys(scores);
       var normalized = JSON.parse(JSON.stringify(scores));
@@ -180,19 +219,19 @@
         var contestScores = names.map(x => scores[x][i]).filter(x => x != 0).sort((x, y) => x - y);
         var max = contestScores[contestScores.length - 1];
         var mid = Math.floor(contestScores.length / 2);
-        var median = contestScores.length % 2 == 0 ? contestScores[mid] : (contestScores[mid] + contestScores[mid + 1]) / 2;
+        var median = contestScores.length % 2 == 1 ? contestScores[mid] : (contestScores[mid - 1] + contestScores[mid]) / 2;
         var norm = {0: 0}; 
         contestScores.forEach(x => norm[x] = Math.floor(50 * (x > median ? (1 + (x - median) / (max - median)) : x / median)));
         names.forEach(x => normalized[x][i] = norm[scores[x][i]]);
       }
-      var header = "<tr><th>Namn</th>" + contests.map(x => "<th>" + x + "</th>").join("") + "<th>Totalt</th></tr>";
+      var header = "<tr><th>Namn</th><th>Åk</th>" + contests.map(x => "<th>" + x + "</th>").join("") + "<th>Totalt</th></tr>";
       var mx2 = x => x.reduce((a, b) => a + b) - x.reduce((a, b) => Math.min(a, b)) * (x.length == 3 ? 1 : 0);
       var tot = x => x[0] + mx2(x.slice(1));
       var finalscores = names.map(x => [x].concat(normalized[x]).concat([tot(normalized[x])])).sort((x, y) => y[y.length - 1] - x[x.length - 1]);
-      var maxTotal = 100 * contests.length;
+      var maxTotal = 300;
       var col = (x, mx) => "hsla(" + 100 * x / mx + ", 71%, 42%, 1)";
       var score = (x, mx) => "<td style='text-align: right; background-color: " + col(x, mx) + ";'><strong>" + x + "</strong></td>";
-      var rows = finalscores.map(x => "<tr><td><strong>" + x[0] + "</strong></td>" + x.slice(1, -1).map(sc => score(sc, 100)).join("") + score(x[x.length - 1], maxTotal) + "</tr>").join("");
+      var rows = finalscores.map(x => "<tr><td><strong>" + x[0] + "</strong></td><td>" + year[x[0]] + x.slice(1, -1).map(sc => score(sc, 100)).join("") + score(x[x.length - 1], maxTotal) + "</tr>").join("");
       $("#results").append(header);
       $("#results").append(rows);
     </script>
