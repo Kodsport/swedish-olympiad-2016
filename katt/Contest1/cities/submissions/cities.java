@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.StringTokenizer;
+
 
 public class cities
 {
@@ -92,7 +94,7 @@ public class cities
 	// i = root node, dst = distance from centroid,
 	// cnt[d] = number of nodes at distance d from centroid,
 	// p = parent node, K = target distance
-	static void add(final int i, final int dst, final int[] cnt, final int p, final int K)
+	static void add(final int i, final int dst, final long[] cnt, final int p, final int K)
 	{
 		if(dst>K) return;
 		cnt[dst]++;
@@ -113,7 +115,7 @@ public class cities
 
 	public static void main(String[] klein) throws Exception
 	{
-		final IntIO in = new IntIO(System.in);
+		final Kattio in = new Kattio(System.in);
 		final int N = in.getInt(), K = in.getInt();
 		final int[] F = new int[N-1], T = new int[N-1];
 		for(int i = 0; i<N-1; i++) F[i] = in.getInt();
@@ -123,3 +125,59 @@ public class cities
 
 }
 
+class Kattio extends PrintWriter {
+    public Kattio(InputStream i) {
+        super(new BufferedOutputStream(System.out));
+        r = new BufferedReader(new InputStreamReader(i));
+    }
+    public Kattio(InputStream i, OutputStream o) {
+        super(new BufferedOutputStream(o));
+        r = new BufferedReader(new InputStreamReader(i));
+    }
+
+    public boolean hasMoreTokens() {
+        return peekToken() != null;
+    }
+
+    public int getInt() {
+        return Integer.parseInt(nextToken());
+    }
+
+    public double getDouble() {
+        return Double.parseDouble(nextToken());
+    }
+
+    public long getLong() {
+        return Long.parseLong(nextToken());
+    }
+
+    public String getWord() {
+        return nextToken();
+    }
+
+
+
+    private BufferedReader r;
+    private String line;
+    private StringTokenizer st;
+    private String token;
+
+    private String peekToken() {
+        if (token == null)
+            try {
+                while (st == null || !st.hasMoreTokens()) {
+                    line = r.readLine();
+                    if (line == null) return null;
+                    st = new StringTokenizer(line);
+                }
+                token = st.nextToken();
+            } catch (IOException e) { }
+        return token;
+    }
+
+    private String nextToken() {
+        String ans = peekToken();
+        token = null;
+        return ans;
+    }
+}
