@@ -1,11 +1,11 @@
-name: forvirradforelasare
-author: Erik Odenman
+name: kulram
+author: Johan Sannemo
 source: Programmeringsolympiaden 2016
 rights_owner: Programmeringsolympiaden
 license: cc by-sa
 grading:
-  on_reject: grade
-  accept_score: 20
-  range: 0 100
-
+    on_reject: grade
+    accept_score: 20
+    range: 0 100
 type: scoring
+

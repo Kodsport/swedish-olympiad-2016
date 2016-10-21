@@ -23,7 +23,6 @@ int MLX(int nr, int rem1, int rem2) {
 }
 
 int main() {
-        return 0; // Blah just to make it validate fast // Arash
         scanf("%d", &N);
         int i;
         for(i=0;i<N;i++) scanf("%d", &n[i]);

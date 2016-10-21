@@ -1,0 +1,11 @@
+INT(1, 12, r)
+NEWLINE
+REP(r)
+	INT(0, 9, a) SPACE INT(0, 9, b)
+	ASSERT(a + b <= 9)
+	ASSERT(a + b >= 1)
+	NEWLINE
+END
+INT(0, 1000000000000, n)
+NEWLINE
+EOF
