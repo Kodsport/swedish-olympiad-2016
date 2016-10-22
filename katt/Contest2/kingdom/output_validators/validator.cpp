@@ -95,7 +95,7 @@ int main(int argc, char** argv) {
 			}
 		}
 done: 
-		accept(fail ? 0.75 : 1.00);
+		accept(fail ? 0.50 : 1.00);
 	} catch(...) {
 		die("IO failure");
 	}

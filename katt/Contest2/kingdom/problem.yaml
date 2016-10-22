@@ -6,5 +6,9 @@ grading:
     on_reject: grade
     objective: max
     range: 0 100
+limits:
+    time_multiplier: 10
+    time_safety_margin: 1.5
+
 type: scoring
 validation: custom score

@@ -2,13 +2,13 @@
 \problemname{Videoklipp}
 På en populär hemsida så kan de $N$ deltagarna i KATT titta på videoklipp mellan deras problemlösning.
 
-På siten finns det $K$ roliga videoklipp med katter som hoppar runt på ett tangentbord, numrerade mellan $0$ och $K - 1$.
+På sajten finns det $K$ roliga videoklipp med katter som hoppar runt på ett tangentbord, numrerade mellan $0$ och $K - 1$.
 När man tittat på en av videoklippen följer ett förslag på nästa kattvideo, som du såklart klickar på och börjar titta på.
 
 För varje tävlanden får du den ursprungliga kattvideon hen tittade på. Avgör vilken den $M$:te kattvideon varje tävlanden tittar på blir.
 
 \section*{Exempel}
-Totalt har vi $N = 2$ tävlanden, och $K = 4$ kattivdeos.
+Totalt har vi $N = 2$ tävlanden, och $K = 4$ kattvideor.
 Förslagen för varje video är $(3, 2, 1, 0)$. Den första tävlanden börjar med att titta på video 3, och den andra börjar på video 1.
 Vi undrar vilka de $M = 3$:e videoklippen blir för de två tävlanden.
 
@@ -21,10 +21,10 @@ Din uppgift är att beräkna, för varje tävlanden, vad den $M$:te videon hen t
 Du ska implementera funktionerna \texttt{videos(K, M, S)} och \texttt{clip(I)}.
 
 \begin{itemize}
-  \item \texttt{videos(K, M, S)} - this function will be called exactly once by the judge at the start of the execution.
+  \item \texttt{videos(K, M, S)} - denna funktion anropas exakt en gång av domaren i början av programmet.
   \begin{itemize}
-    \item \texttt{K}: antalet roliga kattvideos.
-    \item \texttt{M}: antalet videos varje tävlanden ska kolla på.
+    \item \texttt{K}: antalet roliga kattvideor.
+    \item \texttt{M}: antalet videor varje tävlanden ska kolla på.
     \item \texttt{S}: en array med $K$ element. \texttt{S[i]} ($0 \le i < N$) innehåller förslaget för video $i$.
 		\item $0 \le S[i] < K$
     \item Funktion har inget returvärde
