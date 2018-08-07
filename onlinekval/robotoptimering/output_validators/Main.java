@@ -259,7 +259,12 @@ public class Main {
 		int bestLength = judge.nextInt();
 
 		Scanner s = new java.util.Scanner(System.in).useDelimiter("\\A");
-		String theCode = s.next();
+		String theCode = "";
+		try {
+			theCode = s.next();
+		} catch(Exception e) {
+			// E.g. NoSuchElementException if no input
+		}
 
 		Reader code = new StringReader(theCode);
 
