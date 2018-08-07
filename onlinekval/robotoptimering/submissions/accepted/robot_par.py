@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 ans = {
 'robot_concentric': """main:
 for 13 { forward }
