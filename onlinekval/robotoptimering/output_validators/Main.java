@@ -574,6 +574,10 @@ class Runner {
         context.labels = new HashMap<>();
         root.evaluate(stepList, context.labels, new ArrayList<Integer>()); // Convert the parse tree to a sequence (List) of Steps.
 
+		for (Step s : stepList) {
+			s.init(context);
+		}
+
         // List to contain the history of all states.
         List<State> stateList = new ArrayList<>();
         stateList.add(context.state);
@@ -779,6 +783,8 @@ abstract class Step {
         this.line = line;
     }
 
+    public void init(Context context) {}
+
     // execute executes the step and returns the index of the next step
     public abstract int execute(Context context, Stack<StackFrame> stack);
 }
@@ -898,6 +904,7 @@ class GotoStep extends Step {
     String label;
     boolean requireBlocked;
     List<Integer> forStack;
+	int target, pops;
 
     // Returns the number of pops from the for stack required to jump from s1 to s2, or -1 if the jump is illegal.
     public static int compareForStacks(List<Integer> s1, List<Integer> s2) {
@@ -918,6 +925,22 @@ class GotoStep extends Step {
         this.forStack = forStack;
     }
 
+	@Override
+	public void init(Context context) {
+        if(!context.labels.containsKey(label)) {
+            throw new RuntimeException("Line " + line + ": Could not find label '" + label + "'.");
+        }
+        int index = context.labels.get(label);
+        LabelStep label = (LabelStep)context.steps.get(index);
+        this.pops = GotoStep.compareForStacks(this.forStack, label.forStack);
+
+        if(this.pops == -1) {
+            throw new RuntimeException("Line " + line + ": Tried to jump into a for loop.");
+        }
+
+		this.target = index;
+	}
+
     @Override
     public int execute(Context context, Stack<StackFrame> stack) {
         context.state.updateLine(line);
@@ -926,41 +949,35 @@ class GotoStep extends Step {
             return context.currentStep + 1;
         }
 
-        if(!context.labels.containsKey(label)) {
-            throw new RuntimeException("Line " + line + ": Could not find label '" + label + "'.");
-        }
-        int index = context.labels.get(label);
-        LabelStep label = (LabelStep)context.steps.get(index);
-        int pops = GotoStep.compareForStacks(this.forStack, label.forStack);
-
-        if(pops == -1) {
-            throw new RuntimeException("Line " + line + ": Tried to jump into a for loop.");
-        }
-
-        for(int i=0; i<pops; i++) {
+        for(int i=0; i<this.pops; i++) {
             stack.peek().loopStack.pop();
         }
-        return index;
+        return this.target;
     }
 }
 
 class CallStep extends Step {
     String label;
+	int target;
 
     public CallStep(String label, int line) {
         super(line);
         this.label = label;
     }
 
+	@Override
+	public void init(Context context) {
+        if(!context.labels.containsKey(label)) {
+            throw new RuntimeException("Line " + line + ": Could not find label '" + label + "'.");
+        }
+		this.target = context.labels.get(label);
+	}
+
     @Override
     public int execute(Context context, Stack<StackFrame> stack) {
         context.state.updateLine(line);
 
-        if(!context.labels.containsKey(label)) {
-            throw new RuntimeException("Line " + line + ": Could not find label '" + label + "'.");
-        }
-
-        int index = context.labels.get(label);
+        int index = this.target;
         LabelStep label = (LabelStep)context.steps.get(index);
 
         if(label.forStack.size() > 0) {
