@@ -559,6 +559,7 @@ class ReturnNode extends ParseTree {
 
 class Runner {
     public final static int MAX_STEPS = 100000000;
+    public final static int MAX_RECURSION_DEPTH = 5000000;
 
     /* Parameters:
         context: Context object, which contains the Grid and an initial State.
@@ -593,7 +594,14 @@ class Runner {
         Stack<StackFrame> stack = new Stack<>();
         stack.push(new StackFrame());
 
-        while(pos < stepList.size() && i < MAX_STEPS) {
+        while(pos < stepList.size()) {
+			if(i >= MAX_STEPS) {
+				throw new RuntimeException("The robot was killed after 100'000'000 execution steps.");
+			}
+			if (stack.size() > MAX_RECURSION_DEPTH) {
+				throw new RuntimeException("The robot was killed after recursing too deep (at most 5'000'000 levels are allowed).");
+			}
+
             Step step = stepList.get(pos);
             pos = step.execute(context, stack);
             context.currentStep = pos;
@@ -609,10 +617,6 @@ class Runner {
             }
 
             i++;
-        }
-
-        if(i >= MAX_STEPS) {
-            throw new RuntimeException("The robot was killed after " + i + " execution steps (100 million steps is the maximum allowed).");
         }
 
         return stateList;
