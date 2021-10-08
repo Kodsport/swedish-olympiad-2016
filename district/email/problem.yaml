@@ -1,0 +1,8 @@
+type: scoring
+author: Simon Lindholm
+source: Distriktsmästerskapen 2016
+license: cc by-sa
+rights_owner: Programmeringsolympiaden
+grading:
+  range: 0 80
+  on_reject: grade

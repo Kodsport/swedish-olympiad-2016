@@ -1,0 +1,34 @@
+\problemname{Rätta fel}
+
+Givet en text på engelska, där vissa tecken har blivit ersatta med \texttt{\#}, rätta texten genom att fylla i vilka tecken som skulle stått där egentligen.
+
+\section*{Indata}
+Indata består av en enda rad med tecken \texttt{a-z, A-Z, 0-9}, skiljetecknen \texttt{.,-:;!?"'}, samt blanksteg. Vissa av dessa tecken har blivit ersatta av \texttt{\#}.
+Ingen testdatafil består av mer än $500\,000$ tecken.
+
+Indatafilen kan även innehålla nyrader, men inget av dessa kommer ersättas av \texttt{\#}.
+
+\section*{Utdata}
+Du ska skriva ut indatatexten, där varje förekomst av \texttt{\#} har ersatts med det ursprungliga tecknet på den positionen. Om du ändrar ett annat
+tecken än \texttt{\#} kommer du få fel på det testfallet.
+
+Alla tecken kan ha blivit ersatta, inklusive mellanslag och skiljetecken. Om du ska rätta en bokstav, måste du även ha rätt på stor och liten bokstav.
+
+Det spelar ingen roll hur du skriver ut nyrader - dessa kommer ignoreras vid rättning (och behöver alltså inte överensstämma med nyraderna i indata).
+
+\section*{Poäng}
+
+Det finns tre testfall ditt program kommer köras på.
+\begin{enumerate}
+  \item I ett testfall värt 60 poäng kommer högst en bokstav per ord att ersättas. Inga mellanslag eller skiljetecken kommer ersättas.
+  \item I ett testfall värt 60 poäng kommer $10\%$ slumpmässiga tecken bytas ut.
+  \item I ett testfall värt 60 poäng kommer $30\%$ slumpmässiga tecken bytas ut.
+\end{enumerate}
+
+Detta problem kan alltså ge totalt 180 poäng.
+
+Om du på ett visst testfall, som ger $P$ poäng, rättar \texttt{M} fel och det totalt finns \texttt{N} fel får du 
+$$P \cdot \frac{M}{N}$$
+poäng, avrundat nedåt.
+
+Din totala poäng är summan av poängen för de olika testfallen.

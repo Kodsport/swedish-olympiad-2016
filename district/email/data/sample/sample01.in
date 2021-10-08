@@ -1,0 +1,16 @@
+MIME-Version: 1.0
+Received: by 10.112.236.98 with HTTP; Thu, 28 Jan 2016 10:57:40 -0800 (PST)
+Date: Thu, 28 Jan 2016 19:57:40 +0100
+Delivered-To: simon.lindholm10@gmail.com
+Message-ID: <CAK=Tff0+3K4tXGvYh+VG-qP6Ldz+q-+jaZW2Q01dkL4fDQxGkw@mail.gmail.com>
+Subject: test
+From: Simon Lindholm <simon.lindholm10@gmail.com>
+To: simonlindholm@fastmail.fm
+Content-Type: multipart/alternative; boundary=001a11c269f42ab6b0052a697e72
+
+--001a11c269f42ab6b0052a697e72
+Content-Type: text/plain; charset=UTF-8
+
+a test
+
+--001a11c269f42ab6b0052a697e72--

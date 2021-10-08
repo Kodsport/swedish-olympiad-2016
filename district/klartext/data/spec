@@ -1,0 +1,56 @@
+#!/bin/bash
+PPATH=$(realpath ..)
+. ../../testdata_tools/gen.sh
+
+# Setup testdata.yaml and do some cleanup
+setup_dirs
+
+# Choose your solution
+use_solution solution.py
+
+# Compile generators
+compile gen-random.py # Arguments: type
+
+# Generate answers to sample cases
+samplegroup
+for x in sample/*.in
+do
+  sample `basename ${x%.*}`
+done
+
+# Add a new testdata group
+group caesar 10
+for i in {1..10}
+do
+tc caesar-$i gen-random caesar
+done
+
+group fixed 15
+for i in {1..10}
+do
+tc fixed-$i gen-random railgun
+done
+
+group railgun 25
+for i in {1..10}
+do
+tc railgun-$i gen-random fixed_hard
+done
+
+group dynamic 25
+for i in {1..10}
+do
+tc dynamic-$i gen-random dynamic_permutation
+done
+
+group morse 40
+for i in {1..10}
+do
+tc morse-$i gen-random morse
+done
+
+# Cleanup programs
+cleanup_programs
+
+# Generate grader
+generate_grader

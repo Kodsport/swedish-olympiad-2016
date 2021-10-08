@@ -1,0 +1,76 @@
+#!/bin/bash
+PPATH=$(realpath ..)
+. ../../testdata_tools/gen.sh
+
+# Setup testdata.yaml and do some cleanup
+setup_dirs
+
+# Choose your solution
+use_solution js_solve.cpp
+
+# Compile generators
+compile fish-gen.py # Arguments: length seed
+
+# Generate answers to sample cases
+samplegroup
+sample sample
+
+# Add a new testdata group
+
+add_case() {
+  for x in texts/*
+  do
+    txt=`basename $x`
+    transform=$1
+    keylen=$2
+    echo $txt $keylen $transform
+    tc "$txt-$transform-$keylen" fish-gen $txt $keylen $transform
+  done
+}
+
+group single-az 6
+add_case az 1
+
+group single 10
+add_case none 1
+
+group five-fisk 12
+add_case fisk 3
+add_case fisk 4
+add_case fisk 5
+
+group five-az 19
+add_case az 3
+add_case az 4
+add_case az 5
+
+group five 24
+include_group single
+include_group five-az
+include_group five_fisk
+add_case none 3
+add_case none 4
+add_case none 5
+
+group ten-az 33
+include_group five-az
+add_case az 8
+add_case az 9
+add_case az 10
+
+group ten 41
+include_group five
+include_group ten-az
+add_case none 8
+add_case none 9
+add_case none 10
+
+group flagpole 15
+add_case flagpole 15
+
+# Cleanup programs
+cleanup_programs
+
+# Generate grader
+generate_grader
+

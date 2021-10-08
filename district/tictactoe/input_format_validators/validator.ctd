@@ -1,0 +1,9 @@
+INT(0, 3, case)
+SPACE
+INT(0, 1, starting)
+SPACE
+INT(0, 1, strategy)
+SPACE
+INT(0, 1000000, seed)
+NEWLINE
+EOF

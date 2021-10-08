@@ -1,0 +1,58 @@
+Delivered-To: simon.lindholm10@gmail.com
+Received: by 10.112.155.195 with SMTP id vy3csp710980lbb;
+        Thu, 28 Jan 2016 14:08:38 -0800 (PST)
+Return-Path: <simonlindholm@fastmail.fm>
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com. [66.111.4.27])
+        by mx.google.com with ESMTPS id wb3si19310522pab.114.2016.01.28.14.08.37
+        for <simon.lindholm10@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 28 Jan 2016 14:08:37 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+	by mailout.nyi.internal (Postfix) with ESMTP id 965F620767
+	for <simon.lindholm10@gmail.com>; Thu, 28 Jan 2016 17:08:34 -0500 (EST)
+Received: from web5 ([10.202.2.215])
+  by compute2.internal (MEProxy); Thu, 28 Jan 2016 17:08:34 -0500
+Received: by web5.nyi.internal (Postfix, from userid 99)
+	id 26696A70216; Thu, 28 Jan 2016 17:08:34 -0500 (EST)
+Message-Id: <1454018914.1678085.505620754.5295DB0C@webmail.messagingengine.com>
+From: Simon Lindholm <simonlindholm@fastmail.fm>
+To: Simon Lindholm <simon.lindholm10@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative; boundary="_----------=_145401891416780850";
+  charset="utf-8"
+Subject: Re: test
+Date: Thu, 28 Jan 2016 23:08:34 +0100
+In-Reply-To: <CAK=Tff0+3K4tXGvYh+VG-qP6Ldz+q-+jaZW2Q01dkL4fDQxGkw@mail.gmail.com>
+References: <CAK=Tff0+3K4tXGvYh+VG-qP6Ldz+q-+jaZW2Q01dkL4fDQxGkw@mail.gmail.com>
+
+This is a multi-part message in MIME format.
+
+--_----------=_145401891416780850
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+
+a reply
+
+On Thu, 28 Jan 2016, at 07:57 PM, Simon Lindholm wrote:
+> a test
+
+--_----------=_145401891416780850
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body><div>a reply<br></div>
+<div>&nbsp;</div>
+<div>On Thu, 28 Jan 2016, at 07:57 PM, Simon Lindholm wrote:<br></div>
+<blockquote type="cite"><div dir="ltr">a test<br></div>
+</blockquote><div>&nbsp;</div>
+</body>
+</html>
+
+--_----------=_145401891416780850--
+

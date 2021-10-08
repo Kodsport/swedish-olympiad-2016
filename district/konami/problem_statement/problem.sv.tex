@@ -1,0 +1,26 @@
+\problemname{Konamikoden}
+
+En vanlig fuskkod i många gamla spel är den så kallade \emph{konamikoden}, som består av sekvensen \texttt{upp upp ned ned vänster höger vänster höger B A}.
+
+Du håller på att programmera ett spel, där du vill lägga in ett fusk som aktiveras när man skriver in konamikoden. Dock vill du göra det med en twist - det ska vara tillåtet att trycka på högst $K$ andra knappar mellan din konamikod.
+
+Om $K = 3$ betyder detta att vi får sätta in tre extra knapptryckningar. Alltså skulle \texttt{upp upp ned \textbf{vänster} ned vänster \textbf{B B} höger vänster höger B A} vara en korrekt konamikod, där de tre extra knapptryckningarna är markerade i fetstil.
+
+Du ska nu skriva ett program som, givet en sekvens av knapptryckningar, avgör det lägsta $K$-värde som behövs för att konamikoden ska förekomma i sekvensen. Notera att knapptryckningar som sker före den första konamikodstryckningen och efter den sista konamikodstryckningen inte räknas. Detta betyder att för sekvensen \texttt{\textbf{B B vänster} upp upp ned \textbf{vänster} ned vänster \textbf{B B} höger vänster höger B A \textbf{A B upp}} ska vi fortfarande svara $K = 3$.
+
+\section*{Indata}
+Indata innehåller en enda rad med $N$ tecken - sekvensen av knapptryckningar. Den kommer ges som en sekvens av bokstäverna \texttt{U, N, V, H, B, A}, som står för knapptryckningarna \texttt{upp, ned, vänster, höger, B, A}.
+
+Det är garanterat att konamikoden finns som en delsekvens av knapptryckningarna.
+
+\section*{Utdata}
+Du ska skriva ut en enda rad med heltalet $K$ som beskrivet i uppgiften.
+
+\section*{Poäng}
+
+\begin{enumerate}
+	\item[7 poäng] $N \le 11$.
+	\item[11 poäng] $N \le 100$.
+	\item[12 poäng] $N \le 3000$.
+	\item[20 poäng] $N \le 200\,000$.
+\end{enumerate}

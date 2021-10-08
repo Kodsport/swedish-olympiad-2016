@@ -1,0 +1,10 @@
+type: scoring
+author: Johan Sannemo, Simon Lindholm
+source: Distriktsmästerskapen 2016
+license: cc by-sa
+rights_owner: Programmeringsolympiaden
+validation: custom
+grading:
+  range: 0 60
+  accept_score: 6
+  on_reject: grade

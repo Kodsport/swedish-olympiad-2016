@@ -1,0 +1,8 @@
+type: scoring
+author: Johan Sannemo
+source: Distriktsmästerskapen 2016
+license: cc by-sa
+rights_owner: Programmeringsolympiaden
+grading:
+  range: 0 160
+  on_reject: grade

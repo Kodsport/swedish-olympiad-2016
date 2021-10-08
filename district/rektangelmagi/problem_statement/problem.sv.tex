@@ -1,0 +1,38 @@
+\problemname{Rektangelmagi}
+
+En \emph{magisk sekvens} av längd $n + 1$ är en sekvens av tal $a, a + d, a + 2d, ..., a + nd$ för två rationella tal $a$ och $d$, t.ex. $2, 5.5, 9, 12.5$ eller $5, 5, 5$ eller $2, 1, 0, -1, -2$.
+
+En \emph{magisk rektangel} av storlek $R \times C$ är en rektangel där varje rad och kolumn är en magisk sekvens.
+
+Givet en rektangel av heltal där vissa av talen är bortsuddade, avgör om det går att fylla i dessa bortsuddade tal så att rektangeln är en magisk rektangel.
+
+\section*{Indata}
+Den första raden i indata innehåller talen $R$ och $C$, antalet rader och kolumner i den givna rektangeln. Sedan följer $R$ rader med $C$ heltal vardera.
+
+Ett bortsuddat tal representeras som en punkt.
+
+\section*{Utdata}
+Om ingen lösning finns, skriv ut \texttt{ej magisk}.
+
+Annars, skriv ut $R$ rader med $C$ kolumner - en magisk rektangel där du tagit indatarektangeln och ersatt de bortsuddade talen.
+
+Rationella tal ska anges på formen \texttt{N/D}, där $N$ och $D$ är högst 100 siffror långa. Observera att det inte ska vara mellanslag mellan talen och divisionstecknet.
+
+Om $D = 1$ kan du skriva \texttt{N}.
+
+\section*{Poäng}
+
+I de första 9 fallen gäller $1 \le R, C \le 6$.
+
+\begin{enumerate}
+	\item[10 poäng] alla tal är redan ifyllda.
+	\item[10 poäng] Antingen $R$ eller $C$ är 1.
+	\item[10 poäng] $R = C = 2$
+	\item[10 poäng] varje testfall har en unik lösning, och rektangeln är konstruerad så att det finns en rad eller kolumn med bara ett bortsuddat tal, och när den fylls i finns det återigen en rad eller kolumn med bara ett tal, osv, ända tills hela rektangeln är ifylld. 
+	\item[10 poäng] varje testfall har en unik lösning som innehåller enbart heltal.
+	\item[10 poäng] varje testfall har en unik lösning.
+	\item[10 poäng] varje testfall har antingen en unik lösning som innehåller enbart heltal, eller så har det inte en lösning.
+	\item[10 poäng] varje testfall har antingen en unik lösning eller ingen lösning alls.
+	\item[10 poäng] inga ytterligare begränsningar.
+	\item[10 poäng] inga ytterligare begränsningar, men $1 \le R, C \le 50$.
+\end{enumerate}

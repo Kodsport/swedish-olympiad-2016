@@ -1,0 +1,9 @@
+INT(1, 50, r) SPACE INT(1, 50, c)
+NEWLINE
+REPI(i, r, NEWLINE)
+  REPI(j, c, SPACE)
+    REGEX("(0|-?[1-9][0-9]*|\\.)")
+  END
+END
+NEWLINE
+EOF

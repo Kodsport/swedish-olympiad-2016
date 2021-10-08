@@ -1,0 +1,41 @@
+\problemname{Email-parsing}
+
+Nyckelorden \texttt{MÅSTE}, \texttt{MÅSTE INTE}, \texttt{KRÄVS}, \texttt{SKALL}, \texttt{SKALL INTE}, \texttt{BÖR}, \texttt{BÖR INTE}, \texttt{REKOMMENDERAS}, \texttt{FÅR}, \texttt{FRIVILLIGT} i denna uppgiftslydelse skall tolkas som beskriver i RFC 2119.
+
+För att lösa denna uppgift REKOMMENDERAS det att läsa följande specifikationer:
+\begin{itemize}
+	\item RFC 20: https://www.ietf.org/rfc/rfc20.txt
+	\item RFC 1866: https://www.ietf.org/rfc/rfc1866.txt
+	\item RFC 2045: https://www.ietf.org/rfc/rfc2045.txt
+	\item RFC 2046: https://www.ietf.org/rfc/rfc2046.txt
+	\item RFC 2119: https://www.ietf.org/rfc/rfc2119.txt
+	\item RFC 2616: https://www.ietf.org/rfc/rfc2616.txt
+	\item RFC 2822: https://www.ietf.org/rfc/rfc2822.txt
+	\item RFC 3676: https://www.ietf.org/rfc/rfc3676.txt
+\end{itemize}
+
+Du kommer få email i formatet som beskrivs av RFC 2822.  Din uppgift är att hitta en föredragen del i detta email, vars innehåll är ett MIME-meddelande, som specifierat i RFC 2045 och RFC 2046. Texten i denna del SKALL du sedan skriva ut.
+
+Meddelandet kommer alltid vara av typen \texttt{multipart/alternative}. Den föredragna delen i meddelandet är antingen av typen \texttt{text/html}, som beskrivs i RFC 1866, eller typen \texttt{text/plain}, som beskrivs i RFC 3676. Teckenkodningen kommer att vara ASCII, som beskriven i RFC 20.
+
+
+För enkelhets skull kommer varje rad att termineras med en enkel LF i stället för en CRLF som i vanlig HTTP 1.1 (beskriven i RFC 2616).
+
+Till skillnad från en riktig email-klient FÅR du anta att saker och ting kommer att vara snälla. T.ex. kommer HTML-en i en \texttt{text/html}-del alltid validera.
+
+\section*{Indata}
+Indata innehåller ett email, se exempel nedan.
+
+\section*{Utdata}
+Du SKALL skriva ut den extraherade texten och inget annat. Extra nyrader i början/slutet är FRIVILLIGT.
+
+\section*{Poäng}
+
+\begin{enumerate}
+	\item[20 poäng] det kommer bara finnas en enda multipart-del, och den är av typen "text/plain".
+	\item[30 poäng] den föredragna delen kommer att vara av typ "text/plain".
+	\item[25 poäng] den föredragna delen kommer att vara av typ "text/plain", och kommer att kodas med "Content-Transfer-Encoding: quoted-printable".
+  \item[25 poäng] den föredragna delen kommer att vara av typ "text/html". Alla <HTML-taggar> och \&entiteter; ska tas bort.
+\end{enumerate}
+
+Endast i den tredje gruppen kommer kodningen vara "Content-Transfer-Encoding: quoted-printable". I de övriga kommer den att vara "7bit".
