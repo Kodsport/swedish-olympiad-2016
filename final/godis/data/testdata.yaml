@@ -1,2 +1,3 @@
-grading: custom
-grader_flags: sum
+grader_flags: ignore_sample
+on_reject: continue
+range: 0 100
