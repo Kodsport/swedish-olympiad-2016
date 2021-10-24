@@ -4,8 +4,8 @@ Mårten är extremt duktig på 3-i-rad. Så duktig att du aldrig lyckas slå hon
 
 Om du inte vet vad 3-i-rad är, kan du läsa om hur spelet fungerar \href{https://sv.wikipedia.org/wiki/Tre_i_rad}{på Wikipedia}.
 
-\section*{Indata och utdata}
-Detta problem är interaktivt. Du ska först läsa en rad som innehåller antingen \texttt{first} or \texttt{second} - detta säger om du ska dra först eller inte.
+\section*{Interaktivitet}
+Detta problem är interaktivt. Du ska först läsa en rad som innehåller antingen \texttt{first} eller \texttt{second} -- detta säger om du ska dra först eller inte.
 
 Varje gång du ska dra ska du läsa in ett 3-i-rad-bräde med draget Mårten gjorde
 (eller ett blankt bräde för det allra första draget),
@@ -13,49 +13,16 @@ och sedan skriva ut ett 3-i-rad-bräde med draget du gjorde.
 
 Om du skriver ut ett bräde där du vinner eller spelar oavgjort ska ditt program avslutas. Om du läser in ett bräde där Mårten vunnit eller spelat oavgjort ska ditt program avslutas.
 
-Ett bräde ska skrivas ut och läsas in som 3 rader med 3 tecken vardera - antingen \texttt{.} för tom ruta, \texttt{o} för Mårtens pjäser, eller \texttt{x} för dina pjäser (obs: små bokstäver).
+Ett bräde ska skrivas ut och läsas in som 3 rader med 3 tecken vardera -- antingen \texttt{.} för tom ruta, \texttt{o} för Mårtens pjäser, eller \texttt{x} för dina pjäser (obs: små bokstäver).
 
-\section*{Exempel}
-I exemplet nedan spelar Mårten först. Mårtens utskrift är i fetstil.\\
-\textbf{\texttt{second \\
-..o \\
-... \\
-... \\
-}}
-\texttt{
-..o \\
-.x. \\
-... \\
-}
-\textbf{\texttt{
-.oo \\
-.x. \\
-... \\
-}}
-\texttt{
-xoo \\
-.x. \\
-... \\
-}
-\textbf{\texttt{
-xoo \\
-.xo \\
-... \\
-}}
-\texttt{
-xoo \\
-.xo \\
-..x \\
-}
+\section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper. För att få poäng för en grupp så måste du klara alla testfall i gruppen.
 
-Efter det sista draget vann du mot Mårten, och ska därmed avsluta ditt program.
-
-\section*{Poäng}
-
-\begin{enumerate}
-	\item[13 poäng] du ska spela ett giltigt spel.
-	\item[19 poäng] du ska aldrig förlora mot Mårten.
-	\item[24 poäng] du ska alltid vinna ett spel om det går.
-	\item[14 poäng] du ska aldrig förlora mot Mårten, och du ska alltid vinna ett spel om det går.
-\end{enumerate}
-
+\begin{tabular}{| l | l | l |}
+	\hline
+	Grupp & Poängvärde & Begränsningar\\ \hline
+ $1$    & $20$        & Du ska spela ett giltigt spel. \\ \hline
+ $2$    & $25$        & Du ska aldrig förlora ett spel. \\ \hline
+ $3$    & $30$        & Du ska alltid vinna ett spel om det går. \\ \hline
+ $4$    & $25$        & Du ska aldrig förlora ett spel, och du ska alltid vinna ett spel om det går. \\ \hline
+\end{tabular}

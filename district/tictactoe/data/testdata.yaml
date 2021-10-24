@@ -1,2 +1,3 @@
-grading: custom
-grader_flags: sum
+range: 0 100
+grader_flags: accept_if_any_accepted
+on_reject: continue

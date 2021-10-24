@@ -19,8 +19,10 @@ function group {
 	rands=$4
 	opts=$5
 	mkdir secret/$groupname
-	echo "grading: custom
-grader_flags: all $points" > secret/$groupname/testdata.yaml
+    echo "accept_score: $points
+grader_flags: min first_error
+range: 0 $points
+on_reject: break" > secret/$groupname/testdata.yaml
 	ind=0
 	for i in $(seq 1 $rands); do testcase 0 0; testcase 1 0; done
 	for i in $(seq 1 $opts); do testcase 0 1; testcase 1 1; done
@@ -33,7 +35,7 @@ function testcase {
 	touch secret/$groupname/$PROBLEMNAME.$groupname.$sind.ans
 }
 
-group g1 13 0 3 2
-group g2 19 1 0 5
-group g3 24 2 7 0
-group g4 14 3 5 3
+group g1 20 0 3 2
+group g2 25 1 0 5
+group g3 30 2 7 0
+group g4 25 3 5 3

@@ -1,0 +1,31 @@
+\problemname{Tic-Tac-Toe}
+Mårten is extremely good at tic-tac-toe.
+He's so good you've never managed to beat him.
+Write a program that plays tic-tac-toe for you, and you might have a chance.
+
+If you don't know the rules of the game, you can read them \href{https://en.wikipedia.org/wiki/Tic\_tac\_toe}{on Wikipedia}.
+
+\section*{Interactivity}
+This problem is interactive.
+First, you should read one line containing either \texttt{first} or \texttt{second}, depending on whether you move first or not.
+
+Then, you should repeatedly read in a tic-tac-toe grid containing the current game state (blank if you're making the first move, otherwise containing Mårten's last move).
+After reading the grid, you should output a grid with the move you performed.
+
+If you output a grid where you win or play a draw your program should terminate.
+If you read a grid where Mårten won or drew your program should terminate.
+
+A grid is output and read as a 3 lines with 3 characters each -- \texttt{.} for an empty square, \texttt{o} for Mårten's pieces, or \texttt{x} for your pieces (note lower-case letters).
+
+\section*{Grading}
+Your solution will be tested on several groups of test cases. To get points for a group you need to pass all the tests of that group.
+
+\noindent
+\begin{tabular}{| l | l | l |}
+	\hline
+	Group & Points & Constraints\\ \hline
+ $1$    & $20$        & You must play a valid game. \\ \hline
+ $2$    & $25$        & You must never lose a game. \\ \hline
+ $3$    & $30$        & You must always win a game if possible. \\ \hline
+ $4$    & $25$        & You must never lose a game and you must always win a game of possible. \\ \hline
+\end{tabular}
