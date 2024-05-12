@@ -1,81 +1,39 @@
 #!/bin/bash
+PPATH=$(realpath ..)
+. ../../../testdata_tools/gen.sh
 
-PROBLEMNAME="gratismat"
-g++ -std=c++11 -O2 ../submissions/accepted/emanuel100p.cpp -o /tmp/sol
-g++ -std=c++11 -O2 randomGenerator.cpp -o randomGenerator.out
-g++ -std=c++11 -O2 longChainGenerator.cpp -o longChainGenerator.out
-g++ -std=c++11 -O2 completeGenerator.cpp -o completeGenerator.out
-SOLVER=/tmp/sol
+ulimit -s unlimited
+use_solution gratismat_js.cpp
 
-rm -rf secret
-mkdir secret
-echo "grading: custom
-grader_flags: sum" > secret/testdata.yaml
+compile completeGenerator.cpp
+compile longChainGenerator.cpp
+compile randomGenerator.cpp
 
-function group {
-	groupname=$1
-	points=$2
-	mkdir secret/$groupname
-	echo "grading: custom
-grader_flags: all $points" > secret/$groupname/testdata.yaml
-	ind=0
-	echo "Generating group $groupname..."
-}
-
-function solve {
-	$SOLVER < $1 > ${1%.in}.ans
-}
-
-function testcase_random {
-	ind=$((ind+1))
-	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-	echo $in
-	./randomGenerator.out "$@" $ind > $in
-	solve $in
-}
-
-function testcase_long {
-	ind=$((ind+1))
-	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-	echo $in
-	./longChainGenerator.out "$@" $ind > $in
-	solve $in
-}
-
-function testcase_complete {
-	ind=$((ind+1))
-	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-	echo $in
-	./completeGenerator.out "$@" $ind > $in
-	solve $in
-}
-
-function repeat {
-	rep=$1
-	shift
-	for i in $(seq 1 $rep); do
-		eval $@
-	done
-}
+samplegroup
+sample sample0
+sample sample1
 
 group g1 49
 # N <= 2000
-testcase_random 16 8
-testcase_complete 15 4
-testcase_long 2000
-testcase_complete 2000 100
-testcase_complete 2000 1000
-testcase_random 2000 10
-testcase_random 2000 100
-testcase_random 2000 1000
-testcase_random 2000 2000
+tc sample0
+tc sample1
+tc g1-1 randomGenerator 16 8
+tc g1-2 completeGenerator 15 4
+tc g1-3 longChainGenerator 2000
+tc g1-4 completeGenerator 2000 100
+tc g1-5 completeGenerator 2000 1000
+tc g1-6 randomGenerator 2000 10
+tc g1-7 randomGenerator 2000 100
+tc g1-8 randomGenerator 2000 1000
+tc g1-9 randomGenerator 2000 2000
 
 group g2 51
+include_group g1
 # N <= 100000
-testcase_long 100000
-testcase_complete 100000 1000
-testcase_complete 100000 10000
-testcase_random 100000 100
-testcase_random 100000 1000
-testcase_random 100000 10000
-testcase_random 100000 50000
+tc g2-1 longChainGenerator 100000
+tc g2-2 completeGenerator 100000 1000
+tc g2-3 completeGenerator 100000 10000
+tc g2-4 randomGenerator 100000 100
+tc g2-5 randomGenerator 100000 1000
+tc g2-6 randomGenerator 100000 10000
+tc g2-7 randomGenerator 100000 50000
