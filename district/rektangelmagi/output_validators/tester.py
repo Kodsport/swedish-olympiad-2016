@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 # tester for the task "arithmetic"
 # usage: ./tester.py input_file correct_output contestants_output
