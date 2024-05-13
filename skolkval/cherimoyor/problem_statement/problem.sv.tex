@@ -8,7 +8,7 @@ Cherimoyorna är olika mogna. Vissa har precis blivit mogna samma dag medan en
 del blir ätmogna senare.
 
 Mer precist är det under totalt 3 dagar varje cherimojafrukt är ätmogen. Vi
-säger at frukten blir ätmogen den dagen. Före kan man inte äta den och efter de
+säger att frukten blir ätmogen den dagen. Före kan man inte äta den och efter de
 tre dagarna måste den slängas.
 
 Farah vill få ut så mycket som möjligt utav cherimoyasäsongen. Hon vill
@@ -21,17 +21,38 @@ avgör hur mycket njutningspoäng Farah kommer att få ut under årets
 cherimoyasäsong.
 
 \section*{Indata}
+Den första raden av indata innehåller heltalet $N$ ($1 \leq N \leq 15$), antalet
+dagar som cherimoyorna kan bli mogna på.
 
-Du kommer först få ett heltal $N$ och därefter $N$ heltal
-$C_i$. Det är då alltså under $N+2$ dagar som det är aktuellt att äta cherimoyor.
-Inget enskilt heltal kommer att vara större än 30.
+För varje av de kommande $N$ dagarna får du ett heltal $C_i$ ($0 \leq C_i \leq 30$),
+vilket betyder att $C_i$ stycken cherimoyor blir mogna den dagen.
+Det är då alltså under $N+2$ dagar som det är aktuellt att äta cherimoyor.
 
 \section*{Utdata}
-
-Skriv ut en rad med ett heltal. Heltalet är hur mycket njutningspoäng Farah som
+Skriv ut ett heltal: hur mycket njutningspoäng Farah som
 mest kan få med den bästa ätstrategin.
 
 \section*{Poängsättning}
+Din lösning kommer att testas på en mängd testfallsgrupper.
+För att få poäng för en grupp så måste du klara alla testfall i gruppen.
 
-För testfall värda upp till $60$ poäng, kommer $N$ vara som mest 5. För full
-poäng så ska ditt program klara $N$ som mest 15.
+\noindent
+\begin{tabular}{| l | l | p{12cm} |}
+  \hline
+  \textbf{Grupp} & \textbf{Poäng} & \textbf{Gränser} \\ \hline
+  $1$    & $20$       & $N \leq 1$ \\ \hline
+  $2$    & $20$       & $N \leq 2$ \\ \hline
+  $3$    & $30$       & $N \leq 5$ \\ \hline
+  $4$    & $30$       & Inga ytterligare begränsningar. \\ \hline
+\end{tabular}
+
+\section*{Förklaring av exempelfall 1}
+En optimal strategi är följande:
+\begin{enumerate}
+    \item Av de 18 cherimoyorna som mognar dag 1, ät 6st på dag 1, 2 och 3.
+    Detta ger $10+9+8+7+6+5=45$ njutningspoäng vardera av dagarna.
+    \item Av de 2 cherimoyorna som mognar dag 2, ät en på dag 4 och en på dag 5.
+    Detta ger $10$ njutningspoäng vardera av dagarna.
+    \item Sammanlagt ger detta $45*3+10*2=155$ njutningspoäng. Det finns ingen strategi
+    som ger mer njutningspoäng.
+\end{enumerate}

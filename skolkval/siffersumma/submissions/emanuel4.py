@@ -1,4 +1,4 @@
-# Expected score: 4p
+#!/usr/bin/python3
 
 import sys
 

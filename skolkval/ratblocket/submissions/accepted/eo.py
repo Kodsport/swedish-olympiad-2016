@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from collections import deque
 
 WALL = "#"
@@ -67,6 +68,6 @@ def bfs(grid):
   a,b = dist[gr][gc][STANDING]
   return a if b == -1 else b if a == -1 else min(a,b)
 
-height, width = map(int, raw_input().split())
-grid = [raw_input() for i in range(height)]
-print bfs(grid)
+height, width = map(int, input().split())
+grid = [input() for i in range(height)]
+print(bfs(grid))
