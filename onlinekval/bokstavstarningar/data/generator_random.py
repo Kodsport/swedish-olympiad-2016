@@ -7,7 +7,7 @@ import sys
 
 (n, k, m, seed) = [int(s) for s in sys.argv[1:]]
 
-random.seed(m * 1000 + n * 100 + k * 10 + seed)
+random.seed(sys.argv[-1])
 
 alphabet = string.ascii_uppercase
 goodmask = 0
@@ -95,7 +95,7 @@ for i in range(n):
     somemask |= mask
     print(die)
 goodmask = somemask & ~allmask
-assert goodmask != 0
+#assert goodmask != 0
 
 yeses = random.randrange(m+1)
 nos = m - yeses

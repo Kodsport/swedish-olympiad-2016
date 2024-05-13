@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import re
 import sys
 
@@ -20,10 +22,10 @@ assert len(line) == 0
 #Check that robot stays inside string
 now=0
 for i in range(n):
-   m=-1
-   for c in ('R','G','B'):
-	k=s.find(c,now)
-	assert k>=0
-	m=max(m,k)
-   now=m+1
+	m=-1
+	for c in ('R','G','B'):
+		k=s.find(c,now)
+		assert k>=0
+		m=max(m,k)
+	now=m+1
 sys.exit(42)

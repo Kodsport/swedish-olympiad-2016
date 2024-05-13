@@ -1,99 +1,68 @@
 #!/bin/bash
+REQUIRE_SAMPLE_REUSE=0
+. ../../../testdata_tools/gen.sh
 
-PROBLEMNAME="brandvagg"
-VALIDATOR=../input_format_validators/validator.py
-g++ -std=c++11 -O2 ../submissions/accepted/brandvagg_js.cpp -o /tmp/sol
-SOLVER=/tmp/sol
+use_solution joshua.cpp
 
-rm -rf secret
-mkdir secret
-echo "grading: custom
-grader_flags: sum" > secret/testdata.yaml
+compile generate_many_limits.py
+compile generate_many_logs.py
+compile generate_random.py
 
-function group {
-	groupname=$1
-	points=$2
-	mkdir secret/$groupname
-	echo "grading: custom
-grader_flags: all $points" > secret/$groupname/testdata.yaml
-	ind=0
-	echo "Generating group $groupname..."
-}
+samplegroup
+sample sample01
+sample sample02
+sample sample03
 
-function solve {
-	python3 $VALIDATOR <$1
-	$SOLVER < $1 > ${1%.in}.ans
-}
 
-function testcase_manylogs {
-	ind=$((ind+1))
-	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-	echo $in
-	python3 generate_many_logs.py "$@" $ind > $in
-	solve $in
-}
-
-function testcase_manylimits {
-	ind=$((ind+1))
-	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-	echo $in
-	python3 generate_many_limits.py "$@" $ind > $in
-	solve $in
-}
-
-function testcase_random {
-	ind=$((ind+1))
-	in=secret/$groupname/$PROBLEMNAME.$groupname.$ind.in
-	echo $in
-	python3 generate_random.py "$@" $ind > $in
-	solve $in
-}
-
-function repeat {
-	rep=$1
-	shift
-	for i in $(seq 1 $rep); do
-		eval $@
-	done
-}
 
 group g1 7
 # P <= 10,000. There are only "accept" actions.
-testcase_random 100 10000 100 100 1
-testcase_random 100 10000 10 10 1
+tc g1-1 generate_random 100 10000 100 100 1
+tc g1-2 generate_random 100 10000 10 10 1
 
 group g2 15
 # P <= 10,000. No rule has a condition.
-testcase_random 100 10000 100 100 2
-testcase_manylogs 100 2000 1 1 1
-testcase_manylogs 100 2000 100 100 2
+tc g2-1 generate_random 100 10000 100 100 2
+tc g2-2 generate_many_logs 100 2000 1 1 1
+tc g2-3 generate_many_logs 100 2000 100 100 2
 
 group g3 29
 # P <= 10,000. There are no "limit" conditions.
-repeat 2 testcase_random 100 10000 10 10 3
-testcase_random 100 10000 2 2 3
-testcase_random 100 10000 40 40 3
-testcase_random 100 10000 500 500 3
+tc g3-1 generate_random 100 10000 10 10 3
+tc g3-2 generate_random 100 10000 10 10 3
+tc g3-3 generate_random 100 10000 2 2 3
+tc g3-4 generate_random 100 10000 40 40 3
+tc g3-5 generate_random 100 10000 500 500 3
+
 
 group g4 25
 # P <= 100$
-repeat 2 testcase_random 100 100 10 10 4
-testcase_random 100 100 2 2 4
-testcase_random 100 100 30 30 4
-testcase_manylimits 100 100
+tc g4-1 generate_random 100 100 10 10 4
+tc g4-2 generate_random 100 100 10 10 4
+tc g4-3 generate_random 100 100 2 2 4
+tc g4-4 generate_random 100 100 30 30 4
+tc g4-5 generate_many_limits 100 100
 
 group g5 14
+include_group g4
 # P <= 1,000
-repeat 2 testcase_random 100 1000 10 10 4
-testcase_random 100 1000 2 2 4
-testcase_random 100 1000 40 40 4
-testcase_random 100 1000 500 500 4
-testcase_manylimits 100 1000
+tc g5-1 generate_random 100 1000 10 10 4
+tc g5-2 generate_random 100 1000 10 10 4
+tc g5-3 generate_random 100 1000 2 2 4
+tc g5-4 generate_random 100 1000 40 40 4
+tc g5-5 generate_random 100 1000 500 500 4
+tc g5-6 generate_many_limits 100 1000
 
 group g6 10
+include_group g1
+include_group g2
+include_group g3
+include_group g5
 # P <= 10,000
-repeat 2 testcase_random 100 10000 10 10 4
-testcase_random 100 10000 2 2 4
-testcase_random 100 10000 40 40 4
-testcase_random 100 10000 500 500 4
-testcase_manylimits 100 10000
+tc g6-1 generate_random 100 10000 10 10 4
+tc g6-2 generate_random 100 10000 10 10 4
+tc g6-3 generate_random 100 10000 2 2 4
+tc g6-4 generate_random 100 10000 40 40 4
+tc g6-5 generate_random 100 10000 500 500 4
+tc g6-6 generate_many_limits 100 10000
+
