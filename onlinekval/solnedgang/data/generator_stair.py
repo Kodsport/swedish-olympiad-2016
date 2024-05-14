@@ -1,13 +1,12 @@
 import sys
 import random
 
-if len(sys.argv) != 7:
+if len(sys.argv) != 5:
     sys.stderr.write('Wrong number of arguments\n')
     sys.exit(1)
 
-(n_max, xy_max, variant, seed_offset, seed) = [int(s) for s in sys.argv[1:-1]]
+(n_max, xy_max, variant, seed) = [int(s) for s in sys.argv[1:]]
 
-seed += seed_offset
 
 random.seed(seed)
 

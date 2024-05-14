@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 . ../../../testdata_tools/gen.sh
 
 use_solution fargrobot.py

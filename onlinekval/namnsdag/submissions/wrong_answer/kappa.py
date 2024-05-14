@@ -1,1 +1,3 @@
-print "kappa"
+#!/usr/bin/python3
+
+print("kappa")

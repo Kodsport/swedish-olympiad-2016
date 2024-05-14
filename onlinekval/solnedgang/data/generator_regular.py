@@ -1,14 +1,13 @@
 import sys
 import random
 
-if len(sys.argv) != 7:
+if len(sys.argv) != 5:
     print('Wrong number of arguments')
     sys.exit(1)
 
-(n_max, k_max, xy_max, seed_offset, seed) = [int(s) for s in sys.argv[1:-1]]
-solver_path = sys.argv[-1]
+(n_max, k_max, xy_max, seed) = [int(s) for s in sys.argv[1:]]
+solver_path = "./solver"
 
-seed += seed_offset
 
 random.seed(seed)
 
