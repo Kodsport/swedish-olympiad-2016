@@ -1,2 +1,0 @@
-#!/bin/bash
-javac grader.java magic.java
