@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sys
 
 def videos(K, M, S):
@@ -27,12 +28,3 @@ def clip(I):
         seen[I] = time
     #print("Video %d is %d" % (i, I))
     return I
-
-K, M = map(int, sys.stdin.readline().split())
-S = [ int(t) for t in sys.stdin.readline().strip().split() ]
-videos(K, M, S)
-
-N = int(sys.stdin.readline())
-I = [ int(t) for t in sys.stdin.readline().strip().split() ]
-IS = map(str, map(clip, I))
-print(' '.join(IS))

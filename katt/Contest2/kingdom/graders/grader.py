@@ -1,48 +1,74 @@
-GROUP_SCORES = [8, 10, 16, 18, 18, 30]
-GROUP_CASES = [[24, 25, 30, 31, 32, 33, 34, 35], [12, 13, 14, 15, 16, 17, 24, 25], [24, 25, 26, 27, 28, 29], [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24, 24, 25, 25, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], [0, 1, 2, 3, 4, 5, 12, 13, 14, 15, 16, 17, 24, 25], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 19, 20, 21, 22, 23, 24, 24, 24, 24, 25, 25, 25, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]]
+#!/usr/bin/env python3
+
 import sys
 
-def main():
-    if "ignore" in sys.argv:
-        print "AC 0"
-    elif "groups" in sys.argv:
-        verdicts = []
-        scores = []
-        for line in sys.stdin.readlines():
-            verdict, score = line.split()
-            verdicts.append(verdict)
-            scores.append(float(score) if verdict == "AC" else 0.0)
-        total_score = 0
-        first_error = None
-        for group in range(len(GROUP_SCORES)):
-            group_score = GROUP_SCORES[group]
-            rel_score = 1.0
-            for case in GROUP_CASES[group]:
-                rel_score = min(rel_score, scores[case])
-                if verdicts[case] != "AC" and not first_error:
-                    first_error = verdicts[case]
-            total_score += group_score * rel_score
-        total_score = round(total_score * 100.0) / 100.0
-        if total_score == 0.0 and first_error:
-            print "%s 0" % first_error
-        else:
-            print "AC %f" % total_score
-    elif "sum" in sys.argv:
-        total_score = 0
-        first_error = None
-        for line in sys.stdin.readlines():
-            verdict, score = line.split()
-            total_score += float(score)
-            if verdict != "AC" and not first_error:
-                first_error = verdict
-        total_score = round(total_score * 100.0) / 100.0
-        if total_score == 0 and first_error:
-            print "%s 0" % first_error
-        else:
-            print "AC %f" % total_score
+
+def worst_error(verdicts):
+    sorting_order = ['JE', 'IF', 'RTE', 'MLE', 'TLE', 'OLE', 'WA', 'PE', 'AC']
+    verdicts += ['AC']
+    index = min(sorting_order.index(verdict) for verdict in verdicts)
+    return sorting_order[index]
+
+def first_error(verdicts):
+    for verdict in verdicts:
+        if verdict != 'AC':
+            return verdict
+    return 'AC'
+
+def always_accept(verdicts):
+    return 'AC'
+
+verdict_aggregators = {
+    'worst_error': worst_error,
+    'no_errors': worst_error,
+    'first_error': first_error,
+    'always_accept': always_accept
+}
+
+
+def avg(scores):
+    return 1.0*sum(scores) / len(scores)
+
+score_aggregators = {
+    'sum': sum,
+    'avg': avg,
+    'max': max,
+    'min': min
+}
+
+
+aggregate_scores = score_aggregators['sum']
+aggregate_verdicts = verdict_aggregators['worst_error']
+ignore_sample = False
+accept_if_any_accepted = False
+
+subtask_score=1
+for flag in sys.argv:
+    if flag in score_aggregators:
+        aggregate_scores = score_aggregators[flag]
+    if flag in verdict_aggregators:
+        aggregate_verdicts = verdict_aggregators[flag]
+    if flag == 'ignore_sample':
+        ignore_sample = True
+    if flag == 'accept_if_any_accepted':
+        accept_if_any_accepted = True
+    if "subtask_score" in flag:
+        subtask_score = int(flag.split("=")[1])
+
+try:
+    data = sys.stdin.read().split()
+    verdicts = data[0::2]
+    scores = list(map(float, data[1::2]))
+    assert len(verdicts) == len(scores)
+    if ignore_sample:
+        assert 1 <= len(verdicts) <= 2
+        verdicts = verdicts[-1:]
+        scores = scores[-1:]
+    if accept_if_any_accepted and 'AC' in verdicts:
+        verdict = 'AC'
     else:
-        for line in sys.stdin.readlines():
-            print line
-
-main()
-
+        verdict = aggregate_verdicts(verdicts)
+    score = aggregate_scores(scores)*subtask_score
+    print('%s %f' % (verdict, score))
+except:
+    print('JE')
