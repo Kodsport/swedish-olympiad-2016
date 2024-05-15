@@ -1,2 +1,0 @@
-#!/bin/bash
-g++ -static -O2 -std=c++11 -Wall -o iterated stub.cpp iterated.cpp

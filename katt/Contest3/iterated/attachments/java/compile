@@ -1,2 +1,0 @@
-#!/bin/bash
-javac stub.java iterated.java

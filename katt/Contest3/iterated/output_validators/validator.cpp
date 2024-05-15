@@ -44,12 +44,12 @@ double score(int guesses, int best) {
 }
 
 int main(int argc, char** argv) {
-	if (argc < 4) exit(1);
+	if (argc < 3) exit(1);
 	cin.sync_with_stdio(0);
 	cin.tie(0);
 	int max_score, seed;
 	ifstream(argv[1]) >> N >> type >> max_score >> seed;
-	output_dir = argv[3];
+	output_dir = argv[2];
 	srand(seed);
 
 	string guess, target(N, '0');
