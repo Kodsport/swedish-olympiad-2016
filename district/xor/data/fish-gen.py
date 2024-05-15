@@ -35,9 +35,9 @@ def hexa(txt):
         ans += i
     return ans
 
-random.seed(int(sys.argv[4]))
+random.seed(int(sys.argv[-1]))
 
-path = "texts/" + sys.argv[1]
+path = "../texts/" + sys.argv[1]
 
 keylen = int(sys.argv[2])
 

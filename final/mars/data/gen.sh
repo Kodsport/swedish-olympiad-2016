@@ -14,11 +14,11 @@ samplegroup
 sample sample
 
 # Add a new testdata group
-group ints 46
+group 1-ints 46
 # Note: tc automatically adds a deterministic, pseudo-random seed argument to your generator
 tc sample
 tc ints random_generator integers 50000
 
-group floats 54
-include_group ints
+group 2-floats 54
+include_group 1-ints
 tc floats random_generator floats 50000

@@ -5,5 +5,4 @@ rights_owner: Programmeringsolympiaden
 license: cc by-sa
 validation: custom score
 grading:
-  range: 0 110
-  on_reject: grade
+  show_test_data_groups: true

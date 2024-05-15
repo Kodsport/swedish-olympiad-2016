@@ -34,11 +34,14 @@ if correct=='ej magisk':
 
 R, C = [ int(x) for x in fin.readline().split() ]
 inputdata = [ x.split() for x in fin.readlines() ]
-outputdata = [ x.split() for x in fhis.readlines() ]
+try:
+  outputdata = [ x.split() for x in fhis.readlines() ]
 
-if len(outputdata) != R: die("incorrect number of rows")
-for x in outputdata:
-  if len(x) != C: die("incorrect number of tokens in a row")
+  if len(outputdata) != R: die("incorrect number of rows")
+  for x in outputdata:
+    if len(x) != C: die("incorrect number of tokens in a row")
+except:
+  die("error")
 
 allowed = re.compile('-?[0-9]{1,20}(/-?[0-9]{1,20})?$')
 for r in range(R):

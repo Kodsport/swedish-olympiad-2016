@@ -41,7 +41,7 @@ tc medium-3 gen 40 100 10000 200
 tc medium-4 gen 99 100 10000 200
 
 # N <= 2,000, M <= 70,000, G <= 2,000
-group large 33
+group 5-large 33
 include_group 1-tiny
 include_group 4-medium
 include_group 3-singlequery
