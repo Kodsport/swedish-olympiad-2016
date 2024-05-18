@@ -1,4 +1,4 @@
-#/usr/bin/env python
+#!/usr/bin/python3
 import sys
 import re
 
@@ -7,13 +7,13 @@ intspace_re = "^(0|[1-9][0-9]*)( (0|[1-9][0-9]*))*$"
 
 line = sys.stdin.readline() 
 assert re.match(intspace_re, line)
-N, L, Q = map(int, line.split())
+N, L, Q = list(map(int, line.split()))
 assert 1 <= N <= 100000
 assert N <= L <= 1000000000
 assert 0 <= Q <= 200000
 
 line = sys.stdin.readline() 
-P = map(int, line.split())
+P = list(map(int, line.split()))
 has = set()
 for i in P:
     assert 0 <= i < L
