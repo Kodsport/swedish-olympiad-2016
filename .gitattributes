@@ -1,0 +1,2 @@
+**/secret/**/*.in -diff -merge
+**/secret/**/*.ans -diff -merge
