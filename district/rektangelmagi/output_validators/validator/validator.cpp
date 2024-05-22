@@ -1,7 +1,5 @@
 #include "validator.h"
 #include <bits/stdc++.h>
-#include <iostream>
-#include <string>
 using namespace std;
 
 #define rep(i, a, b) for (int i = a; i < (b); ++i)
@@ -18,6 +16,7 @@ struct Frac {
   ll num;
   ll den;
   Frac() : num(0), den(1) {}
+  Frac(ll num) : num(num), den(1) {}
   Frac(ll x, ll y) {
     assert(y != 0);
     num = x;
@@ -48,7 +47,7 @@ void checkMagic() {
   string authLine;
 
   if (!getline(judge_ans, judgeLine)) {
-    judge_error("excpected more output");
+    judge_error("expected more output");
   }
   if (judgeLine != "ej magisk") {
     judge_ans.seekg(currJudgePos);
@@ -76,7 +75,7 @@ Frac toFrac(string frac) {
   Frac reFrac;
   size_t pos = frac.find("/");
   if (pos == string::npos) {
-    return Frac(stoll(frac), 1);
+    return Frac(stoll(frac));
   } else {
     return Frac(stoll(frac.substr(0, pos)), stoll(frac.substr(pos + 1)));
   }
@@ -95,11 +94,7 @@ bool isArithmetic(vector<Frac> &seq) {
   return true;
 }
 
-int main(int argc, char **argv) {
-  init_io(argc, argv);
-
-  checkMagic();
-
+void checkArithmetic() {
   int R, C;
   judge_in >> R >> C;
 
@@ -118,7 +113,7 @@ int main(int argc, char **argv) {
     for (int c = 0; c < C; c++) {
       string line;
       if (!(author_out >> line))
-        judge_error("expected more output");
+        wrong_answer("expected more output");
       outputData[r].push_back(line);
     }
     if (outputData[r].size() != C) {
@@ -167,4 +162,11 @@ int main(int argc, char **argv) {
       wrong_answer("some column is not an arithmetic sequence");
   }
   accept();
+}
+
+int main(int argc, char **argv) {
+  init_io(argc, argv);
+
+  checkMagic();
+  checkArithmetic();
 }
