@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 import sys
 
 data = []
@@ -12,7 +12,7 @@ assert len(data) > 0
 line1 = data[0].split()
 assert len(line1) == 2
 
-N,M = map(int, line1)
+N,M = list(map(int, line1))
 assert 1 <= N <= 7
 assert 1 <= M <= 7
 

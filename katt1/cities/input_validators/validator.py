@@ -1,4 +1,4 @@
-#/usr/bin/env python
+#!/usr/bin/python3
 import sys
 import re
 
@@ -39,13 +39,13 @@ class UnionFind:
 re1 = '''^(0|[1-9][0-9]*) (0|[1-9][0-9]*)$'''
 line = sys.stdin.readline() 
 assert re.match(re1, line)
-N, K = map(int, line.split())
+N, K = list(map(int, line.split()))
 assert 2 <= N <= max_n
 assert 1 <= K <= max_k
 
 re2 = '''^(0|[1-9][0-9]*)( (0|[1-9][0-9]*))*$'''
-line1 = map(int, sys.stdin.readline().split(' '))
-line2 = map(int, sys.stdin.readline().split(' '))
+line1 = list(map(int, sys.stdin.readline().split(' ')))
+line2 = list(map(int, sys.stdin.readline().split(' ')))
 assert len(line1) == N-1
 assert len(line2) == N-1
 uf = UnionFind(N)
