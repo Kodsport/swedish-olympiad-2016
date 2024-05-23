@@ -96,7 +96,8 @@ bool isArithmetic(vector<Frac> &seq) {
 
 void checkArithmetic() {
   int R, C;
-  judge_in >> R >> C;
+  if (!(judge_in >> R >> C))
+    judge_error("expected more input data");
 
   vector<vector<string>> inputData(R);
   for (int r = 0; r < R; r++) {
