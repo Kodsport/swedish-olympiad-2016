@@ -1,4 +1,5 @@
 // Expected score: 5p
+// New score format: 100p
 
 #include <bits/stdc++.h>
 using namespace std;

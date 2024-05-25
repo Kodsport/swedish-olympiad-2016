@@ -41,6 +41,9 @@ for i in {1..10}
 do
 tc g3-$i gen_rand n=10000
 done
+tc_manual ../manual_testdata/edgecase01.in
+tc_manual ../manual_testdata/edgecase02.in
+tc_manual ../manual_testdata/edgecase05.in
 
 group group4 20
 include_group group3
@@ -49,3 +52,5 @@ for i in {1..20}
 do
 tc g4-$i gen_rand n=100000000000000000000
 done
+tc_manual ../manual_testdata/edgecase03.in
+tc_manual ../manual_testdata/edgecase04.in
