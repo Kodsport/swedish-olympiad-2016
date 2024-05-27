@@ -55,20 +55,9 @@ Let $M$ be the number of rounds your program needs to answer all the questions c
   4 & 65 & $N = 1\,000$, $M$ must be at most $N$. \\ \hline
 \end{tabular}
 
-For subtask 4, the scoring works as follows. Assume that your program needs $M$ rounds in the worst case,
-and that the best program written during the contest needs $M'$ rounds.
+For subtask 4, the scoring works as follows. Assume that your program needs $M$ rounds in the worst case.
 
-Then you will score
-\[ 65 \cdot \max \{ 0, \frac{N - M}{N - M'} \} \]
-points on the subtask.
-
-\section*{Input format}
-The sample judge reads input in the following format:
-
-\begin{itemize}
-  \item line $1$: \texttt{N}
-  \item line $2$: \texttt{G[0] G[1] .. G[N - 1]} - \texttt{G[i]} contains the answer to question $i$.
-\end{itemize}
-
-\section*{Output format}
-The judge will write a single line with the number of guesses your program needs.
+If $M >= 1000$, you will get 0 points. Otherwise, you will score
+\[ 65 \cdot \min \{ 1, \frac{1000-M}{1000-420} \} \]
+points on the subtask. In other words, your score increases linearly as the number of queries decreases from 1000 to 420.
+If you never use more than 420 questions, you will get 65 points on subtask 4.

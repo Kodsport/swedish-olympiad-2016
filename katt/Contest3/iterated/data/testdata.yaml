@@ -1,4 +1,3 @@
-grading: custom
 on_reject: continue
 range: 0 100
-grader_flags: first_error accept_if_any_accepted
+grader_flags: ignore_sample

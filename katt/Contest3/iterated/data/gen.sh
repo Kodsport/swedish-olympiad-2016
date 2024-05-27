@@ -5,25 +5,26 @@
 ulimit -s unlimited
 use_solution ../dummy.cpp
 
-compile gen_rand.py
-compile gen_full.py
-compile gen_cycle_nowalk.py
-compile gen_cycle_walk.py
-
-samplegroup
-sample 1
-sample 2
-sample 3
-sample 4
+compile printer.py
 
 
-group2 g1 1 exp
-repeat 2 testcase 10
+group g1 9
+tc g1-1 printer 10 exp 9
 
-group2 g2 1 2n
-repeat 2 testcase 5000
+group g2 11
+tc g2-1 printer 1000 2n 11
 
-group2 g3 1 n 5000
-repeat 2 testcase 5000
+group g3 15
+tc g3-1 printer 1000 n 15
 
-group1 g4 1 rel 5000
+group g4 65
+tc g4-1 printer 1000 rel 65
+tc g4-2 printer 1000 rel 65
+tc g4-3 printer 1000 rel 65
+tc g4-4 printer 1000 rel 65
+tc g4-5 printer 1000 rel 65
+tc g4-6 printer 1000 rel 65
+tc g4-7 printer 1000 rel 65
+tc g4-8 printer 1000 rel 65
+tc g4-9 printer 1000 rel 65
+tc g4-10 printer 1000 rel 65
