@@ -1,0 +1,66 @@
+\problemname{Iterated Quiz}
+Ann Britt-Caroline is playing a game against Daniel. Daniel has asked Ann $N$ yes-or-no questions, which she now must answer.
+However, the questions are seemingly impossible to answer, e.g.
+\begin{itemize}
+  \item What is the airspeed velocity of an unladen swallow?
+  \item Is the statement ``This statement is false'' true?
+  \item Is $P = NP$?
+  \item ...
+\end{itemize}
+Very hard questions indeed. To make the game a bit more fun (and to put the \emph{Iterated} in \emph{Iterated Quiz}), Daniel allows Ann to answer all the questions
+many times. For a number of rounds, she will answer all of the $N$ questions simultaneously. Daniel will then tell her how many questions she got right.
+
+The goal of the game is to use as few rounds as possible to answer all the questions correctly.
+Help her play Iterated Quiz against Daniel!
+
+
+\section*{Interaction}
+First, your program should read the number $N$ ($1 \leq N \leq 1000$), the number of questions.
+
+When you want to make a guess for the questions, print a string of length $N$, consisting of \texttt{0}'s or \texttt{1}'s.
+The $i$:th character being \texttt{1} means that you guess that the answer to question $i$ is yes, and \texttt{0} means
+that you guess that the answer is no.
+
+Then, your program should read an integer, the number of questions that you guessed correctly.
+
+If your guess is entirely correct, the judge will stop your program and you will have solved the current
+testcase.
+
+\textbf{Make sure to flush the output after each query}, otherwise you may get a \textit{Time Limit Exceeded}.
+In C++, this can be done for example with \texttt{cout << flush;}
+or \texttt{fflush(stdout);},
+in Python with \texttt{stdout.flush()}
+and in Java with \texttt{System.out.flush();}.
+
+To facilitate the testing of your solution, we provide a simple tool that you can download. See ``attachments''
+at the bottom of the Kattis problem page. Refer to the comment at the top of the file for a description of how it can be used.
+
+
+\section*{Scoring}
+Your solution will be tested on a set of test case groups.
+To get points for a group, you must pass all the test cases in the group.
+
+Let $M$ be the number of rounds your program needs to answer all the questions correctly.
+
+\noindent
+\begin{tabular}{| l | l | p{12cm} |}
+  \hline
+  \textbf{Group} & \textbf{Point value} & \textbf{Constraints} \\ \hline
+  $1$    & $9$       & $1 \le N \le 10$, $M$ must be at most $2^N$. \\ \hline
+  $2$    & $11$      & $1 \le N \le 1\,000$, $M$ must be at most $2N$. \\ \hline
+  $3$    & $15$      & $1 \le N \le 1\,000$, $M$ must be at most $N + 2$. \\ \hline
+  $4$    & $65$      & $N = 1\,000$, $M$ must be at most $N$. \\ \hline
+\end{tabular}
+
+For subtask 4, the scoring works as follows. Assume that your program needs $M$ rounds in the worst case.
+
+If $M >= 1000$, you will get 0 points. Otherwise, you will score
+\[ 65 \cdot \min \{ 1, \frac{1000-M}{1000-420} \} \]
+points on the subtask. In other words, your score increases linearly as the number of queries decreases from 1000 to 420.
+If you never use more than 420 questions, you will get 65 points on subtask 4.
+
+\section*{Explanation of the sample}
+Suppose that the correct answer to all questions is \texttt{1101}. In the first guess, questions $1$ and $3$ are correctly
+guessed. In the second guess, all questions but question $4$ have been correctly guessed. The last guess is entirely correct,
+and therefore the interaction ends.
+

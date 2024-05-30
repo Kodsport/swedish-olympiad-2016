@@ -59,6 +59,5 @@ int main(int argc, char** argv) {
 		cout << s << endl;		
 	}
     double sc = score(guesses);
-    //if (type=="rel") accept_with_score(1000-guesses);
 	accept_with_score(max_score * sc);
 }

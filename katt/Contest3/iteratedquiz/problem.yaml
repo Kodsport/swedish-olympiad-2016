@@ -8,4 +8,4 @@ grading:
 type: scoring
 validation: custom score interactive
 limits:
-  time_multiplier: 1.5
+  time_multiplier: 1.3
