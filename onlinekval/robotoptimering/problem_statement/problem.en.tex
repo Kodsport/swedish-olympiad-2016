@@ -1,15 +1,15 @@
 \problemname{Robotoptimering}
 
 There's a robot in an $N \times M$ grid, where some unit squares are \textbf{blocked} so that the robot cannot walk on the square. Now she wants to move to another square, and have asked her owner to program her to do this.
-This owner happen to be you.
+This owner happens to be you.
 
-To transfer the programming to a robot from your computer requires a lot of energy, so you want to make the program as short as possible - this means using as few commands as possible.
+To transfer the code to a robot from your computer requires a lot of energy, so you want to make the program as short as possible - this means using as few commands as possible.
 As everyone knows, the robot programming language looks as follows:
 
 \begin{description}
   \item[\texttt{forward}] Move the robot forward a single step in its current direction.
-  \item[\texttt{right}] Rotate $90\deg$ clockwise.
-  \item[\texttt{left}] Rotate $90\deg$ counterclockwise.
+  \item[\texttt{right}] Rotate $90$ degrees clockwise.
+  \item[\texttt{left}] Rotate $90$ degrees counterclockwise.
   \item[\texttt{for X \{ A1 A2 ... An \}}] Repeat the commands \texttt{A1}, \texttt{A2}, ..., \texttt{An} $X$ times.
   \item[\texttt{call X}] Add your current position in the program to the top of the call stack, then jump to the instruction with label \texttt{X}.
   \item[\texttt{return}] Jump to the last added position in the call stack, and remove it.
@@ -42,7 +42,7 @@ main:
   }
 \end{verbatim}
 
-Note that there is no concept of a function; if the return was not present in \texttt{walkandreturn}, the code would continue down, running \texttt{main}.
+Note that there is no concept of a function; if the return was not present in \texttt{walkandreturn}, the execution would continue down, running \texttt{main}.
 
 When the robot tries to move towards the edge of the grid, or a blocked square, it doesn't move. When the robot reaches her target square, she wins, even if she doesn't stop on the square.
 
@@ -54,7 +54,7 @@ Each grid is formatted as follows:
 
 The first line contains the testcase name.
 
-The next line contains two integers $1 \le R \le 1000$ och $1 \le C \le 1000$, the number of rows and columns in the grid.
+The next line contains two integers $1 \le R \le 1000$ and $1 \le C \le 1000$, the number of rows and columns in the grid.
 
 Each square is one of:
 \begin{description}
@@ -98,7 +98,7 @@ If a jump is initiated because of a \texttt{call} instruction, the state of ever
 If a \texttt{return} statement is executed, the state of all loops will be set to the saved state on the top of the call stack.
 
 
-The judges guarantee that there exists program which attain full score under these constraints.
+The judges guarantee that there exists a program which attain full score under these constraints.
 
 \section*{Submission}
 To make it easier to submit your solution, a sample submission is provided, which you can download from attachments at the bottom of the page.
