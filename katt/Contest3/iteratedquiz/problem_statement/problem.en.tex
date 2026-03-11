@@ -37,27 +37,27 @@ at the bottom of the Kattis problem page. Refer to the comment at the top of the
 
 
 \section*{Scoring}
-Your solution will be tested on a set of test case groups.
-To get points for a group, you must pass all the test cases in the group.
+Your solution will be tested on a set of test groups.
+To earn points for a group, you must pass all test cases in that group.
 
 Let $M$ be the number of rounds your program needs to answer all the questions correctly.
 
 \noindent
 \begin{tabular}{| l | l | p{12cm} |}
   \hline
-  \textbf{Group} & \textbf{Point value} & \textbf{Constraints} \\ \hline
+  \textbf{Group} & \textbf{Points} & \textbf{Constraints} \\ \hline
   $1$    & $9$       & $1 \le N \le 10$, $M$ must be at most $2^N$. \\ \hline
   $2$    & $11$      & $1 \le N \le 1\,000$, $M$ must be at most $2N$. \\ \hline
   $3$    & $15$      & $1 \le N \le 1\,000$, $M$ must be at most $N + 2$. \\ \hline
   $4$    & $65$      & $N = 1\,000$, $M$ must be at most $N$. \\ \hline
 \end{tabular}
 
-For subtask 4, the scoring works as follows. Assume that your program needs $M$ rounds in the worst case.
+For group 4, the scoring works as follows. Assume that your program needs $M$ rounds in the worst case.
 
-If $M >= 1000$, you will get 0 points. Otherwise, you will score
+If $M \geq 1000$, you will get $0$ points. Otherwise, you will score
 \[ 65 \cdot \min \{ 1, \frac{1000-M}{1000-420} \} \]
-points on the subtask. In other words, your score increases linearly as the number of queries decreases from 1000 to 420.
-If you never use more than 420 questions, you will get 65 points on subtask 4.
+points on the group. In other words, your score increases linearly as the number of rounds decreases from $1000$ to $420$.
+If you never use more than $420$ rounds, you will get 65 points on group 4.
 
 \section*{Explanation of the sample}
 Suppose that the correct answer to all questions is \texttt{1101}. In the first guess, questions $1$ and $3$ are correctly

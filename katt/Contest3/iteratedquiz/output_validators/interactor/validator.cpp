@@ -35,10 +35,11 @@ int main(int argc, char** argv) {
 	int max_score, seed;
     judge_in >> N >> type >> max_score >> seed;
 
-	srand(seed);
+	mt19937 rng(seed);
+	uniform_int_distribution<int> dist01(0,1);
 
 	string guess, target(N, '0');
-	rep(i,0,N) target[i] = (char)('0' + ((rand() >> 24) & 1));
+	rep(i,0,N) target[i] = (char)('0' + dist01(rng));
 
 	cout << N << endl;
 	int guesses = 0;
@@ -47,7 +48,7 @@ int main(int argc, char** argv) {
 		if (!(cin >> guess)) wa("Expected more output");
 
 		if (sz(guess) != N)
-			wa(("wrong length"+to_string(sz(guess))+" "+guess+" "+to_string(N)));
+			wa(("wrong length "+to_string(sz(guess))+" "+guess+" "+to_string(N)));
 		int s = 0;
 		rep(i,0,N) {
 			char x = guess[i];
