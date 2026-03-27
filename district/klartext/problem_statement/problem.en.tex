@@ -1,0 +1,23 @@
+\problemname{Known Plaintext}
+
+When Alice sends emails with her friend Bob, she encrypts all text so that unauthorized people cannot read it. In total, Alice and Bob use five different ciphers to encrypt their emails.
+
+Your task is to, given an encrypted email and which cipher was used to encrypt it, output the email in plaintext. By plaintext we mean the email as it looked before it was encrypted.
+
+To help you, for each cipher you are given a number of encrypted emails and their plaintext.
+
+\section*{Input}
+The input first consists of a character 1, 2, 3, 4 or 5 -- which cipher was used to encrypt the email. The number is followed by a space, and then the encrypted email on a single line.
+
+\section*{Output}
+You should output the plaintext for the encrypted email.
+
+\section*{Scoring}
+
+\begin{enumerate}
+	\item[10 points] your program should handle the first cipher.
+	\item[15 points] your program should handle the second cipher.
+	\item[25 points] your program should handle the third cipher.
+	\item[25 points] your program should handle the fourth cipher.
+	\item[40 points] your program should handle the fifth cipher.
+\end{enumerate}

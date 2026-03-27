@@ -1,0 +1,31 @@
+\problemname{List Testing}
+
+Mårten has implemented a \href{https://en.wikipedia.org/wiki/Doubly\_linked\_list}{doubly linked list}. Mårten is not very smart, you see. He does not know that there are ready-made linked lists in almost all standard libraries that exist.
+
+Mårten does not agree that it is a bad idea -- he thinks his own list is much more efficient than the one in the standard library. It is up to you to prove him wrong, by demonstrating that efficiency is not everything. His list is, in fact, broken.
+
+Your task is to write a number of test cases that demonstrate Mårten's failures. In total, Mårten has made 10 attempts at writing a linked list, and your test cases should break as many of Mårten's implementations as possible.
+
+A test case consists of a list of commands of the following form:
+\begin{description}
+	\item[storlek] -- query the size of the list.
+	\item[pop\_first] -- remove the first element of the list.
+	\item[pop\_back] -- remove the last element of the list.
+	\item[add\_first X] -- add the integer $-1000 \le X \le 1000$ to the front of the list.
+	\item[add\_back X] -- add the integer $-1000 \le X \le 1000$ to the end of the list.
+	\item[add X Y] -- add the integer $-1000 \le X \le 1000$ at position $Y$ in the list.
+	\item[remove Y] -- remove the element at position $Y$ in the list.
+	\item[clear] -- remove all elements from the list.
+\end{description}
+Positions in the list are zero-indexed.
+
+Between test cases you should output a line with three hyphens: \texttt{-{}-{}-}.
+
+\section*{Input}
+The problem has no input.
+
+\section*{Output}
+You should output a number of lines with your test cases. You may output at most 1000 lines.
+
+\section*{Scoring}
+In total, Mårten has coded 10 broken implementations. For each implementation that your test cases break, you receive 6 points.

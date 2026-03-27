@@ -1,0 +1,58 @@
+\problemname{Cherimoyas}
+
+Farah loves the exotic cherimoya fruit. Since it comes from a
+faraway land, it is only sold one day per year in Sweden! Farah has of course
+made sure to buy some cherimoyas on this very day.
+
+The cherimoyas are at different stages of ripeness. Some have just become ripe on the same day while
+others will become ripe to eat later.
+
+More precisely, each cherimoya fruit is ripe to eat for a total of 3 days. We
+say that the fruit becomes ripe to eat on that day. Before that it cannot be eaten and after the
+three days it must be thrown away.
+
+Farah wants to get as much as possible out of the cherimoya season. She wants to
+maximize her enjoyment, which is calculated as follows: For a given day she receives 10
+enjoyment points for the first cherimoya, then 9 for the second, 8 for the
+third, and so on. She never manages to eat more than 10 cherimoyas in a day.
+
+Write a program that, given how many cherimoyas become ripe to eat each day,
+determines how many enjoyment points Farah will get during the year's
+cherimoya season.
+
+\section*{Input}
+The first line of input contains the integer $N$ ($1 \leq N \leq 15$), the number
+of days on which cherimoyas can become ripe.
+
+For each of the following $N$ days you get an integer $C_i$ ($0 \leq C_i \leq 30$),
+meaning that $C_i$ cherimoyas become ripe on that day.
+It is thus during $N+2$ days that eating cherimoyas is relevant.
+
+\section*{Output}
+Output a single integer: the maximum number of enjoyment points Farah can
+get with the best eating strategy.
+
+\section*{Scoring}
+Your solution will be tested on a set of test groups.
+To earn points for a group, you must pass all test cases in that group.
+
+\noindent
+\begin{tabular}{| l | l | p{12cm} |}
+  \hline
+  \textbf{Group} & \textbf{Points} & \textbf{Constraints} \\ \hline
+  $1$    & $20$       & $N \leq 1$ \\ \hline
+  $2$    & $20$       & $N \leq 2$ \\ \hline
+  $3$    & $30$       & $N \leq 5$ \\ \hline
+  $4$    & $30$       & No additional constraints. \\ \hline
+\end{tabular}
+
+\section*{Explanation of Sample 1}
+An optimal strategy is the following:
+\begin{enumerate}
+    \item Of the 18 cherimoyas that ripen on day 1, eat 6 on each of days 1, 2, and 3.
+    This gives $10+9+8+7+6+5=45$ enjoyment points on each of those days.
+    \item Of the 2 cherimoyas that ripen on day 2, eat one on day 4 and one on day 5.
+    This gives $10$ enjoyment points on each of those days.
+    \item In total this gives $45 \cdot 3+10 \cdot 2=155$ enjoyment points. There is no strategy
+    that gives more enjoyment points.
+\end{enumerate}

@@ -1,0 +1,33 @@
+\problemname{Fix Errors}
+
+Given a text in English, where some characters have been replaced with \texttt{\#}, fix the text by filling in which characters should have been there originally.
+
+\section*{Input}
+The input consists of a single line of characters \texttt{a-z, A-Z, 0-9}, punctuation marks \texttt{.,-:;!?"'}, and spaces. Some of these characters have been replaced by \texttt{\#}.
+No test data file consists of more than $500\,000$ characters.
+
+The input file may also contain newlines, but none of these will be replaced by \texttt{\#}.
+
+\section*{Output}
+You should output the input text, where every occurrence of \texttt{\#} has been replaced with the original character at that position. If you change a character other than \texttt{\#}, you will get wrong answer on that test case.
+
+Any character may have been replaced, including spaces and punctuation marks. If you are correcting a letter, you must also get the capitalization right.
+
+It does not matter how you output newlines -- these will be ignored during grading (and thus do not need to match the newlines in the input).
+
+\section*{Scoring}
+
+There are three test cases your program will be run on.
+\begin{enumerate}
+  \item In a test case worth 60 points, at most one letter per word will be replaced. No spaces or punctuation marks will be replaced.
+  \item In a test case worth 60 points, $10\%$ of characters will be randomly replaced.
+  \item In a test case worth 60 points, $30\%$ of characters will be randomly replaced.
+\end{enumerate}
+
+This problem can thus give a total of 180 points.
+
+If on a certain test case worth $P$ points, you correct \texttt{M} errors and there are \texttt{N} errors in total, you receive
+$$P \cdot \frac{M}{N}$$
+points, rounded down.
+
+Your total score is the sum of the scores for the individual test cases.

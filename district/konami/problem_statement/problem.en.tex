@@ -1,0 +1,26 @@
+\problemname{The Konami Code}
+
+A common cheat code in many old games is the so-called \emph{Konami code}, which consists of the sequence \texttt{up up down down left right left right B A}.
+
+You are programming a game where you want to include a cheat that is activated when the Konami code is entered. However, you want to do it with a twist -- it should be allowed to press at most $K$ other buttons between your Konami code inputs.
+
+If $K = 3$, this means that we may insert three extra button presses. So \texttt{up up down \textbf{left} down left \textbf{B B} right left right B A} would be a valid Konami code, where the three extra button presses are marked in bold.
+
+You should now write a program that, given a sequence of button presses, determines the lowest $K$-value needed for the Konami code to appear in the sequence. Note that button presses that occur before the first Konami code press and after the last Konami code press are not counted. This means that for the sequence \texttt{\textbf{B B left} up up down \textbf{left} down left \textbf{B B} right left right B A \textbf{A B up}} the answer should still be $K = 3$.
+
+\section*{Input}
+The input contains a single line with $N$ characters -- the sequence of button presses. It will be given as a sequence of the letters \texttt{U, N, V, H, B, A}, which represent the button presses \texttt{up, down, left, right, B, A}.
+
+It is guaranteed that the Konami code exists as a subsequence of the button presses.
+
+\section*{Output}
+You should output a single line with the integer $K$ as described in the problem.
+
+\section*{Scoring}
+
+\begin{enumerate}
+	\item[7 points] $N \le 11$.
+	\item[11 points] $N \le 100$.
+	\item[12 points] $N \le 3000$.
+	\item[20 points] $N \le 200\,000$.
+\end{enumerate}
