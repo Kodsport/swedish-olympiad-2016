@@ -18,22 +18,22 @@
  * - accept_with_score(double score):
  *        exit with Accepted and give a score (for scoring problems)
  *
- * - judge_message(std::string msg, ...):
+ * - judge_message(const char* msg, ...):
  *        printf-style function for emitting a judge message (a
  *        message that gets displayed to a privileged user with access
  *        to secret data etc).
  *
- * - wrong_answer(std::string msg, ...):
+ * - wrong_answer(const char* msg, ...):
  *        printf-style function for exitting and giving Wrong Answer,
  *        and emitting a judge message (which would typically explain
  *        the cause of the Wrong Answer)
  *
- * - judge_error(std::string msg, ...):
+ * - judge_error(const char* msg, ...):
  *        printf-style function for exitting and giving Judge Error,
  *        and emitting a judge message (which would typically explain
  *        the cause of the Judge Error)
  *
- * - author_message(std::string msg, ...):
+ * - author_message(const char* msg, ...):
  *        printf-style function for emitting an author message (a
  *        message that gets displayed to the author of the
  *        submission).  (Use with caution, and be careful not to let
@@ -50,12 +50,7 @@
 #include <fstream>
 #include <sstream>
 
-#ifndef S_ISDIR
-#define _S_ISTYPE(mode, mask)  (((mode) & _S_IFMT) == (mask))
-#define S_ISDIR(mode) _S_ISTYPE((mode), _S_IFDIR)
-#endif
-
-
+__attribute__((format(printf, 1, 2)))
 typedef void (*feedback_function)(const char*, ...);
 
 const int EXITCODE_AC = 42;
@@ -70,39 +65,44 @@ const char* FILENAME_SCORE = "score.txt";
 std::ifstream judge_in, judge_ans;
 std::istream author_out(std::cin.rdbuf());
 
-char* feedbackdir = NULL;
+char *feedbackdir = NULL;
 
 void vreport_feedback(const char* category,
-    const char* msg,
-    va_list pvar) {
+                      const char* msg,
+                      va_list pvar) {
     std::ostringstream fname;
     if (feedbackdir)
         fname << feedbackdir << '/';
     fname << category;
-    FILE* f = fopen(fname.str().c_str(), "a");
+    FILE *f = fopen(fname.str().c_str(), "a");
     assert(f);
     vfprintf(f, msg, pvar);
     fclose(f);
 }
 
+__attribute__((format(printf, 2, 3)))
 void report_feedback(const char* category, const char* msg, ...) {
     va_list pvar;
     va_start(pvar, msg);
     vreport_feedback(category, msg, pvar);
 }
 
+__attribute__((format(printf, 1, 2)))
 void author_message(const char* msg, ...) {
     va_list pvar;
     va_start(pvar, msg);
     vreport_feedback(FILENAME_AUTHOR_MESSAGE, msg, pvar);
 }
 
+__attribute__((format(printf, 1, 2)))
 void judge_message(const char* msg, ...) {
     va_list pvar;
     va_start(pvar, msg);
     vreport_feedback(FILENAME_JUDGE_MESSAGE, msg, pvar);
 }
 
+[[noreturn]]
+__attribute__((format(printf, 1, 2)))
 void wrong_answer(const char* msg, ...) {
     va_list pvar;
     va_start(pvar, msg);
@@ -110,30 +110,35 @@ void wrong_answer(const char* msg, ...) {
     exit(EXITCODE_WA);
 }
 
+[[noreturn]]
+__attribute__((format(printf, 1, 2)))
 void judge_error(const char* msg, ...) {
     va_list pvar;
     va_start(pvar, msg);
     vreport_feedback(FILENAME_JUDGE_ERROR, msg, pvar);
     assert(0);
+    exit(1);
 }
 
+[[noreturn]]
 void accept() {
     exit(EXITCODE_AC);
 }
 
+[[noreturn]]
 void accept_with_score(double scorevalue) {
     report_feedback(FILENAME_SCORE, "%.9le", scorevalue);
     exit(EXITCODE_AC);
 }
 
 
-bool is_directory(const char* path) {
+bool is_directory(const char *path) {
     struct stat entry;
     return stat(path, &entry) == 0 && S_ISDIR(entry.st_mode);
 }
 
-void init_io(int argc, char** argv) {
-    if (argc < 4) {
+void init_io(int argc, char **argv) {
+    if(argc < 4) {
         fprintf(stderr, USAGE, argv[0]);
         judge_error("Usage: %s judgein judgeans feedbackdir [opts] < userout", argv[0]);
     }

@@ -86,33 +86,14 @@ bool reaches_goal(Program program)
 		exec.advance();
 		if (exec.done) return true;
 	}
-	/*rep(i, 0, r) {
-		rep(j, 0, c)
-		{
-			cout << exec.vis[i][j];
-		}
-		cout << "\n";
-	}*/
 	return false;
 }
 
 int main(int argc, char** argv)
 {
-#if 0
-	ifstream in_file("e:\\maze.txt");
-	parse_map(in_file);
-	ifstream user_solution("e:\\submission.txt");
-	Program program(user_solution);
-
-	cout << reaches_goal(program);
-#else
-
 	init_io(argc, argv);
-	//parse_map(judge_in);
-	//ifstream in("e:\\maze.txt");
 	parse_map(judge_in);
 
-	//ifstream auth("c:\\users\\matis\\source\\repos\\robotoptimering\\x64\\debug\\author.txt");
 	Program program(author_out);
 	if (!program.succeeded_parsing)
 	{
@@ -144,10 +125,7 @@ int main(int argc, char** argv)
 	else
 	{
 		double score = 10 * (1 - pow((author_moves - judge_moves) / author_moves, 2));
+		score = max(score, 0.);
 		accept_with_score(score);
 	}
-	
-	//ofstream(map_name) << score << " " << author_moves;
-#endif
-	
 }

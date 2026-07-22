@@ -1,6 +1,6 @@
 \problemname{Robotoptimering}
 
-There's a robot in an $N \times M$ grid, where some unit squares are \textbf{blocked} so that the robot cannot walk on the square. Now she wants to move to another square, and have asked her owner to program her to do this.
+There's a robot in an $R \times C$ grid, where some unit squares are \textbf{blocked} so that the robot cannot walk on the square. Now she wants to move to another square, and has asked her owner to program her to do this.
 This owner happens to be you.
 
 To transfer the code to a robot from your computer requires a lot of energy, so you want to make the program as short as possible - this means using as few commands as possible.
@@ -21,7 +21,6 @@ A \emph{label} has the syntax \texttt{labelname:}, and may not contain any white
 \section*{Example program}
 
 \begin{verbatim}
-
 walkandreturn:
   for 100 {
     forward
@@ -54,9 +53,10 @@ Each grid is formatted as follows:
 
 The first line contains the testcase name.
 
-The next line contains two integers $1 \le R \le 1000$ and $1 \le C \le 1000$, the number of rows and columns in the grid.
+The next line contains two integers $R$ and $C$ ($1 \le R,C \le 1000$), the number of rows and columns in the grid.
 
-Each square is one of:
+The following $R$ lines each describe a row of the grid.
+Each row consists of exactly $C$ squares, each described by one of the following characters:
 \begin{description}
   \item[\texttt{.}] free square
   \item[\texttt{\#}] blocked square
@@ -64,43 +64,28 @@ Each square is one of:
   \item[\texttt{<>\textasciicircum{}v}] start square, indicating the direction of the robot (in the order left, right, up, down).
 \end{description}
 
+There is exactly one goal and one start square.
+
 \section*{Output}
 For the given maze, output a valid program on the form described above, that moves the robot from its starting position to the end position.
 
 \section*{Additional details}
-The judge runs $10^8$ steps before it deems that your program won't find the goal.
-Every step corresponds to one non-empty line in the program, including labels. As soon as the robot
-moves on top of the goal square, the execution is stopped, and you receive an \texttt{Accepted} verdict
-for said testcase.
-If the execution runs past the last line of the program, it gets \texttt{Wrong Answer}.
+As soon as the robot moves on top of the goal square, the execution is stopped, and you receive an \texttt{Accepted} verdict for said testcase.
+If you do not reach the goal in $10^8$ instructions, you instead get \texttt{Wrong Answer}.
+Every executed command counts as one instruction, and each iteration of a loop counts as one additional instruction.
+Labels are free.
+If execution runs past the last instruction, you get \texttt{Wrong Answer}.
 
-Every line must either be empty or contain exactly one token, which are described at the top of the page. \\
-Notably, loops \textit{must} be formatted in the following way:
-\begin{verbatim}
-for X {
-  ...
-}
-\end{verbatim}
-Additionally, $X$ must satisfy $1 \leq X \leq 10^8$.\\
-This means that the following loops are \textit{not} valid:
-\begin{verbatim}
-for X
-{
-  ...
-}
-\end{verbatim}
-\begin{verbatim}
-for X { ... }
-\end{verbatim}
+The program is a sequence of tokens separated by whitespace.
+Any mix of spaces, tabs and line breaks works, and the \texttt{\{} and \texttt{\}} of a loop are themselves tokens.
+In a loop \texttt{for X \{ ... \}}, the number of repetitions $X$ must satisfy $1 \leq X \leq 10^8$.
 
-
-The call stack may never contain more than $2 \cdot 10^6$ positions at the same time. If a \texttt{call}
-would exceed this, you get \texttt{Wrong Answer}.
+The call stack may never contain more than $2 \cdot 10^6$ positions at the same time.
+If a \texttt{call} would exceed this, you get \texttt{Wrong Answer}.
 
 If a jump is initiated because of a \texttt{gotoblocked} instruction, the state of every loop is reset. \\
 If a jump is initiated because of a \texttt{call} instruction, the state of every loop is saved on the call stack, and they are then reset.
 If a \texttt{return} statement is executed, the state of all loops will be set to the saved state on the top of the call stack.
-
 
 The judges guarantee that there exists a program that attains full score under these constraints.
 
@@ -117,3 +102,5 @@ If your length on a particular test case is $L$ and the shortest length on this 
 judges is $B$, then your score on the testcase is
 
 \[ 10 (1 - (\frac{L - B}{L})^2)\]
+
+Finally, the score per testcase is clamped to the range $[0,10]$.

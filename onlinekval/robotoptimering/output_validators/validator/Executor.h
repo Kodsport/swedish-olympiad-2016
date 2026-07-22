@@ -59,6 +59,10 @@ public:
 
 	void advance()
 	{
+		// Labels are free: skip over them without spending a step.
+		while (program.instructions[instruction_ptr].type == label)
+			instruction_ptr++;
+
 		Instruction& curr_instruction = program.instructions[instruction_ptr];
 		if (curr_instruction.type == eof)
 		{
@@ -109,7 +113,9 @@ public:
 				wrong_answer("Recursed deeper than 2*10^6 levels");
 			}
 			callstack.push(create_stack_snapshot());
-			instruction_ptr = curr_instruction.target-1;
+			for (auto p : loop_indices) loop_counters[p] = -1;
+			// Land after the label, matching gotoblocked (labels are skipped for free anyway).
+			instruction_ptr = curr_instruction.target;
 			break;
 		case ret:;
 			if (callstack.empty())
@@ -167,8 +173,8 @@ private:
 			return make_pair(pos.first, pos.second - 1);
 		case Direction::right:
 			return make_pair(pos.first, pos.second + 1);
-		default:
-			break;
 		}
+		assert(false); // unreachable: dir is always one of the four directions
+		return pos;
 	}
 };
