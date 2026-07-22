@@ -94,12 +94,15 @@ for X { ... }
 \end{verbatim}
 
 
+The call stack may never contain more than $2 \cdot 10^6$ positions at the same time. If a \texttt{call}
+would exceed this, you get \texttt{Wrong Answer}.
+
 If a jump is initiated because of a \texttt{gotoblocked} instruction, the state of every loop is reset. \\
 If a jump is initiated because of a \texttt{call} instruction, the state of every loop is saved on the call stack, and they are then reset.
 If a \texttt{return} statement is executed, the state of all loops will be set to the saved state on the top of the call stack.
 
 
-The judges guarantee that there exists a program which attain full score under these constraints.
+The judges guarantee that there exists a program that attains full score under these constraints.
 
 \section*{Submission}
 To make it easier to submit your solution, a sample submission is provided, which you can download from attachments at the bottom of the page.
@@ -107,7 +110,7 @@ This submission will get 0 points, but contains valid programs.
 
 \section*{Scoring}
 The scoring is based on the length of your program. The length is the number of times you use one
-of the listed commands in the your program. Our example program has length 11. In particular, labels
+of the listed commands in your program. Our example program has length 11. In particular, labels
 do not contribute to the length.
 
 If your length on a particular test case is $L$ and the shortest length on this case found by the

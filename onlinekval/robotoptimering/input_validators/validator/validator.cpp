@@ -16,6 +16,7 @@ void run() {
     for (int i = 0; i < r; i++)
     {
         string row = Line();
+        assert(row.size() == c);
 
         for (auto c : row)
         {
@@ -31,6 +32,4 @@ void run() {
     }
     assert(numgoals == 1);
     assert(numstart == 1);
-
-    Eof();
 }

@@ -6,5 +6,8 @@ license: cc by-sa
 validation: custom score
 type: scoring
 
+limits:
+  validation_memory: 2048
+
 grading:
   show_test_data_groups: yes

@@ -199,9 +199,14 @@ private:
 					}
 					instructions.push_back(Instruction(loop, num_its));
 				}
-				catch (const std::out_of_range)
+				catch (const std::out_of_range&)
 				{
 					fail("Number of loop iterations is more than 10^8", original_line);
+					return;
+				}
+				catch (const std::invalid_argument&)
+				{
+					fail("Number of loop iterations is not an integer", original_line);
 					return;
 				}
 
@@ -303,6 +308,7 @@ private:
 	}
 	bool is_int(string& s)
 	{
+		if (s.empty()) return false;
 		for (auto c : s) if (c < '0' || c > '9') return false;
 		return true;
 	}

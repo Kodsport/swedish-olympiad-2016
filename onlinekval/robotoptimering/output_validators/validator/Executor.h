@@ -12,6 +12,8 @@ struct StackFrame
 	vector<int> loop_counters;
 };
 
+const size_t MAX_RECURSION_DEPTH = 2000000;
+
 class Executor
 {
 public:
@@ -101,6 +103,11 @@ public:
 			}
 			break;
 		case call:;
+			if (callstack.size() >= MAX_RECURSION_DEPTH)
+			{
+				author_message("Recursed deeper than 2*10^6 levels");
+				wrong_answer("Recursed deeper than 2*10^6 levels");
+			}
 			callstack.push(create_stack_snapshot());
 			instruction_ptr = curr_instruction.target-1;
 			break;
