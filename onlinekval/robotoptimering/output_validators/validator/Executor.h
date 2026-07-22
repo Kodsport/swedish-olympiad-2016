@@ -58,7 +58,11 @@ public:
 	void advance()
 	{
 		Instruction& curr_instruction = program.instructions[instruction_ptr];
-		if (curr_instruction.type == eof) return;
+		if (curr_instruction.type == eof)
+		{
+			author_message("Execution ran past the last line of the program");
+			wrong_answer("Execution ran past the last line of the program");
+		}
 
 		vis[pos.first][pos.second] = 1;
 

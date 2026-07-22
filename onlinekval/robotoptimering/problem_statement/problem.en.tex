@@ -12,8 +12,8 @@ As everyone knows, the robot programming language looks as follows:
   \item[\texttt{left}] Rotate $90$ degrees counterclockwise.
   \item[\texttt{for X \{ A1 A2 ... An \}}] Repeat the commands \texttt{A1}, \texttt{A2}, ..., \texttt{An} $X$ times.
   \item[\texttt{call X}] Add your current position in the program to the top of the call stack, then jump to the instruction with label \texttt{X}.
-  \item[\texttt{return}] Jump to the last added position in the call stack, and remove it.
-  \item[\texttt{gotoblocked X}] Jump to the instruction with label \texttt{X}, if the square in front of the robot is blocked.
+  \item[\texttt{return}] Remove the last added position from the call stack, and continue execution at the instruction \emph{directly after} it. In other words, a \texttt{return} resumes at the line following the \texttt{call} that put the position on the stack.
+  \item[\texttt{gotoblocked X}] Jump to the instruction with label \texttt{X}, if the robot cannot move forward, i.e. if the square in front of the robot is blocked \emph{or} lies outside the grid.
 \end{description}
 
 A \emph{label} has the syntax \texttt{labelname:}, and may not contain any whitespaces. A label cannot be inside a loop. The execution starts at the label called \texttt{main}.
@@ -72,6 +72,7 @@ The judge runs $10^8$ steps before it deems that your program won't find the goa
 Every step corresponds to one non-empty line in the program, including labels. As soon as the robot
 moves on top of the goal square, the execution is stopped, and you receive an \texttt{Accepted} verdict
 for said testcase.
+If the execution runs past the last line of the program, it gets \texttt{Wrong Answer}.
 
 Every line must either be empty or contain exactly one token, which are described at the top of the page. \\
 Notably, loops \textit{must} be formatted in the following way:
