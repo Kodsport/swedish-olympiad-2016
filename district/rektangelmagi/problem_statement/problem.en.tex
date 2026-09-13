@@ -1,0 +1,44 @@
+\problemname{Rectangle Magic}
+
+A \emph{magic sequence} of length $n + 1$ is a sequence of numbers $a, a + d, a + 2d, ..., a + nd$ for two rational numbers $a$ and $d$, e.g. $2, 5.5, 9, 12.5$ or $5, 5, 5$ or $2, 1, 0, -1, -2$.
+
+A \emph{magic rectangle} of size $R \times C$ is a rectangle where every row and column is a magic sequence.
+
+Given a rectangle of integers where some of the numbers have been erased, determine if it is possible to fill in these erased numbers so that the rectangle is a magic rectangle.
+
+\section*{Input}
+The first line of input contains the numbers $R$ and $C$, the number of rows and columns in the given rectangle. Then follow $R$ lines with $C$ integers each.
+
+An erased number is represented as a period.
+
+\section*{Output}
+If no solution exists, output \texttt{ej magisk}.
+
+Otherwise, output $R$ lines with $C$ columns -- a magic rectangle where you have taken the input rectangle and replaced the erased numbers.
+
+Rational numbers should be given in the form \texttt{N/D}, where $N$ and $D$ are at most 100 digits long. Note that there should be no spaces between the numbers and the division sign.
+
+If $D = 1$ you may write \texttt{N}.
+
+\section*{Scoring}
+Your solution will be tested on a set of test groups.
+To earn points for a group, you must pass all test cases in that group.
+
+In cases 1--9, $1 \le R, C \le 6$.
+
+\noindent
+\begin{tabular}{| l | l | p{12cm} |}
+  \hline
+  \textbf{Group} & \textbf{Points} & \textbf{Constraints} \\ \hline
+  $1$    & $10$         & All numbers are already filled in.  \\ \hline
+  $2$    & $10$         & Either $R$ or $C$ is 1. \\ \hline
+  $3$    & $10$         & $R = C = 2$ \\ \hline
+  $4$    & $10$         & Each test case has a unique solution, and the rectangle is constructed so that there is a row or column with only one erased number, and when it is filled in there is again a row or column with only one erased number, and so on, until the entire rectangle is filled in.  \\ \hline
+  $5$    & $10$         & Each test case has a unique solution that contains only integers. \\ \hline
+  $6$    & $10$         & Each test case has a unique solution. \\ \hline
+  $7$    & $10$         & Each test case either has a unique solution that contains only integers, or has no solution. \\ \hline
+  $8$    & $10$         & Each test case either has a unique solution or no solution at all. \\ \hline
+  $9$    & $10$         & No additional constraints. \\ \hline
+  $10$    & $10$         & No additional constraints, but $1 \le R, C \le 50$. \\ \hline
+
+\end{tabular}

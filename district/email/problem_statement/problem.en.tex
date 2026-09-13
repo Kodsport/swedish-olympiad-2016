@@ -1,0 +1,41 @@
+\problemname{Email Parsing}
+
+The key words \texttt{MUST}, \texttt{MUST NOT}, \texttt{REQUIRED}, \texttt{SHALL}, \texttt{SHALL NOT}, \texttt{SHOULD}, \texttt{SHOULD NOT}, \texttt{RECOMMENDED}, \texttt{MAY}, \texttt{OPTIONAL} in this problem statement are to be interpreted as described in RFC 2119.
+
+To solve this problem it is RECOMMENDED to read the following specifications:
+\begin{itemize}
+	\item RFC 20: https://www.ietf.org/rfc/rfc20.txt
+	\item RFC 1866: https://www.ietf.org/rfc/rfc1866.txt
+	\item RFC 2045: https://www.ietf.org/rfc/rfc2045.txt
+	\item RFC 2046: https://www.ietf.org/rfc/rfc2046.txt
+	\item RFC 2119: https://www.ietf.org/rfc/rfc2119.txt
+	\item RFC 2616: https://www.ietf.org/rfc/rfc2616.txt
+	\item RFC 2822: https://www.ietf.org/rfc/rfc2822.txt
+	\item RFC 3676: https://www.ietf.org/rfc/rfc3676.txt
+\end{itemize}
+
+You will receive an email in the format described by RFC 2822. Your task is to find a preferred part in this email, whose content is a MIME message, as specified in RFC 2045 and RFC 2046. You SHALL then output the text of this part.
+
+The message will always be of type \texttt{multipart/alternative}. The preferred part of the message is either of type \texttt{text/html}, as described in RFC 1866, or of type \texttt{text/plain}, as described in RFC 3676. The character encoding will be ASCII, as described in RFC 20.
+
+
+For simplicity, each line will be terminated with a single LF instead of a CRLF as in standard HTTP 1.1 (described in RFC 2616).
+
+Unlike a real email client, you MAY assume that things will be well-behaved. For example, the HTML in a \texttt{text/html} part will always validate.
+
+\section*{Input}
+The input contains an email, see examples below.
+
+\section*{Output}
+You SHALL output the extracted text and nothing else. Extra newlines at the beginning/end are OPTIONAL.
+
+\section*{Scoring}
+
+\begin{enumerate}
+	\item[20 points] there will only be a single multipart part, and it is of type ``text/plain''.
+	\item[30 points] the preferred part will be of type ``text/plain''.
+	\item[25 points] the preferred part will be of type ``text/plain'', and will be encoded with ``Content-Transfer-Encoding: quoted-printable''.
+  \item[25 points] the preferred part will be of type ``text/html''. All <HTML tags> and \&entities; should be removed.
+\end{enumerate}
+
+Only in the third group will the encoding be ``Content-Transfer-Encoding: quoted-printable''. In the others it will be ``7bit''.
